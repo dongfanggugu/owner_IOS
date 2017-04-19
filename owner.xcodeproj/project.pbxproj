@@ -228,6 +228,9 @@
 		65EEEB961E7791970095432B /* guide.gif in Resources */ = {isa = PBXBuildFile; fileRef = 65EEEB941E7791970095432B /* guide.gif */; };
 		65FE08A51EA59ECE002C9397 /* ListDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08A41EA59ECE002C9397 /* ListDialogView.xib */; };
 		65FE08A81EA59EDE002C9397 /* ListDialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08A71EA59EDE002C9397 /* ListDialogView.m */; };
+		65FE08AB1EA733D9002C9397 /* AddressLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08AA1EA733D9002C9397 /* AddressLocationController.m */; };
+		65FE08AD1EA73B59002C9397 /* ContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08AC1EA73B59002C9397 /* ContentCell.xib */; };
+		65FE08B01EA73BAD002C9397 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08AF1EA73BAD002C9397 /* ContentCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -563,6 +566,11 @@
 		65FE08A41EA59ECE002C9397 /* ListDialogView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListDialogView.xib; sourceTree = "<group>"; };
 		65FE08A61EA59EDE002C9397 /* ListDialogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDialogView.h; sourceTree = "<group>"; };
 		65FE08A71EA59EDE002C9397 /* ListDialogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDialogView.m; sourceTree = "<group>"; };
+		65FE08A91EA733D9002C9397 /* AddressLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationController.h; sourceTree = "<group>"; };
+		65FE08AA1EA733D9002C9397 /* AddressLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLocationController.m; sourceTree = "<group>"; };
+		65FE08AC1EA73B59002C9397 /* ContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentCell.xib; sourceTree = "<group>"; };
+		65FE08AE1EA73BAD002C9397 /* ContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentCell.h; sourceTree = "<group>"; };
+		65FE08AF1EA73BAD002C9397 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -766,6 +774,8 @@
 				6544C7A41E6953E40050A9D3 /* PersonInfoView.m */,
 				6544C7A81E6955BB0050A9D3 /* PersonItemCell.h */,
 				6544C7A91E6955C60050A9D3 /* PersonItemCell.m */,
+				65FE08AE1EA73BAD002C9397 /* ContentCell.h */,
+				65FE08AF1EA73BAD002C9397 /* ContentCell.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -806,6 +816,7 @@
 				6544C78B1E693AF50050A9D3 /* RepairTaskCell.xib */,
 				65E19BD71E67C76200C6860D /* SelectableCell.xib */,
 				6525447C1E1F37EF0027B28B /* WorkerInfoView.xib */,
+				65FE08AC1EA73B59002C9397 /* ContentCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -984,6 +995,8 @@
 				6544C7501E680C230050A9D3 /* PersonController.m */,
 				6544C7521E6811F70050A9D3 /* MyOrderController.h */,
 				6544C7531E6812020050A9D3 /* MyOrderController.m */,
+				65FE08A91EA733D9002C9397 /* AddressLocationController.h */,
+				65FE08AA1EA733D9002C9397 /* AddressLocationController.m */,
 			);
 			name = Person;
 			sourceTree = "<group>";
@@ -1259,6 +1272,7 @@
 				650596BC1E8A36A1009A5602 /* process.jpg in Resources */,
 				65EEEB901E7791380095432B /* page_4.jpg in Resources */,
 				652544D61E1F65050027B28B /* downArrow@3x.png in Resources */,
+				65FE08AD1EA73B59002C9397 /* ContentCell.xib in Resources */,
 				65EEEB8D1E7791380095432B /* page_8.jpg in Resources */,
 				652544881E1F38420027B28B /* icon_info_window.png in Resources */,
 				6516CA001E24D06F00A54C64 /* icon_worker_pic.png in Resources */,
@@ -1423,6 +1437,7 @@
 				652544B61E1F62A80027B28B /* SettingsViewController.m in Sources */,
 				6544C7721E690FA50050A9D3 /* MainTaskInfo.m in Sources */,
 				6544C7621E68FC670050A9D3 /* RepairListResponse.m in Sources */,
+				65FE08AB1EA733D9002C9397 /* AddressLocationController.m in Sources */,
 				655ADF771E27641200F1F036 /* AppReportController.m in Sources */,
 				65E19BE01E67EC2B00C6860D /* SMSCodeRequest.m in Sources */,
 				652544401E1F1F960027B28B /* Config.m in Sources */,
@@ -1513,6 +1528,7 @@
 				6525446C1E1F26C80027B28B /* BaseNavigationController.m in Sources */,
 				6544C79B1E69500F0050A9D3 /* MainTaskConfirmRequest.m in Sources */,
 				65E19BDB1E67E93800C6860D /* KeyEditBtnCell.m in Sources */,
+				65FE08B01EA73BAD002C9397 /* ContentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

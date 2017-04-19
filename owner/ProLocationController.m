@@ -11,25 +11,17 @@
 #import "AddressViewController.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "HttpClient.h"
+#import "AddressLocationController.h"
 
-#pragma mark - ProLocationCell
-
-@interface ProLocationCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UILabel *lbAddress;
-
-@end
-
-@implementation ProLocationCell
-
-
-@end
 
 #pragma mark - ProLocationController
 
-@interface ProLocationController()<BMKMapViewDelegate>
+@interface ProLocationController () <BMKMapViewDelegate, AddressLocationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet BMKMapView *mapView;
+
+@property (strong, nonatomic) UILabel *lbAddress;
+
 
 @end
 
@@ -54,8 +46,11 @@
 
 - (void)onClickNavRight
 {
-    AddressViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"address_controller"];
-    controller.addType = TYPE_PRO;
+    AddressLocationController *controller = [[AddressLocationController alloc] init];
+    controller.delegate = self;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -69,6 +64,22 @@
     _mapView.delegate = self;
     _mapView.zoomLevel = 15;
     _mapView.zoomEnabled = YES;
+    [self markOnMap];
+    
+    _lbAddress = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width , 30)];
+    _lbAddress.numberOfLines = 0;
+    _lbAddress.lineBreakMode = NSLineBreakByWordWrapping;
+    _lbAddress.text = [[Config shareConfig] getBranchAddress];
+    _lbAddress.font = [UIFont systemFontOfSize:14];
+    _lbAddress.backgroundColor = [UIColor whiteColor];
+    _lbAddress.textAlignment = NSTextAlignmentCenter;
+    
+    [self.view addSubview:_lbAddress];
+}
+
+- (void)markOnMap
+{
+    [_mapView removeAnnotations:_mapView.annotations];
     
     CGFloat lat = [[Config shareConfig] getLat];
     CGFloat lng = [[Config shareConfig] getLng];
@@ -80,22 +91,32 @@
     BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
     annotation.coordinate = coor;
     [_mapView addAnnotation:annotation];
-    [_mapView showAnnotations:[NSArray arrayWithObjects:annotation, nil] animated:YES];
-    
-    
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width , 30)];
-    label.numberOfLines = 0;
-    label.lineBreakMode = NSLineBreakByWordWrapping;
-    label.text = [[Config shareConfig] getBranchAddress];
-    label.font = [UIFont systemFontOfSize:14];
-    label.backgroundColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    CGSize size = [label sizeThatFits:CGSizeMake(label.frame.size.width, MAXFLOAT)];
-    label.frame = CGRectMake(0, 64, self.view.bounds.size.width, size.height + 16);
-    [self.view addSubview:label];
+    [_mapView setCenterCoordinate:coor];
     
 }
 
+#pragma mark - AddressLocationControllerDelegate
+
+- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"address"] = address;
+    params[@"lat"] = [NSNumber numberWithFloat:lat];
+    params[@"lng"] = [NSNumber numberWithFloat:lng];
+    
+    [[HttpClient shareClient] post:URL_PERSON_MODIFY parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[Config shareConfig] setBranchAddress:address];
+        [[Config shareConfig] setLat:lat];
+        [[Config shareConfig] setLng:lng];
+        [HUDClass showHUDWithText:@"修改成功"];
+        
+        _lbAddress.text = address;
+        
+        [self markOnMap];
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+
+}
 
 @end

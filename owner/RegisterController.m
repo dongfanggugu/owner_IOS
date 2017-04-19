@@ -11,6 +11,8 @@
 #import "LocationViewController.h"
 #import "SelectableCell.h"
 #import "BrandListResponse.h"
+#import "AddressLocationController.h"
+#import "KeyValueCell.h"
 
 #pragma mark - RegisterCell
 
@@ -38,9 +40,11 @@
 
 #pragma mark - RegisterController
 
-@interface RegisterController()<UITableViewDelegate, UITableViewDataSource, LocationControllerDelegate>
+@interface RegisterController()<UITableViewDelegate, UITableViewDataSource, AddressLocationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet KeyValueCell *addressCell;
 
 @end
 
@@ -78,8 +82,7 @@
     RegisterCell *cell0 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     NSString *userName = cell0.tfValue.text;
     
-    if (0 == userName.length)
-    {
+    if (0 == userName.length) {
         [HUDClass showHUDWithText:@"请填写用户名"];
         return;
     }
@@ -87,8 +90,7 @@
     RegisterCell *cell1 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     NSString *name = cell1.tfValue.text;
     
-    if (0 == name.length)
-    {
+    if (0 == name.length) {
         [HUDClass showHUDWithText:@"请填写用户姓名"];
         return;
     }
@@ -96,8 +98,7 @@
     RegisterCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     NSString *tel = cell2.tfValue.text;
     
-    if (0 == tel.length)
-    {
+    if (0 == tel.length) {
         [HUDClass showHUDWithText:@"请填写用户联系方式"];
         return;
     }
@@ -105,8 +106,7 @@
     RegisterCell *cell3 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     NSString *pwd = cell3.tfValue.text;
     
-    if (0 == pwd.length)
-    {
+    if (0 == pwd.length) {
         [HUDClass showHUDWithText:@"请填写密码"];
         return;
     }
@@ -115,8 +115,7 @@
     RegisterCell *cell4 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     NSString *pwdConfirm = cell4.tfValue.text;
     
-    if (![pwd isEqualToString:pwdConfirm])
-    {
+    if (![pwd isEqualToString:pwdConfirm]) {
         [HUDClass showHUDWithText:@"确认密码和密码不一致"];
         return;
     }
@@ -124,18 +123,10 @@
     SelectableCell *cell5 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
     NSString *brand = cell5.getContentValue;
     
-    RegisterCell *cell6 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
-    NSString *address = cell6.tfValue.text;
+    NSString *address = _addressCell.lbValue.text;
     
-    if (0 == address.length)
-    {
-        [HUDClass showHUDWithText:@"请填写小区地址"];
-        return;
-    }
-    
-    if (0 == _lat || 0 == _lng)
-    {
-        [HUDClass showHUDWithText:@"请在地图中选择您的小区地址"];
+    if (0 == address.length || [address isEqualToString:@"点击选择别墅地址"]) {
+        [HUDClass showHUDWithText:@"请选择别墅地址"];
         return;
     }
     
@@ -243,12 +234,27 @@
     }
     else if (6 == index)
     {
-        RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
+//        RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
+//        
+//        cell.lbKey.text = @"小区地址";
+//        cell.tfValue.placeholder = @"小区地址";
+//        cell.btnLocation.hidden = YES;
+//        [cell.btnLocation addTarget:self action:@selector(addressLocation) forControlEvents:UIControlEventTouchUpInside];
         
-        cell.lbKey.text = @"小区地址";
-        cell.tfValue.placeholder = @"小区地址";
-        cell.btnLocation.hidden = NO;
-        [cell.btnLocation addTarget:self action:@selector(addressLocation) forControlEvents:UIControlEventTouchUpInside];
+        KeyValueCell *cell = [tableView dequeueReusableCellWithIdentifier:[KeyValueCell identifier]];
+        
+        if (!cell) {
+            cell = [KeyValueCell cellFromNib];
+        }
+        
+        _addressCell = cell;
+        
+        cell.lbKey.text = @"别墅地址";
+        cell.lbValue.text = @"点击选择别墅地址";
+        
+        cell.lbValue.userInteractionEnabled = YES;
+        
+        [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressLocation)]];
         
         return cell;
     }
@@ -258,26 +264,34 @@
 
 - (void)addressLocation
 {
-    RegisterCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
-    NSString *address = cell.tfValue.text;
+//    RegisterCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
+//    NSString *address = cell.tfValue.text;
     
-    if (0 == address.length) {
-        [HUDClass showHUDWithText:@"请先填写小区地址"];
-        
-        return;
-    }
+//    if (0 == address.length) {
+//        [HUDClass showHUDWithText:@"请先填写小区地址"];
+//        
+//        return;
+//    }
     
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
-    LocationViewController *controller = [board instantiateViewControllerWithIdentifier:@"address_location"];
+//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
+//    LocationViewController *controller = [board instantiateViewControllerWithIdentifier:@"address_location"];
+//    controller.delegate = self;
+//    controller.enterType = 1;
+//    controller.address = address;
+//    controller.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:controller animated:YES];
+    
+    AddressLocationController *controller = [[AddressLocationController alloc] init];
     controller.delegate = self;
-    controller.enterType = 1;
-    controller.address = address;
+    
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - LocationControllerDelegate
-- (void)onChooseAddressLat:(CGFloat)lat lng:(CGFloat)lng
+- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
 {
+    _addressCell.lbValue.text = address;
     _lat = lat;
     _lng = lng;
 }

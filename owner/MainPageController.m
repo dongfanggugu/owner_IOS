@@ -88,8 +88,7 @@
     [[HttpClient shareClient] post:@"getAdvertisementBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSMutableArray *array = [NSMutableArray array];
         
-        for (NSDictionary *dic in [responseObject objectForKey:@"body"])
-        {
+        for (NSDictionary *dic in [responseObject objectForKey:@"body"]) {
             AddBannerData *data = [[AddBannerData alloc] initWithUrl:[dic objectForKey:@"pic"]
                                                             clickUrl:[dic objectForKey:@"picUrl"]];
             [array addObject:data];
@@ -162,6 +161,10 @@
     if (0 == indexPath.row) {
         return self.screenWidth / 2;
         
+    }
+    
+    if (3 == indexPath.row) {
+        return 250;
     }
     
     return 120;

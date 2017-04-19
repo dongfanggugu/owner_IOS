@@ -84,7 +84,7 @@
     {
         _viewWidth = self.bounds.size.width;
         _viewHeight = self.bounds.size.height;
-        
+                
         //设置scrollview
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _viewWidth, _viewHeight)];
         _scrollView.delegate = self;

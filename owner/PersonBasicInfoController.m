@@ -119,50 +119,43 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (0 == indexPath.section)
-    {
+    if (0 == indexPath.section) {
         IconCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IconCell"];
         cell.lbName.text = @"头像";
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (1 == indexPath.section)
-    {
+        
+    } else if (1 == indexPath.section) {
         NSInteger row = indexPath.row;
         TextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TextCell"];
         
         
-        if (0 == row)
-        {
+        if (0 == row) {
             cell.labelTitle.text = @"电话";
             cell.labelContent.text = [[Config shareConfig] getTel];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
             
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        else if (1 == row)
-        {
+            
+        } else if (1 == row) {
             cell.labelTitle.text = @"姓名";
             cell.labelContent.text = [[Config shareConfig] getName];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
-        }
-        else if (2 == row)
-        {
+            
+        } else if (2 == row) {
             cell.labelTitle.text = @"电梯品牌";
             cell.labelContent.text = [[Config shareConfig] getBrand];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
-        }
-        else if (3 == row)
-        {
+            
+        } else if (3 == row) {
             
             cell.labelTitle.text = @"电梯型号";
             cell.labelContent.text = [[Config shareConfig] getLiftType];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
-        }
-        else if (4 == row)
-        {
+            
+        } else if (4 == row) {
             cell.labelTitle.text = @"我的地址";
             cell.labelContent.text = [[Config shareConfig] getBranchAddress];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
@@ -170,9 +163,7 @@
         
         return cell;
 
-    }
-    else
-    {
+    } else {
         TextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TextCell"];
         cell.labelTitle.text = @"退出";
         
@@ -186,8 +177,7 @@
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.section)
-    {
+    if (0 == indexPath.section) {
         return 66;
     }
     
@@ -197,49 +187,42 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section;
-    if (1 == section)
-    {
+    if (1 == section) {
         NSInteger row = indexPath.row;
         
-        if (0 == row)
-        {
+        if (0 == row) {
             return;
-        }
-        else if (1 == row)
-        {
+            
+        } else if (1 == row) {
             UIViewController *destinationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ModifyDetail"];
             
             [destinationVC setValue:@"name" forKey:@"enterType"];
             
-            self.hidesBottomBarWhenPushed = YES;
+            destinationVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:destinationVC animated:YES];
-        }
-        else if (2 == row)
-        {
+            
+        } else if (2 == row) {
             UIViewController *destinationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ModifyDetail"];
             [destinationVC setValue:@"brand" forKey:@"enterType"];
             
-            self.hidesBottomBarWhenPushed = YES;
+            destinationVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:destinationVC animated:YES];
-        }
-        else if (3 == row)
-        {
+            
+        } else if (3 == row) {
             UIViewController *destinationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ModifyDetail"];
             [destinationVC setValue:@"model" forKey:@"enterType"];
             
-            self.hidesBottomBarWhenPushed = YES;
+            destinationVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:destinationVC animated:YES];
-        }
-        else if (4 == row)
-        {
+            
+        } else if (4 == row) {
             UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"pro_location_controller"];
             
-            self.hidesBottomBarWhenPushed = YES;
+            controller.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:controller animated:YES];
         }
-    }
-    else if (2 == indexPath.section)
-    {
+        
+    } else if (2 == indexPath.section) {
         [self unregisterJpush];
         [self logout];
     }
@@ -269,12 +252,10 @@
     [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         NSLog(@"zhenhao---rescode: %d, tags: %@, alias: %@", iResCode, iTags , iAlias);
         
-        if (0 == iResCode)
-        {
+        if (0 == iResCode) {
             NSLog(@"zhenhao:jpush unregister successfully!");
-        }
-        else
-        {
+            
+        } else {
             NSString *err = [NSString stringWithFormat:@"%d:注销消息服务器失败，请重新再试", iResCode];
             NSLog(@"zhenhao:%@", err);
             
