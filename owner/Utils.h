@@ -36,13 +36,9 @@
  */
 + (BOOL)isCorrectPhoneNumberOf:(NSString *)phoneNumber;
 
-/**
- *  MD5加密
- *
- *  @param str <#str description#>
- *
- *  @return <#return value description#>
- */
+
+
++ (NSString *)getCurrentTime;
 
 
 @end

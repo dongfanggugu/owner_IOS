@@ -54,7 +54,7 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     __weak typeof(self) weakSelf = self;
-    [[HttpClient shareClient] view:self.view post:@"getAllCommunitysByProperty" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:@"getAllCommunitysByProperty" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [weakSelf.arrayProject removeAllObjects];
         [weakSelf.arrayProject addObjectsFromArray:[responseObject objectForKey:@"body"]];
@@ -152,7 +152,7 @@
         
         if (0 == tel.length)
         {
-            [HUDClass showHUDWithLabel:@"非法的手机号码,无法拨打!" view:weakSelf.view];
+            [HUDClass showHUDWithText:@"非法的手机号码,无法拨打!"];
             return;
         }
         
@@ -164,7 +164,7 @@
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"communityId"] = [weakSelf.calloutView.info objectForKey:@"id"];
         params[@"type"] = @"1";
-        [[HttpClient shareClient] view:nil post:@"addRepair" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient shareClient] post:@"addRepair" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
             
         } failure:^(NSURLSessionDataTask *task, NSError *errr) {
             

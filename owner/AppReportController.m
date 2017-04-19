@@ -46,7 +46,7 @@
     NSString *content = _tvContent.text;
     if (0 == content.length)
     {
-        [HUDClass showHUDWithLabel:@"请先填写电梯故障描述" view:self.view];
+        [HUDClass showHUDWithText:@"请先填写电梯故障描述"];
         return;
     }
     
@@ -54,8 +54,8 @@
     params[@"communityId"] = _projectId;
     params[@"type"] = @"2";
     params[@"phenomenon"] = content;
-    [[HttpClient shareClient] view:self.view post:@"addRepair" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithLabel:@"电梯报修成功,客服人员稍后会联系您,请保持手机畅通" view:self.view];
+    [[HttpClient shareClient] post:@"addRepair" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"电梯报修成功,客服人员稍后会联系您,请保持手机畅通"];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         

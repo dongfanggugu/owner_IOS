@@ -252,7 +252,7 @@
 - (void)logout {
     
     //注销
-    [[HttpClient shareClient] view:self.view post:@"smallOwnerLogout" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:@"smallOwnerLogout" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [[Config shareConfig] setUserId:@""];
         [[Config shareConfig] setToken:@""];
@@ -410,7 +410,7 @@
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         [params setObject:base64String forKey:@"pic"];
         
-        [[HttpClient shareClient] view:self.view post:@"updateLoadPic" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient shareClient] post:@"updateLoadPic" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
             
             NSDictionary *responseBody = [responseObject objectForKey:@"body"];
             NSString *iconUrlString = [responseBody objectForKey:@"pic"];

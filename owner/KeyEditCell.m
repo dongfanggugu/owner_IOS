@@ -19,8 +19,7 @@
 {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"KeyEditCell" owner:nil options:nil];
     
-    if (0 == array.count)
-    {
+    if (0 == array.count) {
         return nil;
     }
     

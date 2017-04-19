@@ -14,7 +14,7 @@
 #import "AddBannerData.h"
 #import "EnsuranceController.h"
 
-@interface MainPageController()<AddBannerViewDelegate>
+@interface MainPageController  () <AddBannerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet AddBannerView *bannerView;
 
@@ -47,7 +47,7 @@
 
 - (void)onClickNavRight
 {
-    [HUDClass showHUDWithLabel:@"功能开发中!" view:self.view];
+    [HUDClass showHUDWithText:@"功能开发中!"];
 }
 
 - (void)initView
@@ -85,7 +85,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [[HttpClient shareClient] view:self.view post:@"getAdvertisementBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:@"getAdvertisementBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSMutableArray *array = [NSMutableArray array];
         
         for (NSDictionary *dic in [responseObject objectForKey:@"body"])
@@ -107,17 +107,15 @@
 {
     RapidRepairController *controller = [[RapidRepairController alloc] init];
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)maintenance
 {
     MaintenanceController *controller = [[MaintenanceController alloc] init];
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)ensurance
@@ -157,6 +155,18 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.row) {
+        return self.screenWidth / 2;
+        
+    }
+    
+    return 120;
+}
+
 
 /**
  *  检测是否需要升级
@@ -164,49 +174,22 @@
 - (void)checkUpdate
 {
     
-    NSString *urlString = [[Utils getServer] stringByAppendingString:@"checkVersion"];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url
-                                                              cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSString *reqBody = @"{\"head\":{\"osType\":\"3\"}}";
-    [urlRequest setHTTPBody:[reqBody dataUsingEncoding:NSUTF8StringEncoding]];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        
-        
-        if (data.length > 0 && nil == connectionError)
-        {
-            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"JSON:%@", json);
-            NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
-            NSDictionary *head = [jsonDic objectForKey:@"head"];
-            NSString *rspCode = [head objectForKey:@"rspCode"];
-            if (![rspCode isEqualToString:@"0"])
-            {
-                return;
-            }
-            
-            NSDictionary *body = [jsonDic objectForKey:@"body"];
-            
-            NSNumber *remote = [body objectForKey:@"appVersion"];
-            NSLog(@"remote version:%@", remote);
-            
-            NSNumber *local = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-            NSLog(@"local version:%@", local);
-            
-            
-            if(remote.integerValue > local.integerValue)
-            {
-                [self performSelectorOnMainThread:@selector(alertUpdate) withObject:nil waitUntilDone:NO];
-            }
-        }
-    }];
+    [[HttpClient shareClient] post:URL_VERSION_CHECK parameters:nil
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               NSInteger remoteVersion = [[responseObject[@"body"] objectForKey:@"appVersion"] integerValue];
+                               
+                               NSLog(@"remote version:%ld", remoteVersion);
+                               
+                               NSInteger localVersion = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] integerValue];
+                               
+                               if(remoteVersion > localVersion) {
+                                   [self performSelectorOnMainThread:@selector(alertUpdate) withObject:nil waitUntilDone:NO];
+                               }
+                               
+                           } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                               
+                           }];
+
 }
 
 /**
@@ -214,18 +197,26 @@
  */
 - (void)alertUpdate
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"新的版本可用，请进行升级" delegate:self cancelButtonTitle:@"暂不升级" otherButtonTitles:@"升级", nil];
-    [alert show];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"新的版本可用，请进行升级"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"升级" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self jumpToUpdate];
+    }]];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"暂不升级" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
+   
 }
 
-#pragma mark -- UIAlertViewDelegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)jumpToUpdate
 {
-    if (1 == buttonIndex)
-    {
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://fir.im/liftowner"]];
-    }
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://fir.im/liftowner"]];
 }
 
 

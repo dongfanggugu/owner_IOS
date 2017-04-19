@@ -33,7 +33,7 @@
     return shareClient;
 }
 
-- (void)view:(UIView *)view post:(NSString *)url parameters:(id)parameters
+- (void)post:(NSString *)url parameters:(id)parameters
      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
@@ -46,60 +46,46 @@
     [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];
     [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
     
-//    [head setObject:@"" forKey:@"accessToken"];
-//    [head setObject:@"" forKey:@"userId"];
     
     
-    if (parameters)
-    {
+    if (parameters) {
         [param setObject:parameters forKey:@"body"];
     }
     
     [param setObject:head forKey:@"head"];
     
     NSLog(@"zhenhao-----request:%@", param);
-
-    MBProgressHUD *hud = nil;
-    
-    if (view)
-    {
-        hud = [HUDClass showLoadingHUD:view];
-    }
+ 
+    MBProgressHUD *hud = [HUDClass showLoadingHUD];
     
     [self POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"zhenhao-----response:%@", responseObject);
         
-        if (hud)
-        {
+        if (hud) {
             [HUDClass hideLoadingHUD:hud];
         }
         
-        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"])
-        {
+        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"]) {
              success(task, responseObject);
             
-        }
-        else
-        {
+        } else {
             //根据错误信息提示用户
             NSString *msg = nil;
             NSString *rspMsg = [[responseObject objectForKey:@"head"]objectForKey:@"rspMsg"];
-            if ([rspMsg containsString:@"系统错误"])
-            {
+            
+            if ([rspMsg containsString:@"系统错误"]) {
                 msg = [rspMsg substringFromIndex:5];
-            }
-            else
-            {
+                
+            } else {
                 msg = rspMsg;
             }
             
-            [HUDClass showHUDWithLabel:msg view:view];
+            [HUDClass showHUDWithText:msg];
             
             
-            NSString * msgCode = [[responseObject objectForKey:@"head"]objectForKey:@"rspCode"];
+            NSString *msgCode = [[responseObject objectForKey:@"head"]objectForKey:@"rspCode"];
             
-            if ([msgCode isEqualToString:@"-9"])
-            {
+            if ([msgCode isEqualToString:@"-9"]) {
                 [[Config shareConfig] setUserId:@""];
                 [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0f];
             }
@@ -108,6 +94,66 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"zhenhao-----error:%@", error);
         [HUDClass hideLoadingHUD:hud];
+        failure(task, error);
+    }];
+}
+
+- (void)bagpost:(NSString *)url parameters:(id)parameters
+     success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+     failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *head = [[NSMutableDictionary alloc] init];
+    
+    [head setObject:@"1" forKey:@"osType"];
+    [head setObject:@"1.0" forKey:@"version"];
+    [head setObject:@"" forKey:@"deviceId"];
+    [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];
+    [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
+    
+    
+    
+    if (parameters) {
+        [param setObject:parameters forKey:@"body"];
+    }
+    
+    [param setObject:head forKey:@"head"];
+    
+    NSLog(@"zhenhao-----request:%@", param);
+    
+    [self POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"zhenhao-----response:%@", responseObject);
+        
+
+        
+        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"]) {
+            success(task, responseObject);
+            
+        } else {
+            //根据错误信息提示用户
+            NSString *msg = nil;
+            NSString *rspMsg = [[responseObject objectForKey:@"head"]objectForKey:@"rspMsg"];
+            
+            if ([rspMsg containsString:@"系统错误"]) {
+                msg = [rspMsg substringFromIndex:5];
+                
+            } else {
+                msg = rspMsg;
+            }
+            
+            [HUDClass showHUDWithText:msg];
+            
+            
+            NSString *msgCode = [[responseObject objectForKey:@"head"]objectForKey:@"rspCode"];
+            
+            if ([msgCode isEqualToString:@"-9"]) {
+                [[Config shareConfig] setUserId:@""];
+                [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0f];
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"zhenhao-----error:%@", error);
         failure(task, error);
     }];
 }

@@ -152,7 +152,7 @@
     
     request.repairOrderId = _orderInfo.orderId;
     
-    [[HttpClient shareClient] view:self.view post:URL_REPAIR_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_REPAIR_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         RepairTaskResponse *response = [[RepairTaskResponse alloc] initWithDictionary:responseObject];
         
         [_arrayTask removeAllObjects];
@@ -224,8 +224,8 @@
     request.evaluate = [NSString stringWithFormat:@"%ld", star];
     request.evaluateInfo = content;
     
-    [[HttpClient shareClient] view:self.view post:URL_REPAIR_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithLabel:@"评价已经提交" view:self.view];
+    [[HttpClient shareClient] post:URL_REPAIR_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"评价已经提交"];
         [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         

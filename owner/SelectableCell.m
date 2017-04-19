@@ -15,8 +15,6 @@
 
 @property (strong, nonatomic) NSArray<id<ListDialogDataDelegate>> *arrayData;
 
-@property (strong, nonatomic) UIView *view;
-
 @property (strong, nonatomic) NSString *content;
 
 @property (strong, nonatomic) NSString *key;
@@ -63,13 +61,11 @@
     [_lbContent addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDialog)]];
 }
 
-- (void)setView:(UIView *)view data:(NSArray<id<ListDialogDataDelegate>> *)arrayData
+- (void)setData:(NSArray<id<ListDialogDataDelegate>> *)arrayData
 {
-    if (nil == view || nil == arrayData || 0 == arrayData.count)
-    {
+    if (nil == arrayData || 0 == arrayData.count) {
         return;
     }
-    _view = view;
     _arrayData = arrayData;
     
     id<ListDialogDataDelegate> info = arrayData[0];
@@ -86,7 +82,7 @@
     [dialog setData:_arrayData];
     dialog.delegate = self;
     
-    [_view addSubview:dialog];
+    [dialog show];
 }
 
 - (NSString *)getKeyValue
@@ -153,6 +149,11 @@
 - (void)onSelectDialogTag:(NSInteger)tag content:(NSString *)content
 {
     
+}
+
+- (void)onDismiss
+{
+    _ivFlag.image = [UIImage imageNamed:@"icon_down"];
 }
 
 @end

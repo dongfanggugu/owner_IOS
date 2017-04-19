@@ -81,7 +81,7 @@
     params[@"password"] = [Utils md5:_tfPwd.text];
     
     
-    [[HttpClient shareClient] view:self.view post:@"smallOwnerLogin" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:@"smallOwnerLogin" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *head = [responseObject objectForKey:@"head"];
         NSDictionary *body = [responseObject objectForKey:@"body"];

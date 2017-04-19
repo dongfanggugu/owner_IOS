@@ -17,12 +17,12 @@
 /**
  显示提示内容
  **/
-+ (void)showHUDWithLabel:(NSString *)content view:(UIView *)view;
++ (void)showHUDWithText:(NSString *)text;
 
 /**
  loading视图
  **/
-+ (MBProgressHUD *)showLoadingHUD:(UIView *)view;
++ (MBProgressHUD *)showLoadingHUD;
 
 /**
  隐藏loading视图

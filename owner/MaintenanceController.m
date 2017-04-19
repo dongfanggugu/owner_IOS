@@ -45,7 +45,7 @@
 - (void)initView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -60,7 +60,7 @@
 
 - (void)getMainType
 {
-    [[HttpClient shareClient] view:self.view post:URL_MAIN_TYPE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_MAIN_TYPE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         MainTypeListResponse *response = [[MainTypeListResponse alloc] initWithDictionary:responseObject];
         
         [_arrayType addObjectsFromArray:[response getMainTypeList]];
@@ -87,8 +87,7 @@
 {
     MainTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:[MainTypeCell identifier]];
     
-    if (!cell)
-    {
+    if (!cell) {
         cell = [MainTypeCell cellFromNib];
     }
     
@@ -100,13 +99,15 @@
     cell.lbPrice.text = [NSString stringWithFormat:@"(￥%.1lf)", info.price];
     cell.lbContent.text = info.content;
     
+    
+    __weak typeof (self) weakSelf = self;
     [cell setOnClickListener:^{
         MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
         
         controller.detail = info.content;
         
         controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
+        [weakSelf.navigationController pushViewController:controller animated:YES];
     }];
     
     return cell;
@@ -126,7 +127,8 @@
     MainTypeInfo *info = _arrayType[indexPath.row];
     MainOrderController *controller = [[MainOrderController alloc] init];
     controller.mainInfo = info;
-    self.hidesBottomBarWhenPushed = YES;
+    
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

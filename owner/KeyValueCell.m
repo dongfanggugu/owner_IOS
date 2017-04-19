@@ -35,16 +35,22 @@
 
 + (CGFloat)cellHeightWithContent:(NSString *)content
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 0)];
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    
+    CGFloat lbWidth = width - 8 - 100 - 8 - 8;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, lbWidth, 0)];
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.font = [UIFont systemFontOfSize:14];
+    
     label.text = content;
     label.numberOfLines = 0;
     [label sizeToFit];
     
-    NSInteger rows = label.frame.size.height / label.font.lineHeight;
+   // NSInteger rows = label.frame.size.height / label.font.lineHeight;
     
-    CGFloat h = label.frame.size.height + 14 * (rows - 1) + 8 + 8;
+    
+    CGFloat h = label.frame.size.height + 10 + 10;
     
     return h;
 }

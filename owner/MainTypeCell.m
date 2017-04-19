@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnInner;
+
 @end
 
 @implementation MainTypeCell
@@ -45,12 +47,13 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    _btnInner.userInteractionEnabled = NO;
 }
 
 - (void)onClick
 {
-    if (_onClickBtn)
-    {
+    if (_onClickBtn) {
         _onClickBtn();
     }
 }

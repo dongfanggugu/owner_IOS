@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,15 +16,53 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htL-73-vVr">
-                    <rect key="frame" x="37" y="204" width="300" height="260"/>
+                    <rect key="frame" x="37" y="214" width="300" height="240"/>
                     <subviews>
-                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yot-BD-S5f">
-                            <rect key="frame" x="10" y="60" width="280" height="140"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuZ-dl-oeP">
+                            <rect key="frame" x="60" y="207" width="60" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="140" id="0Wz-wg-XZl"/>
-                                <constraint firstAttribute="width" constant="280" id="QhK-bG-JNI"/>
+                                <constraint firstAttribute="width" constant="60" id="Kxr-B7-DQW"/>
+                                <constraint firstAttribute="height" constant="25" id="bCl-fW-ePH"/>
                             </constraints>
+                            <state key="normal" title="确认">
+                                <color key="titleColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pA-Q2-jQf">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期选择" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQM-rt-oUv">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="RQM-rt-oUv" firstAttribute="leading" secondItem="6pA-Q2-jQf" secondAttribute="leading" id="2bv-HB-l8u"/>
+                                <constraint firstItem="RQM-rt-oUv" firstAttribute="centerX" secondItem="6pA-Q2-jQf" secondAttribute="centerX" id="3rw-OC-ahG"/>
+                                <constraint firstAttribute="bottom" secondItem="RQM-rt-oUv" secondAttribute="bottom" id="GVn-iN-5nO"/>
+                                <constraint firstItem="RQM-rt-oUv" firstAttribute="centerY" secondItem="6pA-Q2-jQf" secondAttribute="centerY" id="cfa-y9-V6g"/>
+                                <constraint firstAttribute="height" constant="60" id="dPm-eu-wPm"/>
+                                <constraint firstAttribute="trailing" secondItem="RQM-rt-oUv" secondAttribute="trailing" id="di5-f8-QoY"/>
+                                <constraint firstItem="RQM-rt-oUv" firstAttribute="top" secondItem="6pA-Q2-jQf" secondAttribute="top" id="iFT-KW-VRY"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W06-Gp-cyG">
+                            <rect key="frame" x="180" y="207" width="60" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="L7G-SI-aaT"/>
+                                <constraint firstAttribute="height" constant="25" id="pMy-Af-YOb"/>
+                            </constraints>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yot-BD-S5f">
+                            <rect key="frame" x="8" y="68" width="284" height="131"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <date key="date" timeIntervalSinceReferenceDate="503375043.23421502">
                                 <!--2016-12-14 02:24:03 +0000-->
                             </date>
@@ -36,62 +74,22 @@
                             </date>
                             <locale key="locale" localeIdentifier="zh-Hans"/>
                         </datePicker>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuZ-dl-oeP">
-                            <rect key="frame" x="60" y="227" width="60" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="Kxr-B7-DQW"/>
-                                <constraint firstAttribute="height" constant="25" id="bCl-fW-ePH"/>
-                            </constraints>
-                            <state key="normal" title="确认">
-                                <color key="titleColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pA-Q2-jQf">
-                            <rect key="frame" x="0.0" y="0.0" width="300" height="56"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期选择" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQM-rt-oUv">
-                                    <rect key="frame" x="110" y="17" width="80" height="21"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="QNq-4x-aLd"/>
-                                        <constraint firstAttribute="height" constant="21" id="crw-Kw-eNo"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="tintColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstItem="RQM-rt-oUv" firstAttribute="centerX" secondItem="6pA-Q2-jQf" secondAttribute="centerX" id="3rw-OC-ahG"/>
-                                <constraint firstItem="RQM-rt-oUv" firstAttribute="centerY" secondItem="6pA-Q2-jQf" secondAttribute="centerY" id="cfa-y9-V6g"/>
-                            </constraints>
-                        </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W06-Gp-cyG">
-                            <rect key="frame" x="180" y="227" width="60" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="L7G-SI-aaT"/>
-                                <constraint firstAttribute="height" constant="25" id="pMy-Af-YOb"/>
-                            </constraints>
-                            <state key="normal" title="取消">
-                                <color key="titleColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="6pA-Q2-jQf" firstAttribute="top" secondItem="htL-73-vVr" secondAttribute="top" id="1i9-pM-emb"/>
                         <constraint firstItem="TuZ-dl-oeP" firstAttribute="leading" secondItem="htL-73-vVr" secondAttribute="leading" constant="60" id="2iL-ti-LhL"/>
                         <constraint firstAttribute="bottom" secondItem="TuZ-dl-oeP" secondAttribute="bottom" constant="8" id="9oe-kR-GEx"/>
-                        <constraint firstAttribute="height" constant="260" id="HZI-eN-Kpd"/>
+                        <constraint firstAttribute="height" constant="240" id="HZI-eN-Kpd"/>
                         <constraint firstAttribute="bottom" secondItem="W06-Gp-cyG" secondAttribute="bottom" constant="8" id="Mgx-mk-1nB"/>
                         <constraint firstAttribute="width" constant="300" id="PSO-KI-Ftm"/>
+                        <constraint firstItem="Yot-BD-S5f" firstAttribute="top" secondItem="6pA-Q2-jQf" secondAttribute="bottom" constant="8" id="UAU-Ls-yml"/>
                         <constraint firstAttribute="trailing" secondItem="6pA-Q2-jQf" secondAttribute="trailing" id="XTO-fv-FhG"/>
                         <constraint firstAttribute="trailing" secondItem="W06-Gp-cyG" secondAttribute="trailing" constant="60" id="bMn-qf-DON"/>
-                        <constraint firstItem="Yot-BD-S5f" firstAttribute="centerY" secondItem="htL-73-vVr" secondAttribute="centerY" id="c1i-4d-Pun"/>
-                        <constraint firstItem="Yot-BD-S5f" firstAttribute="centerX" secondItem="htL-73-vVr" secondAttribute="centerX" id="hSm-JH-o5R"/>
-                        <constraint firstItem="Yot-BD-S5f" firstAttribute="top" secondItem="6pA-Q2-jQf" secondAttribute="bottom" constant="4" id="jI7-ti-woM"/>
+                        <constraint firstItem="Yot-BD-S5f" firstAttribute="leading" secondItem="htL-73-vVr" secondAttribute="leading" constant="8" id="n3E-fs-G4T"/>
                         <constraint firstItem="6pA-Q2-jQf" firstAttribute="leading" secondItem="htL-73-vVr" secondAttribute="leading" id="pjD-iZ-gnp"/>
+                        <constraint firstAttribute="trailing" secondItem="Yot-BD-S5f" secondAttribute="trailing" constant="8" id="u4D-eW-rd7"/>
+                        <constraint firstItem="TuZ-dl-oeP" firstAttribute="top" secondItem="Yot-BD-S5f" secondAttribute="bottom" constant="8" id="zbg-5O-aTi"/>
                     </constraints>
                 </view>
             </subviews>

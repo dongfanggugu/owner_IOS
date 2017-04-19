@@ -15,26 +15,37 @@
 
 @implementation HUDClass
 
-+ (void)showHUDWithLabel:(NSString *)content view:(UIView *)view
++ (void)showHUDWithText:(NSString *)text
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[delegate window] animated:YES];
+    
+    [[delegate window] bringSubviewToFront:hud];
     
     hud.mode = MBProgressHUDModeText;
     hud.margin = 10.0f;
     hud.removeFromSuperViewOnHide = YES;
     
-    hud.labelText = content;
-    [hud hide:YES afterDelay:2.0f];
+    hud.labelText = text;
+    [hud hide:YES afterDelay:1.5f];
+    
 }
 
-+ (MBProgressHUD *)showLoadingHUD:(UIView *)view
++ (MBProgressHUD *)showLoadingHUD
 {
-    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:[delegate window]];
     
     hud.minSize = CGSizeMake(80.0f, 80.0f);
     hud.removeFromSuperViewOnHide = YES;
-    [view addSubview:hud];
+    
+    [[delegate window] addSubview:hud];
+    
     [hud show:YES];
+    
+    
+    [[delegate window] bringSubviewToFront:hud];
     
     return hud;
 }

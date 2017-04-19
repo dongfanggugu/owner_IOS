@@ -98,8 +98,8 @@
     
     request.maintOrderPorcessId = _taskInfo.taskId;
     
-    [[HttpClient shareClient] view:self.view post:URL_CONFIRM_MAIN_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithLabel:@"维保任务确认成功" view:self.view];
+    [[HttpClient shareClient]post:URL_CONFIRM_MAIN_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"维保任务确认成功"];
         
         [_btnConfirm removeFromSuperview];
         
@@ -167,8 +167,8 @@
     request.evaluateContent = content;
     request.evaluateResult = star;
     
-    [[HttpClient shareClient] view:self.view post:URL_MAIN_TASK_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithLabel:@"维保评价成功" view:self.view];
+    [[HttpClient shareClient] post:URL_MAIN_TASK_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"维保评价成功"];
         
         [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {

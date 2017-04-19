@@ -13,6 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+
 @end
 
 @implementation ListDialogView
@@ -35,6 +37,19 @@
     self.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
     [self initTableView];
     
+    [_btnCancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)cancel
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onDismiss)]) {
+        [_delegate onDismiss];
+    }
+    
+    if ([self superview]) {
+        [self removeFromSuperview];
+    }
 }
 
 - (void)initTableView
@@ -42,8 +57,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.bounces = NO;
-    _tableView.layer.masksToBounds = YES;
-    _tableView.layer.cornerRadius = 5;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -62,8 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_arrayData)
-    {
+    if (_arrayData) {
         return _arrayData.count;
     }
     return 0;
@@ -73,8 +85,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    if (nil == cell)
-    {
+    if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 8, 200, 25)];
         label.tag = 1001;
@@ -90,28 +101,39 @@
 }
 
 
+- (void)show
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UIWindow *window = appDelegate.window;
+    
+    self.frame = window.bounds;
+    
+    [window addSubview:self];
+    
+    [window bringSubviewToFront:self];
+}
+
 #pragma mark - UITableViewDeleagate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     id<ListDialogDataDelegate> info = _arrayData[indexPath.row];
-    if (_delegate)
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(onSelectItem:content:)])
     {
-        if ([_delegate respondsToSelector:@selector(onSelectItem:content:)])
-        {
-            [_delegate onSelectItem:[info getKey] content:[info getShowContent]];
-        }
-        
-        if ([_delegate respondsToSelector:@selector(onSelectDialogTag:content:)])
-        {
-            [_delegate onSelectDialogTag:self.tag content:[info getShowContent]];
-        }
-        
-        if ([_delegate respondsToSelector:@selector(onSelectDialogTag:key:content:)])
-        {
-            [_delegate onSelectDialogTag:self.tag key:[info getKey] content:[info getShowContent]];
-        }
+        [_delegate onSelectItem:[info getKey] content:[info getShowContent]];
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(onSelectDialogTag:content:)])
+    {
+        [_delegate onSelectDialogTag:self.tag content:[info getShowContent]];
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(onSelectDialogTag:key:content:)])
+    {
+        [_delegate onSelectDialogTag:self.tag key:[info getKey] content:[info getShowContent]];
     }
     
     if (self.superview)
@@ -120,4 +142,8 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
 @end

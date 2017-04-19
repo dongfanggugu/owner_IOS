@@ -20,13 +20,15 @@
 
 @protocol ListDialogViewDelegate <NSObject>
 
-- (void)onSelectItem:(NSString *)key content:(NSString *)content;
-
 @optional
+
+- (void)onSelectItem:(NSString *)key content:(NSString *)content;
 
 - (void)onSelectDialogTag:(NSInteger)tag content:(NSString *)content;
 
 - (void)onSelectDialogTag:(NSInteger)tag key:(NSString *)key content:(NSString *)content;
+
+- (void)onDismiss;
 
 @end
 
@@ -38,6 +40,7 @@
 
 - (void)setData:(NSArray<id<ListDialogDataDelegate>> *)arrayData;
 
+- (void)show;
 
 @property (strong, nonatomic) NSArray<id<ListDialogDataDelegate>> *arrayData;
 

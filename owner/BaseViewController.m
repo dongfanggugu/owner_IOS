@@ -23,12 +23,17 @@
     _screenHeight = [UIScreen mainScreen].bounds.size.height;
     
     self.view.backgroundColor = [UIColor whiteColor];
-    if (self.navigationController)
-    {
+    if (self.navigationController) {
         self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     }
 }
 
+- (BOOL)login
+{
+    NSString *userId = [[Config shareConfig] getUserId];
+    
+    return userId.length;
+}
 
 - (void)setNavTitle:(NSString *)title
 {
@@ -74,6 +79,11 @@
 {
 }
 
+
+- (void)dealloc
+{
+    NSLog(@"%@ dealloc", [self class]);
+}
 
 #pragma mark -- 设置状态栏字体为白色
 - (UIStatusBarStyle)preferredStatusBarStyle

@@ -80,7 +80,7 @@
     
     if (0 == userName.length)
     {
-        [HUDClass showHUDWithLabel:@"请填写用户名" view:self.view];
+        [HUDClass showHUDWithText:@"请填写用户名"];
         return;
     }
     
@@ -89,7 +89,7 @@
     
     if (0 == name.length)
     {
-        [HUDClass showHUDWithLabel:@"请填写用户姓名" view:self.view];
+        [HUDClass showHUDWithText:@"请填写用户姓名"];
         return;
     }
     
@@ -98,7 +98,7 @@
     
     if (0 == tel.length)
     {
-        [HUDClass showHUDWithLabel:@"请填写用户联系方式" view:self.view];
+        [HUDClass showHUDWithText:@"请填写用户联系方式"];
         return;
     }
     
@@ -107,7 +107,7 @@
     
     if (0 == pwd.length)
     {
-        [HUDClass showHUDWithLabel:@"请填写密码" view:self.view];
+        [HUDClass showHUDWithText:@"请填写密码"];
         return;
     }
     
@@ -117,7 +117,7 @@
     
     if (![pwd isEqualToString:pwdConfirm])
     {
-        [HUDClass showHUDWithLabel:@"确认密码和密码不一致" view:self.view];
+        [HUDClass showHUDWithText:@"确认密码和密码不一致"];
         return;
     }
     
@@ -129,13 +129,13 @@
     
     if (0 == address.length)
     {
-        [HUDClass showHUDWithLabel:@"请填写小区地址" view:self.view];
+        [HUDClass showHUDWithText:@"请填写小区地址"];
         return;
     }
     
     if (0 == _lat || 0 == _lng)
     {
-        [HUDClass showHUDWithLabel:@"请在地图中选择您的小区地址" view:self.view];
+        [HUDClass showHUDWithText:@"请在地图中选择您的小区地址"];
         return;
     }
     
@@ -151,8 +151,8 @@
     params[@"lat"] = [NSNumber numberWithFloat:_lat];
     
     
-    [[HttpClient shareClient] view:self.view post:@"addSmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithLabel:@"注册成功,请使用您的用户名或手机号码登录" view:self.view];
+    [[HttpClient shareClient] post:@"addSmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"注册成功,请使用您的用户名或手机号码登录"];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
@@ -230,9 +230,9 @@
         
         cell.lbKey.text = @"电梯品牌";
         
-        [[HttpClient shareClient] view:nil post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
-            [cell setView:self.view data:[response getBrandList]];
+            [cell setData:[response getBrandList]];
         } failure:^(NSURLSessionDataTask *task, NSError *errr) {
             
         }];
@@ -261,6 +261,11 @@
     RegisterCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
     NSString *address = cell.tfValue.text;
     
+    if (0 == address.length) {
+        [HUDClass showHUDWithText:@"请先填写小区地址"];
+        
+        return;
+    }
     
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
     LocationViewController *controller = [board instantiateViewControllerWithIdentifier:@"address_location"];

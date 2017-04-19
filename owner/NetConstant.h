@@ -58,4 +58,7 @@
 //维保任务单提交评价
 #define URL_MAIN_TASK_EVALUATE @"saveMaintOrderProcessEvaluate"
 
+//检测版本更新
+#define URL_VERSION_CHECK @"checkVersion"
+
 #endif /* NetConstant_h */

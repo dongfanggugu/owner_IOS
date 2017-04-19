@@ -82,29 +82,20 @@
 {
     NSString *userId = [[Config shareConfig] getUserId];
     
-    if (0 == userId.length)
-    {
+    if (0 == userId.length) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"login_controller"];
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    else
-    {
+        
+    } else {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
-//        UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"person_center"];
-//        
-//        self.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:controller animated:YES];
-//        self.hidesBottomBarWhenPushed = NO;
         
         UIViewController *destinationVC = [board instantiateViewControllerWithIdentifier:@"basicInfo"];
         
-        self.hidesBottomBarWhenPushed = YES;
+        destinationVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:destinationVC animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
     }
 }
 
@@ -163,9 +154,8 @@
     
     NSString *userId = [[Config shareConfig] getUserId];
     
-    if (0 == userId.length)
-    {
-        [HUDClass showHUDWithLabel:@"请您先登录" view:self.view];
+    if (0 == userId.length) {
+        [HUDClass showHUDWithText:@"请您先登录"];
         return;
     }
  
@@ -175,20 +165,17 @@
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
         self.hidesBottomBarWhenPushed = NO;
-    }
-    else if (1 == indexPath.row)
-    {
-        [HUDClass showHUDWithLabel:@"功能开发中,请稍后" view:self.view];
+        
+    } else if (1 == indexPath.row) {
+        [HUDClass showHUDWithText:@"功能开发中,请稍后"];
         return;
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"settings_controller"];
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
     }
     
 }

@@ -15,7 +15,11 @@
 
 - (void)setNavTitle:(NSString *)title;
 
--  (void)initNavRightWithImage:(UIImage *)image;
+- (void)initNavRightWithImage:(UIImage *)image;
+
+@property (assign, nonatomic) CGFloat screenWidth;
+
+@property (assign, nonatomic) CGFloat screenHeight;
 
 @end
 

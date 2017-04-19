@@ -159,7 +159,7 @@
 - (void)logout {
     
     //注销
-    [[HttpClient shareClient] view:self.view post:@"smallOwnerLogout" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:@"smallOwnerLogout" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [[Config shareConfig] setUserId:@""];
         [self.navigationController popViewControllerAnimated:YES];
@@ -190,7 +190,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
     
     InfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
     
@@ -239,7 +238,7 @@
     
     if (0 == section)
     {
-        [HUDClass showHUDWithLabel:@"功能开发中" view:self.view];
+        [HUDClass showHUDWithText:@"功能开发中"];
     }
     else if (1 == section)
     {

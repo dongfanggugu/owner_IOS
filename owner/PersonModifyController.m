@@ -138,7 +138,7 @@
         
         if (0 == content.length)
         {
-            [HUDClass showHUDWithLabel:@"输入不能为空,请重新输入!" view:self.view];
+            [HUDClass showHUDWithText:@"输入不能为空,请重新输入!"];
             return;
         }
         
@@ -149,7 +149,7 @@
         NSString *content = self.textFieldContent.text;
         if (0 == content.length)
         {
-            [HUDClass showHUDWithLabel:@"输入不能为空,请重新输入!" view:self.view];
+            [HUDClass showHUDWithText:@"输入不能为空,请重新输入!"];
             return;
         }
         
@@ -172,7 +172,7 @@
 
 - (void)selBrand
 {
-    [[HttpClient shareClient] view:nil post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
         [self showBrandList:[response getBrandList]];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -200,7 +200,7 @@
     
     __weak PersonModifyController *weakSelf = self;
     
-    [[HttpClient shareClient] view:self.view post:URL_PERSON_MODIFY parameters:params
+    [[HttpClient shareClient] post:URL_PERSON_MODIFY parameters:params
                            success:^(NSURLSessionDataTask *task, id responseObject) {
         //更新本地存储的个人信息
         
@@ -222,7 +222,7 @@
             [[Config shareConfig] setLiftType:value];
         }
        
-        [HUDClass showHUDWithLabel:@"修改成功" view:weakSelf.view];
+        [HUDClass showHUDWithText:@"修改成功"];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         

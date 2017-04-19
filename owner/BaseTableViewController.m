@@ -18,10 +18,18 @@
 @implementation BaseTableViewController
 
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    _screenWidth = [UIScreen mainScreen].bounds.size.width;
+    _screenHeight = [UIScreen mainScreen].bounds.size.height;
+}
+
+
 - (void)setNavTitle:(NSString *)title
 {
-    if (!self.navigationController)
-    {
+    if (!self.navigationController) {
         return;
     }
     
@@ -55,6 +63,12 @@
 
 - (void)onClickNavRight
 {
+}
+
+
+- (void)dealloc
+{
+    NSLog(@"%@ dealloc", [self class]);
 }
 
 #pragma mark -- 设置状态栏字体为白色

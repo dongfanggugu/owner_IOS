@@ -22,6 +22,8 @@
 
 @property (assign, nonatomic) CGFloat screenHeight;
 
+@property (assign, nonatomic) BOOL login;
+
 @end
 
 

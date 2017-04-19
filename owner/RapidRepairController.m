@@ -25,9 +25,7 @@
 #define DATE_INIT @"点击选择上门日期"
 
 @interface RapidRepairController()<UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate>
-{
-    BOOL _isLogin;
-}
+
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -49,6 +47,16 @@
 
 @property (weak, nonatomic) UILabel *lbDate;
 
+@property (weak, nonatomic) SelectableCell *brandCell;
+
+@property (weak, nonatomic) KeyEditCell *modelCell;
+
+@property (weak, nonatomic) SelectableCell *faultCell;
+
+@property (weak, nonatomic) KeyMultiEditCell *desCell;
+
+@property (weak, nonatomic) KeyValueCell *dateCell;
+
 @end
 
 @implementation RapidRepairController
@@ -68,17 +76,15 @@
     
     NSString *faultInfo = _tvRepair.text;
     
-    if (0 == faultInfo.length)
-    {
-        [HUDClass showHUDWithLabel:@"请填写故障描述" view:self.view];
+    if (0 == faultInfo.length) {
+        [HUDClass showHUDWithText:@"请填写故障描述"];
         return;
     }
     
     NSString *date = _lbDate.text;
     
-    if ([date isEqualToString:DATE_INIT])
-    {
-        [HUDClass showHUDWithLabel:@"请选择上门日期" view:self.view];
+    if ([date isEqualToString:DATE_INIT]) {
+        [HUDClass showHUDWithText:@"请选择上门日期"];
         return;
     }
     
@@ -89,55 +95,48 @@
     request.repairTime = date;
     
    
-    if (!_isLogin)
-    {
+    if (!self.login) {
         
         NSString *brand = _lbBrand.text;
         
         NSString *type = _tfType.text;
         
-        if (0 == type.length)
-        {
-            [HUDClass showHUDWithLabel:@"请填写电梯品牌" view:self.view];
+        if (0 == type.length) {
+            [HUDClass showHUDWithText:@"请填写电梯品牌"];
             return;
         }
         
         NSString *name = _tfName.text;
         
-        if (0 == name.length)
-        {
-            [HUDClass showHUDWithLabel:@"请填写用户姓名" view:self.view];
+        if (0 == name.length) {
+            [HUDClass showHUDWithText:@"请填写用户姓名"];
             return;
         }
         
         NSString *tel = _tfTel.text;
         
-        if (0 == tel.length)
-        {
-            [HUDClass showHUDWithLabel:@"请填写用户手机号码" view:self.view];
+        if (0 == tel.length) {
+            [HUDClass showHUDWithText:@"请填写用户手机号码"];
             return;
         }
         
         NSString *code = _tfCode.text;
         
-        if (0 == code.length)
-        {
-            [HUDClass showHUDWithLabel:@"请填写验证码" view:self.view];
+        if (0 == code.length) {
+            [HUDClass showHUDWithText:@"请填写验证码"];
             return;
         }
         
-        if (![code isEqualToString:[[Config shareConfig] getSMSCode]])
-        {
-            [HUDClass showHUDWithLabel:@"验证码不正确，请确认验证码" view:self.view];
+        if (![code isEqualToString:[[Config shareConfig] getSMSCode]]) {
+            [HUDClass showHUDWithText:@"验证码不正确，请确认验证码"];
             return;
             
         }
         
         NSString *address = _tfAddress.text;
         
-        if (0 == address.length)
-        {
-            [HUDClass showHUDWithLabel:@"请填写您的地址" view:self.view];
+        if (0 == address.length) {
+            [HUDClass showHUDWithText:@"请填写您的地址"];
             return;
         }
         
@@ -149,8 +148,8 @@
         
     }
 
-    [[HttpClient shareClient] view:self.view post:URL_REPAIR_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithLabel:@"快修单提交成功" view:self.view];
+    [[HttpClient shareClient] post:URL_REPAIR_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"快修单提交成功"];
         [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
@@ -164,9 +163,7 @@
 
 - (void)initData
 {
-    NSString *userId = [[Config shareConfig] getUserId];
-    
-    _isLogin = userId.length;
+   
 }
 
 - (void)initView
@@ -191,12 +188,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_isLogin)
-    {
+    if (self.login) {
         return 1;
-    }
-    else
-    {
+        
+    } else {
         return 2;
     }
 }
@@ -218,117 +213,141 @@
     DatePickerDialog *dialog = [DatePickerDialog viewFromNib];
     dialog.delegate = self;
     
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.section)
-    {
-        if (0 == indexPath.row)
-        {
-            SelectableCell *cell = [SelectableCell cellFromNib];
+    if (0 == indexPath.section) {
+        if (0 == indexPath.row) {
             
-            cell.lbKey.text = @"电梯品牌";
+            if (_brandCell) {
+                return _brandCell;
+                
+            } else {
+                SelectableCell *cell = [SelectableCell cellFromNib];
+                _brandCell = cell;
+                
+                cell.lbKey.text = @"电梯品牌";
+                
+                _lbBrand = cell.lbContent;
+                
+                if (!self.login) {
+                    [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                        BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
+                        [cell setData:[response getBrandList]];
+                    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                        
+                    }];
+                    
+                } else {
+                    cell.lbContent.text = [[Config shareConfig] getBrand];
+                    cell.lbContent.enabled = NO;
+                }
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+                
+            }
             
-            _lbBrand = cell.lbContent;
+        } else if (1 == indexPath.row) {
+            if (_modelCell) {
+                return _modelCell;
+                
+            } else {
+                KeyEditCell *cell = [KeyEditCell cellFromNib];
+                _modelCell = cell;
+                
+                cell.lbKey.text = @"电梯型号";
+                
+                if (!self.login) {
+                    cell.tfValue.placeholder = @"电梯型号";
+                    
+                    _tfType = cell.tfValue;
+                    
+                } else {
+                    cell.tfValue.text = [[Config shareConfig] getLiftType];
+                    cell.tfValue.enabled = NO;
+                }
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
             
-            if (!_isLogin)
-            {
-                [[HttpClient shareClient] view:nil post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                    BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
-                    [cell setView:self.view data:[response getBrandList]];
+        } else if (2 == indexPath.row) {
+            if (_faultCell) {
+                return _faultCell;
+            
+            } else {
+                SelectableCell *cell = [SelectableCell cellFromNib];
+                
+                _faultCell = cell;
+                
+                cell.lbKey.text = @"电梯故障类型";
+                
+                __weak typeof (self) weakSelf = self;
+                
+                [[HttpClient shareClient] post:URL_FAULT_LIST parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    FaultListResponse *response = [[FaultListResponse alloc] initWithDictionary:responseObject];
+                    
+                    if ([response getFaultList].count > 0) {
+                        _falutType = [[response getFaultList] objectAtIndex:0].faultId;
+                        
+                        [cell setData:[response getFaultList]];
+                        
+                        [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                            weakSelf.falutType = key;
+                        }];
+                    }
                 } failure:^(NSURLSessionDataTask *task, NSError *errr) {
                     
                 }];
-            }
-            else
-            {
-                cell.lbContent.text = [[Config shareConfig] getBrand];
-                cell.lbContent.enabled = NO;
-            }
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }
-        else if (1 == indexPath.row)
-        {
-            KeyEditCell *cell = [KeyEditCell cellFromNib];
-            cell.lbKey.text = @"电梯型号";
-            
-            if (!_isLogin)
-            {
-                cell.tfValue.placeholder = @"电梯型号";
-            
-                _tfType = cell.tfValue;
-            }
-            else
-            {
-                cell.tfValue.text = [[Config shareConfig] getLiftType];
-                cell.tfValue.enabled = NO;
-            }
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }
-        else if (2 == indexPath.row)
-        {
-            SelectableCell *cell = [SelectableCell cellFromNib];
-            
-            cell.lbKey.text = @"电梯故障类型";
-            
-            [[HttpClient shareClient] view:nil post:URL_FAULT_LIST parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                FaultListResponse *response = [[FaultListResponse alloc] initWithDictionary:responseObject];
                 
-                if ([response getFaultList].count > 0)
-                {
-                    _falutType = [[response getFaultList] objectAtIndex:0].faultId;
-                    
-                    [cell setView:self.view data:[response getFaultList]];
-                    
-                    [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
-                        _falutType = key;
-                    }];
-                }
-            } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            
+        } else if (3 == indexPath.row) {
+            if (_desCell) {
+                return _desCell;
+            
+            } else {
+                KeyMultiEditCell *cell = [KeyMultiEditCell viewFromNib];
+                _desCell = cell;
                 
-            }];
+                cell.lbKey.text = @"电梯故障描述";
+                cell.lbPlaceHolder.text = @"电梯故障描述";
+                
+                _tvRepair = cell.tvContent;
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
             
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
+        } else if (4 == indexPath.row) {
+            if (_dateCell) {
+                return _dateCell;
+            
+            } else {
+                KeyValueCell *cell = [KeyValueCell cellFromNib];
+                _dateCell = cell;
+                cell.lbKey.text = @"上门日期";
+                
+                cell.lbValue.text = DATE_INIT;
+                
+                cell.lbValue.userInteractionEnabled = YES;
+                
+                _lbDate = cell.lbValue;
+                
+                [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)]];
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+
+            }
         }
-        else if (3 == indexPath.row)
-        {
-            KeyMultiEditCell *cell = [KeyMultiEditCell viewFromNib];
-            cell.lbKey.text = @"电梯故障描述";
-            cell.lbPlaceHolder.text = @"电梯故障描述";
-            
-            _tvRepair = cell.tvContent;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }
-        else
-        {
-            KeyValueCell *cell = [KeyValueCell cellFromNib];
-            cell.lbKey.text = @"上门日期";
-            
-            cell.lbValue.text = DATE_INIT;
-            
-            cell.lbValue.userInteractionEnabled = YES;
-            
-            _lbDate = cell.lbValue;
-            
-            [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)]];
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }
-    }
-    else if (1 == indexPath.section)
-    {
-        if (0 == indexPath.row)
-        {
+    } else if (1 == indexPath.section) {
+        if (0 == indexPath.row) {
             KeyEditCell *cell = [KeyEditCell cellFromNib];
             cell.lbKey.text = @"姓名";
             
@@ -337,12 +356,14 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
-        }
-        else if (1 == indexPath.row)
-        {
+            
+        } else if (1 == indexPath.row) {
             KeyEditBtnCell *cell = [KeyEditBtnCell cellFromNib];
             cell.lbKey.text = @"手机";
             cell.tfValue.placeholder = @"手机";
+            cell.tfValue.keyboardType = UIKeyboardTypePhonePad;
+            
+            
             _tfTel = cell.tfValue;
             
             __weak typeof(cell) weakCell = cell;
@@ -350,15 +371,15 @@
                 
                 NSString *tel = weakCell.tfValue.text;
                 
-                if (0 == tel.length || tel.length != 11)
-                {
-                    [HUDClass showHUDWithLabel:@"请输入正确的手机号码" view:self.view];
+                if (0 == tel.length || tel.length != 11) {
+                    [HUDClass showHUDWithText:@"请输入正确的手机号码"];
                     return;
                 }
+                
                 SMSCodeRequest *request = [[SMSCodeRequest alloc] init];
                 request.tel = tel;
                 
-                [[HttpClient shareClient] view:self.view post:URL_SMS_CODE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+                [[HttpClient shareClient] post:URL_SMS_CODE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
                     SMSCodeResponse *response = [[SMSCodeResponse alloc] initWithDictionary:responseObject];
                     [[Config shareConfig] setSMCode:[response getSMSCode]];
                 } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -368,9 +389,8 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
-        }
-        else if (2 == indexPath.row)
-        {
+            
+        } else if (2 == indexPath.row) {
             KeyEditCell *cell = [KeyEditCell cellFromNib];
             cell.lbKey.text = @"验证码";
             
@@ -380,9 +400,8 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
-        }
-        else if (3 == indexPath.row)
-        {
+            
+        } else if (3 == indexPath.row) {
             KeyEditCell *cell = [KeyEditCell cellFromNib];
             cell.lbKey.text = @"地址";
             
@@ -403,17 +422,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.section)
-    {
-        if (3 == indexPath.row)
-        {
+    if (0 == indexPath.section) {
+        
+        if (3 == indexPath.row) {
             return [KeyMultiEditCell cellHeight];
         }
         
         return [KeyEditCell cellHeight];
-    }
-    else
-    {
+        
+    } else {
         return [KeyEditCell cellHeight];
     }
 }

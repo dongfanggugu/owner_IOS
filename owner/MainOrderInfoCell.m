@@ -24,8 +24,7 @@
 {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainOrderInfoCell" owner:nil options:nil];
     
-    if (0 == array.count)
-    {
+    if (0 == array.count) {
         return nil;
     }
     
@@ -42,10 +41,15 @@
     return 66;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    _btn.hidden = NO;
+}
+
 - (void)onClick
 {
-    if (_onClickBtn)
-    {
+    if (_onClickBtn) {
         _onClickBtn();
     }
 }

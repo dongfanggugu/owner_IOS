@@ -152,7 +152,7 @@
 {
     OrderListRequest *request = [[OrderListRequest alloc] init];
     
-    [[HttpClient shareClient] view:self.view post:URL_REPAIR_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_REPAIR_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         RepairListResponse *response = [[RepairListResponse alloc] initWithDictionary:responseObject];
         [_arrayRepairOrder removeAllObjects];
         [_arrayRepairOrder addObjectsFromArray:[response getOrderList]];
@@ -166,7 +166,7 @@
 {
     OrderListRequest *request = [[OrderListRequest alloc] init];
     
-    [[HttpClient shareClient] view:self.view post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
         [_arrayMainOrder removeAllObjects];
         [_arrayMainOrder addObjectsFromArray:[response getOrderList]];

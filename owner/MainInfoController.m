@@ -83,7 +83,7 @@
     
     request.maintOrderId = _orderInfo.orderId;
     
-    [[HttpClient shareClient] view:self.view post:URL_MAIN_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_MAIN_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         MainTaskListResponse *response = [[MainTaskListResponse alloc] initWithDictionary:responseObject];
         
         [_arrayTask removeAllObjects];

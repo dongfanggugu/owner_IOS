@@ -15,9 +15,13 @@
 
 + (instancetype)shareClient;
 
-- (void)view:(UIView *)view post:(NSString *)url parameters:(id)parameters
+- (void)post:(NSString *)url parameters:(id)parameters
      success:(void (^)(NSURLSessionDataTask *task, id responseObject)) success
      failure:(void (^)(NSURLSessionDataTask *task, NSError *errr)) failure;
+
+- (void)bagpost:(NSString *)url parameters:(id)parameters
+        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 
 @end

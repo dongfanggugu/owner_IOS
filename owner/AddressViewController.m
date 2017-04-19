@@ -71,7 +71,7 @@
     NSString *address = [_addressTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (0 == address.length)
     {
-        [HUDClass showHUDWithLabel:@"请先填写您的详细地址" view:self.view];
+        [HUDClass showHUDWithText:@"请先填写您的详细地址"];
         return;
     }
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
@@ -86,7 +86,7 @@
     NSString *address = [_addressTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (0 == address.length)
     {
-        [HUDClass showHUDWithLabel:@"请填写您的详细地址!" view:self.view];
+        [HUDClass showHUDWithText:@"请填写您的详细地址!"];
         return;
     }
     
@@ -94,7 +94,7 @@
     NSString *lng = _lngValueLabel.text;
     if (0 == lat.length || 0 == lng.length)
     {
-        [HUDClass showHUDWithLabel:@"请点击定位图标,选择地图上的位置!" view:self.view];
+        [HUDClass showHUDWithText:@"请点击定位图标,选择地图上的位置!"];
         return;
     }
     
@@ -105,11 +105,11 @@
     
     __weak typeof (self) weakSelf = self;
     
-    [[HttpClient shareClient] view:self.view post:URL_PERSON_MODIFY parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_PERSON_MODIFY parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [[Config shareConfig] setBranchAddress:address];
         [[Config shareConfig] setLat:[lat floatValue]];
         [[Config shareConfig] setLng:[lng floatValue]];
-        [HUDClass showHUDWithLabel:@"修改成功" view:weakSelf.view];
+        [HUDClass showHUDWithText:@"修改成功"];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         

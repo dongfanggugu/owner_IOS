@@ -190,8 +190,6 @@
 		65E19BA91E67B64200C6860D /* MainTypeListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E19BA81E67B64200C6860D /* MainTypeListResponse.m */; };
 		65E19BAC1E67B6F500C6860D /* MainTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E19BAB1E67B6F500C6860D /* MainTypeCell.m */; };
 		65E19BAE1E67BFDA00C6860D /* MainOrderInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E19BAD1E67BFDA00C6860D /* MainOrderInfoCell.xib */; };
-		65E19BB01E67C0AD00C6860D /* ListDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E19BAF1E67C0AD00C6860D /* ListDialogView.xib */; };
-		65E19BB31E67C0C400C6860D /* ListDialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E19BB21E67C0C400C6860D /* ListDialogView.m */; };
 		65E19BBA1E67C0D300C6860D /* KeyEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E19BB51E67C0D300C6860D /* KeyEditCell.m */; };
 		65E19BBB1E67C0D300C6860D /* KeyMultiEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E19BB71E67C0D300C6860D /* KeyMultiEditCell.m */; };
 		65E19BBC1E67C0D300C6860D /* KeyValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E19BB91E67C0D300C6860D /* KeyValueCell.m */; };
@@ -228,6 +226,8 @@
 		65EEEB921E7791380095432B /* page_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65EEEB8A1E7791380095432B /* page_6.jpg */; };
 		65EEEB951E7791970095432B /* guide_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EEEB931E7791970095432B /* guide_new.png */; };
 		65EEEB961E7791970095432B /* guide.gif in Resources */ = {isa = PBXBuildFile; fileRef = 65EEEB941E7791970095432B /* guide.gif */; };
+		65FE08A51EA59ECE002C9397 /* ListDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08A41EA59ECE002C9397 /* ListDialogView.xib */; };
+		65FE08A81EA59EDE002C9397 /* ListDialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08A71EA59EDE002C9397 /* ListDialogView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -505,9 +505,6 @@
 		65E19BAA1E67B6DE00C6860D /* MainTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTypeCell.h; sourceTree = "<group>"; };
 		65E19BAB1E67B6F500C6860D /* MainTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTypeCell.m; sourceTree = "<group>"; };
 		65E19BAD1E67BFDA00C6860D /* MainOrderInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainOrderInfoCell.xib; sourceTree = "<group>"; };
-		65E19BAF1E67C0AD00C6860D /* ListDialogView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListDialogView.xib; sourceTree = "<group>"; };
-		65E19BB11E67C0C400C6860D /* ListDialogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDialogView.h; sourceTree = "<group>"; };
-		65E19BB21E67C0C400C6860D /* ListDialogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDialogView.m; sourceTree = "<group>"; };
 		65E19BB41E67C0D300C6860D /* KeyEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyEditCell.h; sourceTree = "<group>"; };
 		65E19BB51E67C0D300C6860D /* KeyEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyEditCell.m; sourceTree = "<group>"; };
 		65E19BB61E67C0D300C6860D /* KeyMultiEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyMultiEditCell.h; sourceTree = "<group>"; };
@@ -563,6 +560,9 @@
 		65EEEB8A1E7791380095432B /* page_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page_6.jpg; sourceTree = "<group>"; };
 		65EEEB931E7791970095432B /* guide_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide_new.png; sourceTree = "<group>"; };
 		65EEEB941E7791970095432B /* guide.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = guide.gif; sourceTree = "<group>"; };
+		65FE08A41EA59ECE002C9397 /* ListDialogView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListDialogView.xib; sourceTree = "<group>"; };
+		65FE08A61EA59EDE002C9397 /* ListDialogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDialogView.h; sourceTree = "<group>"; };
+		65FE08A71EA59EDE002C9397 /* ListDialogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDialogView.m; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -739,11 +739,11 @@
 				65E19BB61E67C0D300C6860D /* KeyMultiEditCell.h */,
 				65E19BB71E67C0D300C6860D /* KeyMultiEditCell.m */,
 				65E19BC51E67C0FF00C6860D /* KeyValueBtnCell.h */,
+				65FE08A61EA59EDE002C9397 /* ListDialogView.h */,
+				65FE08A71EA59EDE002C9397 /* ListDialogView.m */,
 				65E19BC61E67C0FF00C6860D /* KeyValueBtnCell.m */,
 				65E19BB81E67C0D300C6860D /* KeyValueCell.h */,
 				65E19BB91E67C0D300C6860D /* KeyValueCell.m */,
-				65E19BB11E67C0C400C6860D /* ListDialogView.h */,
-				65E19BB21E67C0C400C6860D /* ListDialogView.m */,
 				65E19BCB1E67C23100C6860D /* MainOrderInfoCell.h */,
 				65E19BCC1E67C24300C6860D /* MainOrderInfoCell.m */,
 				65E19BAA1E67B6DE00C6860D /* MainTypeCell.h */,
@@ -794,7 +794,7 @@
 				65E19BBE1E67C0E500C6860D /* KeyMultiEditCell.xib */,
 				65E19BBF1E67C0E500C6860D /* KeyValueBtnCell.xib */,
 				65E19BC01E67C0E500C6860D /* KeyValueCell.xib */,
-				65E19BAF1E67C0AD00C6860D /* ListDialogView.xib */,
+				65FE08A41EA59ECE002C9397 /* ListDialogView.xib */,
 				65E19BAD1E67BFDA00C6860D /* MainOrderInfoCell.xib */,
 				6544C76B1E690C7D0050A9D3 /* MainOrderInfoView.xib */,
 				65E19BA21E67B26600C6860D /* MainTypeCell.xib */,
@@ -1334,7 +1334,6 @@
 				650596E51E8A54D6009A5602 /* process_8.png in Resources */,
 				65EEEB921E7791380095432B /* page_6.jpg in Resources */,
 				6544C7A01E6952D20050A9D3 /* PersonInfoView.xib in Resources */,
-				65E19BB01E67C0AD00C6860D /* ListDialogView.xib in Resources */,
 				652544931E1F455E0027B28B /* icon_more_normal.png in Resources */,
 				650596B41E8A340F009A5602 /* icon_person_bottom.png in Resources */,
 				650596DE1E8A54D6009A5602 /* process_1.png in Resources */,
@@ -1346,6 +1345,7 @@
 				652544E91E1F76420027B28B /* icon_settings.png in Resources */,
 				652544781E1F2DAB0027B28B /* banner.png in Resources */,
 				650596E31E8A54D6009A5602 /* process_6.png in Resources */,
+				65FE08A51EA59ECE002C9397 /* ListDialogView.xib in Resources */,
 				650596B21E8A33F6009A5602 /* icon_service_bottom.png in Resources */,
 				6544C76C1E690C7D0050A9D3 /* MainOrderInfoView.xib in Resources */,
 				65E19BDD1E67E94600C6860D /* KeyEditBtnCell.xib in Resources */,
@@ -1418,7 +1418,6 @@
 				65CABE3F1E22A244007EC96C /* CDPGifView.m in Sources */,
 				65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */,
 				6544C7591E6818A70050A9D3 /* OrderListRequest.m in Sources */,
-				65E19BB31E67C0C400C6860D /* ListDialogView.m in Sources */,
 				652544DC1E1F65C30027B28B /* ImageUtils.m in Sources */,
 				65E19BCA1E67C14500C6860D /* MainOrderController.m in Sources */,
 				652544B61E1F62A80027B28B /* SettingsViewController.m in Sources */,
@@ -1496,6 +1495,7 @@
 				65CABE381E224464007EC96C /* RegisterController.m in Sources */,
 				655ADF951E2C634000F1F036 /* AddBannerView.m in Sources */,
 				652544BA1E1F62AE0027B28B /* ProLocationController.m in Sources */,
+				65FE08A81EA59EDE002C9397 /* ListDialogView.m in Sources */,
 				652544D71E1F65050027B28B /* DownPicker.m in Sources */,
 				652544DF1E1F6A550027B28B /* LoginController.m in Sources */,
 				655ADF991E2C722400F1F036 /* AddBannerData.m in Sources */,
@@ -1625,6 +1625,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = owner/owner.entitlements;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6LK27K74LE;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

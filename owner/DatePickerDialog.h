@@ -19,6 +19,8 @@
 
 + (id)viewFromNib;
 
+- (void)show;
+
 @property (weak, nonatomic) id<DatePickerDialogDelegate> delegate;
 
 @end
