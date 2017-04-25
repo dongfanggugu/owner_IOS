@@ -19,6 +19,7 @@
 #import "MainOrderAddRequest.h"
 #import "MainTaskDetailController.h"
 #import "MainTypeDetailController.h"
+#import "OrderAmountCell.h"
 
 @interface MainOrderController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -175,7 +176,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (0 == section) {
-        return 1;
+        return 2;
         
     } else if (1 == section) {
         return 2;
@@ -190,28 +191,20 @@
 {
     if (0 == indexPath.section) {
         
-        MainOrderInfoCell *cell = [MainOrderInfoCell cellFromNib];
-        
-        cell.lbName.text = [NSString stringWithFormat:@"%@ ￥%.1lf", _mainInfo.name, _mainInfo.price];
-        cell.lbContent.text = _mainInfo.content;
-        
-        __weak typeof (self) weakSelf = self;
-        
-        [cell setOnClickListener:^{
+        if (0 == indexPath.row) {
+            MainOrderInfoCell *cell = [MainOrderInfoCell cellFromNib];
             
-            MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
+            cell.lbName.text = [NSString stringWithFormat:@"%@ ￥%.1lf", _mainInfo.name, _mainInfo.price];
+            cell.lbContent.text = _mainInfo.content;
             
-            controller.detail = weakSelf.mainInfo.content;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
             
-            controller.hidesBottomBarWhenPushed = YES;
+        } else if (1 == indexPath.row) {
+            OrderAmountCell *cell = [OrderAmountCell cellFromNib];
             
-            [weakSelf.navigationController pushViewController:controller animated:YES];
-        }];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-        
-        
+            return cell;
+        }
         
     } else if (1 == indexPath.section) {
         
@@ -424,6 +417,21 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 40;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if (0 == indexPath.section && 0 == indexPath.row) {
+        
+        MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
+        
+        controller.detail = self.mainInfo.content;
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 @end

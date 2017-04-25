@@ -231,6 +231,8 @@
 		65FE08AB1EA733D9002C9397 /* AddressLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08AA1EA733D9002C9397 /* AddressLocationController.m */; };
 		65FE08AD1EA73B59002C9397 /* ContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08AC1EA73B59002C9397 /* ContentCell.xib */; };
 		65FE08B01EA73BAD002C9397 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08AF1EA73BAD002C9397 /* ContentCell.m */; };
+		65FE08CC1EAF4599002C9397 /* OrderAmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */; };
+		65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -571,6 +573,9 @@
 		65FE08AC1EA73B59002C9397 /* ContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentCell.xib; sourceTree = "<group>"; };
 		65FE08AE1EA73BAD002C9397 /* ContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentCell.h; sourceTree = "<group>"; };
 		65FE08AF1EA73BAD002C9397 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
+		65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderAmountCell.xib; sourceTree = "<group>"; };
+		65FE08CD1EAF4735002C9397 /* OrderAmountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderAmountCell.h; sourceTree = "<group>"; };
+		65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderAmountCell.m; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -776,6 +781,8 @@
 				6544C7A91E6955C60050A9D3 /* PersonItemCell.m */,
 				65FE08AE1EA73BAD002C9397 /* ContentCell.h */,
 				65FE08AF1EA73BAD002C9397 /* ContentCell.m */,
+				65FE08CD1EAF4735002C9397 /* OrderAmountCell.h */,
+				65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -817,6 +824,7 @@
 				65E19BD71E67C76200C6860D /* SelectableCell.xib */,
 				6525447C1E1F37EF0027B28B /* WorkerInfoView.xib */,
 				65FE08AC1EA73B59002C9397 /* ContentCell.xib */,
+				65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1287,6 +1295,7 @@
 				655ADFA71E2E02EE00F1F036 /* icon_other_page.png in Resources */,
 				652544EB1E1F816F0027B28B /* icon_alarm.png in Resources */,
 				655ADFBD1E2EFE4F00F1F036 /* icon_other4.png in Resources */,
+				65FE08CC1EAF4599002C9397 /* OrderAmountCell.xib in Resources */,
 				652544EF1E1F866D0027B28B /* icon_maintenance.png in Resources */,
 				650596C21E8A3F3A009A5602 /* icon_detail.png in Resources */,
 				6544C7A71E69552A0050A9D3 /* PersonItemCell.xib in Resources */,
@@ -1487,6 +1496,7 @@
 				6544C77B1E6913A80050A9D3 /* MainInfoController.m in Sources */,
 				655ADF3A1E26027400F1F036 /* EvaluateView.m in Sources */,
 				652544751E1F29390027B28B /* MainPageController.m in Sources */,
+				65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */,
 				6544C7921E693ED60050A9D3 /* RepairTaskDetailController.m in Sources */,
 				655ADFA21E2DECB100F1F036 /* MarketCell.m in Sources */,
 				652544D81E1F65050027B28B /* UIDownPicker.m in Sources */,

@@ -16,7 +16,7 @@
 
 @interface MainPageController  () <AddBannerViewDelegate>
 
-@property (weak, nonatomic) IBOutlet AddBannerView *bannerView;
+@property (strong, nonatomic) AddBannerView *bannerView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivMaintenance;
 
@@ -82,6 +82,7 @@
 
 - (void)initBannerView
 {
+    self.tableView.tableHeaderView = self.bannerView;
     
     __weak typeof(self) weakSelf = self;
     
@@ -100,6 +101,15 @@
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
     }];
+}
+
+- (AddBannerView *)bannerView
+{
+    if (!_bannerView) {
+        _bannerView = [[AddBannerView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
+    }
+    
+    return _bannerView;
 }
 
 - (void)repair
@@ -158,17 +168,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row) {
-        return self.screenWidth / 2;
-        
-    }
-    
-    if (3 == indexPath.row) {
+    if (2 == indexPath.row) {
         return 250;
     }
     
     return 120;
 }
+
 
 
 /**

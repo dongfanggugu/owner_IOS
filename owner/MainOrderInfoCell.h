@@ -17,8 +17,6 @@
 
 + (CGFloat)cellHeight;
 
-- (void)setOnClickListener:(void(^)())onClickBtn;
-
 @property (weak, nonatomic) IBOutlet UILabel *lbName;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbContent;

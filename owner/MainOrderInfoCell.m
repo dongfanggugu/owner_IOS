@@ -10,11 +10,7 @@
 #import "MainOrderInfoCell.h"
 
 @interface MainOrderInfoCell()
-{
-    void(^_onClickBtn)();
-}
 
-@property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
 
@@ -44,21 +40,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    _btn.hidden = NO;
 }
 
-- (void)onClick
-{
-    if (_onClickBtn) {
-        _onClickBtn();
-    }
-}
-
-- (void)setOnClickListener:(void(^)())onClickBtn
-{
-    _onClickBtn = onClickBtn;
-    
-    [_btn addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
-}
 
 @end

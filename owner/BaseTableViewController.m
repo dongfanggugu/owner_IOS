@@ -22,8 +22,16 @@
 {
     [super viewDidLoad];
     
-    _screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _screenHeight = [UIScreen mainScreen].bounds.size.height;
+}
+
+- (CGFloat)screenWidth
+{
+    return [UIScreen mainScreen].bounds.size.width;
+}
+
+- (CGFloat)screenHeight
+{
+    return [UIScreen mainScreen].bounds.size.height;
 }
 
 

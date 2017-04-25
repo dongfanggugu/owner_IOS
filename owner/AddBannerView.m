@@ -39,7 +39,6 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    NSLog(@"AddBannerView initWithFrame");
     self = [super initWithFrame:frame];
     
     if (self)
@@ -70,9 +69,28 @@
         _tap.numberOfTouchesRequired = 1;
         [_scrollView addGestureRecognizer:_tap];
         
+        _firstView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _viewWidth, _viewHeight)];
+        _middleView = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth, 0, _viewWidth, _viewHeight)];
+        _lastView = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 2, 0, _viewWidth, _viewHeight)];
+        
+        
+        [_scrollView addSubview:_firstView];
+        [_scrollView addSubview:_middleView];
+        [_scrollView addSubview:_lastView];
     }
     
     return self;
+}
+
+
+- (CGFloat)viewWidth
+{
+    return self.bounds.size.width;
+}
+
+- (CGFloat)viewHeight
+{
+    return self.bounds.size.height;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -80,10 +98,10 @@
     NSLog(@"AddBannerView initWithCoder");
     self = [super initWithCoder:aDecoder];
     
-    if (self)
-    {
+    if (self) {
         _viewWidth = self.bounds.size.width;
         _viewHeight = self.bounds.size.height;
+        
                 
         //设置scrollview
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _viewWidth, _viewHeight)];
@@ -113,40 +131,64 @@
         _middleView = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth, 0, _viewWidth, _viewHeight)];
         _lastView = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 2, 0, _viewWidth, _viewHeight)];
         
+        _firstView.contentMode = UIViewContentModeCenter;
+        _middleView.contentMode = UIViewContentModeCenter;
+        _lastView.contentMode = UIViewContentModeCenter;
+        
+        _firstView.backgroundColor = [UIColor blueColor];
+        _middleView.backgroundColor = [UIColor greenColor];
+        _lastView.backgroundColor = [UIColor redColor];
+        
         
         [_scrollView addSubview:_firstView];
         [_scrollView addSubview:_middleView];
         [_scrollView addSubview:_lastView];
+        
+        self.backgroundColor = [UIColor redColor];
       
     }
     
     return self;
 }
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+//    CGRect scrollFrame = CGRectMake(0, 0, self.viewWidth, self.viewHeight);
+//    _scrollView.frame = scrollFrame;
+//    
+//    CGSize scrollContentSize = CGSizeMake(self.viewWidth * 3, self.viewHeight);
+//    _scrollView.contentSize = scrollContentSize;
+//    
+//    
+//    CGRect pageFrame = CGRectMake(0, self.viewHeight - 30, self.viewWidth, 30);
+//    _pageControl.frame = pageFrame;
+//    
+//    CGRect firstFrame = CGRectMake(0, 0, self.viewWidth, self.viewHeight);
+//    _firstView.frame = firstFrame;
+//    
+//    CGRect midFrame = CGRectMake(self.viewWidth, 0, self.viewWidth, self.viewHeight);
+//    _middleView.frame = midFrame;
+//    
+//    CGRect lastFrame = CGRectMake(self.viewWidth * 2, 0, self.viewWidth, self.viewHeight);
+//    _lastView.frame = lastFrame;
+    
+}
+
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
-    if ([_delegate respondsToSelector:@selector(didClickPage:url:)])
-    {
+    if ([_delegate respondsToSelector:@selector(didClickPage:url:)]) {
         [_delegate didClickPage:self url:[[_arrayData objectAtIndex:_currentPage] getClickUrl]];
     }
 }
 
 - (void)setArrayData:(NSArray<id<AddBannerDataDelegate>> *)arrayData
 {
-    if (arrayData)
-    {
+    if (arrayData) {
         _arrayData = arrayData;
         _currentPage = 0;
-        
-//        if (_isTwoPic)
-//        {
-//            _pageControl.numberOfPages = 2;
-//        }
-//        else
-//        {
-//            _pageControl.numberOfPages = _arrayData.count;
-//        }
-//        
-         _pageControl.numberOfPages = _arrayData.count;
+        _pageControl.numberOfPages = _arrayData.count;
         
     }
     
@@ -155,27 +197,21 @@
 
 - (void)reloadData
 {
-    if (_arrayData.count < _currentPage + 1)
-    {
+    if (_arrayData.count < _currentPage + 1) {
         return;
     }
         
-    if (0 == _currentPage)
-    {
+    if (0 == _currentPage) {
         [_firstView setImageWithURL:[NSURL URLWithString:[[_arrayData lastObject] getPicUrl]]];
         [_middleView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage] getPicUrl]]];
         [_lastView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage + 1] getPicUrl]]];
         
-    }
-    else if (_currentPage == _arrayData.count - 1)
-    {
+    } else if (_currentPage == _arrayData.count - 1) {
         [_firstView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage - 1] getPicUrl]]];
         [_middleView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage] getPicUrl]]];
         [_lastView setImageWithURL:[NSURL URLWithString:[[_arrayData firstObject] getPicUrl]]];
-    }
-    else
-    {
         
+    } else {
         [_firstView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage - 1] getPicUrl]]];
         [_middleView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage] getPicUrl]]];
         [_lastView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage + 1] getPicUrl]]];
@@ -196,8 +232,6 @@
     
     //得到当前页数
     CGFloat x = _scrollView.contentOffset.x;
-    
-    NSLog(@"x:%f", x);
     
     //往前翻
     if (x <= 0)
