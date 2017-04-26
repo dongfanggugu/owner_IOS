@@ -128,6 +128,8 @@
     
     [_btnSubmit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     
+     _tfContent.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    
 }
 
 - (void)clickBtn1

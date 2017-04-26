@@ -15,7 +15,7 @@
 #import "RepairTaskCell.h"
 #import "MainTaskDetailController.h"
 
-@interface MainInfoController()<UITableViewDelegate, UITableViewDataSource>
+@interface MainInfoController() <UITableViewDelegate, UITableViewDataSource, MainOrderInfoViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -35,6 +35,7 @@
     [self initView];
     [self getTask];
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -47,28 +48,45 @@
     _arrayTask = [NSMutableArray array];
 }
 
+- (Maint_Type)maintType
+{
+    return _orderInfo.mainttypeId.integerValue;
+}
+
 - (void)initView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
     
     _tableView.delegate = self;
     
     _tableView.dataSource = self;
     
-    _tableView.bounces = NO;
     
+    //显示服务订单信息
     _infoView = [MainOrderInfoView viewFromNib];
     
     _tableView.tableHeaderView = _infoView;
+    
+    _infoView.delegate = self;
     
     _infoView.lbCode.text = _orderInfo.code;
     
     _infoView.lbDate.text = _orderInfo.createTime;
     
-    _infoView.lbPay.text = [_orderInfo.isPay isEqualToString:@"1"] ? @"是" : @"否";
-    
     _infoView.lbName.text = _orderInfo.maintypeName;
+    
+    
+    if (Maint_Low == self.maintType) {
+        _infoView.lbInfoKey.text = @"剩余次数";
+        _infoView.lbInfo.text = [NSString stringWithFormat:@"%ld", _orderInfo.frequency];
+        
+    } else {
+        _infoView.lbInfoKey.text = @"到期日期";
+        _infoView.lbInfo.text = _orderInfo.expireTime;
+        
+    }
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -168,6 +186,13 @@
     controller.taskInfo = _arrayTask[indexPath.row];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - MainOrderInfoViewDelegate
+
+- (void)onClickButton
+{
+    NSLog(@"onClickButton");
 }
 
 @end

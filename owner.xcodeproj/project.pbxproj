@@ -235,6 +235,10 @@
 		65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */; };
 		65FE08D21EB02840002C9397 /* icon_amount_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08D01EB02840002C9397 /* icon_amount_add.png */; };
 		65FE08D31EB02840002C9397 /* icon_amount_minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08D11EB02840002C9397 /* icon_amount_minus.png */; };
+		65FE08D71EB044EA002C9397 /* MaintOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08D61EB044EA002C9397 /* MaintOrderController.m */; };
+		65FE08DB1EB04967002C9397 /* RepairOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08DA1EB04967002C9397 /* RepairOrderController.m */; };
+		65FE08DD1EB08F12002C9397 /* RepairInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */; };
+		65FE08E01EB08F75002C9397 /* RepairInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08DF1EB08F75002C9397 /* RepairInfoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -580,6 +584,13 @@
 		65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderAmountCell.m; sourceTree = "<group>"; };
 		65FE08D01EB02840002C9397 /* icon_amount_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amount_add.png; sourceTree = "<group>"; };
 		65FE08D11EB02840002C9397 /* icon_amount_minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amount_minus.png; sourceTree = "<group>"; };
+		65FE08D51EB044EA002C9397 /* MaintOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintOrderController.h; sourceTree = "<group>"; };
+		65FE08D61EB044EA002C9397 /* MaintOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintOrderController.m; sourceTree = "<group>"; };
+		65FE08D91EB04967002C9397 /* RepairOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderController.h; sourceTree = "<group>"; };
+		65FE08DA1EB04967002C9397 /* RepairOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderController.m; sourceTree = "<group>"; };
+		65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairInfoView.xib; sourceTree = "<group>"; };
+		65FE08DE1EB08F75002C9397 /* RepairInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairInfoView.h; sourceTree = "<group>"; };
+		65FE08DF1EB08F75002C9397 /* RepairInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairInfoView.m; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -704,6 +715,7 @@
 		652544551E1F20A40027B28B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				65FE08D81EB04946002C9397 /* Order */,
 				65E369471E6E939F00E4CF04 /* Ensurance */,
 				655ADFA81E2E0AEA00F1F036 /* Market */,
 				655ADFA31E2E029100F1F036 /* Other */,
@@ -787,6 +799,8 @@
 				65FE08AF1EA73BAD002C9397 /* ContentCell.m */,
 				65FE08CD1EAF4735002C9397 /* OrderAmountCell.h */,
 				65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */,
+				65FE08DE1EB08F75002C9397 /* RepairInfoView.h */,
+				65FE08DF1EB08F75002C9397 /* RepairInfoView.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -829,6 +843,7 @@
 				6525447C1E1F37EF0027B28B /* WorkerInfoView.xib */,
 				65FE08AC1EA73B59002C9397 /* ContentCell.xib */,
 				65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */,
+				65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1177,6 +1192,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		65FE08D81EB04946002C9397 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				65FE08D51EB044EA002C9397 /* MaintOrderController.h */,
+				65FE08D61EB044EA002C9397 /* MaintOrderController.m */,
+				65FE08D91EB04967002C9397 /* RepairOrderController.h */,
+				65FE08DA1EB04967002C9397 /* RepairOrderController.m */,
+			);
+			name = Order;
+			sourceTree = "<group>";
+		};
 		67D01A4BA60B3ECA2CD25A6C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1330,6 +1356,7 @@
 				655ADFBA1E2EFE4F00F1F036 /* icon_other1.png in Resources */,
 				650596A71E8A3302009A5602 /* icon_main.png in Resources */,
 				65EEEB951E7791970095432B /* guide_new.png in Resources */,
+				65FE08DD1EB08F12002C9397 /* RepairInfoView.xib in Resources */,
 				652544E31E1F754C0027B28B /* city_json.json in Resources */,
 				652545011E1F88050027B28B /* icon_around.png in Resources */,
 				652544991E1F61780027B28B /* Help.storyboard in Resources */,
@@ -1448,6 +1475,7 @@
 				6544C76A1E69012D0050A9D3 /* OrderInfoCell.m in Sources */,
 				65CABE3F1E22A244007EC96C /* CDPGifView.m in Sources */,
 				65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */,
+				65FE08DB1EB04967002C9397 /* RepairOrderController.m in Sources */,
 				6544C7591E6818A70050A9D3 /* OrderListRequest.m in Sources */,
 				652544DC1E1F65C30027B28B /* ImageUtils.m in Sources */,
 				65E19BCA1E67C14500C6860D /* MainOrderController.m in Sources */,
@@ -1492,6 +1520,7 @@
 				6544C7AA1E6955C60050A9D3 /* PersonItemCell.m in Sources */,
 				65E19BE61E67F5A200C6860D /* MainOrderAddRequest.m in Sources */,
 				6525446D1E1F26C80027B28B /* BaseViewController.m in Sources */,
+				65FE08D71EB044EA002C9397 /* MaintOrderController.m in Sources */,
 				65CABE421E22A2F0007EC96C /* LauncherController.m in Sources */,
 				652544D91E1F65050027B28B /* README.md in Sources */,
 				6544C7651E68FD660050A9D3 /* MainListResponse.m in Sources */,
@@ -1521,6 +1550,7 @@
 				6544C78F1E693B9B0050A9D3 /* RepairTaskCell.m in Sources */,
 				6525443F1E1F1F960027B28B /* Utils.m in Sources */,
 				6544C75C1E68FA300050A9D3 /* RepairOrderInfo.m in Sources */,
+				65FE08E01EB08F75002C9397 /* RepairInfoView.m in Sources */,
 				6544C73F1E67FCA30050A9D3 /* RapidRepairController.m in Sources */,
 				652544541E1F20940027B28B /* HttpClient.m in Sources */,
 				650596CB1E8A4347009A5602 /* ElevatorDecorateController.m in Sources */,

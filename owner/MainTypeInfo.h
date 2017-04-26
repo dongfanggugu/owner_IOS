@@ -21,7 +21,8 @@
 
 @property (copy, nonatomic) NSString *name;
 
-@property (unsafe_unretained, nonatomic) CGFloat price;
+@property (assign, nonatomic) CGFloat price;
+
 
 @end
 

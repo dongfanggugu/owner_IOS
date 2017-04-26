@@ -9,6 +9,13 @@
 #ifndef MainOrderInfoView_h
 #define MainOrderInfoView_h
 
+@protocol MainOrderInfoViewDelegate <NSObject>
+
+- (void)onClickButton;
+
+
+@end
+
 
 @interface MainOrderInfoView : UIView
 
@@ -16,15 +23,17 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbCode;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbName;
-
 @property (weak, nonatomic) IBOutlet UILabel *lbDate;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbPay;
+@property (weak, nonatomic) IBOutlet UILabel *lbName;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbNameKey;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbPayKey;
+@property (weak, nonatomic) IBOutlet UILabel *lbInfoKey;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbInfo;
+
+@property (weak, nonatomic) id<MainOrderInfoViewDelegate> delegate;
 
 @end
 

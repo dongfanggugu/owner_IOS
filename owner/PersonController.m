@@ -13,6 +13,8 @@
 #import "PersonInfoView.h"
 #import "PersonItemCell.h"
 #import "JPUSHService.h"
+#import "MaintOrderController.h"
+#import "RepairOrderController.h"
 
 
 @interface PersonController()<UITableViewDelegate, UITableViewDataSource, PersonInfoViewDelegate>
@@ -108,7 +110,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,6 +120,8 @@
         cell.lbItem.text = @"维保订单";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_my_order"];
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         return cell;
         
     } else if (1 == indexPath.row) {
@@ -125,12 +129,16 @@
         cell.lbItem.text = @"快修订单";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_my_account"];
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         return cell;
         
     } else if (2 == indexPath.row) {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"设置";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_settings_new"];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
     }
@@ -147,9 +155,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    NSString *userId = [[Config shareConfig] getUserId];
     
     if (!self.login) {
         [HUDClass showHUDWithText:@"请您先登录"];
@@ -158,14 +163,16 @@
  
     if (0 == indexPath.row)
     {
-        MyOrderController *controller = [[MyOrderController alloc] init];
-        self.hidesBottomBarWhenPushed = YES;
+        MaintOrderController *controller = [[MaintOrderController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+        
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
         
     } else if (1 == indexPath.row) {
-        [HUDClass showHUDWithText:@"功能开发中,请稍后"];
-        return;
+        RepairOrderController *controller = [[RepairOrderController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:controller animated:YES];
         
     } else if (2 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];

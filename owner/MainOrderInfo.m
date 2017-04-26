@@ -15,8 +15,7 @@
 {
     self = [super initWithDictionary:dictionary];
     
-    if (self)
-    {
+    if (self) {
         self.orderId = dictionary[@"id"];
     }
     

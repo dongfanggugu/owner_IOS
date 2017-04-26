@@ -20,12 +20,8 @@
 
 #define REPAIR 1
 
-@interface MyOrderController()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate>
-{
-    CGFloat _screenWidth;
-    
-    CGFloat _screenHeight;
-}
+@interface MyOrderController () <UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate>
+
 
 @property (strong, nonatomic) UISegmentedControl *segment;
 
@@ -69,10 +65,6 @@
 }
 - (void)initData
 {
-    _screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    _screenHeight = [UIScreen mainScreen].bounds.size.height;
-    
     _arrayMainOrder = [NSMutableArray array];
     
     _arrayRepairOrder = [NSMutableArray array];
@@ -84,7 +76,7 @@
     _segment = [[UISegmentedControl alloc] initWithItems:array];
     _segment.frame = CGRectMake(0, 0, 160, 30);
     
-    _segment.center = CGPointMake(_screenWidth / 2, 70 + 30 / 2);
+    _segment.center = CGPointMake(self.screenWidth / 2, 70 + 30 / 2);
     _segment.tintColor = [Utils getColorByRGB:TITLE_COLOR];
     
     [_segment addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
@@ -97,7 +89,7 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    _tableView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 110, _screenWidth, _screenHeight - 114)];
+    _tableView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 110, self.screenWidth, self.screenHeight - 114)];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;

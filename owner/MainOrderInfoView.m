@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "MainOrderInfoView.h"
 
+@interface MainOrderInfoView ()
+
+@property (weak, nonatomic) IBOutlet UIButton *btn;
+
+@end
+
 @implementation MainOrderInfoView
 
 + (id)viewFromNib
@@ -21,6 +27,24 @@
     }
     
     return array[0];
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    _btn.layer.masksToBounds = YES;
+    _btn.layer.cornerRadius = 5;
+    
+    [_btn addTarget:self action:@selector(onClickButton) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+- (void)onClickButton
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickButton)]) {
+        [_delegate onClickButton];
+    }
 }
 
 @end

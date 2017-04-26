@@ -10,7 +10,7 @@
 #import "RepairInfoController.h"
 #import "RepairTaskRequest.h"
 #import "RepairTaskResponse.h"
-#import "MainOrderInfoView.h"
+#import "RepairInfoView.h"
 #import "EvaluateView.h"
 #import "RepairTaskCell.h"
 #import "RepairTaskDetailController.h"
@@ -22,7 +22,7 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic) MainOrderInfoView *infoView;
+//@property (strong, nonatomic) RepairInfoView *infoView;
 
 @property (strong, nonatomic) EvaluteView *evaluateView;
 
@@ -51,7 +51,7 @@
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     
     _tableView.delegate = self;
     
@@ -61,54 +61,81 @@
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    _infoView = [MainOrderInfoView viewFromNib];
-    _infoView.frame = CGRectMake(0, 0, self.view.frame.size.width, 110);
-    _infoView.lbCode.text = _orderInfo.code;
+    RepairInfoView *infoView = [RepairInfoView viewFromNib];
     
-    _infoView.lbDate.text = _orderInfo.createTime;
+    infoView.frame = CGRectMake(0, 0, self.screenWidth, 124);
     
-    _infoView.lbNameKey.text = @"电梯品牌";
-    _infoView.lbName.text = _orderInfo.brand;
+    infoView.lbCode.text = _orderInfo.code;
     
-    _infoView.lbPayKey.text = @"故障类型";
-    _infoView.lbPay.text = _orderInfo.repairTypeName;
+    infoView.lbDate.text = _orderInfo.createTime;
+    
+    infoView.lbBrand.text = _orderInfo.brand;
+    
+    infoView.lbFault.text = _orderInfo.repairTypeName;
+    
+    UILabel *desKey = [[UILabel alloc] initWithFrame:CGRectMake(8, 124, 80, 21)];
+    
+    desKey.font = [UIFont systemFontOfSize:14];
+    
+    desKey.text = @"故障描述";
+    
+    
+    UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(8 + 80 + 8, 124, self.screenWidth - 8 - 80 - 8 - 8, 0)];
+    
+    desLabel.numberOfLines = 0;
+    
+    desLabel.font = [UIFont systemFontOfSize:14];
+    
+    desLabel.text = _orderInfo.phenomenon;
+    
+    [desLabel sizeToFit];
+    
+    CGFloat labelHeight = desLabel.frame.size.height;
+    
     
     
     NSInteger state = _orderInfo.state.integerValue;
     
-    if (8 == state)
-    {
+    if (8 == state) {
         _evaluateView = [EvaluteView viewFromNib];
-        _evaluateView.frame = CGRectMake(0, 110, self.view.frame.size.width, 240);
+        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
         
         _evaluateView.delegate = self;
         
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 350)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
         
-        [headerView addSubview:_infoView];
+        [headerView addSubview:infoView];
+        [headerView addSubview:desKey];
+        [headerView addSubview:desLabel];
         [headerView addSubview:_evaluateView];
         
         _tableView.tableHeaderView = headerView;
-    }
-    else if (9 == state)
-    {
+        
+    } else if (9 == state) {
         _evaluateView = [EvaluteView viewFromNib];
         [_evaluateView setModeShow];
         [_evaluateView setStar:_orderInfo.evaluate.integerValue];
         [_evaluateView setContent:_orderInfo.evaluateInfo];
-        _evaluateView.frame = CGRectMake(0, 110, self.view.frame.size.width, 240);
+        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
         
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 350)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
         
-        [headerView addSubview:_infoView];
+        [headerView addSubview:infoView];
+        [headerView addSubview:desKey];
+        [headerView addSubview:desLabel];
         [headerView addSubview:_evaluateView];
         
         _tableView.tableHeaderView = headerView;
 
-    }
-    else
-    {
-        _tableView.tableHeaderView = _infoView;
+    } else {
+        
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight)];
+        
+        [headerView addSubview:infoView];
+        [headerView addSubview:desKey];
+        [headerView addSubview:desLabel];
+        
+        _tableView.tableHeaderView = headerView;
     }
     
     [self.view addSubview:_tableView];

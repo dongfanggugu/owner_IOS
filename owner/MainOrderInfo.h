@@ -27,6 +27,10 @@
 
 @property (assign, nonatomic) CGFloat price;
 
+@property (assign, nonatomic) NSInteger frequency;
+
+@property (copy, nonatomic) NSString *expireTime;
+
 @end
 
 
