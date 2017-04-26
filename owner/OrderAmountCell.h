@@ -18,4 +18,6 @@
 
 @property (assign, nonatomic) NSInteger amount;
 
+@property (assign, nonatomic) CGFloat price;
+
 @end

@@ -14,12 +14,6 @@
 
 @interface SelectableCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *lbKey;
-
-@property (weak, nonatomic) IBOutlet UILabel *lbContent;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyWidth;
-
 
 + (id)cellFromNib;
 
@@ -38,6 +32,14 @@
 - (void)setKeyValue:(NSString *)key;
 
 - (void)setAfterSelectedListener:(void(^)(NSString *key, NSString *content))selection;
+
+@property (assign, nonatomic) BOOL showable;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbKey;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbContent;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyWidth;
 
 @end
 

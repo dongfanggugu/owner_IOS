@@ -51,15 +51,12 @@
 {
     [super awakeFromNib];
     _ivFlag.image = [UIImage imageNamed:@"icon_down"];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
+    
     _lbContent.userInteractionEnabled = YES;
     
     [_lbContent addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDialog)]];
 }
+
 
 - (void)setData:(NSArray<id<ListDialogDataDelegate>> *)arrayData
 {
@@ -87,8 +84,7 @@
 
 - (NSString *)getKeyValue
 {
-    if (0 == _key.length)
-    {
+    if (0 == _key.length) {
         return  @"";
     }
     
@@ -126,6 +122,17 @@
     }
 }
 
+- (void)setShowable:(BOOL)showable
+{
+    if (showable) {
+        self.lbContent.userInteractionEnabled = YES;
+        self.ivFlag.hidden = NO;
+        
+    } else {
+        self.lbContent.userInteractionEnabled = NO;
+        self.ivFlag.hidden = YES;
+    }
+}
 
 #pragma mark -- ListDialogDelegate
 

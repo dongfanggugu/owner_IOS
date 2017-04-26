@@ -400,15 +400,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QuX-Pr-36O">
+                                <rect key="frame" x="87" y="150" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="3ah-T3-RM3"/>
+                                    <constraint firstAttribute="height" constant="30" id="HzW-U7-n1Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="提交">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="tzn-ML-EEP" secondAttribute="trailing" constant="16" id="H7t-8k-LcI"/>
+                            <constraint firstItem="QuX-Pr-36O" firstAttribute="centerX" secondItem="Efp-IG-CfL" secondAttribute="centerX" id="Q2r-4B-BKc"/>
                             <constraint firstItem="tzn-ML-EEP" firstAttribute="leading" secondItem="Efp-IG-CfL" secondAttribute="leading" constant="16" id="Ubh-wT-qHT"/>
+                            <constraint firstItem="QuX-Pr-36O" firstAttribute="top" secondItem="tzn-ML-EEP" secondAttribute="bottom" constant="80" id="WPp-nu-pFm"/>
                             <constraint firstItem="tzn-ML-EEP" firstAttribute="top" secondItem="StZ-UC-goz" secondAttribute="bottom" constant="20" id="dfw-Yj-CTB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnSubmit" destination="QuX-Pr-36O" id="sBr-5e-MFM"/>
                         <outlet property="textFieldContent" destination="tzn-ML-EEP" id="pSZ-Gd-Mh5"/>
                     </connections>
                 </viewController>
@@ -738,7 +753,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YIY-rx-FR2" id="dFU-xi-4ZQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vt-1R-OQi">

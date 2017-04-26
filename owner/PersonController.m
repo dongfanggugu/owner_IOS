@@ -108,29 +108,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
-        cell.lbItem.text = @"我的订单";
+        cell.lbItem.text = @"维保订单";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_my_order"];
         
         return cell;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
-        cell.lbItem.text = @"我的账户";
+        cell.lbItem.text = @"快修订单";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_my_account"];
         
         return cell;
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"设置";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_settings_new"];
@@ -154,7 +151,7 @@
     
     NSString *userId = [[Config shareConfig] getUserId];
     
-    if (0 == userId.length) {
+    if (!self.login) {
         [HUDClass showHUDWithText:@"请您先登录"];
         return;
     }

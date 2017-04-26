@@ -233,6 +233,8 @@
 		65FE08B01EA73BAD002C9397 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08AF1EA73BAD002C9397 /* ContentCell.m */; };
 		65FE08CC1EAF4599002C9397 /* OrderAmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */; };
 		65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */; };
+		65FE08D21EB02840002C9397 /* icon_amount_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08D01EB02840002C9397 /* icon_amount_add.png */; };
+		65FE08D31EB02840002C9397 /* icon_amount_minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08D11EB02840002C9397 /* icon_amount_minus.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -576,6 +578,8 @@
 		65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderAmountCell.xib; sourceTree = "<group>"; };
 		65FE08CD1EAF4735002C9397 /* OrderAmountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderAmountCell.h; sourceTree = "<group>"; };
 		65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderAmountCell.m; sourceTree = "<group>"; };
+		65FE08D01EB02840002C9397 /* icon_amount_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amount_add.png; sourceTree = "<group>"; };
+		65FE08D11EB02840002C9397 /* icon_amount_minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amount_minus.png; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -924,6 +928,8 @@
 				65EEEB891E7791380095432B /* page_5.jpg */,
 				65EEEB8A1E7791380095432B /* page_6.jpg */,
 				65EEEB841E7791380095432B /* page_7.jpg */,
+				65FE08D01EB02840002C9397 /* icon_amount_add.png */,
+				65FE08D11EB02840002C9397 /* icon_amount_minus.png */,
 				65EEEB851E7791380095432B /* page_8.jpg */,
 				650596D41E8A528D009A5602 /* process_0.png */,
 				650596BF1E8A37B8009A5602 /* process_bg.png */,
@@ -1267,6 +1273,7 @@
 				655ADFB11E2E0E7F00F1F036 /* icon_market1.png in Resources */,
 				655ADF811E28635900F1F036 /* icon_person_default2.png in Resources */,
 				655ADF9C1E2DEA5800F1F036 /* MarketCell.xib in Resources */,
+				65FE08D21EB02840002C9397 /* icon_amount_add.png in Resources */,
 				65E19BC41E67C0E500C6860D /* KeyValueCell.xib in Resources */,
 				652544911E1F44C60027B28B /* Maintenance.storyboard in Resources */,
 				65EEEB8B1E7791380095432B /* page_1.jpg in Resources */,
@@ -1326,6 +1333,7 @@
 				652544E31E1F754C0027B28B /* city_json.json in Resources */,
 				652545011E1F88050027B28B /* icon_around.png in Resources */,
 				652544991E1F61780027B28B /* Help.storyboard in Resources */,
+				65FE08D31EB02840002C9397 /* icon_amount_minus.png in Resources */,
 				652545121E2372E70027B28B /* icon_account.png in Resources */,
 				65E19BC21E67C0E500C6860D /* KeyMultiEditCell.xib in Resources */,
 				652544FB1E1F87A40027B28B /* icon_main_history.png in Resources */,

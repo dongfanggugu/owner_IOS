@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="389" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gvW-ex-M9v" id="99o-8Y-dcv">
-                <rect key="frame" x="0.0" y="0.0" width="389" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="389" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购买数量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31o-F7-RJ3">
@@ -27,17 +27,16 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-Vj-NT4">
-                        <rect key="frame" x="116" y="7" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-Vj-NT4">
+                        <rect key="frame" x="283" y="12" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="e55-2P-5ro"/>
-                            <constraint firstAttribute="height" constant="30" id="p6a-p5-Kzm"/>
+                            <constraint firstAttribute="width" constant="20" id="e55-2P-5ro"/>
+                            <constraint firstAttribute="height" constant="20" id="p6a-p5-Kzm"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="-"/>
+                        <state key="normal" image="icon_amount_minus.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnb-ey-NNj">
-                        <rect key="frame" x="154" y="8" width="42" height="27"/>
+                        <rect key="frame" x="311" y="8" width="42" height="27"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="gKt-7X-mCH"/>
                         </constraints>
@@ -45,35 +44,51 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Te-gd-hFm">
-                        <rect key="frame" x="204" y="6" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Te-gd-hFm">
+                        <rect key="frame" x="361" y="11" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="4LC-gY-he1"/>
-                            <constraint firstAttribute="width" constant="30" id="5RA-Fw-xea"/>
+                            <constraint firstAttribute="height" constant="20" id="4LC-gY-he1"/>
+                            <constraint firstAttribute="width" constant="20" id="5RA-Fw-xea"/>
+                        </constraints>
+                        <state key="normal" image="icon_amount_add.png"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZ6-rR-Zu2">
+                        <rect key="frame" x="116" y="12" width="159" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="1aN-pX-2fG"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="+"/>
-                    </button>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="lj1-Vj-NT4" firstAttribute="centerY" secondItem="99o-8Y-dcv" secondAttribute="centerY" id="52S-Yr-08M"/>
                     <constraint firstAttribute="bottom" secondItem="31o-F7-RJ3" secondAttribute="bottom" constant="8" id="6Yh-7b-7I8"/>
                     <constraint firstItem="9Te-gd-hFm" firstAttribute="leading" secondItem="fnb-ey-NNj" secondAttribute="trailing" constant="8" id="9hO-bf-IvF"/>
+                    <constraint firstItem="lj1-Vj-NT4" firstAttribute="leading" secondItem="mZ6-rR-Zu2" secondAttribute="trailing" constant="8" id="BJ8-H9-cUd"/>
+                    <constraint firstAttribute="trailing" secondItem="9Te-gd-hFm" secondAttribute="trailing" constant="8" id="E5H-72-DGY"/>
                     <constraint firstItem="31o-F7-RJ3" firstAttribute="top" secondItem="99o-8Y-dcv" secondAttribute="top" constant="8" id="EGw-sH-H8f"/>
                     <constraint firstItem="9Te-gd-hFm" firstAttribute="centerY" secondItem="99o-8Y-dcv" secondAttribute="centerY" id="F6g-uI-Wq9"/>
                     <constraint firstItem="fnb-ey-NNj" firstAttribute="leading" secondItem="lj1-Vj-NT4" secondAttribute="trailing" constant="8" id="Fvp-vV-ntD"/>
                     <constraint firstItem="31o-F7-RJ3" firstAttribute="leading" secondItem="99o-8Y-dcv" secondAttribute="leading" constant="8" id="S6W-lg-bLw"/>
+                    <constraint firstItem="mZ6-rR-Zu2" firstAttribute="centerY" secondItem="99o-8Y-dcv" secondAttribute="centerY" id="Xs5-Ud-8Z2"/>
+                    <constraint firstItem="mZ6-rR-Zu2" firstAttribute="leading" secondItem="31o-F7-RJ3" secondAttribute="trailing" constant="8" id="a7v-3p-Mo3"/>
                     <constraint firstAttribute="bottom" secondItem="fnb-ey-NNj" secondAttribute="bottom" constant="8" id="jmC-FJ-Tql"/>
                     <constraint firstItem="fnb-ey-NNj" firstAttribute="top" secondItem="99o-8Y-dcv" secondAttribute="top" constant="8" id="z0r-xD-iKg"/>
-                    <constraint firstItem="lj1-Vj-NT4" firstAttribute="leading" secondItem="31o-F7-RJ3" secondAttribute="trailing" constant="8" id="zGX-6I-8FY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnAdd" destination="9Te-gd-hFm" id="8NX-rp-qM9"/>
                 <outlet property="btnMinus" destination="lj1-Vj-NT4" id="asQ-Ds-RPN"/>
                 <outlet property="lbAmount" destination="fnb-ey-NNj" id="ajw-O5-zC4"/>
+                <outlet property="lbTotal" destination="mZ6-rR-Zu2" id="81f-xO-0OS"/>
             </connections>
-            <point key="canvasLocation" x="-69.5" y="-66.5"/>
+            <point key="canvasLocation" x="-69.5" y="-67"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_amount_add.png" width="30" height="30"/>
+        <image name="icon_amount_minus.png" width="30" height="30"/>
+    </resources>
 </document>

@@ -65,13 +65,11 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"快修服务"];
-    [self initNavRightWithText:@"提交"];
-    
     [self initData];
     [self initView];
 }
 
-- (void)onClickNavRight
+- (void)submit
 {
     
     NSString *faultInfo = _tvRepair.text;
@@ -178,10 +176,26 @@
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.view addSubview:_tableView];
+    
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 80)];
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 5;
+    
+    btn.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
+    [btn setTitle:@"提交" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [btn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+    
+    btn.center = CGPointMake(self.screenWidth / 2, 40);
+    [footView addSubview:btn];
+    
+    _tableView.tableFooterView = footView;
+
 }
 
-
-#pragma mark - Network Request
 
 
 #pragma mark - UITableViewDataSource
@@ -198,12 +212,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (0 == section)
-    {
+    if (0 == section) {
         return 5;
-    }
-    else
-    {
+        
+    } else {
         return 4;
     }
 }
@@ -242,7 +254,7 @@
                     
                 } else {
                     cell.lbContent.text = [[Config shareConfig] getBrand];
-                    cell.lbContent.enabled = NO;
+                    cell.showable = NO;
                 }
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;

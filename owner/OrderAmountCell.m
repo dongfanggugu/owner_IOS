@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbAmount;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbTotal;
+
 @end
 
 @implementation OrderAmountCell
@@ -54,17 +56,41 @@
 
 - (NSInteger)amount
 {
+    if (_amount <= 0) {
+        _amount = 1;
+    }
     return _amount;
+}
+
+- (void)setPrice:(CGFloat)price
+{
+    if (price <= 0) {
+        return;
+    }
+    
+    _price = price;
+    
+    CGFloat total = _price * self.amount;
+    
+    self.lbTotal.text = [NSString stringWithFormat:@"￥%.1lf", total];
 }
 
 - (void)add
 {
-    self.amount = [_lbAmount.text integerValue];
+    //self.amount = [_lbAmount.text integerValue];
     self.amount++;
     
     self.lbAmount.text = [NSString stringWithFormat:@"%ld", self.amount];
     
-    NSLog(@"amount:%ld", self.amount);
+    if (0 == self.price) {
+        self.lbTotal.text = @"";
+        return;
+    }
+    
+    CGFloat total = _price * self.amount;
+    
+    self.lbTotal.text = [NSString stringWithFormat:@"￥%.1lf", total];
+    
 }
 
 - (void)minus
@@ -78,7 +104,15 @@
     
     self.lbAmount.text = [NSString stringWithFormat:@"%ld", self.amount];
     
-    NSLog(@"amount:%ld", self.amount);
+    if (0 == self.price) {
+        self.lbTotal.text = @"";
+        return;
+    }
+    
+    CGFloat total = self.price * self.amount;
+    
+    self.lbTotal.text = [NSString stringWithFormat:@"￥%.1lf", total];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

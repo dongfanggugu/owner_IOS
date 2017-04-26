@@ -18,14 +18,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _screenHeight = [UIScreen mainScreen].bounds.size.height;
-    
+        
     self.view.backgroundColor = [UIColor whiteColor];
     if (self.navigationController) {
         self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     }
+}
+
+- (CGFloat)screenWidth
+{
+    return [UIScreen mainScreen].bounds.size.width;
+}
+
+- (CGFloat)screenHeight
+{
+    return [UIScreen mainScreen].bounds.size.height;
 }
 
 - (BOOL)login

@@ -54,7 +54,6 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"注册"];
-    [self initNavRightWithText:@"提交"];
     [self initView];
 }
 
@@ -67,27 +66,32 @@
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [_tableView setAllowsSelection:NO];
+    
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 80)];
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 5;
+    
+    btn.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
+    [btn setTitle:@"提交" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [btn addTarget:self action:@selector(ownerRegister) forControlEvents:UIControlEventTouchUpInside];
+    
+    btn.center = CGPointMake(self.screenWidth / 2, 40);
+    [footView addSubview:btn];
+    
+    _tableView.tableFooterView = footView;
 }
 
 
-- (void)onClickNavRight
-{
-    [self ownerRegister];
-}
 
 #pragma mark - NetworkRequest
 
 - (void)ownerRegister
 {
-    RegisterCell *cell0 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    NSString *userName = cell0.tfValue.text;
-    
-    if (0 == userName.length) {
-        [HUDClass showHUDWithText:@"请填写用户名"];
-        return;
-    }
-    
-    RegisterCell *cell1 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    RegisterCell *cell1 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     NSString *name = cell1.tfValue.text;
     
     if (0 == name.length) {
@@ -95,7 +99,7 @@
         return;
     }
     
-    RegisterCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    RegisterCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     NSString *tel = cell2.tfValue.text;
     
     if (0 == tel.length) {
@@ -103,7 +107,7 @@
         return;
     }
     
-    RegisterCell *cell3 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    RegisterCell *cell3 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     NSString *pwd = cell3.tfValue.text;
     
     if (0 == pwd.length) {
@@ -112,7 +116,7 @@
     }
     
     
-    RegisterCell *cell4 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    RegisterCell *cell4 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     NSString *pwdConfirm = cell4.tfValue.text;
     
     if (![pwd isEqualToString:pwdConfirm]) {
@@ -120,7 +124,7 @@
         return;
     }
     
-    SelectableCell *cell5 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
+    SelectableCell *cell5 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     NSString *brand = cell5.getContentValue;
     
     NSString *address = _addressCell.lbValue.text;
@@ -131,7 +135,6 @@
     }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"loginname"] = userName;
     params[@"name"] = name;
     params[@"tel"] = tel;
     params[@"sex"] = @"1";
@@ -143,7 +146,7 @@
     
     
     [[HttpClient shareClient] post:@"addSmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"注册成功,请使用您的用户名或手机号码登录"];
+        [HUDClass showHUDWithText:@"注册成功,请使用您的手机号码登录"];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
@@ -159,41 +162,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger index = indexPath.row;
     
-    if (0 == index)
-    {
-        RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
-        cell.lbKey.text = @"用户名";
-        cell.tfValue.placeholder = @"用户名";
-        
-        return cell;
-    }
-    else if (1 == index)
-    {
+    if (0 == index) {
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
         
         cell.lbKey.text = @"姓名";
         cell.tfValue.placeholder = @"姓名";
         
         return cell;
-    }
-    else if (2 == index)
-    {
+        
+    } else if (1 == index) {
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
         
         cell.lbKey.text = @"电话";
         cell.tfValue.placeholder = @"电话";
         
         return cell;
-    }
-    else if (3 == index)
-    {
+        
+    } else if (2 == index) {
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
         
         cell.lbKey.text = @"密码";
@@ -202,9 +194,8 @@
         cell.tfValue.secureTextEntry = YES;
         
         return cell;
-    }
-    else if (4 == index)
-    {
+        
+    } else if (3 == index) {
         
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
         
@@ -214,9 +205,8 @@
         cell.tfValue.secureTextEntry = YES;
         
         return cell;
-    }
-    else if (5 == index)
-    {
+        
+    } else if (4 == index) {
         SelectableCell *cell = [SelectableCell cellFromNib];
         
         cell.lbKey.text = @"电梯品牌";
@@ -231,15 +221,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (6 == index)
-    {
-//        RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
-//        
-//        cell.lbKey.text = @"小区地址";
-//        cell.tfValue.placeholder = @"小区地址";
-//        cell.btnLocation.hidden = YES;
-//        [cell.btnLocation addTarget:self action:@selector(addressLocation) forControlEvents:UIControlEventTouchUpInside];
+        
+    } else if (5 == index) {
         
         KeyValueCell *cell = [tableView dequeueReusableCellWithIdentifier:[KeyValueCell identifier]];
         
@@ -264,23 +247,6 @@
 
 - (void)addressLocation
 {
-//    RegisterCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
-//    NSString *address = cell.tfValue.text;
-    
-//    if (0 == address.length) {
-//        [HUDClass showHUDWithText:@"请先填写小区地址"];
-//        
-//        return;
-//    }
-    
-//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
-//    LocationViewController *controller = [board instantiateViewControllerWithIdentifier:@"address_location"];
-//    controller.delegate = self;
-//    controller.enterType = 1;
-//    controller.address = address;
-//    controller.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:controller animated:YES];
-    
     AddressLocationController *controller = [[AddressLocationController alloc] init];
     controller.delegate = self;
     

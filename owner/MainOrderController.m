@@ -38,6 +38,9 @@
 
 @property (weak, nonatomic) UITextField *tfAddress;
 
+
+@property (weak, nonatomic) OrderAmountCell *amountCell;
+
 @property (weak, nonatomic) SelectableCell *brandCell;
 
 @property (weak, nonatomic) KeyEditCell *modelCell;
@@ -52,18 +55,15 @@
 @implementation MainOrderController
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setNavTitle:@"订单"];
-    [self initNavRightWithText:@"提交"];
-    
     [self initData];
     [self initView];
 }
 
-- (void)onClickNavRight
+- (void)submit
 {
     MainOrderAddRequest *request = [[MainOrderAddRequest alloc] init];
     request.mainttypeId = _mainInfo.typeId;
@@ -151,9 +151,26 @@
     _tableView.dataSource = self;
     _tableView.bounces = NO;
     
-    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
     [self.view addSubview:_tableView];
+    
+    
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 80)];
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 5;
+    
+    btn.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
+    [btn setTitle:@"提交" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [btn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+    
+    btn.center = CGPointMake(self.screenWidth / 2, 40);
+    [footView addSubview:btn];
+    
+    _tableView.tableFooterView = footView;
+    
 }
 
 
@@ -201,7 +218,15 @@
             return cell;
             
         } else if (1 == indexPath.row) {
+            
+            if (_amountCell) {
+                return _amountCell;
+            }
+            
             OrderAmountCell *cell = [OrderAmountCell cellFromNib];
+            _amountCell = cell;
+            
+            cell.price = _mainInfo.price;
             
             return cell;
         }
@@ -232,8 +257,8 @@
                     }];
                     
                 } else {
-                    cell.lbContent.enabled = NO;
                     cell.lbContent.text = [[Config shareConfig] getBrand];
+                    cell.showable = NO;
                 }
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -343,15 +368,6 @@
             cell.tfValue.placeholder = @"地址";
             _tfAddress = cell.tfValue;
             
-            
-
-//            KeyEditBtnCell *cell = [KeyEditBtnCell cellFromNib];
-//                        cell.lbKey.text = @"地址";
-//            
-//                        cell.tfValue.placeholder = @"地址";
-//                        _tfAddress = cell.tfValue;
-//            
-//            [cell setBtnImage];
 
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -375,7 +391,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (0 == indexPath.section) {
-        return [MainOrderInfoCell cellHeight];
+        
+        if (0 == indexPath.row) {
+            return [MainOrderInfoCell cellHeight];
+            
+        } else {
+            return [OrderAmountCell cellHeight];
+        }
         
     } else {
         return [KeyEditCell cellHeight];

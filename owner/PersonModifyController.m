@@ -25,6 +25,8 @@
 
 @property (strong, nonatomic) UILabel *lbBrand;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
+
 @end
 
 
@@ -36,7 +38,6 @@
 {
     [super viewDidLoad];
     
-    [self setTitleRight];
     [self initView];
 }
 
@@ -46,9 +47,14 @@
 - (void)initView
 {
     
-    if ([enterType isEqualToString:@"brand"])
-    {
-        [self setTitleString:@"电梯品牌"];
+    _btnSubmit.layer.masksToBounds = YES;
+    
+    _btnSubmit.layer.cornerRadius = 5;
+    
+    [_btnSubmit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+    
+    if ([enterType isEqualToString:@"brand"]) {
+        [self setNavTitle:@"电梯品牌"];
         
         [_textFieldContent removeFromSuperview];
         
@@ -70,9 +76,8 @@
         [_lbBrand addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selBrand)]];
         
         [self.view addSubview:_lbBrand];
-    }
-    else
-    {
+        
+    } else {
         //设置左右边框，看起来美观
         UIView *padView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
         self.textFieldContent.leftView = padView;
@@ -81,56 +86,29 @@
         self.textFieldContent.rightView = padView;
         self.textFieldContent.rightViewMode = UITextFieldViewModeAlways;
         
-        if ([enterType isEqualToString:@"name"])
-        {
-            [self setTitleString:@"姓名"];
+        if ([enterType isEqualToString:@"name"]) {
+            [self setNavTitle:@"姓名"];
             self.textFieldContent.text = [[Config shareConfig] getName];
             
-        }
-        else if ([enterType isEqualToString:@"branch_name"])
-        {
-            [self setTitleString:@"小区名称"];
+        } else if ([enterType isEqualToString:@"branch_name"]) {
+            [self setNavTitle:@"地址"];
             _textFieldContent.text = [[Config shareConfig] getBranchName];
-        }
-        
-        else if ([enterType isEqualToString:@"model"])
-        {
-            [self setTitleString:@"电梯型号"];
+            
+        } else if ([enterType isEqualToString:@"model"]) {
+            [self setNavTitle:@"电梯型号"];
             _textFieldContent.text = [[Config shareConfig] getLiftType];
+            
         }
     }
 }
 
-/**
- *  设置标题
- *
- *  @param title <#title description#>
- */
-- (void)setTitleString:(NSString *)title {
-    UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-    labelTitle.text = title;
-    labelTitle.font = [UIFont fontWithName:@"System" size:17];
-    labelTitle.textColor = [UIColor whiteColor];
-    [self.navigationItem setTitleView:labelTitle];
-}
 
-/**
- *  设置标题栏右侧
- */
-- (void)setTitleRight {
-    UIButton *btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
-    [btnSubmit setTitle:@"提交" forState:UIControlStateNormal];
-    [btnSubmit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btnSubmit.titleLabel.font = [UIFont systemFontOfSize:15];
-    [btnSubmit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:btnSubmit];
-    self.navigationItem.rightBarButtonItem = rightItem;
-}
 
 /**
  *  提交到服务器
  */
-- (void)submit {
+- (void)submit
+{
     
     if ([enterType isEqualToString:@"brand"])
     {
@@ -185,7 +163,7 @@
     ListDialogView *dialog = [ListDialogView viewFromNib];
     dialog.delegate = self;
     [dialog setArrayData:arrayBrand];
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 - (void)submitKey:(NSString *)key value:(NSString *)value
