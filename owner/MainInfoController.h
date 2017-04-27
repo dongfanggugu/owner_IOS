@@ -10,11 +10,12 @@
 #define MainInfoController_h
 
 #import "BaseViewController.h"
-#import "MainOrderInfo.h"
+
+@class MainOrderInfo;
 
 @interface MainInfoController : BaseViewController
 
-@property (strong, nonatomic) MainOrderInfo *orderInfo;
+@property (strong, nonatomic) MainOrderInfo *serviceInfo;
 
 @end
 

@@ -11,8 +11,11 @@
 
 @protocol MainOrderInfoViewDelegate <NSObject>
 
-- (void)onClickButton;
+- (void)onClickPayButton;
 
+- (void)onClickOrderButton;
+
+- (void)onClickDetailButton;
 
 @end
 
@@ -21,17 +24,13 @@
 
 + (id)viewFromNib;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbCode;
-
-@property (weak, nonatomic) IBOutlet UILabel *lbDate;
-
 @property (weak, nonatomic) IBOutlet UILabel *lbName;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbNameKey;
-
-@property (weak, nonatomic) IBOutlet UILabel *lbInfoKey;
+@property (weak, nonatomic) IBOutlet UILabel *lbPrice;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbInfo;
+
+@property (weak, nonatomic) UIImage *image;
 
 @property (weak, nonatomic) id<MainOrderInfoViewDelegate> delegate;
 

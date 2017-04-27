@@ -15,6 +15,9 @@
 #import "JPUSHService.h"
 #import "MaintOrderController.h"
 #import "RepairOrderController.h"
+#import "MainInfoController.h"
+#import "OrderListRequest.h"
+#import "MainListResponse.h"
 
 
 @interface PersonController()<UITableViewDelegate, UITableViewDataSource, PersonInfoViewDelegate>
@@ -45,7 +48,7 @@
 - (void)initView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -66,12 +69,10 @@
 {
     NSString *userId = [[Config shareConfig] getUserId];
     
-    if (0 == userId.length)
-    {
+    if (0 == userId.length) {
         _infoView.lbName.text = @"登录/注册";
-    }
-    else
-    {
+        
+    } else {
         _infoView.lbName.text = [[Config shareConfig] getName];
     }
 
@@ -117,7 +118,7 @@
 {
     if (0 == indexPath.row) {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
-        cell.lbItem.text = @"维保订单";
+        cell.lbItem.text = @"维保服务";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_my_order"];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -161,12 +162,8 @@
         return;
     }
  
-    if (0 == indexPath.row)
-    {
-        MaintOrderController *controller = [[MaintOrderController alloc] init];
-        controller.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:controller animated:YES];
+    if (0 == indexPath.row) {
+        [self getSeviceInfo];
         
     } else if (1 == indexPath.row) {
         RepairOrderController *controller = [[RepairOrderController alloc] init];
@@ -182,6 +179,32 @@
         [self.navigationController pushViewController:controller animated:YES];
     }
     
+}
+
+- (void)getSeviceInfo
+{
+    OrderListRequest *request = [[OrderListRequest alloc] init];
+    
+    [[HttpClient shareClient] post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+        MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
+        
+        if (0 == [response getOrderList].count) {
+            [HUDClass showHUDWithText:@"您还未购买维保服务,请到服务->电梯管家中购买维保服务"];
+            
+            return;
+        }
+    
+        MainInfoController *controller = [[MainInfoController alloc] init];
+        
+        controller.serviceInfo = [[response getOrderList] objectAtIndex:0];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
 }
 
 @end

@@ -131,7 +131,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MainInfoController *controller = [[MainInfoController alloc] init];
-    controller.orderInfo = _arrayMainOrder[indexPath.row];
+    controller.serviceInfo = _arrayMainOrder[indexPath.row];
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];

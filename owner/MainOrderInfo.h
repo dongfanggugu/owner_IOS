@@ -10,6 +10,7 @@
 #define MainOrderInfo_h
 
 #import <Jastor.h>
+#import "MainTypeInfo.h"
 
 @interface MainOrderInfo : Jastor
 
@@ -30,6 +31,8 @@
 @property (assign, nonatomic) NSInteger frequency;
 
 @property (copy, nonatomic) NSString *expireTime;
+
+@property (strong, nonatomic) MainTypeInfo *maintypeInfo;
 
 @end
 

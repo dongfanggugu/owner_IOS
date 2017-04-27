@@ -25,6 +25,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbContent;
 
+@property (weak, nonatomic) UIImage *image;
+
 @end
 
 #endif /* MainTypeCell_h */

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MainOrderInfo.h"
+#import "MainTypeInfo.h"
 
 @implementation MainOrderInfo
 
@@ -17,6 +18,7 @@
     
     if (self) {
         self.orderId = dictionary[@"id"];
+        self.maintypeInfo = [[MainTypeInfo alloc] initWithDictionary:dictionary[@"maintypeInfo"]];
     }
     
     return self;

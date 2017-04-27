@@ -13,6 +13,7 @@
 #import "MainTypeListResponse.h"
 #import "MainOrderController.h"
 #import "MainTypeDetailController.h"
+#import "UIView+CornerRadius.h"
 
 
 @interface MaintenanceController()<UITableViewDelegate, UITableViewDataSource>
@@ -46,6 +47,8 @@
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
+    
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -96,8 +99,20 @@
     MainTypeInfo *info = _arrayType[indexPath.row];
     
     cell.lbName.text = info.name;
-    cell.lbPrice.text = [NSString stringWithFormat:@"(￥%.1lf)", info.price];
+    cell.lbPrice.text = [NSString stringWithFormat:@"￥%.1lf", info.price];
     cell.lbContent.text = info.content;
+    
+    Maint_Type maintType = info.typeId.integerValue;
+    
+    if (Maint_Low == maintType) {
+        cell.image = [UIImage imageNamed:@"icon_level_3"];
+        
+    } else if (Maint_Mid == maintType) {
+        cell.image = [UIImage imageNamed:@"icon_level_2"];
+        
+    } else {
+        cell.image = [UIImage imageNamed:@"icon_level_1"];
+    }
     
     
     __weak typeof (self) weakSelf = self;
@@ -109,6 +124,7 @@
         controller.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:controller animated:YES];
     }];
+    
     
     return cell;
 }

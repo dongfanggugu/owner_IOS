@@ -43,7 +43,7 @@
 //获取维保订单列表
 #define URL_MAIN_LIST @"getMaintOrderListByOwner"
 
-//获取维保订单的任务单
+//获取服务的任务单
 #define URL_MAIN_TASK @"getMaintOrderProcessListByOrder"
 
 //获取快修订单的任务单

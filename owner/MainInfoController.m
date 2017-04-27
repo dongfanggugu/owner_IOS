@@ -14,6 +14,11 @@
 #import "MainTaskListRequest.h"
 #import "RepairTaskCell.h"
 #import "MainTaskDetailController.h"
+#import "OrderListRequest.h"
+#import "MainListResponse.h"
+#import "PayOrderController.h"
+#import "MainTypeDetailController.h"
+#import "MainOrderController.h"
 
 @interface MainInfoController() <UITableViewDelegate, UITableViewDataSource, MainOrderInfoViewDelegate>
 
@@ -30,10 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"维保任务"];
+    [self setNavTitle:@"维保服务"];
     [self initData];
     [self initView];
-    [self getTask];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,14 +54,14 @@
 
 - (Maint_Type)maintType
 {
-    return _orderInfo.mainttypeId.integerValue;
+    return _serviceInfo.mainttypeId.integerValue;
 }
 
 - (void)initView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     
     _tableView.delegate = self;
     
@@ -71,21 +75,38 @@
     
     _infoView.delegate = self;
     
-    _infoView.lbCode.text = _orderInfo.code;
+    _infoView.lbName.text = [_serviceInfo.maintypeInfo name];
     
-    _infoView.lbDate.text = _orderInfo.createTime;
+    _infoView.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [_serviceInfo.maintypeInfo price]];
     
-    _infoView.lbName.text = _orderInfo.maintypeName;
     
     
     if (Maint_Low == self.maintType) {
-        _infoView.lbInfoKey.text = @"剩余次数";
-        _infoView.lbInfo.text = [NSString stringWithFormat:@"%ld", _orderInfo.frequency];
+        _infoView.lbInfo.text = [NSString stringWithFormat:@"剩余次数:%ld", _serviceInfo.frequency];
+        
+        _infoView.image = [UIImage imageNamed:@"icon_level_3"];
+        
+    } else if (Maint_Mid == self.maintType) {
+        if (0 == _serviceInfo.expireTime) {
+            _infoView.lbInfo.text = @"无效";
+            
+        } else {
+            _infoView.lbInfo.text =  [NSString stringWithFormat:@"到期日期:%@", _serviceInfo.expireTime];
+            
+        }
+        
+        _infoView.image = [UIImage imageNamed:@"icon_level_2"];
         
     } else {
-        _infoView.lbInfoKey.text = @"到期日期";
-        _infoView.lbInfo.text = _orderInfo.expireTime;
+        if (0 == _serviceInfo.expireTime) {
+            _infoView.lbInfo.text = @"无效";
+            
+        } else {
+            _infoView.lbInfo.text =  [NSString stringWithFormat:@"到期日期:%@", _serviceInfo.expireTime];
+            
+        }
         
+        _infoView.image = [UIImage imageNamed:@"icon_level_1"];
     }
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -95,11 +116,12 @@
 
 #pragma mark - Network Request
 
+
 - (void)getTask
 {
     MainTaskListRequest *request = [[MainTaskListRequest alloc] init];
     
-    request.maintOrderId = _orderInfo.orderId;
+    request.maintOrderId = _serviceInfo.orderId;
     
     [[HttpClient shareClient] post:URL_MAIN_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         MainTaskListResponse *response = [[MainTaskListResponse alloc] initWithDictionary:responseObject];
@@ -190,9 +212,31 @@
 
 #pragma mark - MainOrderInfoViewDelegate
 
-- (void)onClickButton
+- (void)onClickPayButton
 {
-    NSLog(@"onClickButton");
+    MainOrderController *controller = [[MainOrderController alloc] init];
+    controller.mainInfo =  _serviceInfo.maintypeInfo;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)onClickOrderButton
+{
+    PayOrderController *controller = [[PayOrderController alloc] init];
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)onClickDetailButton
+{
+    MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
+    
+    controller.detail = _serviceInfo.maintypeInfo.content;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

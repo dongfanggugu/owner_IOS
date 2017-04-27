@@ -239,6 +239,14 @@
 		65FE08DB1EB04967002C9397 /* RepairOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08DA1EB04967002C9397 /* RepairOrderController.m */; };
 		65FE08DD1EB08F12002C9397 /* RepairInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */; };
 		65FE08E01EB08F75002C9397 /* RepairInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08DF1EB08F75002C9397 /* RepairInfoView.m */; };
+		65FE08E21EB17EA6002C9397 /* PayInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08E11EB17EA6002C9397 /* PayInfoCell.xib */; };
+		65FE08E51EB181F4002C9397 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08E41EB181F4002C9397 /* PayInfoCell.m */; };
+		65FE08E81EB184EB002C9397 /* PayOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08E71EB184EB002C9397 /* PayOrderController.m */; };
+		65FE08EE1EB1B6FC002C9397 /* UIView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08ED1EB1B6FC002C9397 /* UIView+CornerRadius.m */; };
+		65FE08F01EB1CC0F002C9397 /* icon_level_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08EF1EB1CC0F002C9397 /* icon_level_1.png */; };
+		65FE08F41EB1D25C002C9397 /* icon_q_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08F31EB1D25C002C9397 /* icon_q_a.png */; };
+		65FE08F71EB1E1BC002C9397 /* icon_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08F51EB1E1BC002C9397 /* icon_level_2.png */; };
+		65FE08F81EB1E1BC002C9397 /* icon_level_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08F61EB1E1BC002C9397 /* icon_level_3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -591,6 +599,17 @@
 		65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairInfoView.xib; sourceTree = "<group>"; };
 		65FE08DE1EB08F75002C9397 /* RepairInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairInfoView.h; sourceTree = "<group>"; };
 		65FE08DF1EB08F75002C9397 /* RepairInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairInfoView.m; sourceTree = "<group>"; };
+		65FE08E11EB17EA6002C9397 /* PayInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayInfoCell.xib; sourceTree = "<group>"; };
+		65FE08E31EB181F4002C9397 /* PayInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoCell.h; sourceTree = "<group>"; };
+		65FE08E41EB181F4002C9397 /* PayInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoCell.m; sourceTree = "<group>"; };
+		65FE08E61EB184EB002C9397 /* PayOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayOrderController.h; sourceTree = "<group>"; };
+		65FE08E71EB184EB002C9397 /* PayOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayOrderController.m; sourceTree = "<group>"; };
+		65FE08EC1EB1B6FC002C9397 /* UIView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CornerRadius.h"; sourceTree = "<group>"; };
+		65FE08ED1EB1B6FC002C9397 /* UIView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CornerRadius.m"; sourceTree = "<group>"; };
+		65FE08EF1EB1CC0F002C9397 /* icon_level_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_level_1.png; sourceTree = "<group>"; };
+		65FE08F31EB1D25C002C9397 /* icon_q_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_q_a.png; sourceTree = "<group>"; };
+		65FE08F51EB1E1BC002C9397 /* icon_level_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_level_2.png; sourceTree = "<group>"; };
+		65FE08F61EB1E1BC002C9397 /* icon_level_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_level_3.png; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -801,6 +820,10 @@
 				65FE08CE1EAF4735002C9397 /* OrderAmountCell.m */,
 				65FE08DE1EB08F75002C9397 /* RepairInfoView.h */,
 				65FE08DF1EB08F75002C9397 /* RepairInfoView.m */,
+				65FE08E31EB181F4002C9397 /* PayInfoCell.h */,
+				65FE08E41EB181F4002C9397 /* PayInfoCell.m */,
+				65FE08EC1EB1B6FC002C9397 /* UIView+CornerRadius.h */,
+				65FE08ED1EB1B6FC002C9397 /* UIView+CornerRadius.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -844,6 +867,7 @@
 				65FE08AC1EA73B59002C9397 /* ContentCell.xib */,
 				65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */,
 				65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */,
+				65FE08E11EB17EA6002C9397 /* PayInfoCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -874,14 +898,20 @@
 				65EEEB941E7791970095432B /* guide.gif */,
 				652545111E2372E70027B28B /* icon_account.png */,
 				652544EA1E1F816F0027B28B /* icon_alarm.png */,
+				65FE08D01EB02840002C9397 /* icon_amount_add.png */,
+				65FE08D11EB02840002C9397 /* icon_amount_minus.png */,
 				652545001E1F88050027B28B /* icon_around.png */,
 				652544E61E1F76320027B28B /* icon_branch.png */,
 				650596CC1E8A4609009A5602 /* icon_decorate.png */,
+				65FE08F51EB1E1BC002C9397 /* icon_level_2.png */,
+				65FE08F61EB1E1BC002C9397 /* icon_level_3.png */,
 				650596C11E8A3F3A009A5602 /* icon_detail.png */,
+				658FE6051E9F14DC002CA85F /* icon_down.png */,
 				6505969F1E8A3301009A5602 /* icon_ensure.png */,
 				652544F41E1F86B80027B28B /* icon_help.png */,
 				652544871E1F38420027B28B /* icon_info_window.png */,
 				650596A01E8A3301009A5602 /* icon_knowledge.png */,
+				65FE08EF1EB1CC0F002C9397 /* icon_level_1.png */,
 				655ADF8E1E28A46300F1F036 /* icon_logo.png */,
 				652544FA1E1F87A40027B28B /* icon_main_history.png */,
 				652544FC1E1F87EF0027B28B /* icon_main_process.png */,
@@ -893,6 +923,7 @@
 				655ADFAE1E2E0E7F00F1F036 /* icon_market1.png */,
 				655ADFAF1E2E0E7F00F1F036 /* icon_market2.png */,
 				655ADFB01E2E0E7F00F1F036 /* icon_markt3.png */,
+				65FE08F31EB1D25C002C9397 /* icon_q_a.png */,
 				652544921E1F455E0027B28B /* icon_more_normal.png */,
 				650596B71E8A345D009A5602 /* icon_my_account.png */,
 				650596B51E8A3444009A5602 /* icon_my_order.png */,
@@ -921,12 +952,22 @@
 				652544F01E1F867A0027B28B /* icon_share.png */,
 				655ADF3B1E2605A100F1F036 /* icon_star_normal.png */,
 				655ADF3C1E2605A100F1F036 /* icon_star_sel.png */,
+				658FE6031E9F14D1002CA85F /* icon_up.png */,
 				652545071E230FE90027B28B /* icon_user.png */,
 				6516C9FF1E24D06F00A54C64 /* icon_worker_pic.png */,
 				652544891E1F39390027B28B /* img_phone.png */,
 				650596AD1E8A334C009A5602 /* login_bg.png */,
+				652544E41E1F75C40027B28B /* marker_location.png */,
+				65EEEB831E7791380095432B /* page_1.jpg */,
+				65EEEB861E7791380095432B /* page_2.jpg */,
+				65EEEB871E7791380095432B /* page_3.jpg */,
+				65EEEB881E7791380095432B /* page_4.jpg */,
+				65EEEB891E7791380095432B /* page_5.jpg */,
+				65EEEB8A1E7791380095432B /* page_6.jpg */,
+				65EEEB841E7791380095432B /* page_7.jpg */,
+				65EEEB851E7791380095432B /* page_8.jpg */,
+				650596D41E8A528D009A5602 /* process_0.png */,
 				650596D61E8A54D6009A5602 /* process_1.png */,
-				658FE6051E9F14DC002CA85F /* icon_down.png */,
 				650596D71E8A54D6009A5602 /* process_2.png */,
 				650596D81E8A54D6009A5602 /* process_3.png */,
 				650596D91E8A54D6009A5602 /* process_4.png */,
@@ -934,19 +975,6 @@
 				650596DB1E8A54D6009A5602 /* process_6.png */,
 				650596DC1E8A54D6009A5602 /* process_7.png */,
 				650596DD1E8A54D6009A5602 /* process_8.png */,
-				652544E41E1F75C40027B28B /* marker_location.png */,
-				65EEEB831E7791380095432B /* page_1.jpg */,
-				65EEEB861E7791380095432B /* page_2.jpg */,
-				65EEEB871E7791380095432B /* page_3.jpg */,
-				658FE6031E9F14D1002CA85F /* icon_up.png */,
-				65EEEB881E7791380095432B /* page_4.jpg */,
-				65EEEB891E7791380095432B /* page_5.jpg */,
-				65EEEB8A1E7791380095432B /* page_6.jpg */,
-				65EEEB841E7791380095432B /* page_7.jpg */,
-				65FE08D01EB02840002C9397 /* icon_amount_add.png */,
-				65FE08D11EB02840002C9397 /* icon_amount_minus.png */,
-				65EEEB851E7791380095432B /* page_8.jpg */,
-				650596D41E8A528D009A5602 /* process_0.png */,
 				650596BF1E8A37B8009A5602 /* process_bg.png */,
 				650596BB1E8A36A1009A5602 /* process.jpg */,
 				6525450A1E231A840027B28B /* start_page.png */,
@@ -1199,6 +1227,8 @@
 				65FE08D61EB044EA002C9397 /* MaintOrderController.m */,
 				65FE08D91EB04967002C9397 /* RepairOrderController.h */,
 				65FE08DA1EB04967002C9397 /* RepairOrderController.m */,
+				65FE08E61EB184EB002C9397 /* PayOrderController.h */,
+				65FE08E71EB184EB002C9397 /* PayOrderController.m */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -1291,6 +1321,7 @@
 			files = (
 				650596D11E8A4609009A5602 /* icon_sell.png in Resources */,
 				650596E01E8A54D6009A5602 /* process_3.png in Resources */,
+				65FE08F71EB1E1BC002C9397 /* icon_level_2.png in Resources */,
 				650596A91E8A3302009A5602 /* icon_other_new.png in Resources */,
 				652544E71E1F76320027B28B /* icon_branch.png in Resources */,
 				655ADFA51E2E02B200F1F036 /* Other.storyboard in Resources */,
@@ -1300,6 +1331,7 @@
 				655ADF811E28635900F1F036 /* icon_person_default2.png in Resources */,
 				655ADF9C1E2DEA5800F1F036 /* MarketCell.xib in Resources */,
 				65FE08D21EB02840002C9397 /* icon_amount_add.png in Resources */,
+				65FE08F41EB1D25C002C9397 /* icon_q_a.png in Resources */,
 				65E19BC41E67C0E500C6860D /* KeyValueCell.xib in Resources */,
 				652544911E1F44C60027B28B /* Maintenance.storyboard in Resources */,
 				65EEEB8B1E7791380095432B /* page_1.jpg in Resources */,
@@ -1348,6 +1380,7 @@
 				65EA23B41E1F1BE100F2BE18 /* Assets.xcassets in Resources */,
 				6525447D1E1F37EF0027B28B /* WorkerInfoView.xib in Resources */,
 				650596B81E8A345D009A5602 /* icon_my_account.png in Resources */,
+				65FE08F81EB1E1BC002C9397 /* icon_level_3.png in Resources */,
 				650596D51E8A528D009A5602 /* process_0.png in Resources */,
 				6544C7481E6806E90050A9D3 /* DatePickerDialog.xib in Resources */,
 				655ADFB51E2EF68F00F1F036 /* icon_other_banner.png in Resources */,
@@ -1380,6 +1413,7 @@
 				6525450B1E231A840027B28B /* start_page.png in Resources */,
 				652544D41E1F65050027B28B /* downArrow.png in Resources */,
 				650596A61E8A3302009A5602 /* icon_knowledge.png in Resources */,
+				65FE08F01EB1CC0F002C9397 /* icon_level_1.png in Resources */,
 				650596A81E8A3302009A5602 /* icon_market_new.png in Resources */,
 				65EEEB8C1E7791380095432B /* page_7.jpg in Resources */,
 				655ADFBC1E2EFE4F00F1F036 /* icon_other3.png in Resources */,
@@ -1401,6 +1435,7 @@
 				652544F51E1F86B80027B28B /* icon_help.png in Resources */,
 				652544FE1E1F87EF0027B28B /* icon_main_process.png in Resources */,
 				652544E91E1F76420027B28B /* icon_settings.png in Resources */,
+				65FE08E21EB17EA6002C9397 /* PayInfoCell.xib in Resources */,
 				652544781E1F2DAB0027B28B /* banner.png in Resources */,
 				650596E31E8A54D6009A5602 /* process_6.png in Resources */,
 				65FE08A51EA59ECE002C9397 /* ListDialogView.xib in Resources */,
@@ -1482,6 +1517,7 @@
 				652544B61E1F62A80027B28B /* SettingsViewController.m in Sources */,
 				6544C7721E690FA50050A9D3 /* MainTaskInfo.m in Sources */,
 				6544C7621E68FC670050A9D3 /* RepairListResponse.m in Sources */,
+				65FE08EE1EB1B6FC002C9397 /* UIView+CornerRadius.m in Sources */,
 				65FE08AB1EA733D9002C9397 /* AddressLocationController.m in Sources */,
 				655ADF771E27641200F1F036 /* AppReportController.m in Sources */,
 				65E19BE01E67EC2B00C6860D /* SMSCodeRequest.m in Sources */,
@@ -1514,6 +1550,7 @@
 				656230FB1E67A7B000335819 /* MainTabBarController.m in Sources */,
 				652544721E1F27DE0027B28B /* BaseTableViewController.m in Sources */,
 				65E19BA11E67B1E100C6860D /* MaintenanceController.m in Sources */,
+				65FE08E81EB184EB002C9397 /* PayOrderController.m in Sources */,
 				65E19BBB1E67C0D300C6860D /* KeyMultiEditCell.m in Sources */,
 				652544B11E1F62A70027B28B /* PersonBasicInfoController.m in Sources */,
 				650596C51E8A4207009A5602 /* ElevatorSellController.m in Sources */,
@@ -1561,6 +1598,7 @@
 				65FE08A81EA59EDE002C9397 /* ListDialogView.m in Sources */,
 				652544D71E1F65050027B28B /* DownPicker.m in Sources */,
 				652544DF1E1F6A550027B28B /* LoginController.m in Sources */,
+				65FE08E51EB181F4002C9397 /* PayInfoCell.m in Sources */,
 				655ADF991E2C722400F1F036 /* AddBannerData.m in Sources */,
 				65E19BCD1E67C24300C6860D /* MainOrderInfoCell.m in Sources */,
 				652544861E1F37FC0027B28B /* WorkerInfoView.m in Sources */,

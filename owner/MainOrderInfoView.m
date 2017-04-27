@@ -11,7 +11,15 @@
 
 @interface MainOrderInfoView ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnDetail;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnPay;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
 @end
 
@@ -21,8 +29,7 @@
 {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainOrderInfoView" owner:nil options:nil];
     
-    if (0 == array.count)
-    {
+    if (0 == array.count) {
         return nil;
     }
     
@@ -33,17 +40,44 @@
 {
     [super awakeFromNib];
     
-    _btn.layer.masksToBounds = YES;
-    _btn.layer.cornerRadius = 5;
+    _btnPay.layer.masksToBounds = YES;
+    _btnPay.layer.cornerRadius = 5;
     
-    [_btn addTarget:self action:@selector(onClickButton) forControlEvents:UIControlEventTouchUpInside];
+    _btnOrder.layer.masksToBounds = YES;
+    _btnOrder.layer.cornerRadius = 5;
+    
+    [_btnPay addTarget:self action:@selector(onClickPay) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnOrder addTarget:self action:@selector(onClickOrder) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnDetail addTarget:self action:@selector(onClickDetail) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btn addTarget:self action:@selector(onClickDetail) forControlEvents:UIControlEventTouchUpInside];
 }
 
-
-- (void)onClickButton
+- (void)setImage:(UIImage *)image
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickButton)]) {
-        [_delegate onClickButton];
+    _imageView.image = image;
+}
+
+- (void)onClickPay
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickPayButton)]) {
+        [_delegate onClickPayButton];
+    }
+}
+
+- (void)onClickDetail
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetailButton)]) {
+        [_delegate onClickDetailButton];
+    }
+}
+
+- (void)onClickOrder
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickOrderButton)]) {
+        [_delegate onClickOrderButton];
     }
 }
 

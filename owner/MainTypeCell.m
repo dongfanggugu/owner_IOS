@@ -8,26 +8,33 @@
 
 #import <Foundation/Foundation.h>
 #import "MainTypeCell.h"
+#import "UIView+CornerRadius.h"
 
 @interface MainTypeCell()
 {
     void(^_onClickBtn)();
 }
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnInner;
+@property (weak, nonatomic) IBOutlet UIButton *btnDetail;
+
+@property (weak, nonatomic) IBOutlet UIView *viewBg;
 
 @end
 
+
 @implementation MainTypeCell
+
+@synthesize imageView;
 
 + (id)cellFromNib
 {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainTypeCell" owner:nil options:nil];
     
-    if (0 == array.count)
-    {
+    if (0 == array.count) {
         return nil;
     }
     
@@ -41,14 +48,27 @@
 
 + (CGFloat)cellHeight
 {
-    return 108;
+    return 140;
 }
 
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+        
+    [self.viewBg layoutIfNeeded];
+    
+    [self.viewBg clipCornerWithTopLeft:YES andTopRight:YES andBottomLeft:NO andBottomRight:NO];
+}
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     
-    _btnInner.userInteractionEnabled = NO;
+}
+
+- (void)setImage:(UIImage *)image
+{
+    imageView.image = image;
 }
 
 - (void)onClick
@@ -63,6 +83,8 @@
     _onClickBtn = onClickBtn;
     
     [_btn addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnDetail addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

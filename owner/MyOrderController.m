@@ -247,7 +247,7 @@
     if (MAIN == _selIndex)
     {
         MainInfoController *controller = [[MainInfoController alloc] init];
-        controller.orderInfo = _arrayMainOrder[indexPath.row];
+        controller.serviceInfo = _arrayMainOrder[indexPath.row];
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     }
