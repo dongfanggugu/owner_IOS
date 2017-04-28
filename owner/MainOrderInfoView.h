@@ -13,6 +13,8 @@
 
 - (void)onClickPayButton;
 
+- (void)onClickBackButton;
+
 - (void)onClickOrderButton;
 
 - (void)onClickDetailButton;

@@ -188,16 +188,11 @@
     [[HttpClient shareClient] post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
         
-        if (0 == [response getOrderList].count) {
-            [HUDClass showHUDWithText:@"您还未购买维保服务,请到服务->电梯管家中购买维保服务"];
-            
-            return;
-        }
-    
         MainInfoController *controller = [[MainInfoController alloc] init];
         
-        controller.serviceInfo = [[response getOrderList] objectAtIndex:0];
-        
+        if ([response getOrderList].count > 0) {
+            controller.serviceInfo = [[response getOrderList] objectAtIndex:0];
+        }
         controller.hidesBottomBarWhenPushed = YES;
         
         [self.navigationController pushViewController:controller animated:YES];

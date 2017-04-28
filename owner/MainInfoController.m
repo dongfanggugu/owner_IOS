@@ -19,6 +19,7 @@
 #import "PayOrderController.h"
 #import "MainTypeDetailController.h"
 #import "MainOrderController.h"
+#import "ServiceHistoryController.h"
 
 @interface MainInfoController() <UITableViewDelegate, UITableViewDataSource, MainOrderInfoViewDelegate>
 
@@ -36,6 +37,7 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"维保服务"];
+    [self initNavRightWithText:@"查看历史"];
     [self initData];
     [self initView];
 }
@@ -46,6 +48,13 @@
     [self getTask];
 }
 
+- (void)onClickNavRight
+{
+    ServiceHistoryController *controller = [[ServiceHistoryController alloc] init];
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 - (void)initData
 {
@@ -59,6 +68,20 @@
 
 - (void)initView
 {
+    if (!_serviceInfo) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 70, self.screenWidth - 32, 40)];
+        label.font = [UIFont systemFontOfSize:14];
+        label.textAlignment = NSTextAlignmentCenter;
+        
+        label.numberOfLines = 0;
+        
+        label.text = @"您还没有订购有效的维保服务,请到服务->电梯管家中订制您的维保!";
+        
+        [self.view addSubview:label];
+        
+        return;
+    }
+
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -119,6 +142,9 @@
 
 - (void)getTask
 {
+    if (!_serviceInfo) {
+        return;
+    }
     MainTaskListRequest *request = [[MainTaskListRequest alloc] init];
     
     request.maintOrderId = _serviceInfo.orderId;
@@ -162,6 +188,8 @@
     return res;
 }
 
+
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -178,8 +206,7 @@
 {
     RepairTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[RepairTaskCell identifier]];
     
-    if (!cell)
-    {
+    if (!cell) {
         cell = [RepairTaskCell cellFromNib];
     }
     
@@ -237,6 +264,22 @@
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+- (void)onClickBackButton
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"maintOrderId"] = _serviceInfo.orderId;
+    
+    [[HttpClient shareClient] post:@"deleteMaintOrder" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"维保服务退订成功,您可以到服务->电梯管家中购买新的服务"];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
 }
 
 @end

@@ -67,6 +67,7 @@
 {
     MainOrderAddRequest *request = [[MainOrderAddRequest alloc] init];
     request.mainttypeId = _mainInfo.typeId;
+    request.frequency = _amountCell.amount;
     
     if (!self.login) {
         NSString *brand = _lbBrand.text;

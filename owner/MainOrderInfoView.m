@@ -19,6 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnPay;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnBack;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
 @end
@@ -47,6 +49,7 @@
     _btnOrder.layer.cornerRadius = 5;
     
     [_btnPay addTarget:self action:@selector(onClickPay) forControlEvents:UIControlEventTouchUpInside];
+    [_btnBack addTarget:self action:@selector(onClickBack) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnOrder addTarget:self action:@selector(onClickOrder) forControlEvents:UIControlEventTouchUpInside];
     
@@ -78,6 +81,13 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickOrderButton)]) {
         [_delegate onClickOrderButton];
+    }
+}
+
+- (void)onClickBack
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickBackButton)]) {
+        [_delegate onClickBackButton];
     }
 }
 

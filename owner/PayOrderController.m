@@ -29,7 +29,7 @@
 }
 
 - (void)initView
-{
+{    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -130,6 +130,7 @@
     cell.lbDate.text = info[@"createTime"];
     
     NSString *payType = [self getPayType:[info[@"mainttypeId"] integerValue]];
+    
     cell.lbPayType.text = [NSString stringWithFormat:@"支付类型:%@", payType];
     
     cell.lbSum.text = [NSString stringWithFormat:@"支付金额:%ld", [info[@"payMoney"] integerValue]];
@@ -137,14 +138,18 @@
     NSInteger state = [info[@"isPay"] integerValue];
     
     if (0 == state) {
-        cell.lbPayType.text = [NSString stringWithFormat:@"支付状态:未支付"];
+        cell.lbState.text = [NSString stringWithFormat:@"支付状态:未支付"];
         
         cell.payHiden = NO;
         
         cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:暂无支付"];
         
+        [cell addOnPayClickListener:^{
+            
+        }];
+        
     } else {
-        cell.lbPayType.text = [NSString stringWithFormat:@"支付状态:已支付"];
+        cell.lbState.text = [NSString stringWithFormat:@"支付状态:已支付"];
         
         cell.payHiden = YES;
         

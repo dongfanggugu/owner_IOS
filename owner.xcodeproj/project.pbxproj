@@ -247,6 +247,10 @@
 		65FE08F41EB1D25C002C9397 /* icon_q_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08F31EB1D25C002C9397 /* icon_q_a.png */; };
 		65FE08F71EB1E1BC002C9397 /* icon_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08F51EB1E1BC002C9397 /* icon_level_2.png */; };
 		65FE08F81EB1E1BC002C9397 /* icon_level_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08F61EB1E1BC002C9397 /* icon_level_3.png */; };
+		65FE08FB1EB2E174002C9397 /* ServiceHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08FA1EB2E174002C9397 /* ServiceHistoryController.m */; };
+		65FE08FD1EB2E1A7002C9397 /* ServiceHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */; };
+		65FE09001EB2E3E0002C9397 /* ServiceHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08FF1EB2E3E0002C9397 /* ServiceHistoryCell.m */; };
+		65FE09031EB30CAB002C9397 /* ServiceTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE09021EB30CAB002C9397 /* ServiceTaskController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -610,6 +614,13 @@
 		65FE08F31EB1D25C002C9397 /* icon_q_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_q_a.png; sourceTree = "<group>"; };
 		65FE08F51EB1E1BC002C9397 /* icon_level_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_level_2.png; sourceTree = "<group>"; };
 		65FE08F61EB1E1BC002C9397 /* icon_level_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_level_3.png; sourceTree = "<group>"; };
+		65FE08F91EB2E174002C9397 /* ServiceHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceHistoryController.h; sourceTree = "<group>"; };
+		65FE08FA1EB2E174002C9397 /* ServiceHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceHistoryController.m; sourceTree = "<group>"; };
+		65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceHistoryCell.xib; sourceTree = "<group>"; };
+		65FE08FE1EB2E3E0002C9397 /* ServiceHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceHistoryCell.h; sourceTree = "<group>"; };
+		65FE08FF1EB2E3E0002C9397 /* ServiceHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceHistoryCell.m; sourceTree = "<group>"; };
+		65FE09011EB30CAB002C9397 /* ServiceTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTaskController.h; sourceTree = "<group>"; };
+		65FE09021EB30CAB002C9397 /* ServiceTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceTaskController.m; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -824,6 +835,8 @@
 				65FE08E41EB181F4002C9397 /* PayInfoCell.m */,
 				65FE08EC1EB1B6FC002C9397 /* UIView+CornerRadius.h */,
 				65FE08ED1EB1B6FC002C9397 /* UIView+CornerRadius.m */,
+				65FE08FE1EB2E3E0002C9397 /* ServiceHistoryCell.h */,
+				65FE08FF1EB2E3E0002C9397 /* ServiceHistoryCell.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -868,6 +881,7 @@
 				65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */,
 				65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */,
 				65FE08E11EB17EA6002C9397 /* PayInfoCell.xib */,
+				65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1229,6 +1243,10 @@
 				65FE08DA1EB04967002C9397 /* RepairOrderController.m */,
 				65FE08E61EB184EB002C9397 /* PayOrderController.h */,
 				65FE08E71EB184EB002C9397 /* PayOrderController.m */,
+				65FE08F91EB2E174002C9397 /* ServiceHistoryController.h */,
+				65FE08FA1EB2E174002C9397 /* ServiceHistoryController.m */,
+				65FE09011EB30CAB002C9397 /* ServiceTaskController.h */,
+				65FE09021EB30CAB002C9397 /* ServiceTaskController.m */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -1365,6 +1383,7 @@
 				650596C21E8A3F3A009A5602 /* icon_detail.png in Resources */,
 				6544C7A71E69552A0050A9D3 /* PersonItemCell.xib in Resources */,
 				655ADF371E25FE8D00F1F036 /* EvaluateView.xib in Resources */,
+				65FE08FD1EB2E1A7002C9397 /* ServiceHistoryCell.xib in Resources */,
 				650596B01E8A33A7009A5602 /* icon_person_new.png in Resources */,
 				65E19BAE1E67BFDA00C6860D /* MainOrderInfoCell.xib in Resources */,
 				650596CF1E8A4609009A5602 /* icon_decorate.png in Resources */,
@@ -1512,8 +1531,10 @@
 				65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */,
 				65FE08DB1EB04967002C9397 /* RepairOrderController.m in Sources */,
 				6544C7591E6818A70050A9D3 /* OrderListRequest.m in Sources */,
+				65FE08FB1EB2E174002C9397 /* ServiceHistoryController.m in Sources */,
 				652544DC1E1F65C30027B28B /* ImageUtils.m in Sources */,
 				65E19BCA1E67C14500C6860D /* MainOrderController.m in Sources */,
+				65FE09001EB2E3E0002C9397 /* ServiceHistoryCell.m in Sources */,
 				652544B61E1F62A80027B28B /* SettingsViewController.m in Sources */,
 				6544C7721E690FA50050A9D3 /* MainTaskInfo.m in Sources */,
 				6544C7621E68FC670050A9D3 /* RepairListResponse.m in Sources */,
@@ -1582,6 +1603,7 @@
 				65E3692D1E6CFF0B00E4CF04 /* MainTypeDetailController.m in Sources */,
 				65EA23AC1E1F1BE100F2BE18 /* AppDelegate.m in Sources */,
 				6544C75F1E68FB430050A9D3 /* MainOrderInfo.m in Sources */,
+				65FE09031EB30CAB002C9397 /* ServiceTaskController.m in Sources */,
 				65E19BD61E67C75400C6860D /* SelectableCell.m in Sources */,
 				6544C7841E692FC90050A9D3 /* RepairTaskInfo.m in Sources */,
 				6544C78F1E693B9B0050A9D3 /* RepairTaskCell.m in Sources */,

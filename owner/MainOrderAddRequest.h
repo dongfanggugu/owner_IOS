@@ -31,6 +31,8 @@
 
 @property (copy, nonatomic) NSString *mainttypeId;
 
+@property (assign, nonatomic) NSInteger frequency;
+
 @end
 
 #endif /* MainOrderAddRequest_h */

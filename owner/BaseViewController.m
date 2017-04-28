@@ -62,22 +62,20 @@
  **/
 -  (void)initNavRightWithText:(NSString *)text
 {
-    if (!self.navigationController)
-    {
+    if (!self.navigationController) {
         return;
     }
     
-    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
+    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 60, 25)];
     [btnRight setTitle:text forState:UIControlStateNormal];
     [btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btnRight.titleLabel.font = [UIFont systemFontOfSize:15];
+    btnRight.titleLabel.font = [UIFont systemFontOfSize:13];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
     
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    if ([self respondsToSelector:@selector(onClickNavRight)])
-    {
+    if ([self respondsToSelector:@selector(onClickNavRight)]) {
         [btnRight addTarget:self action:@selector(onClickNavRight) forControlEvents:UIControlEventTouchUpInside];
     }
 }
