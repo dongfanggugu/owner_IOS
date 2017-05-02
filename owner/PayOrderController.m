@@ -142,7 +142,7 @@
         
         cell.payHiden = NO;
         
-        cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:暂无支付"];
+        cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:暂未支付"];
         
         [cell addOnPayClickListener:^{
             

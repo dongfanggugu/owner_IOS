@@ -8,16 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "OtherController.h"
+#import "MainTypeCell.h"
+#import "MainTypeDetailController.h"
+#import "MainTypeInfo.h"
+#import "MainOrderController.h"
 
-@interface OtherController()
+@interface OtherController() <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIView *viewOther1;
-
-@property (weak, nonatomic) IBOutlet UIView *viewOther2;
-
-@property (weak, nonatomic) IBOutlet UIView *viewOther3;
-
-@property (weak, nonatomic) IBOutlet UIView *viewOther4;
+@property (strong, nonatomic) UITableView *tableView;
 
 @end
 
@@ -26,23 +24,98 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"我要咨询"];
+    [self setNavTitle:@"增值服务"];
     [self initView];
 }
 
 - (void)initView
 {
-    _viewOther1.layer.masksToBounds = YES;
-    _viewOther1.layer.cornerRadius = 30;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    _viewOther2.layer.masksToBounds = YES;
-    _viewOther2.layer.cornerRadius = 30;
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64) style:UITableViewStylePlain];
     
-    _viewOther3.layer.masksToBounds = YES;
-    _viewOther3.layer.cornerRadius = 30;
+    _tableView.delegate = self;
     
-    _viewOther4.layer.masksToBounds = YES;
-    _viewOther4.layer.cornerRadius = 30;
+    _tableView.dataSource = self;
+    
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.view addSubview:_tableView];
+    
+    
+    //headview
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
+    
+    _tableView.tableHeaderView = headView;
+    
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
+    
+    iv.image = [UIImage imageNamed:@"icon_other_banner.png"];
+    
+    [headView addSubview:iv];
+    
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MainTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:[MainTypeCell identifier]];
+    
+    if (!cell) {
+        cell = [MainTypeCell cellFromNib];
+    }
+    
+    cell.lbName.text = @"智能小助手";
+    
+    cell.lbContent.text = @"智能监控信息";
+    
+    cell.lbPrice.text = @"￥2000.0";
+    
+    __weak typeof (self) weakSelf = self;
+    [cell setOnClickListener:^{
+        MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
+        
+        controller.detail = @"智能监控信息";
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [MainTypeCell cellHeight];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MainTypeInfo *info = [[MainTypeInfo alloc] init];
+    info.name = @"智能小助手";
+    info.content = @"智能监控电梯运行";
+    info.price = 2000.0f;
+    info.typeId = @"4";
+    
+    MainOrderController *controller = [[MainOrderController alloc] init];
+    controller.mainInfo = info;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

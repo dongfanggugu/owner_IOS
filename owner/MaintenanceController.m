@@ -56,6 +56,17 @@
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.view addSubview:_tableView];
+    
+    //headview
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 3)];
+    
+    _tableView.tableHeaderView = headView;
+    
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 3)];
+    
+    iv.image = [UIImage imageNamed:@"icon_maintenance_banner"];
+    
+    [headView addSubview:iv];
 }
 
 

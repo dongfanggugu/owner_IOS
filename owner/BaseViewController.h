@@ -13,7 +13,9 @@
 
 - (void)setNavTitle:(NSString *)title;
 
--  (void)initNavRightWithText:(NSString *)text;
+- (void)initNavRightWithText:(NSString *)text;
+
+- (void)initNavRightWithImage:(UIImage *)image;
 
 - (void)onClickNavRight;
 

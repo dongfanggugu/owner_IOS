@@ -269,17 +269,10 @@
 
 - (void)onClickBackButton
 {
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"maintOrderId"] = _serviceInfo.orderId;
-    
-    [[HttpClient shareClient] post:@"deleteMaintOrder" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"维保服务退订成功,您可以到服务->电梯管家中购买新的服务"];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
-    }];
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",Custom_Service]];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    [self.view addSubview:webView];
 }
 
 @end

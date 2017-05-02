@@ -44,8 +44,7 @@
 
 - (void)setNavTitle:(NSString *)title
 {
-    if (!self.navigationController)
-    {
+    if (!self.navigationController) {
         return;
     }
     
@@ -60,13 +59,13 @@
 /**
  使用文字初始化导航栏右侧按钮
  **/
--  (void)initNavRightWithText:(NSString *)text
+- (void)initNavRightWithText:(NSString *)text
 {
     if (!self.navigationController) {
         return;
     }
     
-    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 60, 25)];
+    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 60, 60)];
     [btnRight setTitle:text forState:UIControlStateNormal];
     [btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btnRight.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -80,8 +79,31 @@
     }
 }
 
+/**
+ 使用文字初始化导航栏右侧按钮
+ **/
+- (void)initNavRightWithImage:(UIImage *)image
+{
+    if (!self.navigationController) {
+        return;
+    }
+    
+    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [btnRight setImage:image forState:UIControlStateNormal];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
+    
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    if ([self respondsToSelector:@selector(onClickNavRight)]) {
+        [btnRight addTarget:self action:@selector(onClickNavRight) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+
 - (void)onClickNavRight
 {
+    
 }
 
 

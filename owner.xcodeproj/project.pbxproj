@@ -251,6 +251,10 @@
 		65FE08FD1EB2E1A7002C9397 /* ServiceHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */; };
 		65FE09001EB2E3E0002C9397 /* ServiceHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08FF1EB2E3E0002C9397 /* ServiceHistoryCell.m */; };
 		65FE09031EB30CAB002C9397 /* ServiceTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE09021EB30CAB002C9397 /* ServiceTaskController.m */; };
+		65FE09061EB8176B002C9397 /* EnsuranceMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE09051EB8176B002C9397 /* EnsuranceMainController.m */; };
+		65FE09081EB82C45002C9397 /* icon_ensurance.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE09071EB82C45002C9397 /* icon_ensurance.png */; };
+		65FE090A1EB8532B002C9397 /* icon_custom_service.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE09091EB8532B002C9397 /* icon_custom_service.png */; };
+		65FE090C1EB860CE002C9397 /* icon_maintenance_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE090B1EB860CE002C9397 /* icon_maintenance_banner.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -621,6 +625,11 @@
 		65FE08FF1EB2E3E0002C9397 /* ServiceHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceHistoryCell.m; sourceTree = "<group>"; };
 		65FE09011EB30CAB002C9397 /* ServiceTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTaskController.h; sourceTree = "<group>"; };
 		65FE09021EB30CAB002C9397 /* ServiceTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceTaskController.m; sourceTree = "<group>"; };
+		65FE09041EB8176B002C9397 /* EnsuranceMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnsuranceMainController.h; sourceTree = "<group>"; };
+		65FE09051EB8176B002C9397 /* EnsuranceMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnsuranceMainController.m; sourceTree = "<group>"; };
+		65FE09071EB82C45002C9397 /* icon_ensurance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_ensurance.png; sourceTree = "<group>"; };
+		65FE09091EB8532B002C9397 /* icon_custom_service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_custom_service.png; sourceTree = "<group>"; };
+		65FE090B1EB860CE002C9397 /* icon_maintenance_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_maintenance_banner.png; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -930,8 +939,10 @@
 				652544FA1E1F87A40027B28B /* icon_main_history.png */,
 				652544FC1E1F87EF0027B28B /* icon_main_process.png */,
 				650596A11E8A3301009A5602 /* icon_main.png */,
+				65FE09071EB82C45002C9397 /* icon_ensurance.png */,
 				652544FD1E1F87EF0027B28B /* icon_maintenance_record.png */,
 				652544EE1E1F866D0027B28B /* icon_maintenance.png */,
+				65FE09091EB8532B002C9397 /* icon_custom_service.png */,
 				650596A21E8A3301009A5602 /* icon_market_new.png */,
 				655ADF781E2768C200F1F036 /* icon_market.png */,
 				655ADFAE1E2E0E7F00F1F036 /* icon_market1.png */,
@@ -957,6 +968,7 @@
 				655ADF801E28635900F1F036 /* icon_person_default2.png */,
 				650596AF1E8A33A7009A5602 /* icon_person_new.png */,
 				652544F21E1F868D0027B28B /* icon_person.png */,
+				65FE090B1EB860CE002C9397 /* icon_maintenance_banner.png */,
 				650596A41E8A3302009A5602 /* icon_repair.png */,
 				652544EC1E1F864E0027B28B /* icon_report.png */,
 				650596CE1E8A4609009A5602 /* icon_sell.png */,
@@ -1177,6 +1189,8 @@
 			children = (
 				65E369481E6E93C000E4CF04 /* EnsuranceController.h */,
 				65E369491E6E93CE00E4CF04 /* EnsuranceController.m */,
+				65FE09041EB8176B002C9397 /* EnsuranceMainController.h */,
+				65FE09051EB8176B002C9397 /* EnsuranceMainController.m */,
 			);
 			name = Ensurance;
 			sourceTree = "<group>";
@@ -1381,6 +1395,7 @@
 				65FE08CC1EAF4599002C9397 /* OrderAmountCell.xib in Resources */,
 				652544EF1E1F866D0027B28B /* icon_maintenance.png in Resources */,
 				650596C21E8A3F3A009A5602 /* icon_detail.png in Resources */,
+				65FE090C1EB860CE002C9397 /* icon_maintenance_banner.png in Resources */,
 				6544C7A71E69552A0050A9D3 /* PersonItemCell.xib in Resources */,
 				655ADF371E25FE8D00F1F036 /* EvaluateView.xib in Resources */,
 				65FE08FD1EB2E1A7002C9397 /* ServiceHistoryCell.xib in Resources */,
@@ -1392,6 +1407,7 @@
 				655ADF7F1E2861E100F1F036 /* icon_person_default.png in Resources */,
 				650596AE1E8A334C009A5602 /* login_bg.png in Resources */,
 				658FE6041E9F14D1002CA85F /* icon_up.png in Resources */,
+				65FE090A1EB8532B002C9397 /* icon_custom_service.png in Resources */,
 				65EA23B71E1F1BE100F2BE18 /* LaunchScreen.storyboard in Resources */,
 				655ADFB31E2E0E7F00F1F036 /* icon_markt3.png in Resources */,
 				655ADFAA1E2E0B0000F1F036 /* Market.storyboard in Resources */,
@@ -1458,6 +1474,7 @@
 				652544781E1F2DAB0027B28B /* banner.png in Resources */,
 				650596E31E8A54D6009A5602 /* process_6.png in Resources */,
 				65FE08A51EA59ECE002C9397 /* ListDialogView.xib in Resources */,
+				65FE09081EB82C45002C9397 /* icon_ensurance.png in Resources */,
 				650596B21E8A33F6009A5602 /* icon_service_bottom.png in Resources */,
 				6544C76C1E690C7D0050A9D3 /* MainOrderInfoView.xib in Resources */,
 				65E19BDD1E67E94600C6860D /* KeyEditBtnCell.xib in Resources */,
@@ -1632,6 +1649,7 @@
 				652544B41E1F62A80027B28B /* AddressViewController.m in Sources */,
 				655ADFAD1E2E0B5500F1F036 /* MarketDetailController.m in Sources */,
 				652544B71E1F62A80027B28B /* AboutViewController.m in Sources */,
+				65FE09061EB8176B002C9397 /* EnsuranceMainController.m in Sources */,
 				652544B31E1F62A80027B28B /* PersonPasswordController.m in Sources */,
 				6525446C1E1F26C80027B28B /* BaseNavigationController.m in Sources */,
 				6544C79B1E69500F0050A9D3 /* MainTaskConfirmRequest.m in Sources */,

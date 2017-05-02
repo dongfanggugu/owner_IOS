@@ -78,17 +78,17 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fv-cE-GP5">
-                            <rect key="frame" x="297" y="0.0" width="46" height="35"/>
+                            <rect key="frame" x="259" y="0.0" width="84" height="35"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="46" id="QMJ-F0-WuZ"/>
+                                <constraint firstAttribute="width" constant="84" id="QMJ-F0-WuZ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="退订">
+                            <state key="normal" title="联系客服">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqj-1a-cMU">
-                            <rect key="frame" x="243" y="0.0" width="46" height="35"/>
+                            <rect key="frame" x="213" y="0.0" width="46" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="GwF-Dk-amQ"/>
                             </constraints>
@@ -103,13 +103,13 @@
                         <constraint firstAttribute="height" constant="35" id="0bY-k0-HR9"/>
                         <constraint firstItem="v6s-72-7Uz" firstAttribute="leading" secondItem="27Q-vf-fn8" secondAttribute="leading" constant="10" id="60G-d5-pgZ"/>
                         <constraint firstItem="2Fv-cE-GP5" firstAttribute="top" secondItem="27Q-vf-fn8" secondAttribute="top" id="BNy-Bd-WsL"/>
+                        <constraint firstAttribute="trailing" secondItem="2Fv-cE-GP5" secondAttribute="trailing" id="F7J-Vf-X3h"/>
                         <constraint firstAttribute="bottom" secondItem="nqj-1a-cMU" secondAttribute="bottom" id="Glv-bS-h2M"/>
                         <constraint firstItem="xQJ-SK-5ai" firstAttribute="centerY" secondItem="27Q-vf-fn8" secondAttribute="centerY" id="KYp-Ad-hK9"/>
                         <constraint firstItem="xQJ-SK-5ai" firstAttribute="leading" secondItem="v6s-72-7Uz" secondAttribute="trailing" id="RAr-Lw-fNC"/>
-                        <constraint firstItem="2Fv-cE-GP5" firstAttribute="leading" secondItem="nqj-1a-cMU" secondAttribute="trailing" constant="8" id="T5k-iJ-RKo"/>
                         <constraint firstItem="nqj-1a-cMU" firstAttribute="top" secondItem="27Q-vf-fn8" secondAttribute="top" id="Zip-Ow-VhD"/>
                         <constraint firstAttribute="bottom" secondItem="2Fv-cE-GP5" secondAttribute="bottom" id="aNU-Vn-D59"/>
-                        <constraint firstAttribute="trailing" secondItem="2Fv-cE-GP5" secondAttribute="trailing" id="mjG-YV-8gf"/>
+                        <constraint firstItem="2Fv-cE-GP5" firstAttribute="leading" secondItem="nqj-1a-cMU" secondAttribute="trailing" id="wtH-Y3-RBB"/>
                         <constraint firstItem="v6s-72-7Uz" firstAttribute="centerY" secondItem="27Q-vf-fn8" secondAttribute="centerY" id="xxM-5X-pYH"/>
                     </constraints>
                 </view>

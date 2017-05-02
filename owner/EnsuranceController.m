@@ -49,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"保险条款"];
+    [self setNavTitle:@"保险投保单"];
     [self initData];
     [self initView];
 }

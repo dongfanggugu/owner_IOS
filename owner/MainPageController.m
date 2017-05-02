@@ -12,7 +12,9 @@
 #import "RapidRepairController.h"
 #import "AddBannerView.h"
 #import "AddBannerData.h"
-#import "EnsuranceController.h"
+#import "EnsuranceMainController.h"
+#import "OtherController.h"
+
 
 @interface MainPageController  () <AddBannerViewDelegate>
 
@@ -129,10 +131,9 @@
 
 - (void)ensurance
 {
-    EnsuranceController *controller = [[EnsuranceController alloc] init];
-    self.hidesBottomBarWhenPushed = YES;
+    EnsuranceMainController *controller = [[EnsuranceMainController alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)market
@@ -156,12 +157,10 @@
 
 - (void)other
 {
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Other" bundle:nil];
-    UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"other_controller"];
+    OtherController *controller = [[OtherController alloc] init];
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - UITableViewDelegate
