@@ -72,7 +72,7 @@
     
     CGFloat total = _price * self.amount;
     
-    self.lbTotal.text = [NSString stringWithFormat:@"￥%.1lf", total];
+    self.lbTotal.text = [NSString stringWithFormat:@"￥%.2lf", total];
 }
 
 - (void)add
@@ -89,7 +89,7 @@
     
     CGFloat total = _price * self.amount;
     
-    self.lbTotal.text = [NSString stringWithFormat:@"￥%.1lf", total];
+    self.lbTotal.text = [NSString stringWithFormat:@"￥%.2lf", total];
     
 }
 
@@ -111,7 +111,7 @@
     
     CGFloat total = self.price * self.amount;
     
-    self.lbTotal.text = [NSString stringWithFormat:@"￥%.1lf", total];
+    self.lbTotal.text = [NSString stringWithFormat:@"￥%.2lf", total];
     
 }
 

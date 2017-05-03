@@ -8,6 +8,7 @@
 
 #import "PayOrderController.h"
 #import "PayInfoCell.h"
+#import "PayViewController.h"
 
 @interface PayOrderController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -25,6 +26,11 @@
     [self setNavTitle:@"我的订单"];
     
     [self  initView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self getOrders];
 }
 
@@ -86,6 +92,27 @@
     }];
 }
 
+- (void)payment:(NSString *)paymentId
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"paymentId"] = paymentId;
+    
+    [[HttpClient shareClient] post:@"continuePayment" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSString *url = [responseObject[@"body"] objectForKey:@"url"];
+        
+        if (url.length != 0) {
+            PayViewController *controller = [[PayViewController alloc] init];
+            controller.urlStr = url;
+            
+            [self presentViewController:controller animated:YES completion:^{
+            }];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
+
 - (NSString *)getPayType:(NSInteger)type
 {
     switch (type) {
@@ -133,28 +160,48 @@
     
     cell.lbPayType.text = [NSString stringWithFormat:@"支付类型:%@", payType];
     
-    cell.lbSum.text = [NSString stringWithFormat:@"支付金额:%ld", [info[@"payMoney"] integerValue]];
+    cell.lbSum.text = [NSString stringWithFormat:@"支付金额:%.2lf", [info[@"payMoney"] floatValue]];
     
     NSInteger state = [info[@"isPay"] integerValue];
     
-    if (0 == state) {
-        cell.lbState.text = [NSString stringWithFormat:@"支付状态:未支付"];
-        
-        cell.payHiden = NO;
-        
-        cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:暂未支付"];
-        
-        [cell addOnPayClickListener:^{
+    
+    //支付单是否有效
+    NSInteger delete =[info[@"isDelete"] integerValue];
+    
+    if (0 == delete) {
+    
+        if (0 == state) {
+            cell.lbState.text = @"支付状态:未支付";
             
-        }];
+            cell.payHiden = NO;
+            
+            cell.lbPayTime.text = @"支付时间:暂未支付";
+            
+            __weak typeof (self) weakSelf = self;
+            
+            [cell addOnPayClickListener:^{
+                NSString *payMentId = info[@"id"];
+                [weakSelf payment:payMentId];
+                
+            }];
+            
+        } else {
+            cell.lbState.text = @"支付状态:已支付";
+            
+            cell.payHiden = YES;
+            
+            cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:%@", info[@"payTime"]];
+            
+        }
         
     } else {
-        cell.lbState.text = [NSString stringWithFormat:@"支付状态:已支付"];
-        
         cell.payHiden = YES;
         
-        cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:%@", info[@"payTime"]];
+        cell.lbState.text = @"支付状态:已过期";
+        
+        cell.lbPayTime.text = @"支付时间:已过期";
     }
+    
     
     return cell;
 }

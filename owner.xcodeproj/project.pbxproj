@@ -255,6 +255,9 @@
 		65FE09081EB82C45002C9397 /* icon_ensurance.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE09071EB82C45002C9397 /* icon_ensurance.png */; };
 		65FE090A1EB8532B002C9397 /* icon_custom_service.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE09091EB8532B002C9397 /* icon_custom_service.png */; };
 		65FE090C1EB860CE002C9397 /* icon_maintenance_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE090B1EB860CE002C9397 /* icon_maintenance_banner.png */; };
+		65FE090F1EB9746A002C9397 /* icon_repair_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE090D1EB9746A002C9397 /* icon_repair_normal.png */; };
+		65FE09101EB9746A002C9397 /* icon_other_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE090E1EB9746A002C9397 /* icon_other_normal.png */; };
+		65FE09161EB9A2C2002C9397 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE09151EB9A2C2002C9397 /* PayViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -630,6 +633,10 @@
 		65FE09071EB82C45002C9397 /* icon_ensurance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_ensurance.png; sourceTree = "<group>"; };
 		65FE09091EB8532B002C9397 /* icon_custom_service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_custom_service.png; sourceTree = "<group>"; };
 		65FE090B1EB860CE002C9397 /* icon_maintenance_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_maintenance_banner.png; sourceTree = "<group>"; };
+		65FE090D1EB9746A002C9397 /* icon_repair_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_repair_normal.png; sourceTree = "<group>"; };
+		65FE090E1EB9746A002C9397 /* icon_other_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_other_normal.png; sourceTree = "<group>"; };
+		65FE09141EB9A2C2002C9397 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
+		65FE09151EB9A2C2002C9397 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -930,6 +937,8 @@
 				65FE08F61EB1E1BC002C9397 /* icon_level_3.png */,
 				650596C11E8A3F3A009A5602 /* icon_detail.png */,
 				658FE6051E9F14DC002CA85F /* icon_down.png */,
+				65FE090D1EB9746A002C9397 /* icon_repair_normal.png */,
+				65FE090E1EB9746A002C9397 /* icon_other_normal.png */,
 				6505969F1E8A3301009A5602 /* icon_ensure.png */,
 				652544F41E1F86B80027B28B /* icon_help.png */,
 				652544871E1F38420027B28B /* icon_info_window.png */,
@@ -1038,6 +1047,8 @@
 				6544C7971E6949570050A9D3 /* MainTaskDetailController.m */,
 				65E3692B1E6CFEFE00E4CF04 /* MainTypeDetailController.h */,
 				65E3692C1E6CFF0B00E4CF04 /* MainTypeDetailController.m */,
+				65FE09141EB9A2C2002C9397 /* PayViewController.h */,
+				65FE09151EB9A2C2002C9397 /* PayViewController.m */,
 			);
 			name = Maintenance;
 			sourceTree = "<group>";
@@ -1389,6 +1400,7 @@
 				655ADF3E1E2605A100F1F036 /* icon_star_sel.png in Resources */,
 				650596D01E8A4609009A5602 /* icon_part.png in Resources */,
 				6544C78C1E693AF50050A9D3 /* RepairTaskCell.xib in Resources */,
+				65FE09101EB9746A002C9397 /* icon_other_normal.png in Resources */,
 				655ADFA71E2E02EE00F1F036 /* icon_other_page.png in Resources */,
 				652544EB1E1F816F0027B28B /* icon_alarm.png in Resources */,
 				655ADFBD1E2EFE4F00F1F036 /* icon_other4.png in Resources */,
@@ -1475,6 +1487,7 @@
 				650596E31E8A54D6009A5602 /* process_6.png in Resources */,
 				65FE08A51EA59ECE002C9397 /* ListDialogView.xib in Resources */,
 				65FE09081EB82C45002C9397 /* icon_ensurance.png in Resources */,
+				65FE090F1EB9746A002C9397 /* icon_repair_normal.png in Resources */,
 				650596B21E8A33F6009A5602 /* icon_service_bottom.png in Resources */,
 				6544C76C1E690C7D0050A9D3 /* MainOrderInfoView.xib in Resources */,
 				65E19BDD1E67E94600C6860D /* KeyEditBtnCell.xib in Resources */,
@@ -1543,6 +1556,7 @@
 				650596C81E8A42D5009A5602 /* ElevatorPartsController.m in Sources */,
 				65CABE3E1E22A244007EC96C /* CDPGifScrollView.m in Sources */,
 				6544C78A1E6931470050A9D3 /* RepairTaskResponse.m in Sources */,
+				65FE09161EB9A2C2002C9397 /* PayViewController.m in Sources */,
 				6544C76A1E69012D0050A9D3 /* OrderInfoCell.m in Sources */,
 				65CABE3F1E22A244007EC96C /* CDPGifView.m in Sources */,
 				65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */,

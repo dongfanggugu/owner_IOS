@@ -20,8 +20,9 @@
 #import "MainTaskDetailController.h"
 #import "MainTypeDetailController.h"
 #import "OrderAmountCell.h"
+#import "PayViewController.h"
 
-@interface MainOrderController () <UITableViewDelegate, UITableViewDataSource>
+@interface MainOrderController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate>
 
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -58,7 +59,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"订单"];
+    [self setNavTitle:@"维保订单"];
     [self initData];
     [self initView];
 }
@@ -123,8 +124,22 @@
     
     
     [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"订单提交成功"];
-        [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
+        
+        NSString *url = [responseObject[@"body"] objectForKey:@"url"];
+        
+        if (url.length != 0) {
+            PayViewController *controller = [[PayViewController alloc] init];
+            controller.urlStr = url;
+            
+            controller.delegate = self;
+            
+            [self presentViewController:controller animated:YES completion:^{
+                [self.navigationController popViewControllerAnimated:NO];
+            }];
+            //controller.hidesBottomBarWhenPushed = YES;
+            //[self.navigationController popViewControllerAnimated:NO];
+            //[self.navigationController pushViewController:controller animated:YES];
+        }
         
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
@@ -163,7 +178,7 @@
     btn.layer.cornerRadius = 5;
     
     btn.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
-    [btn setTitle:@"提交" forState:UIControlStateNormal];
+    [btn setTitle:@"确认并支付" forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     [btn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     
@@ -212,7 +227,7 @@
         if (0 == indexPath.row) {
             MainOrderInfoCell *cell = [MainOrderInfoCell cellFromNib];
             
-            cell.lbName.text = [NSString stringWithFormat:@"%@ ￥%.1lf", _mainInfo.name, _mainInfo.price];
+            cell.lbName.text = [NSString stringWithFormat:@"%@ ￥%.2lf", _mainInfo.name, _mainInfo.price];
             cell.lbContent.text = _mainInfo.content;
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -455,6 +470,13 @@
         
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
+
+#pragma mark - PayViewControllerDelegate
+
+- (void)clickBack
+{
+    
 }
 
 @end

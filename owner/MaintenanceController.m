@@ -110,7 +110,7 @@
     MainTypeInfo *info = _arrayType[indexPath.row];
     
     cell.lbName.text = info.name;
-    cell.lbPrice.text = [NSString stringWithFormat:@"￥%.1lf", info.price];
+    cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", info.price];
     cell.lbContent.text = info.content;
     
     Maint_Type maintType = info.typeId.integerValue;
