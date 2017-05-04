@@ -18,6 +18,8 @@
 #import "MainInfoController.h"
 #import "OrderListRequest.h"
 #import "MainListResponse.h"
+#import "ExtraServiceController.h"
+
 
 
 @interface PersonController()<UITableViewDelegate, UITableViewDataSource, PersonInfoViewDelegate>
@@ -184,8 +186,11 @@
         [self.navigationController pushViewController:controller animated:YES];
         
     } else if (2 == indexPath.row) {
-        [HUDClass showHUDWithText:@"开发中,请稍后!"];
-        return;
+        ExtraServiceController *controller = [[ExtraServiceController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        
     } else if (3 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"settings_controller"];

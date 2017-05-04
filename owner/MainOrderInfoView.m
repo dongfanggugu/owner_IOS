@@ -58,6 +58,11 @@
     [_btn addTarget:self action:@selector(onClickDetail) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+}
+
 - (void)setImage:(UIImage *)image
 {
     _imageView.image = image;

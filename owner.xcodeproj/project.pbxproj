@@ -178,6 +178,7 @@
 		655ADFBD1E2EFE4F00F1F036 /* icon_other4.png in Resources */ = {isa = PBXBuildFile; fileRef = 655ADFB91E2EFE4F00F1F036 /* icon_other4.png */; };
 		655ADFC01E2EFE9E00F1F036 /* OtherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655ADFBF1E2EFE9E00F1F036 /* OtherController.m */; };
 		656230FB1E67A7B000335819 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656230FA1E67A7B000335819 /* MainTabBarController.m */; };
+		658E22011EBB04FF008D9227 /* ExtraServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E22001EBB04FF008D9227 /* ExtraServiceController.m */; };
 		658FE6041E9F14D1002CA85F /* icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6031E9F14D1002CA85F /* icon_up.png */; };
 		658FE6061E9F14DC002CA85F /* icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6051E9F14DC002CA85F /* icon_down.png */; };
 		65CABE381E224464007EC96C /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CABE371E224464007EC96C /* RegisterController.m */; };
@@ -515,6 +516,8 @@
 		655ADFBF1E2EFE9E00F1F036 /* OtherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherController.m; sourceTree = "<group>"; };
 		656230F91E67A7A000335819 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		656230FA1E67A7B000335819 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		658E21FF1EBB04FF008D9227 /* ExtraServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceController.h; sourceTree = "<group>"; };
+		658E22001EBB04FF008D9227 /* ExtraServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceController.m; sourceTree = "<group>"; };
 		658FE6031E9F14D1002CA85F /* icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_up.png; sourceTree = "<group>"; };
 		658FE6051E9F14DC002CA85F /* icon_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_down.png; sourceTree = "<group>"; };
 		65CABE361E224457007EC96C /* RegisterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
@@ -1272,6 +1275,8 @@
 				65FE08FA1EB2E174002C9397 /* ServiceHistoryController.m */,
 				65FE09011EB30CAB002C9397 /* ServiceTaskController.h */,
 				65FE09021EB30CAB002C9397 /* ServiceTaskController.m */,
+				658E21FF1EBB04FF008D9227 /* ExtraServiceController.h */,
+				658E22001EBB04FF008D9227 /* ExtraServiceController.m */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -1551,6 +1556,7 @@
 			files = (
 				6544C7511E680C230050A9D3 /* PersonController.m in Sources */,
 				65E3694A1E6E93CE00E4CF04 /* EnsuranceController.m in Sources */,
+				658E22011EBB04FF008D9227 /* ExtraServiceController.m in Sources */,
 				65E19BAC1E67B6F500C6860D /* MainTypeCell.m in Sources */,
 				6525444D1E1F206B0027B28B /* ResponseDictionary.m in Sources */,
 				650596C81E8A42D5009A5602 /* ElevatorPartsController.m in Sources */,
