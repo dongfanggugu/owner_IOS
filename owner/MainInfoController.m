@@ -29,6 +29,8 @@
 
 @property (strong, nonatomic) NSMutableArray<MainTaskInfo *> *arrayTask;
 
+@property (strong, nonatomic) MainOrderInfo *serviceInfo;
+
 @end
 
 @implementation MainInfoController
@@ -39,13 +41,12 @@
     [self setNavTitle:@"维保服务"];
     [self initNavRightWithText:@"查看历史"];
     [self initData];
-    [self initView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getTask];
+    [self getSeviceInfo];
 }
 
 - (void)onClickNavRight
@@ -138,6 +139,24 @@
 }
 
 #pragma mark - Network Request
+
+- (void)getSeviceInfo
+{
+    OrderListRequest *request = [[OrderListRequest alloc] init];
+    
+    [[HttpClient shareClient] post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+        MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
+        
+        if ([response getOrderList].count > 0) {
+            _serviceInfo = [[response getOrderList] objectAtIndex:0];
+        }
+        [self initView];
+        [self getTask];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
 
 
 - (void)getTask

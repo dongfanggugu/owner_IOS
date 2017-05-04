@@ -172,7 +172,10 @@
     }
  
     if (0 == indexPath.row) {
-        [self getSeviceInfo];
+        MainInfoController *controller = [[MainInfoController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
         
     } else if (1 == indexPath.row) {
         RepairOrderController *controller = [[RepairOrderController alloc] init];
@@ -191,27 +194,6 @@
         [self.navigationController pushViewController:controller animated:YES];
     }
     
-}
-
-- (void)getSeviceInfo
-{
-    OrderListRequest *request = [[OrderListRequest alloc] init];
-    
-    [[HttpClient shareClient] post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
-        
-        MainInfoController *controller = [[MainInfoController alloc] init];
-        
-        if ([response getOrderList].count > 0) {
-            controller.serviceInfo = [[response getOrderList] objectAtIndex:0];
-        }
-        controller.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:controller animated:YES];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
-    }];
 }
 
 @end

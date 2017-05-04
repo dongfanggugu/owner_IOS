@@ -166,7 +166,7 @@
     
     
     //支付单是否有效
-    NSInteger delete =[info[@"isDelete"] integerValue];
+    NSInteger delete =[[info[@"maintOrderInfo"] objectForKey:@"isDelete"] integerValue];
     
     if (0 == delete) {
     

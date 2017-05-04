@@ -120,6 +120,24 @@
     
     cell.lbDate.text = info.createTime;
     
+    NSInteger type = info.mainttypeId.integerValue;
+    
+    switch (type) {
+        case 1:
+            cell.image = [UIImage imageNamed:@"icon_level_3"];
+            break;
+            
+        case 2:
+            cell.image = [UIImage imageNamed:@"icon_level_2"];
+            break;
+            
+        case 3:
+            cell.image = [UIImage imageNamed:@"icon_level_1"];
+            
+        default:
+            break;
+    }
+    
     __weak typeof (self) weakSelf = self;
     
     [cell addOnClickBtnListener:^{
