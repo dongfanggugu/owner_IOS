@@ -1,16 +1,18 @@
 //
-//  PayOrderController.m
+//  ExtraPayOrderController.m
 //  owner
 //
-//  Created by 长浩 张 on 2017/4/27.
+//  Created by 长浩 张 on 2017/5/5.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import "PayOrderController.h"
+#import "ExtraPayOrderController.h"
 #import "PayInfoCell.h"
 #import "PayViewController.h"
+#import "MainTypeInfo.h"
 
-@interface PayOrderController () <UITableViewDelegate, UITableViewDataSource>
+
+@interface ExtraPayOrderController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -18,7 +20,7 @@
 
 @end
 
-@implementation PayOrderController
+@implementation ExtraPayOrderController
 
 - (void)viewDidLoad
 {
@@ -26,16 +28,18 @@
     [self setNavTitle:@"我的订单"];
     
     [self  initView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     [self getOrders];
 }
 
 - (void)initView
-{    
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -76,7 +80,10 @@
  */
 - (void)getOrders
 {
-    [[HttpClient shareClient] post:@"getPaymentBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"incrementTypeId"] = _serviceInfo.typeId;
+    
+    [[HttpClient shareClient] post:@"getPaymentBySmallOwnerOnIncrement" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayOrder removeAllObjects];
         
         [self.arrayOrder addObjectsFromArray:[responseObject objectForKey:@"body"]];
@@ -113,6 +120,7 @@
     }];
 }
 
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -139,7 +147,7 @@
     
     cell.lbDate.text = info[@"createTime"];
     
-    NSString *payType = [info[@"mainttypeInfo"] objectForKey:@"name"];
+    NSString *payType = _serviceInfo.name;
     
     cell.lbPayType.text = [NSString stringWithFormat:@"支付类型:%@", payType];
     
@@ -147,9 +155,10 @@
     
     NSInteger state = [info[@"isPay"] integerValue];
     
+    
     //支付单是否有效
-    NSInteger delete =[[info[@"maintOrderInfo"] objectForKey:@"isDelete"] integerValue];
-  
+    NSInteger delete =[[info[@"incrementInfo"] objectForKey:@"isDelete"] integerValue];
+    
     if (0 == state) {
         
         if (0 == delete) {
@@ -183,7 +192,6 @@
         cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:%@", info[@"payTime"]];
         
     }
-
     
     return cell;
 }

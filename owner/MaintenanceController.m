@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"维保服务"];
+    [self setNavTitle:@"电梯管家"];
     
     [self initData];
     [self initView];

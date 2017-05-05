@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIImageView+AFNetworking.h"
 
 @interface ServiceHistoryCell : UITableViewCell
 
@@ -25,5 +26,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbDate;
 
 @property (weak, nonatomic) UIImage *image;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ivBg;
+
+@property (weak, nonatomic) IBOutlet UIButton *btn;
+
+
 
 @end

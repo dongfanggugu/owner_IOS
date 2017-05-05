@@ -33,6 +33,9 @@
 
 @property (assign, nonatomic) NSInteger frequency;
 
+//增值服务订单使用
+@property (copy, nonatomic) NSString *incrementTypeId;
+
 @end
 
 #endif /* MainOrderAddRequest_h */

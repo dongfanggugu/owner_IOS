@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="MainOrderInfoView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MainOrderInfoView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -120,11 +120,13 @@
                         <constraint firstAttribute="width" constant="100" id="3tg-mP-pDD"/>
                         <constraint firstAttribute="height" constant="30" id="7dY-fD-KtS"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="查看订单">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="AMH-ge-K4B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="7cb-0G-UJd"/>
                 <constraint firstItem="AMH-ge-K4B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="OeT-co-IuM"/>

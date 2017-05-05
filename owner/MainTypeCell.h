@@ -9,6 +9,8 @@
 #ifndef MainTypeCell_h
 #define MainTypeCell_h
 
+#import "UIImageView+AFNetworking.h"
+
 @interface MainTypeCell : UITableViewCell
 
 + (id)cellFromNib;
@@ -26,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbContent;
 
 @property (weak, nonatomic) UIImage *image;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 

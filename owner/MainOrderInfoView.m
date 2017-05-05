@@ -11,8 +11,6 @@
 
 @interface MainOrderInfoView ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnDetail;
@@ -60,7 +58,7 @@
 
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
+    [super layoutSubviews];    
 }
 
 - (void)setImage:(UIImage *)image
@@ -70,29 +68,29 @@
 
 - (void)onClickPay
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickPayButton)]) {
-        [_delegate onClickPayButton];
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickPayButton:)]) {
+        [_delegate onClickPayButton:self];
     }
 }
 
 - (void)onClickDetail
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetailButton)]) {
-        [_delegate onClickDetailButton];
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetailButton:)]) {
+        [_delegate onClickDetailButton:self];
     }
 }
 
 - (void)onClickOrder
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickOrderButton)]) {
-        [_delegate onClickOrderButton];
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickOrderButton:)]) {
+        [_delegate onClickOrderButton:self];
     }
 }
 
 - (void)onClickBack
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickBackButton)]) {
-        [_delegate onClickBackButton];
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickBackButton:)]) {
+        [_delegate onClickBackButton:self];
     }
 }
 

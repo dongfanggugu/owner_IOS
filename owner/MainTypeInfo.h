@@ -23,6 +23,7 @@
 
 @property (assign, nonatomic) CGFloat price;
 
+@property (copy, nonatomic) NSString *logo;
 
 @end
 

@@ -258,7 +258,7 @@
 
 #pragma mark - MainOrderInfoViewDelegate
 
-- (void)onClickPayButton
+- (void)onClickPayButton:(MainOrderInfoView *)view
 {
     MainOrderController *controller = [[MainOrderController alloc] init];
     controller.mainInfo =  _serviceInfo.maintypeInfo;
@@ -267,7 +267,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickOrderButton
+- (void)onClickOrderButton:(MainOrderInfoView *)view
 {
     PayOrderController *controller = [[PayOrderController alloc] init];
     
@@ -275,7 +275,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickDetailButton
+- (void)onClickDetailButton:(MainOrderInfoView *)view
 {
     MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
     
@@ -286,7 +286,7 @@
 }
 
 
-- (void)onClickBackButton
+- (void)onClickBackButton:(MainOrderInfoView *)view
 {
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",Custom_Service]];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];

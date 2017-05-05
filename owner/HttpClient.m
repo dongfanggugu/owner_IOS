@@ -40,7 +40,7 @@
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *head = [[NSMutableDictionary alloc] init];
     
-    [head setObject:@"1" forKey:@"osType"];
+    [head setObject:@"3" forKey:@"osType"];
     [head setObject:@"1.0" forKey:@"version"];
     [head setObject:@"" forKey:@"deviceId"];
     [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];

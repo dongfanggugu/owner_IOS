@@ -1,13 +1,13 @@
 //
-//  MainOrderController.m
+//  ExtraOrderAddController.m
 //  owner
 //
-//  Created by 长浩 张 on 2017/3/2.
+//  Created by 长浩 张 on 2017/5/5.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "MainOrderController.h"
+#import "ExtraOrderAddController.h"
+#import "MainTypeInfo.h"
 #import "MainOrderInfoCell.h"
 #import "KeyValueCell.h"
 #import "KeyEditCell.h"
@@ -22,8 +22,8 @@
 #import "OrderAmountCell.h"
 #import "PayViewController.h"
 
-@interface MainOrderController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate>
 
+@interface ExtraOrderAddController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -52,22 +52,23 @@
 
 @end
 
-
-@implementation MainOrderController
-
+@implementation ExtraOrderAddController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"服务订单"];
+    [self setNavTitle:@"增值服务订单"];
     [self initData];
     [self initView];
 }
 
+
 - (void)submit
 {
     MainOrderAddRequest *request = [[MainOrderAddRequest alloc] init];
-    request.mainttypeId = _mainInfo.typeId;
+    
+    request.incrementTypeId = _serviceInfo.typeId;
+    
     request.frequency = _amountCell.amount;
     
     if (!self.login) {
@@ -123,7 +124,7 @@
     }
     
     
-    [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_EXTRA_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
         
@@ -154,7 +155,7 @@
 
 - (void)initData
 {
-
+    
 }
 
 - (void)initView
@@ -227,8 +228,8 @@
         if (0 == indexPath.row) {
             MainOrderInfoCell *cell = [MainOrderInfoCell cellFromNib];
             
-            cell.lbName.text = [NSString stringWithFormat:@"%@ ￥%.2lf", _mainInfo.name, _mainInfo.price];
-            cell.lbContent.text = _mainInfo.content;
+            cell.lbName.text = [NSString stringWithFormat:@"%@ ￥%.2lf", _serviceInfo.name, _serviceInfo.price];
+            cell.lbContent.text = _serviceInfo.content;
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -242,7 +243,7 @@
             OrderAmountCell *cell = [OrderAmountCell cellFromNib];
             _amountCell = cell;
             
-            cell.price = _mainInfo.price;
+            cell.price = _serviceInfo.price;
             
             return cell;
         }
@@ -311,7 +312,7 @@
         if (0 == indexPath.row) {
             if (_nameCell) {
                 return _nameCell;
-            
+                
             } else {
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _nameCell = cell;
@@ -384,7 +385,7 @@
             cell.tfValue.placeholder = @"地址";
             _tfAddress = cell.tfValue;
             
-
+            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -459,12 +460,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     if (0 == indexPath.section && 0 == indexPath.row) {
         
         MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
         
-        controller.detail = self.mainInfo.content;
+        controller.detail = _serviceInfo.content;
         
         controller.hidesBottomBarWhenPushed = YES;
         
@@ -478,5 +479,6 @@
 {
     
 }
+
 
 @end

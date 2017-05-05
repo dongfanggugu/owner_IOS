@@ -9,15 +9,19 @@
 #ifndef MainOrderInfoView_h
 #define MainOrderInfoView_h
 
+#import "UIImageView+AFNetworking.h"
+
+@class MainOrderInfoView;
+
 @protocol MainOrderInfoViewDelegate <NSObject>
 
-- (void)onClickPayButton;
+- (void)onClickPayButton:(MainOrderInfoView *)view;
 
-- (void)onClickBackButton;
+- (void)onClickBackButton:(MainOrderInfoView *)view;
 
-- (void)onClickOrderButton;
+- (void)onClickOrderButton:(MainOrderInfoView *)view;
 
-- (void)onClickDetailButton;
+- (void)onClickDetailButton:(MainOrderInfoView *)view;
 
 @end
 
@@ -35,6 +39,10 @@
 @property (weak, nonatomic) UIImage *image;
 
 @property (weak, nonatomic) id<MainOrderInfoViewDelegate> delegate;
+
+@property (strong, nonatomic) NSDictionary *data;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 

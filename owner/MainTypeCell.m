@@ -15,8 +15,6 @@
     void(^_onClickBtn)();
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnDetail;

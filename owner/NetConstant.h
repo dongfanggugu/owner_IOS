@@ -61,4 +61,10 @@
 //检测版本更新
 #define URL_VERSION_CHECK @"checkVersion"
 
+//增值服务添加订单
+#define URL_EXTRA_ADD @"addIncrement"
+
+//获取用户订购的增值服务
+#define URL_GET_EXTRA @"getIncrementListByOwner"
+
 #endif /* NetConstant_h */

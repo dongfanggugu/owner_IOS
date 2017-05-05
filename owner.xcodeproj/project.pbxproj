@@ -40,6 +40,11 @@
 		650596E41E8A54D6009A5602 /* process_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 650596DC1E8A54D6009A5602 /* process_7.png */; };
 		650596E51E8A54D6009A5602 /* process_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 650596DD1E8A54D6009A5602 /* process_8.png */; };
 		6516CA001E24D06F00A54C64 /* icon_worker_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6516C9FF1E24D06F00A54C64 /* icon_worker_pic.png */; };
+		65228ECA1EBC155E007A1300 /* ExtraOrderAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65228EC91EBC155E007A1300 /* ExtraOrderAddController.m */; };
+		65228ECD1EBC20AC007A1300 /* ExtraPayOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65228ECC1EBC20AC007A1300 /* ExtraPayOrderController.m */; };
+		65228ED01EBC42EA007A1300 /* ExtraServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65228ECF1EBC42EA007A1300 /* ExtraServiceCell.m */; };
+		65228ED21EBC42FF007A1300 /* ExtraServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65228ED11EBC42FF007A1300 /* ExtraServiceCell.xib */; };
+		65228ED51EBC4D4C007A1300 /* ExtraServiceHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65228ED41EBC4D4C007A1300 /* ExtraServiceHistoryController.m */; };
 		6525443C1E1F1F960027B28B /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544331E1F1F950027B28B /* NSArray+Log.m */; };
 		6525443D1E1F1F960027B28B /* Obj2Dic.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544351E1F1F950027B28B /* Obj2Dic.m */; };
 		6525443E1E1F1F960027B28B /* HUDClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544371E1F1F950027B28B /* HUDClass.m */; };
@@ -298,6 +303,15 @@
 		650596DC1E8A54D6009A5602 /* process_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = process_7.png; sourceTree = "<group>"; };
 		650596DD1E8A54D6009A5602 /* process_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = process_8.png; sourceTree = "<group>"; };
 		6516C9FF1E24D06F00A54C64 /* icon_worker_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_worker_pic.png; sourceTree = "<group>"; };
+		65228EC81EBC155E007A1300 /* ExtraOrderAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraOrderAddController.h; sourceTree = "<group>"; };
+		65228EC91EBC155E007A1300 /* ExtraOrderAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraOrderAddController.m; sourceTree = "<group>"; };
+		65228ECB1EBC20AC007A1300 /* ExtraPayOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraPayOrderController.h; sourceTree = "<group>"; };
+		65228ECC1EBC20AC007A1300 /* ExtraPayOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraPayOrderController.m; sourceTree = "<group>"; };
+		65228ECE1EBC42EA007A1300 /* ExtraServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceCell.h; sourceTree = "<group>"; };
+		65228ECF1EBC42EA007A1300 /* ExtraServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceCell.m; sourceTree = "<group>"; };
+		65228ED11EBC42FF007A1300 /* ExtraServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtraServiceCell.xib; sourceTree = "<group>"; };
+		65228ED31EBC4D4C007A1300 /* ExtraServiceHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceHistoryController.h; sourceTree = "<group>"; };
+		65228ED41EBC4D4C007A1300 /* ExtraServiceHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceHistoryController.m; sourceTree = "<group>"; };
 		652544321E1F1F950027B28B /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
 		652544331E1F1F950027B28B /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		652544341E1F1F950027B28B /* Obj2Dic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obj2Dic.h; sourceTree = "<group>"; };
@@ -800,6 +814,8 @@
 		652544571E1F20B70027B28B /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				65228ECE1EBC42EA007A1300 /* ExtraServiceCell.h */,
+				65228ECF1EBC42EA007A1300 /* ExtraServiceCell.m */,
 				6544C7491E6806F70050A9D3 /* DatePickerDialog.h */,
 				6544C74A1E6806F70050A9D3 /* DatePickerDialog.m */,
 				655ADF931E2C634000F1F036 /* AddBannerView.h */,
@@ -901,6 +917,7 @@
 				65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */,
 				65FE08E11EB17EA6002C9397 /* PayInfoCell.xib */,
 				65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */,
+				65228ED11EBC42FF007A1300 /* ExtraServiceCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1168,6 +1185,8 @@
 			children = (
 				655ADFBE1E2EFE8700F1F036 /* OtherController.h */,
 				655ADFBF1E2EFE9E00F1F036 /* OtherController.m */,
+				65228EC81EBC155E007A1300 /* ExtraOrderAddController.h */,
+				65228EC91EBC155E007A1300 /* ExtraOrderAddController.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -1277,6 +1296,10 @@
 				65FE09021EB30CAB002C9397 /* ServiceTaskController.m */,
 				658E21FF1EBB04FF008D9227 /* ExtraServiceController.h */,
 				658E22001EBB04FF008D9227 /* ExtraServiceController.m */,
+				65228ECB1EBC20AC007A1300 /* ExtraPayOrderController.h */,
+				65228ECC1EBC20AC007A1300 /* ExtraPayOrderController.m */,
+				65228ED31EBC4D4C007A1300 /* ExtraServiceHistoryController.h */,
+				65228ED41EBC4D4C007A1300 /* ExtraServiceHistoryController.m */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -1375,6 +1398,7 @@
 				655ADFA51E2E02B200F1F036 /* Other.storyboard in Resources */,
 				652544ED1E1F864E0027B28B /* icon_report.png in Resources */,
 				650596AC1E8A3338009A5602 /* icon_settings_new.png in Resources */,
+				65228ED21EBC42FF007A1300 /* ExtraServiceCell.xib in Resources */,
 				655ADFB11E2E0E7F00F1F036 /* icon_market1.png in Resources */,
 				655ADF811E28635900F1F036 /* icon_person_default2.png in Resources */,
 				655ADF9C1E2DEA5800F1F036 /* MarketCell.xib in Resources */,
@@ -1576,10 +1600,13 @@
 				6544C7721E690FA50050A9D3 /* MainTaskInfo.m in Sources */,
 				6544C7621E68FC670050A9D3 /* RepairListResponse.m in Sources */,
 				65FE08EE1EB1B6FC002C9397 /* UIView+CornerRadius.m in Sources */,
+				65228ED51EBC4D4C007A1300 /* ExtraServiceHistoryController.m in Sources */,
 				65FE08AB1EA733D9002C9397 /* AddressLocationController.m in Sources */,
 				655ADF771E27641200F1F036 /* AppReportController.m in Sources */,
 				65E19BE01E67EC2B00C6860D /* SMSCodeRequest.m in Sources */,
 				652544401E1F1F960027B28B /* Config.m in Sources */,
+				65228ED01EBC42EA007A1300 /* ExtraServiceCell.m in Sources */,
+				65228ECD1EBC20AC007A1300 /* ExtraPayOrderController.m in Sources */,
 				6525443C1E1F1F960027B28B /* NSArray+Log.m in Sources */,
 				6544C7811E692F0B0050A9D3 /* RepairInfoController.m in Sources */,
 				6525446F1E1F26C80027B28B /* BaseTabBarController.m in Sources */,
@@ -1627,6 +1654,7 @@
 				65E19BD31E67C5FF00C6860D /* BrandListResponse.m in Sources */,
 				6544C77B1E6913A80050A9D3 /* MainInfoController.m in Sources */,
 				655ADF3A1E26027400F1F036 /* EvaluateView.m in Sources */,
+				65228ECA1EBC155E007A1300 /* ExtraOrderAddController.m in Sources */,
 				652544751E1F29390027B28B /* MainPageController.m in Sources */,
 				65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */,
 				6544C7921E693ED60050A9D3 /* RepairTaskDetailController.m in Sources */,

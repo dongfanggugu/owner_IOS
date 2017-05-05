@@ -10,10 +10,6 @@
 
 @interface ServiceHistoryCell ()
 
-@property (weak, nonatomic) IBOutlet UIButton *btn;
-
-@property (weak, nonatomic) IBOutlet UIImageView *ivBg;
-
 @property (strong, nonatomic) void(^onClickBtn)();
 
 @end

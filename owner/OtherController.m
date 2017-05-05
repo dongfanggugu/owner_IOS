@@ -12,10 +12,13 @@
 #import "MainTypeDetailController.h"
 #import "MainTypeInfo.h"
 #import "MainOrderController.h"
+#import "ExtraOrderAddController.h"
 
 @interface OtherController() <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *arrayService;
 
 @end
 
@@ -26,6 +29,16 @@
     [super viewDidLoad];
     [self setNavTitle:@"增值服务"];
     [self initView];
+    [self getServices];
+}
+
+- (NSMutableArray *)arrayService
+{
+    if (nil == _arrayService) {
+        _arrayService = [NSMutableArray array];
+    }
+    
+    return _arrayService;
 }
 
 - (void)initView
@@ -56,6 +69,23 @@
     
 }
 
+#pragma mark - 网络请求
+
+- (void)getServices
+{
+    [[HttpClient shareClient] post:@"getIncrementTypeList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self.arrayService removeAllObjects];
+        
+        [self.arrayService addObjectsFromArray:responseObject[@"body"]];
+        
+        [self.tableView reloadData];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -65,7 +95,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return self.arrayService.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,17 +106,26 @@
         cell = [MainTypeCell cellFromNib];
     }
     
-    cell.lbName.text = @"智能小助手";
+    NSDictionary *info = self.arrayService[indexPath.row];
     
-    cell.lbContent.text = @"智能监控信息";
+    cell.lbName.text = info[@"name"];
     
-    cell.lbPrice.text = @"￥2000.0";
+    cell.lbContent.text = info[@"content"];
+    
+    cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [info[@"price"] floatValue]];
+    
+    NSString *url = info[@"logo"];
+    
+    if (url.length > 0) {
+        [cell.imageView setImageWithURL:[NSURL URLWithString:url]];
+    }
+    
     
     __weak typeof (self) weakSelf = self;
     [cell setOnClickListener:^{
         MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
         
-        controller.detail = @"智能监控信息";
+        controller.detail = info[@"content"];
         
         controller.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:controller animated:YES];
@@ -105,14 +144,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MainTypeInfo *info = [[MainTypeInfo alloc] init];
-    info.name = @"智能小助手";
-    info.content = @"智能监控电梯运行";
-    info.price = 2000.0f;
-    info.typeId = @"4";
+    MainTypeInfo *info = [[MainTypeInfo alloc] initWithDictionary:self.arrayService[indexPath.row]];
     
-    MainOrderController *controller = [[MainOrderController alloc] init];
-    controller.mainInfo = info;
+    ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
+    controller.serviceInfo = info;
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];

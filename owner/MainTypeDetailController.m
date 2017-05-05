@@ -15,7 +15,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"维保类型详情"];
+    [self setNavTitle:@"服务详情"];
     [self initView];
 }
 
