@@ -193,6 +193,7 @@
         [weakSelf onClickOrderButton:serviceInfo];
     }];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

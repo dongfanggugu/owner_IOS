@@ -18,7 +18,7 @@
     //return @"http://192.168.0.82:8080/mobile/";
     
     //return @"http://211.147.152.6:8080/lift/mobile/";
-    return @"http://123.57.10.16:8081/mobile/";
+    return @"http://47.93.11.158:8081/mobile/";
 }
 
 /**

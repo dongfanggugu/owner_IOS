@@ -55,7 +55,7 @@
 - (void)initView
 {
     self.tableView.allowsSelection = NO;
-    self.tableView.bounces = NO;
+    //self.tableView.bounces = NO;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     

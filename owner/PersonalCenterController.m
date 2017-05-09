@@ -75,7 +75,6 @@
     
     [self setNavTitle:@"个人中心"];
     
-    _tableView.bounces = NO;
     [self addHeaderView];
     [self addFootView];
 }

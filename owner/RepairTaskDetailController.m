@@ -33,7 +33,7 @@
                                                                self.view.frame.size.height - 64)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.bounces = NO;
+    //_tableView.bounces = NO;
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     

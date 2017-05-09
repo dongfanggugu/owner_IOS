@@ -57,7 +57,7 @@
     
     _tableView.dataSource = self;
     
-    _tableView.bounces = NO;
+    //_tableView.bounces = NO;
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     

@@ -89,7 +89,7 @@
 
 - (void)initView
 {
-    self.tableView.bounces = NO;
+    //self.tableView.bounces = NO;
 }
 
 #pragma mark - TableView DataSource and Delegate
