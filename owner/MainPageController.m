@@ -40,7 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"老丁电梯"];
+    [self setNavTitle:@"梯美别墅"];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self initView];
     [self checkUpdate];
