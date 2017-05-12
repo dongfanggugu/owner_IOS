@@ -40,6 +40,8 @@
 
 + (NSString *)getCurrentTime;
 
++ (NSString *)getIp;
+
 
 @end
 

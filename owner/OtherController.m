@@ -57,15 +57,15 @@
     
     
     //headview
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
-    
-    _tableView.tableHeaderView = headView;
-    
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
-    
-    iv.image = [UIImage imageNamed:@"icon_other_banner.png"];
-    
-    [headView addSubview:iv];
+//    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
+//    
+//    _tableView.tableHeaderView = headView;
+//    
+//    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
+//    
+//    iv.image = [UIImage imageNamed:@"icon_other_banner.png"];
+//    
+//    [headView addSubview:iv];
     
 }
 

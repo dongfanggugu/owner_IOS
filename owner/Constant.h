@@ -25,6 +25,16 @@ typedef NS_ENUM(NSInteger, Maint_Type) {
 };
 
 
+#pragma mark - 电梯商城
+
+typedef NS_ENUM(NSInteger, Market_Type) {
+    
+    Market_Lift,  //整体销售
+    
+    Market_Decorate  //电梯装潢
+};
+
+
 #pragma mark - 客服电话
 
 #define Custom_Service @"400-919-6333"

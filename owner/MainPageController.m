@@ -14,6 +14,7 @@
 #import "AddBannerData.h"
 #import "EnsuranceMainController.h"
 #import "OtherController.h"
+#import "HelpWebViewController.h"
 
 
 @interface MainPageController  () <AddBannerViewDelegate>
@@ -40,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"梯美别墅"];
+    [self setNavTitle:@"怡墅"];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self initView];
     [self checkUpdate];
@@ -88,7 +89,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [[HttpClient shareClient] post:@"getAdvertisementBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] bagpost:@"getAdvertisementBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSMutableArray *array = [NSMutableArray array];
         
         for (NSDictionary *dic in [responseObject objectForKey:@"body"]) {
@@ -147,12 +148,11 @@
 }
 
 - (void)help
-{
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Help" bundle:nil];
-    UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"help_controller"];
-    self.hidesBottomBarWhenPushed = YES;
+{    
+    HelpWebViewController *controller = [[HelpWebViewController alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
+    
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)other

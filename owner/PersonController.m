@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"梯美别墅"];
+    [self setNavTitle:@"怡墅"];
     [self initView];
 }
 

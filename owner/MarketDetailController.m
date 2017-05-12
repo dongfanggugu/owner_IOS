@@ -12,6 +12,7 @@
 #import "ElevatorSellController.h"
 #import "ElevatorPartsController.h"
 #import "ElevatorDecorateController.h"
+#import "WebViewController.h"
 
 @interface MarketDetailContrller()<UITableViewDelegate, UITableViewDataSource>
 
@@ -68,24 +69,25 @@
     {
         cell.ivIcon.image = [UIImage imageNamed:@"icon_market1"];
         cell.viewBg.backgroundColor = [Utils getColorByRGB:@"#809900"];
-        cell.lbTile.text = @"我要装电梯";
-        //cell.lbTel.text = @"业务联系电话"
+        cell.lbTile.text = @"我要安装电梯";
+        cell.lbTel.text = @"整梯销售";
     }
     else if (1 == indexPath.row)
     {
         cell.ivIcon.image = [UIImage imageNamed:@"icon_market2"];
         cell.viewBg.backgroundColor = [Utils getColorByRGB:@"#008099"];
         cell.lbTile.text = @"我要换配件";
-        //cell.lbTel.text = @"业务联系电话"
+        cell.lbTel.text = @"电梯配件";
     }
     else if (2 == indexPath.row)
     {
         cell.ivIcon.image = [UIImage imageNamed:@"icon_markt3"];
         cell.viewBg.backgroundColor = [Utils getColorByRGB:@"#c7ac00"];
-        cell.lbTile.text = @"电梯装潢";
+        cell.lbTile.text = @"我要装修电梯";
+        cell.lbTel.text = @"电梯装潢";
     }
     
-    cell.lbTel.text = @"业务联系电话:400-0615-365";
+    
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -100,32 +102,35 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (0 == indexPath.row)
-    {
-        UIViewController *controller = [[ElevatorSellController alloc] init];
+    if (0 == indexPath.row) {
+        
+        WebViewController *controller = [[WebViewController alloc] init];
+        controller.marketType = Market_Lift;
+        
+        NSString *url = [NSString stringWithFormat:@"%@h5/indexPage", [Utils getIp]];
+        
+        controller.urlStr = url;
         
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         UIViewController *controller = [[ElevatorPartsController alloc] init];
         
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-    }
-    else if (2 == indexPath.row)
-    {
-        UIViewController *controller = [[ElevatorDecorateController alloc] init];
         
+    } else if (2 == indexPath.row) {
+        WebViewController *controller = [[WebViewController alloc] init];
+        controller.marketType = Market_Decorate;
+        
+        NSString *url = [NSString stringWithFormat:@"%@h5/indexelevatorDecorationPage", [Utils getIp]];
+        
+        controller.urlStr = url;
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
+        
     }
-    
-//    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", @"4000615365"]];
-//    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//    [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
-//    [self.view addSubview:webView];
 
 }
 @end

@@ -15,10 +15,16 @@
 + (NSString *)getServer
 {
     //return @"http://119.57.248.130:8080/lift/mobile/";
-    //return @"http://192.168.0.82:8080/mobile/";
+    
+    return [NSString stringWithFormat:@"%@mobile/", [Utils getIp]];
     
     //return @"http://211.147.152.6:8080/lift/mobile/";
-    return @"http://47.93.11.158:8081/mobile/";
+    //return @"http://47.93.11.158:8081/mobile/";
+}
+
++ (NSString *)getIp
+{
+    return @"http://47.93.11.158:8081/";
 }
 
 /**
