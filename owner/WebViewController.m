@@ -20,7 +20,9 @@
 {
     [super viewDidLoad];
     
-    [self initNavRightWithImage:[UIImage imageNamed:@"icon_phone"]];
+    if (_marketType != Market_Msg) {
+        [self initNavRightWithText:@"联系我们"];
+    }
     
     [self initView];
 }
@@ -42,6 +44,7 @@
         
         WebViewController *controller = [[WebViewController alloc] init];
         controller.urlStr = [NSString stringWithFormat:@"%@h5/message", [Utils getIp]];
+        controller.marketType = Market_Msg;
         
         [self.navigationController pushViewController:controller animated:YES];
         
@@ -49,6 +52,7 @@
     
         WebViewController *controller = [[WebViewController alloc] init];
         controller.urlStr = [NSString stringWithFormat:@"%@h5/elevatorDecorationmessage", [Utils getIp]];
+        controller.marketType = Market_Msg;
         
         [self.navigationController pushViewController:controller animated:YES];
     }

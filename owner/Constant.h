@@ -31,13 +31,23 @@ typedef NS_ENUM(NSInteger, Market_Type) {
     
     Market_Lift,  //整体销售
     
-    Market_Decorate  //电梯装潢
+    Market_Decorate,  //电梯装潢
+    
+    Market_Msg  //留言
 };
 
 
 #pragma mark - 客服电话
 
 #define Custom_Service @"400-919-6333"
+
+#pragma mark - 定位字典
+
+#define User_Location @"user_location"
+
+#define User_Custom @"user_custom"
+
+#define Custom_Location_Complete @"custom_location_complete"
 
 
 #endif /* Constant_h */

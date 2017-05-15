@@ -15,6 +15,7 @@
 #import "EnsuranceMainController.h"
 #import "OtherController.h"
 #import "HelpWebViewController.h"
+#import "ReportController.h"
 
 
 @interface MainPageController  () <AddBannerViewDelegate>
@@ -58,7 +59,10 @@
     self.tableView.allowsSelection = NO;
     //self.tableView.bounces = NO;
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = footView;
+    
+    self.tableView.backgroundColor = [Utils getColorByRGB:@"#e1e1e1"];
     
     [self initBannerView];
     
@@ -125,9 +129,10 @@
 
 - (void)maintenance
 {
-    MaintenanceController *controller = [[MaintenanceController alloc] init];
+    ReportController *controller = [[ReportController alloc] init];
+    
     controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:controller];
 }
 
 - (void)ensurance
@@ -167,8 +172,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (2 == indexPath.row) {
+    if (3 == indexPath.row) {
         return 250;
+        
+    } else if (2 == indexPath.row) {
+        return 75;
     }
     
     return 120;

@@ -27,11 +27,16 @@
 
 @property (copy, nonatomic) NSString *address;
 
+@property (assign, nonatomic) CGFloat lat;
+
+@property (assign, nonatomic) CGFloat lng;
+
 @property (copy, nonatomic) NSString *loginname;
 
 @property (copy, nonatomic) NSString *mainttypeId;
 
 @property (assign, nonatomic) NSInteger frequency;
+
 
 //增值服务订单使用
 @property (copy, nonatomic) NSString *incrementTypeId;

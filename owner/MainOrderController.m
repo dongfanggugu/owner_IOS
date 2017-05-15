@@ -21,8 +21,9 @@
 #import "MainTypeDetailController.h"
 #import "OrderAmountCell.h"
 #import "PayViewController.h"
+#import "AddressLocationController.h"
 
-@interface MainOrderController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate>
+@interface MainOrderController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate, AddressLocationControllerDelegate>
 
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -37,7 +38,9 @@
 
 @property (weak, nonatomic) UITextField *tfCode;
 
-@property (weak, nonatomic) UITextField *tfAddress;
+@property (assign, nonatomic) CGFloat lat;
+
+@property (assign, nonatomic) CGFloat lng;
 
 
 @property (weak, nonatomic) OrderAmountCell *amountCell;
@@ -49,6 +52,8 @@
 @property (weak, nonatomic) KeyEditCell *nameCell;
 
 @property (weak, nonatomic) KeyEditBtnCell *telCell;
+
+@property (weak, nonatomic) KeyValueCell *addressCell;
 
 @end
 
@@ -107,12 +112,14 @@
             
         }
         
-        NSString *address = _tfAddress.text;
+        NSString *address = _addressCell.lbValue.text;
         
         if (0 == address.length) {
-            [HUDClass showHUDWithText:@"请填写您的地址"];
+            [HUDClass showHUDWithText:@"请选择您的地址"];
             return;
         }
+        
+        
         
         
         request.brand = brand;
@@ -120,6 +127,8 @@
         request.name = name;
         request.tel = tel;
         request.address = address;
+        request.lat = _lat;
+        request.lng = _lng;
     }
     
     
@@ -379,15 +388,23 @@
             return cell;
             
         } else {
-            KeyEditCell *cell = [KeyEditCell cellFromNib];
-            cell.lbKey.text = @"地址";
             
-            cell.tfValue.placeholder = @"地址";
-            _tfAddress = cell.tfValue;
-            
-
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
+            if (_addressCell) {
+                return _addressCell;
+                
+            } else {
+                KeyValueCell *cell =  [KeyValueCell cellFromNib];
+                _addressCell = cell;
+                
+                cell.lbKey.text = @"别墅地址";
+                cell.lbValue.text = @"点击选择别墅地址";
+                
+                cell.lbValue.userInteractionEnabled = YES;
+                
+                [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressLocation)]];
+                
+                return cell;
+            }
         }
     }
     
@@ -471,6 +488,23 @@
         
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
+
+- (void)addressLocation
+{
+    AddressLocationController *controller = [[AddressLocationController alloc] init];
+    controller.delegate = self;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - LocationControllerDelegate
+- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
+    _addressCell.lbValue.text = address;
+    _lat = lat;
+    _lng = lng;
 }
 
 #pragma mark - PayViewControllerDelegate
