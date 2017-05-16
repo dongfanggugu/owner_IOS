@@ -58,6 +58,7 @@
 {
     self.tableView.allowsSelection = NO;
     //self.tableView.bounces = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIView *footView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.tableFooterView = footView;
@@ -173,10 +174,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (3 == indexPath.row) {
-        return 250;
+        return 240;
         
     } else if (2 == indexPath.row) {
-        return 75;
+        return 150;
     }
     
     return 120;

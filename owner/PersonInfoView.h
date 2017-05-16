@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbName;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbTitle;
+
 @property (weak, nonatomic) id<PersonInfoViewDelegate> delegate;
 
 @end

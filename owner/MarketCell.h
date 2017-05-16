@@ -17,13 +17,9 @@
 
 + (CGFloat)cellHeight;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbTile;
-
-@property (weak, nonatomic) IBOutlet UILabel *lbTel;
+@property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivIcon;
-
-@property (weak, nonatomic) IBOutlet UIView *viewBg;
 
 @end
 

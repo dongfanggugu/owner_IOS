@@ -144,13 +144,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MainTypeInfo *info = [[MainTypeInfo alloc] initWithDictionary:self.arrayService[indexPath.row]];
     
-    ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
-    controller.serviceInfo = info;
-    
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
+    if (0 == indexPath.row) {
+        MainTypeInfo *info = [[MainTypeInfo alloc] initWithDictionary:self.arrayService[indexPath.row]];
+        
+        ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
+        controller.serviceInfo = info;
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } else {
+        [HUDClass showHUDWithText:@"功能开发中"];
+    }
 }
 
 @end

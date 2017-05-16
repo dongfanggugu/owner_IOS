@@ -18,8 +18,7 @@
 + (id)cellFromNib
 {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MarketCell" owner:nil options:nil];
-    if (0 == array.count)
-    {
+    if (0 == array.count) {
         return nil;
     }
     
@@ -33,7 +32,14 @@
 
 + (CGFloat)cellHeight
 {
-    return 145;
+    return 110;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    _lbTitle.layer.masksToBounds = YES;
+    _lbTitle.layer.cornerRadius = 42;
 }
 
 @end

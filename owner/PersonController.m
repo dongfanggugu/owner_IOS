@@ -35,7 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"怡墅"];
     [self initView];
 }
 
@@ -43,20 +42,31 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
     
     [self setUserView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)initView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenHeight - 49)];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.bounces = NO;
     
     _infoView = [PersonInfoView viewFromNib];
+    
+    _infoView.lbTitle.text = @"怡墅";
+    
+    _infoView.frame = CGRectMake(0, 0, self.screenWidth, 144);
     
     _tableView.tableHeaderView = _infoView;
     

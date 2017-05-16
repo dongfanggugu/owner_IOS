@@ -16,7 +16,7 @@
 
 @interface MarketDetailContrller()<UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
 
 @end
 
@@ -32,11 +32,15 @@
 
 - (void)initView
 {
-    _tableView.bounces = NO;
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
+    
+    [self.view addSubview:_tableView];
     
     _tableView.delegate = self;
     
     _tableView.dataSource = self;
+    
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -59,32 +63,25 @@
     MarketCell *cell = [tableView dequeueReusableCellWithIdentifier:[MarketCell identifier]];
     
     
-    if (!cell)
-    {
+    if (!cell) {
         cell = [MarketCell cellFromNib];
     }
     
     
-    if (0 == indexPath.row)
-    {
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_market1"];
-        cell.viewBg.backgroundColor = [Utils getColorByRGB:@"#809900"];
-        cell.lbTile.text = @"我要安装电梯";
-        cell.lbTel.text = @"整梯销售";
-    }
-    else if (1 == indexPath.row)
-    {
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_market2"];
-        cell.viewBg.backgroundColor = [Utils getColorByRGB:@"#008099"];
-        cell.lbTile.text = @"我要换配件";
-        cell.lbTel.text = @"电梯配件";
-    }
-    else if (2 == indexPath.row)
-    {
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_markt3"];
-        cell.viewBg.backgroundColor = [Utils getColorByRGB:@"#c7ac00"];
-        cell.lbTile.text = @"我要装修电梯";
-        cell.lbTel.text = @"电梯装潢";
+    if (0 == indexPath.row) {
+        cell.ivIcon.image = [UIImage imageNamed:@"market_1"];
+        cell.lbTitle.text = @"整梯销售";
+        cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#36b0f3"];
+        
+    } else if (1 == indexPath.row) {
+        cell.ivIcon.image = [UIImage imageNamed:@"market_2"];
+        cell.lbTitle.text = @"电梯配件";
+        cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#c7ac00"];
+        
+    } else if (2 == indexPath.row) {
+        cell.ivIcon.image = [UIImage imageNamed:@"market_3"];
+        cell.lbTitle.text = @"电梯装潢";
+        cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#339900"];
     }
     
     

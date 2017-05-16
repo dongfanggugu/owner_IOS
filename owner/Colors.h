@@ -11,6 +11,8 @@
 
 #define TITLE_COLOR @"#009A65"
 
+//#define TITLE_COLOR @"#51a938"
+
 #define COLOR_SEGMENT_UNSEL @"#06577C"
 
 #endif /* Colors_h */

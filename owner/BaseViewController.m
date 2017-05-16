@@ -126,18 +126,21 @@
 
 - (void)popup
 {
-//    if ([self.webView canGoBack]) {
-//        [self.webView goBack];
-//        
-//    } else {
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setNavIcon
 {
+    if (!self.navigationController) {
+        return;
+    }
+    
+    NSArray *array = self.navigationController.viewControllers;
+    
+    if (1 == array.count) {
+        return;
+    }
+    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     imageView.image = [UIImage imageNamed:@"back_normal"];
     [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popup)]];
