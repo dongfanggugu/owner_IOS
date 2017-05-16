@@ -34,6 +34,8 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
+
+
 - (CGFloat)screenWidth
 {
     return [UIScreen mainScreen].bounds.size.width;

@@ -41,8 +41,15 @@
     _tableView.dataSource = self;
     
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
+    
+    imageView.image = [UIImage imageNamed:@"icon_market_bottom"];
         
-    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _tableView.tableFooterView = imageView;
+    
+    [_tableView showCopyWrite];
+    
 }
 
 

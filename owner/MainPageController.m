@@ -56,8 +56,8 @@
 
 - (void)initView
 {
+    [self.tableView showCopyWrite];
     self.tableView.allowsSelection = NO;
-    //self.tableView.bounces = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIView *footView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -177,7 +177,7 @@
         return 240;
         
     } else if (2 == indexPath.row) {
-        return 150;
+        return 120;
     }
     
     return 120;

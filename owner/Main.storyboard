@@ -29,17 +29,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="go0-Tb-ZRt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="137.66666666666666" height="119"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="119"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="VAK-dc-Jfv">
-                                                            <rect key="frame" x="43.666666666666671" y="25" width="50.000000000000014" height="50"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_main_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="VAK-dc-Jfv">
+                                                            <rect key="frame" x="44" y="25" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="OoP-1g-YX9"/>
                                                                 <constraint firstAttribute="height" constant="50" id="nV0-nM-WZc"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电梯管家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEf-V1-lpf">
-                                                            <rect key="frame" x="0.0" y="85" width="137.66666666666666" height="21"/>
+                                                            <rect key="frame" x="0.0" y="85" width="138" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="qYp-CA-nmv"/>
                                                             </constraints>
@@ -58,10 +58,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVc-A2-1yX">
-                                                    <rect key="frame" x="138.66666666666669" y="0.0" width="137.66666666666669" height="119"/>
+                                                    <rect key="frame" x="138" y="0.0" width="138" height="119"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="急修服务" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dt-dZ-sWQ">
-                                                            <rect key="frame" x="0.0" y="85" width="137.66666666666666" height="21"/>
+                                                            <rect key="frame" x="0.0" y="85" width="138" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="lMu-an-ZK8"/>
                                                             </constraints>
@@ -69,8 +69,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_repair.png" translatesAutoresizingMaskIntoConstraints="NO" id="vDa-5f-hEg">
-                                                            <rect key="frame" x="44" y="25" width="50" height="50"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_repair_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="vDa-5f-hEg">
+                                                            <rect key="frame" x="44.333333333333343" y="25" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="4ct-BB-COz"/>
                                                                 <constraint firstAttribute="width" constant="50" id="qor-9T-CXm"/>
@@ -87,17 +87,17 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPP-xg-Pep">
-                                                    <rect key="frame" x="276.33333333333326" y="0.0" width="137.66666666666669" height="119"/>
+                                                    <rect key="frame" x="276" y="0.0" width="138" height="119"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ensure.png" translatesAutoresizingMaskIntoConstraints="NO" id="NMn-gD-uLt">
-                                                            <rect key="frame" x="43.666666666666686" y="25" width="50" height="50"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ensure_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="NMn-gD-uLt">
+                                                            <rect key="frame" x="44" y="25" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="jLv-Jf-h8t"/>
                                                                 <constraint firstAttribute="width" constant="50" id="zYq-Gs-BB8"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1元大保障" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg3-68-6il">
-                                                            <rect key="frame" x="0.0" y="85" width="137.66666666666669" height="21"/>
+                                                            <rect key="frame" x="0.0" y="85" width="138" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="Sno-wG-h24"/>
                                                             </constraints>
@@ -143,17 +143,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2a-rZ-x8W">
-                                                    <rect key="frame" x="0.0" y="0.0" width="137.66666666666666" height="119"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="119"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_knowledge.png" translatesAutoresizingMaskIntoConstraints="NO" id="qpa-r4-SBt">
-                                                            <rect key="frame" x="43.666666666666671" y="25" width="50.000000000000014" height="50"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_knowledge_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="qpa-r4-SBt">
+                                                            <rect key="frame" x="44" y="25" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="nTe-bv-AK0"/>
                                                                 <constraint firstAttribute="width" constant="50" id="w2R-ak-OdM"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电梯常识" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sY-1Y-CFT">
-                                                            <rect key="frame" x="0.0" y="85" width="137.66666666666666" height="21"/>
+                                                            <rect key="frame" x="0.0" y="85" width="138" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="PML-mW-jwx"/>
                                                             </constraints>
@@ -172,10 +172,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7F0-8y-jbu">
-                                                    <rect key="frame" x="138.66666666666669" y="0.0" width="137.66666666666669" height="119"/>
+                                                    <rect key="frame" x="138" y="0.0" width="138" height="119"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电梯商城" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdv-aQ-Cir">
-                                                            <rect key="frame" x="0.0" y="85" width="137.66666666666666" height="21"/>
+                                                            <rect key="frame" x="0.0" y="85" width="138" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="cA1-Uc-ql6"/>
                                                             </constraints>
@@ -184,7 +184,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_market_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-N7-8hF">
-                                                            <rect key="frame" x="44" y="25" width="50" height="50"/>
+                                                            <rect key="frame" x="44.333333333333343" y="25" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="vLe-4L-FeH"/>
                                                                 <constraint firstAttribute="width" constant="50" id="yW6-LW-Xy9"/>
@@ -201,10 +201,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ib-mD-pMr">
-                                                    <rect key="frame" x="276.33333333333326" y="0.0" width="137.66666666666669" height="119"/>
+                                                    <rect key="frame" x="276" y="0.0" width="138" height="119"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="增值服务" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNv-r4-BYf">
-                                                            <rect key="frame" x="0.0" y="85" width="137.66666666666669" height="21"/>
+                                                            <rect key="frame" x="0.0" y="85" width="138" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="wh2-Lt-EeL"/>
                                                             </constraints>
@@ -213,7 +213,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_other_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-Nl-5uP">
-                                                            <rect key="frame" x="44.666666666666686" y="25" width="50" height="50"/>
+                                                            <rect key="frame" x="45" y="25" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="dlY-i8-U9R"/>
                                                                 <constraint firstAttribute="height" constant="50" id="lIZ-Fg-mVm"/>
@@ -257,10 +257,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRC-Mj-Naa">
-                                                    <rect key="frame" x="0.0" y="64" width="414" height="70.666666666666657"/>
+                                                    <rect key="frame" x="0.0" y="52" width="414" height="82.666666666666657"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="honyum_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="e5D-wt-X5R">
-                                                            <rect key="frame" x="132" y="0.0" width="150" height="70.666666666666657"/>
+                                                            <rect key="frame" x="132" y="0.0" width="150" height="82.666666666666657"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="150" id="ZSP-D6-3iQ"/>
                                                             </constraints>
@@ -278,7 +278,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Xsk-yw-0ko"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.98431372549019602" green="0.78823529411764703" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -292,7 +292,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dzI-HZ-HFF" firstAttribute="top" secondItem="Z1Q-UB-vHD" secondAttribute="top" constant="4" id="3JI-00-dvZ"/>
-                                                <constraint firstItem="fRC-Mj-Naa" firstAttribute="top" secondItem="P6i-4I-b6P" secondAttribute="bottom" constant="20" id="3Td-hd-FvO"/>
+                                                <constraint firstItem="fRC-Mj-Naa" firstAttribute="top" secondItem="P6i-4I-b6P" secondAttribute="bottom" constant="8" id="3Td-hd-FvO"/>
                                                 <constraint firstItem="P6i-4I-b6P" firstAttribute="leading" secondItem="Z1Q-UB-vHD" secondAttribute="leading" id="C7C-dT-xtW"/>
                                                 <constraint firstItem="P6i-4I-b6P" firstAttribute="top" secondItem="dzI-HZ-HFF" secondAttribute="bottom" constant="4" id="Hjm-Fs-rp8"/>
                                                 <constraint firstItem="dzI-HZ-HFF" firstAttribute="centerX" secondItem="Z1Q-UB-vHD" secondAttribute="centerX" id="Lxm-LZ-Gnx"/>
@@ -870,13 +870,13 @@
     <resources>
         <image name="five_star.png" width="240" height="40"/>
         <image name="honyum_logo.png" width="240" height="80"/>
-        <image name="icon_ensure.png" width="102" height="102"/>
-        <image name="icon_knowledge.png" width="102" height="102"/>
-        <image name="icon_main.png" width="102" height="102"/>
+        <image name="icon_ensure_new.png" width="102" height="102"/>
+        <image name="icon_knowledge_new.png" width="102" height="102"/>
+        <image name="icon_main_new.png" width="102" height="102"/>
         <image name="icon_market_new.png" width="102" height="102"/>
         <image name="icon_other_new.png" width="102" height="102"/>
         <image name="icon_person_new.png" width="85" height="85"/>
-        <image name="icon_repair.png" width="102" height="102"/>
+        <image name="icon_repair_new.png" width="102" height="102"/>
         <image name="login_bg.png" width="720" height="1229"/>
         <image name="mainpage_bg.png" width="1000" height="936"/>
         <image name="marker_location.png" width="41" height="41"/>
