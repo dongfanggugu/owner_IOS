@@ -22,13 +22,15 @@
 
 - (void)initView
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 70, self.view.frame.size.width - 16, 0)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 70, self.self.screenWidth - 32, 0)];
     
     label.font = [UIFont systemFontOfSize:14];
     
     label.lineBreakMode = NSLineBreakByWordWrapping;
     
     label.text = _detail;
+    
+    label.numberOfLines = 0;
     
     [label sizeToFit];
     

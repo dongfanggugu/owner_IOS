@@ -233,7 +233,7 @@
     coor.longitude = lng;
     
     
-    [_mapView removeAnnotations:[_mapView annotations]];
+    //[_mapView removeAnnotations:[_mapView annotations]];
     BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
     annotation.coordinate = coor;
     [_mapView addAnnotation:annotation];
