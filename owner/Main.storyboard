@@ -213,7 +213,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_other_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-Nl-5uP">
-                                                            <rect key="frame" x="45" y="25" width="50" height="50"/>
+                                                            <rect key="frame" x="44" y="25" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="dlY-i8-U9R"/>
                                                                 <constraint firstAttribute="height" constant="50" id="lIZ-Fg-mVm"/>
@@ -273,7 +273,7 @@
                                                         <constraint firstItem="e5D-wt-X5R" firstAttribute="centerX" secondItem="fRC-Mj-Naa" secondAttribute="centerX" id="xMR-BM-r3o"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="——————— 五星级维保企业 ———————" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6i-4I-b6P">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="——————— 五星级电梯维保企业 ———————" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6i-4I-b6P">
                                                     <rect key="frame" x="0.0" y="23" width="414" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Xsk-yw-0ko"/>

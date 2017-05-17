@@ -19,12 +19,13 @@
 #import "SMSCodeResponse.h"
 #import "DatePickerDialog.h"
 #import "RepairAddRequest.h"
+#import "AddressLocationController.h"
 
 
 
 #define DATE_INIT @"点击选择上门日期"
 
-@interface RapidRepairController()<UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate>
+@interface RapidRepairController()<UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate, AddressLocationControllerDelegate>
 
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -43,8 +44,6 @@
 
 @property (weak, nonatomic) UITextField *tfCode;
 
-@property (weak, nonatomic) UITextField *tfAddress;
-
 @property (weak, nonatomic) UILabel *lbDate;
 
 @property (weak, nonatomic) SelectableCell *brandCell;
@@ -56,6 +55,12 @@
 @property (weak, nonatomic) KeyMultiEditCell *desCell;
 
 @property (weak, nonatomic) KeyValueCell *dateCell;
+
+@property (weak, nonatomic) KeyValueCell *addressCell;
+
+@property (assign, nonatomic) CGFloat lat;
+
+@property (assign, nonatomic) CGFloat lng;
 
 @end
 
@@ -131,10 +136,10 @@
             
         }
         
-        NSString *address = _tfAddress.text;
+        NSString *address = _addressCell.lbValue.text;
         
         if (0 == address.length) {
-            [HUDClass showHUDWithText:@"请填写您的地址"];
+            [HUDClass showHUDWithText:@"请选择您的地址"];
             return;
         }
         
@@ -143,6 +148,8 @@
         request.tel = tel;
         request.name = name;
         request.address = address;
+        request.lat = _lat;
+        request.lng = _lng;
         
     }
 
@@ -416,14 +423,22 @@
             return cell;
             
         } else if (3 == indexPath.row) {
-            KeyEditCell *cell = [KeyEditCell cellFromNib];
-            cell.lbKey.text = @"地址";
-            
-            cell.tfValue.placeholder = @"地址";
-            _tfAddress = cell.tfValue;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
+            if (_addressCell) {
+                return _addressCell;
+                
+            } else {
+                KeyValueCell *cell =  [KeyValueCell cellFromNib];
+                _addressCell = cell;
+                
+                cell.lbKey.text = @"别墅地址";
+                cell.lbValue.text = @"点击选择别墅地址";
+                
+                cell.lbValue.userInteractionEnabled = YES;
+                
+                [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressLocation)]];
+                
+                return cell;
+            }
         }
         
     }
@@ -499,5 +514,24 @@
     NSString *dateStr = [format stringFromDate:date];
     _lbDate.text = dateStr;
 }
+
+- (void)addressLocation
+{
+    AddressLocationController *controller = [[AddressLocationController alloc] init];
+    controller.delegate = self;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - LocationControllerDelegate
+- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
+    _addressCell.lbValue.text = address;
+    _lat = lat;
+    _lng = lng;
+}
+
+
 
 @end
