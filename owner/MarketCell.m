@@ -32,14 +32,14 @@
 
 + (CGFloat)cellHeight
 {
-    return 110;
+    return 80;
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     _lbTitle.layer.masksToBounds = YES;
-    _lbTitle.layer.cornerRadius = 42;
+    _lbTitle.layer.cornerRadius = 18;
 }
 
 @end

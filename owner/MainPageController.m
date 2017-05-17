@@ -16,6 +16,7 @@
 #import "OtherController.h"
 #import "HelpWebViewController.h"
 #import "ReportController.h"
+#import "CommonWebViewController.h"
 
 
 @interface MainPageController  () <AddBannerViewDelegate>
@@ -33,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ivMarket;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivOther;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ivExpert;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ivHonyum;
 
 
 @end
@@ -85,6 +90,13 @@
     
     _ivOther.userInteractionEnabled = YES;
     [_ivOther addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(other)]];
+    
+    
+    _ivExpert.userInteractionEnabled = YES;
+    [_ivExpert addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expert)]];
+    
+    _ivHonyum.userInteractionEnabled = YES;
+    [_ivHonyum addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(honyum)]];
     
 }
 
@@ -169,6 +181,26 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)expert
+{
+    CommonWebViewController *controller = [[CommonWebViewController alloc] init];
+    controller.titleStr = @"专家团队";
+    controller.urlLink = [NSString stringWithFormat:@"%@static/h5/expert.html", [Utils getIp]];
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)honyum
+{
+    CommonWebViewController *controller = [[CommonWebViewController alloc] init];
+    controller.titleStr = @"中建华宇";
+    controller.urlLink = [NSString stringWithFormat:@"%@static/h5/honyum.html", [Utils getIp]];
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -177,7 +209,7 @@
         return 240;
         
     } else if (2 == indexPath.row) {
-        return 120;
+        return 305;
     }
     
     return 120;

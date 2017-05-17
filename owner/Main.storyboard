@@ -249,18 +249,18 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="PnH-wV-AJx">
-                                        <rect key="frame" x="0.0" y="240" width="414" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="305" id="PnH-wV-AJx">
+                                        <rect key="frame" x="0.0" y="240" width="414" height="305"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PnH-wV-AJx" id="Z1Q-UB-vHD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="305"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRC-Mj-Naa">
-                                                    <rect key="frame" x="0.0" y="52" width="414" height="82.666666666666657"/>
+                                                    <rect key="frame" x="0.0" y="181" width="414" height="108.66666666666669"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="honyum_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="e5D-wt-X5R">
-                                                            <rect key="frame" x="132" y="0.0" width="150" height="82.666666666666657"/>
+                                                            <rect key="frame" x="132" y="0.0" width="150" height="108.66666666666669"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="150" id="ZSP-D6-3iQ"/>
                                                             </constraints>
@@ -274,7 +274,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="——————— 五星级电梯维保企业 ———————" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6i-4I-b6P">
-                                                    <rect key="frame" x="0.0" y="23" width="414" height="21"/>
+                                                    <rect key="frame" x="0.0" y="152" width="414" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Xsk-yw-0ko"/>
                                                     </constraints>
@@ -283,29 +283,38 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="five_star.png" translatesAutoresizingMaskIntoConstraints="NO" id="dzI-HZ-HFF">
-                                                    <rect key="frame" x="162" y="4" width="90" height="15"/>
+                                                    <rect key="frame" x="162" y="133" width="90" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="0ke-Kw-95Y"/>
                                                         <constraint firstAttribute="width" constant="90" id="b4L-Wv-jEw"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_expert.png" translatesAutoresizingMaskIntoConstraints="NO" id="oqx-Wq-S3D">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="125" id="E2f-Ad-PL0"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dzI-HZ-HFF" firstAttribute="top" secondItem="Z1Q-UB-vHD" secondAttribute="top" constant="4" id="3JI-00-dvZ"/>
                                                 <constraint firstItem="fRC-Mj-Naa" firstAttribute="top" secondItem="P6i-4I-b6P" secondAttribute="bottom" constant="8" id="3Td-hd-FvO"/>
                                                 <constraint firstItem="P6i-4I-b6P" firstAttribute="leading" secondItem="Z1Q-UB-vHD" secondAttribute="leading" id="C7C-dT-xtW"/>
                                                 <constraint firstItem="P6i-4I-b6P" firstAttribute="top" secondItem="dzI-HZ-HFF" secondAttribute="bottom" constant="4" id="Hjm-Fs-rp8"/>
+                                                <constraint firstAttribute="trailing" secondItem="oqx-Wq-S3D" secondAttribute="trailing" id="Kpg-9o-4wP"/>
                                                 <constraint firstItem="dzI-HZ-HFF" firstAttribute="centerX" secondItem="Z1Q-UB-vHD" secondAttribute="centerX" id="Lxm-LZ-Gnx"/>
                                                 <constraint firstAttribute="trailing" secondItem="P6i-4I-b6P" secondAttribute="trailing" id="M2O-Dd-5gC"/>
+                                                <constraint firstItem="dzI-HZ-HFF" firstAttribute="top" secondItem="oqx-Wq-S3D" secondAttribute="bottom" constant="8" id="Nja-cf-l1j"/>
+                                                <constraint firstItem="oqx-Wq-S3D" firstAttribute="leading" secondItem="Z1Q-UB-vHD" secondAttribute="leading" id="QPq-E9-u4b"/>
                                                 <constraint firstAttribute="bottom" secondItem="fRC-Mj-Naa" secondAttribute="bottom" constant="15" id="hQj-Md-CCA"/>
                                                 <constraint firstAttribute="trailing" secondItem="fRC-Mj-Naa" secondAttribute="trailing" id="q1b-p5-czk"/>
                                                 <constraint firstItem="fRC-Mj-Naa" firstAttribute="leading" secondItem="Z1Q-UB-vHD" secondAttribute="leading" id="q3g-4U-99q"/>
+                                                <constraint firstItem="oqx-Wq-S3D" firstAttribute="top" secondItem="Z1Q-UB-vHD" secondAttribute="top" id="wHk-8X-dtn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="228" id="VUw-ql-WhX">
-                                        <rect key="frame" x="0.0" y="390" width="414" height="228"/>
+                                        <rect key="frame" x="0.0" y="545" width="414" height="228"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VUw-ql-WhX" id="4ei-nw-I0v">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
@@ -505,6 +514,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="du0-45-7f6"/>
                     <connections>
+                        <outlet property="ivExpert" destination="oqx-Wq-S3D" id="FVf-7K-SH9"/>
+                        <outlet property="ivHonyum" destination="e5D-wt-X5R" id="BgZ-eg-TCD"/>
                         <outlet property="ivInsure" destination="NMn-gD-uLt" id="m66-qM-cEg"/>
                         <outlet property="ivKnowledge" destination="qpa-r4-SBt" id="mGW-HT-Lr6"/>
                         <outlet property="ivMaintenance" destination="VAK-dc-Jfv" id="MNq-hT-NLy"/>
@@ -700,13 +711,24 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYS-lR-piO">
-                                <rect key="frame" x="284" y="535" width="50" height="25"/>
+                                <rect key="frame" x="80" y="535" width="50" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="sBd-vk-DcQ"/>
                                     <constraint firstAttribute="width" constant="50" id="wae-9B-d3Q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="注册">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noc-cw-mIK">
+                                <rect key="frame" x="274" y="535.66666666666663" width="60" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="GIH-Bd-ZUW"/>
+                                    <constraint firstAttribute="width" constant="60" id="oD9-sS-d5O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="忘记密码">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -718,15 +740,17 @@
                             <constraint firstItem="e03-L2-prd" firstAttribute="top" secondItem="ihU-P6-kWZ" secondAttribute="bottom" constant="30" id="70V-0p-Bvb"/>
                             <constraint firstItem="e03-L2-prd" firstAttribute="leading" secondItem="tcy-OD-Jfl" secondAttribute="leading" constant="80" id="E1u-F7-L8b"/>
                             <constraint firstItem="ihU-P6-kWZ" firstAttribute="top" secondItem="F9K-Tw-L7r" secondAttribute="bottom" constant="110" id="EKv-TU-q3x"/>
-                            <constraint firstItem="cYS-lR-piO" firstAttribute="trailing" secondItem="iuZ-la-SSy" secondAttribute="trailing" id="Lv5-FO-ZIY"/>
+                            <constraint firstItem="noc-cw-mIK" firstAttribute="centerY" secondItem="cYS-lR-piO" secondAttribute="centerY" id="I55-Yc-4lr"/>
                             <constraint firstItem="F9K-Tw-L7r" firstAttribute="centerX" secondItem="tcy-OD-Jfl" secondAttribute="centerX" id="MCx-km-m8q"/>
                             <constraint firstItem="iuZ-la-SSy" firstAttribute="top" secondItem="e03-L2-prd" secondAttribute="bottom" constant="80" id="N2N-JZ-QCr"/>
                             <constraint firstItem="e8L-9V-eRf" firstAttribute="top" secondItem="tcy-OD-Jfl" secondAttribute="top" id="OPw-h8-l5E"/>
                             <constraint firstAttribute="trailing" secondItem="iuZ-la-SSy" secondAttribute="trailing" constant="80" id="VLZ-uC-dsg"/>
                             <constraint firstAttribute="trailing" secondItem="e03-L2-prd" secondAttribute="trailing" constant="80" id="Ysf-fg-vhs"/>
                             <constraint firstAttribute="bottom" secondItem="e8L-9V-eRf" secondAttribute="bottom" id="cSZ-ME-ToJ"/>
+                            <constraint firstItem="cYS-lR-piO" firstAttribute="leading" secondItem="iuZ-la-SSy" secondAttribute="leading" id="cTl-rJ-whj"/>
                             <constraint firstItem="e8L-9V-eRf" firstAttribute="leading" secondItem="tcy-OD-Jfl" secondAttribute="leading" id="dQl-SP-Gry"/>
                             <constraint firstAttribute="trailing" secondItem="e8L-9V-eRf" secondAttribute="trailing" id="kv5-JI-ekn"/>
+                            <constraint firstItem="noc-cw-mIK" firstAttribute="trailing" secondItem="iuZ-la-SSy" secondAttribute="trailing" id="laO-Hg-5So"/>
                             <constraint firstItem="cYS-lR-piO" firstAttribute="top" secondItem="iuZ-la-SSy" secondAttribute="bottom" constant="15" id="sJs-oB-8Xi"/>
                             <constraint firstItem="ihU-P6-kWZ" firstAttribute="leading" secondItem="tcy-OD-Jfl" secondAttribute="leading" constant="80" id="sMa-z4-mgv"/>
                             <constraint firstItem="iuZ-la-SSy" firstAttribute="leading" secondItem="tcy-OD-Jfl" secondAttribute="leading" constant="80" id="vwL-dt-v37"/>
@@ -734,6 +758,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="spK-bz-Zf4"/>
                     <connections>
+                        <outlet property="btnForget" destination="noc-cw-mIK" id="aZm-do-cz3"/>
                         <outlet property="btnLogin" destination="iuZ-la-SSy" id="qD1-oq-iqg"/>
                         <outlet property="btnRegister" destination="cYS-lR-piO" id="u7D-I4-lHV"/>
                         <outlet property="tfPwd" destination="e03-L2-prd" id="Nxi-Wn-C7W"/>
@@ -871,6 +896,7 @@
         <image name="five_star.png" width="240" height="40"/>
         <image name="honyum_logo.png" width="240" height="80"/>
         <image name="icon_ensure_new.png" width="102" height="102"/>
+        <image name="icon_expert.png" width="720" height="240"/>
         <image name="icon_knowledge_new.png" width="102" height="102"/>
         <image name="icon_main_new.png" width="102" height="102"/>
         <image name="icon_market_new.png" width="102" height="102"/>

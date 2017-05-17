@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
-@property (weak, nonatomic) IBOutlet UIImageView *ivIcon;
+@property (weak, nonatomic) IBOutlet UILabel *lbContent;
 
 @end
 

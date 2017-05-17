@@ -67,4 +67,7 @@
 //获取用户订购的增值服务
 #define URL_GET_EXTRA @"getIncrementListByOwner"
 
+//忘记密码
+#define URL_PWD_FORGET @"pwdForget"
+
 #endif /* NetConstant_h */

@@ -34,19 +34,21 @@
 {
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     
+    _tableView.backgroundColor = [Utils getColorByRGB:@"#E1E1E1"];
+    
     [self.view addSubview:_tableView];
     
     _tableView.delegate = self;
     
     _tableView.dataSource = self;
     
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
     
-    imageView.image = [UIImage imageNamed:@"icon_market_bottom"];
+    imageView.image = [UIImage imageNamed:@"icon_market_top"];
+    
+    _tableView.tableHeaderView = imageView;
         
-    _tableView.tableFooterView = imageView;
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [_tableView showCopyWrite];
     
@@ -76,19 +78,25 @@
     
     
     if (0 == indexPath.row) {
-        cell.ivIcon.image = [UIImage imageNamed:@"market_1"];
-        cell.lbTitle.text = @"整梯销售";
+        cell.lbTitle.text = @"售";
         cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#36b0f3"];
         
+        cell.lbContent.text = @"我要买电梯";
+        cell.lbContent.textColor = [Utils getColorByRGB:@"#36b0f3"];
+        
     } else if (1 == indexPath.row) {
-        cell.ivIcon.image = [UIImage imageNamed:@"market_2"];
-        cell.lbTitle.text = @"电梯配件";
-        cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#c7ac00"];
+        cell.lbTitle.text = @"饰";
+        cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#f79e6e"];
+        
+        cell.lbContent.text = @"我要选装潢";
+        cell.lbContent.textColor = [Utils getColorByRGB:@"#f79e6e"];
         
     } else if (2 == indexPath.row) {
-        cell.ivIcon.image = [UIImage imageNamed:@"market_3"];
-        cell.lbTitle.text = @"电梯装潢";
-        cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#339900"];
+        cell.lbTitle.text = @"配";
+        cell.lbTitle.backgroundColor = [Utils getColorByRGB:@"#00d68f"];
+        
+        cell.lbContent.text = @"我要换配件";
+        cell.lbContent.textColor = [Utils getColorByRGB:@"#00d68f"];
     }
     
     

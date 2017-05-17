@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LoginController.h"
 #import "JPUSHService.h"
+#import "ForgetViewController.h"
 
 @interface LoginController()
 
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfPwd;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnRegister;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnForget;
 
 @end
 
@@ -63,15 +66,17 @@
     _btnLogin.layer.masksToBounds = YES;
     _btnLogin.layer.cornerRadius = 18;
     
-    NSString *userName = [[Config shareConfig] getUserName];
-    if (userName.length > 0)
+    NSString *tel = [[Config shareConfig] getTel];
+    if (tel.length > 0)
     {
-        _tfUser.text = userName;
+        _tfUser.text = tel;
     }
     
     [_btnLogin addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnRegister addTarget:self action:@selector(registerUser) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnForget addTarget:self action:@selector(forget) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)login
@@ -111,6 +116,15 @@
 - (void)registerUser
 {
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"register_controller"];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)forget
+{
+    ForgetViewController *controller = [[ForgetViewController alloc] init];
+    
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -126,12 +140,10 @@
     [JPUSHService setTags:nil alias:[[Config shareConfig] getToken] fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         NSLog(@"zhenhao---rescode: %d, tags: %@, alias: %@", iResCode, iTags , iAlias);
         
-        if (0 == iResCode)
-        {
+        if (0 == iResCode) {
             NSLog(@"zhenhao:jpush register successfully!");
-        }
-        else
-        {
+            
+        } else {
             NSString *err = [NSString stringWithFormat:@"%d:注册消息服务器失败，请重新再试", iResCode];
             NSLog(@"zhenhao:%@", err);
             
