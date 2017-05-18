@@ -203,6 +203,8 @@
 		655ADFBD1E2EFE4F00F1F036 /* icon_other4.png in Resources */ = {isa = PBXBuildFile; fileRef = 655ADFB91E2EFE4F00F1F036 /* icon_other4.png */; };
 		655ADFC01E2EFE9E00F1F036 /* OtherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655ADFBF1E2EFE9E00F1F036 /* OtherController.m */; };
 		656230FB1E67A7B000335819 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656230FA1E67A7B000335819 /* MainTabBarController.m */; };
+		658CB5521ECD942700A29498 /* DialogEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658CB5511ECD942700A29498 /* DialogEditView.xib */; };
+		658CB5551ECD943A00A29498 /* DialogEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5541ECD943A00A29498 /* DialogEditView.m */; };
 		658E22011EBB04FF008D9227 /* ExtraServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E22001EBB04FF008D9227 /* ExtraServiceController.m */; };
 		658FE6041E9F14D1002CA85F /* icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6031E9F14D1002CA85F /* icon_up.png */; };
 		658FE6061E9F14DC002CA85F /* icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6051E9F14DC002CA85F /* icon_down.png */; };
@@ -579,6 +581,9 @@
 		655ADFBF1E2EFE9E00F1F036 /* OtherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherController.m; sourceTree = "<group>"; };
 		656230F91E67A7A000335819 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		656230FA1E67A7B000335819 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		658CB5511ECD942700A29498 /* DialogEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialogEditView.xib; sourceTree = "<group>"; };
+		658CB5531ECD943A00A29498 /* DialogEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogEditView.h; sourceTree = "<group>"; };
+		658CB5541ECD943A00A29498 /* DialogEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogEditView.m; sourceTree = "<group>"; };
 		658E21FF1EBB04FF008D9227 /* ExtraServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceController.h; sourceTree = "<group>"; };
 		658E22001EBB04FF008D9227 /* ExtraServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceController.m; sourceTree = "<group>"; };
 		658FE6031E9F14D1002CA85F /* icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_up.png; sourceTree = "<group>"; };
@@ -871,6 +876,8 @@
 		652544571E1F20B70027B28B /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				658CB5531ECD943A00A29498 /* DialogEditView.h */,
+				658CB5541ECD943A00A29498 /* DialogEditView.m */,
 				65228ECE1EBC42EA007A1300 /* ExtraServiceCell.h */,
 				65228ECF1EBC42EA007A1300 /* ExtraServiceCell.m */,
 				6544C7491E6806F70050A9D3 /* DatePickerDialog.h */,
@@ -954,8 +961,11 @@
 		652544591E1F20CE0027B28B /* Nib */ = {
 			isa = PBXGroup;
 			children = (
+				65FE08AC1EA73B59002C9397 /* ContentCell.xib */,
 				6544C7471E6806E90050A9D3 /* DatePickerDialog.xib */,
+				658CB5511ECD942700A29498 /* DialogEditView.xib */,
 				655ADF361E25FE8D00F1F036 /* EvaluateView.xib */,
+				65228ED11EBC42FF007A1300 /* ExtraServiceCell.xib */,
 				65E19BDC1E67E94600C6860D /* KeyEditBtnCell.xib */,
 				65E19BBD1E67C0E500C6860D /* KeyEditCell.xib */,
 				65E19BBE1E67C0E500C6860D /* KeyMultiEditCell.xib */,
@@ -964,22 +974,20 @@
 				65FE08A41EA59ECE002C9397 /* ListDialogView.xib */,
 				65E19BAD1E67BFDA00C6860D /* MainOrderInfoCell.xib */,
 				6544C76B1E690C7D0050A9D3 /* MainOrderInfoView.xib */,
+				655593AB1EC942AA00977291 /* MaintFloatView.xib */,
 				65E19BA21E67B26600C6860D /* MainTypeCell.xib */,
 				655ADF9B1E2DEA5800F1F036 /* MarketCell.xib */,
+				65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */,
 				6544C7661E68FEF60050A9D3 /* OrderInfoCell.xib */,
+				65FE08E11EB17EA6002C9397 /* PayInfoCell.xib */,
 				652544BE1E1F63760027B28B /* PersonHeaderView.xib */,
 				6544C79F1E6952D20050A9D3 /* PersonInfoView.xib */,
 				6544C7A61E69552A0050A9D3 /* PersonItemCell.xib */,
+				65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */,
 				6544C78B1E693AF50050A9D3 /* RepairTaskCell.xib */,
 				65E19BD71E67C76200C6860D /* SelectableCell.xib */,
-				6525447C1E1F37EF0027B28B /* WorkerInfoView.xib */,
-				65FE08AC1EA73B59002C9397 /* ContentCell.xib */,
-				65FE08CB1EAF4599002C9397 /* OrderAmountCell.xib */,
-				65FE08DC1EB08F12002C9397 /* RepairInfoView.xib */,
-				65FE08E11EB17EA6002C9397 /* PayInfoCell.xib */,
 				65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */,
-				65228ED11EBC42FF007A1300 /* ExtraServiceCell.xib */,
-				655593AB1EC942AA00977291 /* MaintFloatView.xib */,
+				6525447C1E1F37EF0027B28B /* WorkerInfoView.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1529,6 +1537,7 @@
 				65E19BAE1E67BFDA00C6860D /* MainOrderInfoCell.xib in Resources */,
 				650596CF1E8A4609009A5602 /* icon_decorate.png in Resources */,
 				652545091E230FE90027B28B /* icon_user.png in Resources */,
+				658CB5521ECD942700A29498 /* DialogEditView.xib in Resources */,
 				652544FF1E1F87EF0027B28B /* icon_maintenance_record.png in Resources */,
 				655ADF7F1E2861E100F1F036 /* icon_person_default.png in Resources */,
 				650596AE1E8A334C009A5602 /* login_bg.png in Resources */,
@@ -1766,6 +1775,7 @@
 				6525444C1E1F206B0027B28B /* ResponseHead.m in Sources */,
 				652544851E1F37FC0027B28B /* CalloutAnnotationView.m in Sources */,
 				65228EDE1EC30C54007A1300 /* WebViewController.m in Sources */,
+				658CB5551ECD943A00A29498 /* DialogEditView.m in Sources */,
 				6544C79E1E69510B0050A9D3 /* MainTaskEvaluateRequest.m in Sources */,
 				65E19BC71E67C0FF00C6860D /* KeyValueBtnCell.m in Sources */,
 				65E3692D1E6CFF0B00E4CF04 /* MainTypeDetailController.m in Sources */,

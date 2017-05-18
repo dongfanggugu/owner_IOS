@@ -20,6 +20,7 @@
 #import "DatePickerDialog.h"
 #import "RepairAddRequest.h"
 #import "AddressLocationController.h"
+#import "DialogEditView.h"
 
 
 
@@ -253,10 +254,20 @@
                 
                 _lbBrand = cell.lbContent;
                 
+                __weak typeof (cell) weakCell = cell;
+                
+                __weak typeof (self) weakSelf = self;
+                
                 if (!self.login) {
                     [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                         BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
-                        [cell setData:[response getBrandList]];
+                        [weakCell setData:[response getBrandList]];
+                        
+                        [weakCell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                            if ([content isEqualToString:@"其他"]) {
+                                [weakSelf showEditDialog:weakCell];
+                            }
+                        }];
                     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
                         
                     }];
@@ -532,6 +543,22 @@
     _lng = lng;
 }
 
+
+- (void)showEditDialog:(SelectableCell *)cell
+{
+    DialogEditView *dialog = [DialogEditView viewFromNib];
+    
+    [dialog addOnClickOkListener:^(NSString *content) {
+        cell.lbContent.text = content;
+        
+    }];
+    
+    [dialog addOnClickCancelListener:^{
+        cell.lbContent.text = @"";
+    }];
+    
+    [dialog show];
+}
 
 
 @end

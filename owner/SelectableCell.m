@@ -143,12 +143,10 @@
     _ivFlag.image = [UIImage imageNamed:@"icon_down"];
     _lbContent.text = _content;
     
-    if (_afterSelected != nil)
-    {
+    if (_afterSelected != nil) {
         _afterSelected(key, content);
-    }
-    else
-    {
+        
+    } else {
         
     }
 }

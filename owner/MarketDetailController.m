@@ -127,12 +127,7 @@
         [self.navigationController pushViewController:controller animated:YES];
         
     } else if (1 == indexPath.row) {
-        UIViewController *controller = [[ElevatorPartsController alloc] init];
         
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
-        
-    } else if (2 == indexPath.row) {
         WebViewController *controller = [[WebViewController alloc] init];
         controller.marketType = Market_Decorate;
         
@@ -142,6 +137,11 @@
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
         
+    } else if (2 == indexPath.row) {
+        UIViewController *controller = [[ElevatorPartsController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
     }
 
 }

@@ -97,7 +97,7 @@
     NSLog(@"url:%@", url);
     
     if ([url containsString:@"indexPage"]) {
-        [self setNavTitle:@"整体销售"];
+        [self setNavTitle:@"整梯销售"];
         
     } else if ([url containsString:@"message"]) {
         [self setNavTitle:@"留言"];

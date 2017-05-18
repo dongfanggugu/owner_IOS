@@ -106,14 +106,29 @@
         cell = [MainTypeCell cellFromNib];
     }
     
+    
+    
     NSDictionary *info = self.arrayService[indexPath.row];
+    
+    if (indexPath.row > 0) {
+        cell.viewBottom.backgroundColor = [Utils getColorByRGB:@"#cccccc"];
+        
+        cell.lbName.textColor = [Utils getColorByRGB:@"#cccccc"];
+        cell.lbContent.textColor = [Utils getColorByRGB:@"#cccccc"];
+    }
     
     cell.lbName.text = info[@"name"];
     
     cell.lbContent.text = info[@"content"];
     
-    cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [info[@"price"] floatValue]];
-    
+    if (0 == indexPath.row) {
+        cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf/月", [info[@"price"] floatValue]];
+        
+    } else {
+        if ([info[@"price"] floatValue] <= 0.001) {
+            cell.lbPrice.text = @"";
+        }
+    }
     NSString *url = info[@"logo"];
     
     if (url.length > 0) {
@@ -122,14 +137,17 @@
     
     
     __weak typeof (self) weakSelf = self;
-    [cell setOnClickListener:^{
-        MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
-        
-        controller.detail = info[@"content"];
-        
-        controller.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:controller animated:YES];
-    }];
+    
+    if (0 == indexPath.row) {
+        [cell setOnClickListener:^{
+            MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
+            
+            controller.detail = info[@"content"];
+            
+            controller.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:controller animated:YES];
+        }];
+    }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

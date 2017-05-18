@@ -120,6 +120,7 @@
                 <outlet property="lbName" destination="dwJ-Jn-HDs" id="OgZ-g5-S2z"/>
                 <outlet property="lbPrice" destination="Gra-v7-8pe" id="sbl-FI-v2w"/>
                 <outlet property="viewBg" destination="E6J-IS-DUb" id="tnI-g1-yv1"/>
+                <outlet property="viewBottom" destination="QJs-wp-9lh" id="5OJ-ou-kFM"/>
             </connections>
             <point key="canvasLocation" x="-17.5" y="58"/>
         </tableViewCell>

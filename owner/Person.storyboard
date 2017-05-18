@@ -382,7 +382,7 @@
         <!--Person Modify Controller-->
         <scene sceneID="sTm-QT-cOF">
             <objects>
-                <viewController storyboardIdentifier="ModifyDetail" id="6rI-r2-Yne" customClass="PersonModifyController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModifyDetail" automaticallyAdjustsScrollViewInsets="NO" id="6rI-r2-Yne" customClass="PersonModifyController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="StZ-UC-goz"/>
                         <viewControllerLayoutGuide type="bottom" id="jxZ-22-jXd"/>
@@ -418,7 +418,7 @@
                             <constraint firstAttribute="trailing" secondItem="tzn-ML-EEP" secondAttribute="trailing" constant="16" id="H7t-8k-LcI"/>
                             <constraint firstItem="QuX-Pr-36O" firstAttribute="centerX" secondItem="Efp-IG-CfL" secondAttribute="centerX" id="Q2r-4B-BKc"/>
                             <constraint firstItem="tzn-ML-EEP" firstAttribute="leading" secondItem="Efp-IG-CfL" secondAttribute="leading" constant="16" id="Ubh-wT-qHT"/>
-                            <constraint firstItem="QuX-Pr-36O" firstAttribute="top" secondItem="tzn-ML-EEP" secondAttribute="bottom" constant="80" id="WPp-nu-pFm"/>
+                            <constraint firstItem="QuX-Pr-36O" firstAttribute="top" secondItem="Efp-IG-CfL" secondAttribute="top" constant="150" id="aPe-UQ-9xr"/>
                             <constraint firstItem="tzn-ML-EEP" firstAttribute="top" secondItem="StZ-UC-goz" secondAttribute="bottom" constant="20" id="dfw-Yj-CTB"/>
                         </constraints>
                     </view>

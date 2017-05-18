@@ -31,6 +31,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (weak, nonatomic) IBOutlet UIView *viewBottom;
+
 @end
 
 #endif /* MainTypeCell_h */

@@ -11,6 +11,7 @@
 #import "OrderInfoCell.h"
 #import "RepairListResponse.h"
 #import "RepairInfoController.h"
+#import "DialogEditView.h"
 
 @interface RepairOrderController () <UITableViewDelegate, UITableViewDataSource>
 

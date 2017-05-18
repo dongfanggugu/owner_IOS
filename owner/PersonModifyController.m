@@ -13,6 +13,7 @@
 #import "HttpClient.h"
 #import "BrandListResponse.h"
 #import "ListDialogView.h"
+#import "DialogEditView.h"
 
 
 @interface PersonModifyController()<ListDialogViewDelegate>
@@ -62,7 +63,7 @@
         leftView.backgroundColor = [Utils getColorByRGB:@"#EFEFF4"];
         [self.view addSubview:leftView];
         
-        _lbBrand = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, self.view.frame.size.width - 40, 28)];
+        _lbBrand = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, self.screenWidth - 40, 28)];
         
         _lbBrand.backgroundColor = [Utils getColorByRGB:@"#EFEFF4"];
         
@@ -211,7 +212,30 @@
 
 - (void)onSelectItem:(NSString *)key content:(NSString *)content
 {
-    _lbBrand.text = content;
+    
+    
+    if ([content isEqualToString:@"其他"]) {
+        [self showEditDialog:_lbBrand];
+        
+    } else {
+        _lbBrand.text = content;
+    }
+}
+
+- (void)showEditDialog:(UILabel *)label
+{
+    DialogEditView *dialog = [DialogEditView viewFromNib];
+    
+    [dialog addOnClickOkListener:^(NSString *content) {
+        label.text = content;
+        
+    }];
+    
+    [dialog addOnClickCancelListener:^{
+        //label.text = @"";
+    }];
+    
+    [dialog show];
 }
 
 @end

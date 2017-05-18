@@ -13,6 +13,7 @@
 #import "BrandListResponse.h"
 #import "AddressLocationController.h"
 #import "KeyValueCell.h"
+#import "DialogEditView.h"
 
 #pragma mark - RegisterCell
 
@@ -211,9 +212,19 @@
         
         cell.lbKey.text = @"电梯品牌";
         
+        __weak typeof (cell) weakCell = cell;
+        
+        __weak typeof (self) weakSelf = self;
+        
         [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
-            [cell setData:[response getBrandList]];
+            [weakCell setData:[response getBrandList]];
+            
+            [weakCell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                if ([content isEqualToString:@"其他"]) {
+                    [weakSelf showEditDialog:weakCell];
+                }
+            }];
         } failure:^(NSURLSessionDataTask *task, NSError *errr) {
             
         }];
@@ -260,6 +271,22 @@
     _addressCell.lbValue.text = address;
     _lat = lat;
     _lng = lng;
+}
+
+- (void)showEditDialog:(SelectableCell *)cell
+{
+    DialogEditView *dialog = [DialogEditView viewFromNib];
+    
+    [dialog addOnClickOkListener:^(NSString *content) {
+        cell.lbContent.text = content;
+        
+    }];
+    
+    [dialog addOnClickCancelListener:^{
+        cell.lbContent.text = @"";
+    }];
+    
+    [dialog show];
 }
 
 @end
