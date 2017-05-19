@@ -25,7 +25,7 @@
     [self setNavTitle:@"关于"];
     
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    _versionLabel.text = version;
+    _versionLabel.text = [NSString stringWithFormat:@"V%@", version];
 }
 
 @end

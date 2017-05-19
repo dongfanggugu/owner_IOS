@@ -193,7 +193,7 @@
 
 - (void)getMainType
 {
-    [[HttpClient shareClient] post:URL_MAIN_TYPE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] bagpost:URL_MAIN_TYPE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         MainTypeListResponse *response = [[MainTypeListResponse alloc] initWithDictionary:responseObject];
         
         [self.arrayMaint removeAllObjects];
@@ -210,7 +210,7 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     __weak typeof(self) weakSelf = self;
-    [[HttpClient shareClient] post:@"getAllCommunitysByPropertyOnOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] bagpost:@"getAllCommunitysByPropertyOnOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [weakSelf.arrayProject removeAllObjects];
         [weakSelf.arrayProject addObjectsFromArray:[responseObject objectForKey:@"body"]];
@@ -223,8 +223,7 @@
 
 - (void)showProjects
 {
-    for (NSInteger i = 0; i < _arrayProject.count; i++)
-    {
+    for (NSInteger i = 0; i < _arrayProject.count; i++) {
         CGFloat lat = [[_arrayProject[i] objectForKey:@"lat"] floatValue];
         CGFloat lng = [[_arrayProject[i] objectForKey:@"lng"] floatValue];
         CalloutMapAnnotation *marker = [[CalloutMapAnnotation alloc] init];

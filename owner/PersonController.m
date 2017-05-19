@@ -177,25 +177,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (!self.login) {
-        [HUDClass showHUDWithText:@"请您先登录"];
-        return;
-    }
  
     if (0 == indexPath.row) {
+        
+        if (!self.login) {
+            [HUDClass showHUDWithText:@"请您先登录"];
+            return;
+        }
+        
         MainInfoController *controller = [[MainInfoController alloc] init];
         
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
         
     } else if (1 == indexPath.row) {
+        if (!self.login) {
+            [HUDClass showHUDWithText:@"请您先登录"];
+            return;
+        }
+        
         RepairOrderController *controller = [[RepairOrderController alloc] init];
         controller.hidesBottomBarWhenPushed = YES;
         
         [self.navigationController pushViewController:controller animated:YES];
         
     } else if (2 == indexPath.row) {
+        if (!self.login) {
+            [HUDClass showHUDWithText:@"请您先登录"];
+            return;
+        }
+        
         ExtraServiceController *controller = [[ExtraServiceController alloc] init];
         
         controller.hidesBottomBarWhenPushed = YES;

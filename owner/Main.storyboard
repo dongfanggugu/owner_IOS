@@ -249,27 +249,27 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="305" id="PnH-wV-AJx">
-                                        <rect key="frame" x="0.0" y="240" width="414" height="305"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="255" id="PnH-wV-AJx">
+                                        <rect key="frame" x="0.0" y="240" width="414" height="255"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PnH-wV-AJx" id="Z1Q-UB-vHD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="305"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="254.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRC-Mj-Naa">
-                                                    <rect key="frame" x="0.0" y="181" width="414" height="108.66666666666669"/>
+                                                    <rect key="frame" x="0.0" y="181" width="414" height="58.666666666666657"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="honyum_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="e5D-wt-X5R">
-                                                            <rect key="frame" x="132" y="0.0" width="150" height="108.66666666666669"/>
+                                                            <rect key="frame" x="132" y="4.3333333333333428" width="150" height="50"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="A9K-FM-Eaz"/>
                                                                 <constraint firstAttribute="width" constant="150" id="ZSP-D6-3iQ"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="e5D-wt-X5R" secondAttribute="bottom" id="XcS-mx-ihM"/>
-                                                        <constraint firstItem="e5D-wt-X5R" firstAttribute="top" secondItem="fRC-Mj-Naa" secondAttribute="top" id="avO-HX-I82"/>
+                                                        <constraint firstItem="e5D-wt-X5R" firstAttribute="centerY" secondItem="fRC-Mj-Naa" secondAttribute="centerY" id="MC4-Si-VIt"/>
                                                         <constraint firstItem="e5D-wt-X5R" firstAttribute="centerX" secondItem="fRC-Mj-Naa" secondAttribute="centerX" id="xMR-BM-r3o"/>
                                                     </constraints>
                                                 </view>
@@ -314,7 +314,7 @@
                                         <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="228" id="VUw-ql-WhX">
-                                        <rect key="frame" x="0.0" y="545" width="414" height="228"/>
+                                        <rect key="frame" x="0.0" y="495" width="414" height="228"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VUw-ql-WhX" id="4ei-nw-I0v">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>

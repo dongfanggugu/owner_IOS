@@ -20,6 +20,11 @@
 
 @implementation SettingsCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
 
 @end
 
@@ -132,16 +137,13 @@
     
     NSInteger row = indexPath.row;
     
-    if (0 == row)
-    {
+    if (0 == row) {
         cell.label.text = @"修改密码";
-    }
-    else if (1 ==  row)
-    {
+        
+    } else if (1 ==  row) {
         cell.label.text = @"检查更新";
-    }
-    else if (2 ==  row)
-    {
+        
+    } else if (2 ==  row) {
         cell.label.text = @"关于";
     }
     
@@ -152,20 +154,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
-    if (0 == row)
-    {
+    if (0 == row) {
+        
+        if (!self.login) {
+            [HUDClass showHUDWithText:@"需要登录才能修改密码"];
+            return;
+        }
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"PasswordPage"];
         
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-    }
-    else if (1 == row)
-    {
+        
+    } else if (1 == row) {
         [self checkUpdate];
-    }
-    else if (2 == row)
-    {
+        
+    } else if (2 == row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"settings_about"];
         self.hidesBottomBarWhenPushed = YES;

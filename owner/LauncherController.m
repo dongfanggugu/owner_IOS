@@ -25,7 +25,7 @@
     
     NSMutableArray *dataArr=[[NSMutableArray alloc] init];
     
-    NSString *file = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"guide"] ofType:@"gif"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"welcome_page_gif"] ofType:@"gif"];
 
     [dataArr addObject:file];
     

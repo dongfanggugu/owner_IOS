@@ -209,7 +209,7 @@
         return 240;
         
     } else if (2 == indexPath.row) {
-        return 305;
+        return 255;
     }
     
     return 120;
