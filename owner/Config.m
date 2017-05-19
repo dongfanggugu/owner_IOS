@@ -211,6 +211,29 @@
     return [self getValueWithKey:@"sms_code"];
 }
 
+//设置和获取联系人电话
+- (void)setLinkTel:(NSString *)linkTel
+{
+    [self setValue:linkTel key:@"link_tel"];
+}
+
+- (NSString *)linkTel
+{
+    return [self getValueWithKey:@"link_tel"];
+}
+
+//设置和获取联系人姓名
+- (void)setLinkName:(NSString *)linkName
+{
+    [self setValue:linkName key:@"link_name"];
+}
+
+- (NSString *)linkName
+{
+    return [self getValueWithKey:@"link_name"];
+}
+
+
 
 
 #pragma mark -- common method

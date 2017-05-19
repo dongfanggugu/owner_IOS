@@ -103,6 +103,8 @@
         [[Config shareConfig] setBranchName:[body objectForKey:@"cellName"]];
         [[Config shareConfig] setBrand:[body objectForKey:@"brand"]];
         [[Config shareConfig] setLiftType:[body objectForKey:@"model"]];
+        [Config shareConfig].linkName = [body objectForKey:@"contacts"];
+        [Config shareConfig].linkTel = [body objectForKey:@"contactsTel"];
         
         [self registerJpush];
         [self.navigationController popViewControllerAnimated:YES];

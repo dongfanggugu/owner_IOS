@@ -81,6 +81,10 @@
 
 - (NSString *)getSMSCode;
 
+@property (copy, nonatomic) NSString *linkName;
+
+@property (copy, nonatomic) NSString *linkTel;
+
 @end
 
 

@@ -39,6 +39,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     _lbUnit.hidden = YES;
 }
 

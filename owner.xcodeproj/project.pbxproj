@@ -205,6 +205,7 @@
 		656230FB1E67A7B000335819 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656230FA1E67A7B000335819 /* MainTabBarController.m */; };
 		658CB5521ECD942700A29498 /* DialogEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658CB5511ECD942700A29498 /* DialogEditView.xib */; };
 		658CB5551ECD943A00A29498 /* DialogEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5541ECD943A00A29498 /* DialogEditView.m */; };
+		658CB5581ECE85C100A29498 /* LinkModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5571ECE85C100A29498 /* LinkModifyController.m */; };
 		658E22011EBB04FF008D9227 /* ExtraServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E22001EBB04FF008D9227 /* ExtraServiceController.m */; };
 		658FE6041E9F14D1002CA85F /* icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6031E9F14D1002CA85F /* icon_up.png */; };
 		658FE6061E9F14DC002CA85F /* icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6051E9F14DC002CA85F /* icon_down.png */; };
@@ -584,6 +585,8 @@
 		658CB5511ECD942700A29498 /* DialogEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialogEditView.xib; sourceTree = "<group>"; };
 		658CB5531ECD943A00A29498 /* DialogEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogEditView.h; sourceTree = "<group>"; };
 		658CB5541ECD943A00A29498 /* DialogEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogEditView.m; sourceTree = "<group>"; };
+		658CB5561ECE85C100A29498 /* LinkModifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkModifyController.h; sourceTree = "<group>"; };
+		658CB5571ECE85C100A29498 /* LinkModifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkModifyController.m; sourceTree = "<group>"; };
 		658E21FF1EBB04FF008D9227 /* ExtraServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceController.h; sourceTree = "<group>"; };
 		658E22001EBB04FF008D9227 /* ExtraServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceController.m; sourceTree = "<group>"; };
 		658FE6031E9F14D1002CA85F /* icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_up.png; sourceTree = "<group>"; };
@@ -1200,6 +1203,8 @@
 				65FE08AA1EA733D9002C9397 /* AddressLocationController.m */,
 				655593FF1ECC1A7D00977291 /* ForgetViewController.h */,
 				655594001ECC1A7D00977291 /* ForgetViewController.m */,
+				658CB5561ECE85C100A29498 /* LinkModifyController.h */,
+				658CB5571ECE85C100A29498 /* LinkModifyController.m */,
 			);
 			name = Person;
 			sourceTree = "<group>";
@@ -1699,6 +1704,7 @@
 				65CABE3F1E22A244007EC96C /* CDPGifView.m in Sources */,
 				655594011ECC1A7D00977291 /* ForgetViewController.m in Sources */,
 				65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */,
+				658CB5581ECE85C100A29498 /* LinkModifyController.m in Sources */,
 				65FE08DB1EB04967002C9397 /* RepairOrderController.m in Sources */,
 				6544C7591E6818A70050A9D3 /* OrderListRequest.m in Sources */,
 				65FE08FB1EB2E174002C9397 /* ServiceHistoryController.m in Sources */,

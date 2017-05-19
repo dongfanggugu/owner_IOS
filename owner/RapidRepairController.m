@@ -21,12 +21,14 @@
 #import "RepairAddRequest.h"
 #import "AddressLocationController.h"
 #import "DialogEditView.h"
+#import "KeyValueBtnCell.h"
+#import "LinkModifyController.h"
 
 
 
 #define DATE_INIT @"点击选择上门日期"
 
-@interface RapidRepairController()<UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate, AddressLocationControllerDelegate>
+@interface RapidRepairController()<UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate, AddressLocationControllerDelegate, LinkModifyControllerDelegate>
 
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -59,6 +61,14 @@
 
 @property (weak, nonatomic) KeyValueCell *addressCell;
 
+@property (weak, nonatomic) KeyValueBtnCell *linkNameCell;
+
+@property (weak, nonatomic) KeyValueCell *linkTelCell;
+
+@property (weak, nonatomic) KeyEditCell *uLinkNameCell;
+
+@property (weak, nonatomic) KeyEditCell *uLinkTelCell;
+
 @property (assign, nonatomic) CGFloat lat;
 
 @property (assign, nonatomic) CGFloat lng;
@@ -71,8 +81,17 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"快修服务"];
+    [self initNavRightWithText:@"联系我们"];
     [self initData];
     [self initView];
+}
+
+- (void)onClickNavRight
+{
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",Custom_Service]];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    [self.view addSubview:webView];
 }
 
 - (void)submit
@@ -144,6 +163,17 @@
             return;
         }
         
+        NSString *linkName = _uLinkNameCell.tfValue.text;
+        
+        NSString *linkTel = _uLinkTelCell.tfValue.text;
+        
+        if (0 == linkName || 0 == linkTel) {
+        
+            [HUDClass showHUDWithText:@"请正确填写联系人信息"];
+            return;
+        }
+        
+        
         request.brand = brand;
         request.model = type;
         request.tel = tel;
@@ -151,6 +181,8 @@
         request.address = address;
         request.lat = _lat;
         request.lng = _lng;
+        request.contacts = linkName;
+        request.contactsTel = linkTel;
         
     }
 
@@ -223,7 +255,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (0 == section) {
-        return 5;
+        return 7;
         
     } else {
         return 4;
@@ -377,7 +409,92 @@
                 return cell;
 
             }
+            
+        } else if (5 == indexPath.row) {
+            if (self.login) {
+                
+                if (_linkNameCell) {
+                    return _linkNameCell;
+                    
+                } else {
+                    KeyValueBtnCell *cell = [KeyValueBtnCell cellFromNib];
+                    
+                    _linkNameCell = cell;
+                    cell.lbKey.text = @"联系人";
+                    
+                    NSString *linkName = [Config shareConfig].linkName;
+                    
+                    
+                    cell.lbValue.text = 0 == linkName.length ? [Config shareConfig].getName : linkName;
+                    
+                    __weak typeof (self) weakSelf = self;
+                    [cell addOnClickListener:^{
+                        LinkModifyController *controller = [[LinkModifyController alloc] init];
+                        controller.delegate = weakSelf;
+                        
+                        controller.hidesBottomBarWhenPushed = YES;
+                        
+                        [weakSelf.navigationController pushViewController:controller animated:YES];
+                    }];
+                    
+                    return cell;
+                }
+                
+            } else {
+                
+                if (_uLinkNameCell) {
+                    return _uLinkNameCell;
+                    
+                } else {
+                    KeyEditCell *cell = [KeyEditCell cellFromNib];
+                    _uLinkNameCell = cell;
+                    
+                    cell.lbKey.text = @"联系人";
+                    cell.tfValue.placeholder = @"请输入别墅联系人";
+                    
+                    return cell;
+                }
+            }
+            
+            
+        } else if (6 == indexPath.row) {
+            if (self.login) {
+                if (_linkTelCell) {
+                    return _linkTelCell;
+                    
+                } else {
+                    KeyValueCell *cell = [KeyValueCell cellFromNib];
+                    _linkTelCell = cell;
+                    cell.lbKey.text = @"联系人电话";
+                    
+                    NSString *linkTel = [Config shareConfig].linkTel;
+                    
+                    
+                    cell.lbValue.text = 0 == linkTel.length ? [Config shareConfig].getTel : linkTel;
+                    
+                    return cell;
+                }
+                
+            } else {
+                
+                if (_uLinkTelCell) {
+                    return _uLinkTelCell;
+                    
+                } else {
+                    
+                    KeyEditCell *cell = [KeyEditCell cellFromNib];
+                    _uLinkTelCell = cell;
+                    
+                    cell.lbKey.text = @"联系人电话";
+                    cell.tfValue.placeholder = @"请输入别墅联系人电话";
+                    
+                    return cell;
+                }
+                
+            }
+
         }
+        
     } else if (1 == indexPath.section) {
         if (0 == indexPath.row) {
             KeyEditCell *cell = [KeyEditCell cellFromNib];
@@ -500,7 +617,7 @@
     }
     else if (1 == section)
     {
-        label.text = @"电梯信息";
+        label.text = @"业主信息";
         return view;
     }
     else
@@ -560,5 +677,15 @@
     [dialog show];
 }
 
+#pragma mark - LinkModifyControllerDelegate
+
+- (void)onModifyComplete:(NSString *)name tel:(NSString *)tel
+{
+    if (self.login) {
+        _linkNameCell.lbValue.text = name;
+        _linkTelCell.lbValue.text = tel;
+        
+    }
+}
 
 @end

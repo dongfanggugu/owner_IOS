@@ -43,6 +43,7 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"电梯管家"];
+    [self  initNavRightWithText:@"联系我们"];
     [self initView];
     [self initData];
 }
@@ -54,6 +55,14 @@
     }
     
     return _location;
+}
+
+- (void)onClickNavRight
+{
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",Custom_Service]];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    [self.view addSubview:webView];
 }
 
 - (NSMutableArray<MainTypeInfo *> *)arrayMaint

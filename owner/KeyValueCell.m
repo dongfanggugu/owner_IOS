@@ -55,4 +55,10 @@
     return h;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
 @end

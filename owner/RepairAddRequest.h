@@ -33,6 +33,10 @@
 
 @property (copy, nonatomic) NSString *repairTime;
 
+@property (copy, nonatomic) NSString *contacts;
+
+@property (copy, nonatomic) NSString *contactsTel;
+
 @property (assign, nonatomic) CGFloat lat;
 
 @property (assign, nonatomic) CGFloat lng;

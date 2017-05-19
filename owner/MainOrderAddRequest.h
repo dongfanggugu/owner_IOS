@@ -37,6 +37,10 @@
 
 @property (assign, nonatomic) NSInteger frequency;
 
+@property (copy, nonatomic) NSString *contacts;
+
+@property (copy, nonatomic) NSString *contactsTel;
+
 
 //增值服务订单使用
 @property (copy, nonatomic) NSString *incrementTypeId;
