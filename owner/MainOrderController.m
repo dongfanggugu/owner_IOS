@@ -25,21 +25,20 @@
 #import "DialogEditView.h"
 #import "KeyValueBtnCell.h"
 #import "LinkModifyController.h"
+#import "MainTypeInfo.h"
+#import "ListDialogData.h"
 
-@interface MainOrderController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate, AddressLocationControllerDelegate, LinkModifyControllerDelegate>
+@interface MainOrderController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate, AddressLocationControllerDelegate>
 
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (weak, nonatomic) UILabel *lbBrand;
-
-@property (weak, nonatomic) UITextField *tfType;
-
-@property (weak, nonatomic) UITextField *tfName;
-
-@property (weak, nonatomic) UITextField *tfTel;
 
 @property (weak, nonatomic) UITextField *tfCode;
+
+@property (copy, nonatomic) NSString *cellName;
+
+@property (copy, nonatomic) NSString *address;
 
 @property (assign, nonatomic) CGFloat lat;
 
@@ -50,7 +49,9 @@
 
 @property (weak, nonatomic) SelectableCell *brandCell;
 
-@property (weak, nonatomic) KeyEditCell *modelCell;
+@property (weak, nonatomic) SelectableCell *weightCell;
+
+@property (weak, nonatomic) SelectableCell *layerCell;
 
 @property (weak, nonatomic) KeyEditCell *nameCell;
 
@@ -58,13 +59,9 @@
 
 @property (weak, nonatomic) KeyValueCell *addressCell;
 
-@property (weak, nonatomic) KeyValueBtnCell *linkNameCell;
+@property (weak, nonatomic) KeyEditCell *linkNameCell;
 
-@property (weak, nonatomic) KeyValueCell *linkTelCell;
-
-@property (weak, nonatomic) KeyEditCell *uLinkNameCell;
-
-@property (weak, nonatomic) KeyEditCell *uLinkTelCell;
+@property (weak, nonatomic) KeyEditCell *linkTelCell;
 
 @end
 
@@ -77,7 +74,6 @@
     [super viewDidLoad];
     [self setNavTitle:@"服务订单"];
     [self initNavRightWithText:@"联系我们"];
-    [self initData];
     [self initView];
 }
 
@@ -95,71 +91,83 @@
     request.mainttypeId = _mainInfo.typeId;
     request.frequency = _amountCell.amount;
     
-    if (!self.login) {
-        NSString *brand = _lbBrand.text;
-        
-        NSString *type = _tfType.text;
-        
-        if (0 == type.length) {
-            [HUDClass showHUDWithText:@"请填写电梯品牌"];
-            return;
-        }
-        
-        NSString *name = _tfName.text;
-        
-        if (0 == name.length) {
-            [HUDClass showHUDWithText:@"请填写用户姓名"];
-            return;
-        }
-        
-        NSString *tel = _tfTel.text;
-        
-        if (0 == tel.length) {
-            [HUDClass showHUDWithText:@"请填写用户手机号码"];
-            return;
-        }
-        
-        NSString *code = _tfCode.text;
-        
-        if (0 == code.length) {
-            [HUDClass showHUDWithText:@"请填写验证码"];
-            return;
-        }
-        
-        if (![code isEqualToString:[[Config shareConfig] getSMSCode]]) {
-            [HUDClass showHUDWithText:@"验证码不正确，请确认验证码"];
-            return;
-            
-        }
-        
-        NSString *address = _addressCell.lbValue.text;
-        
-        if (0 == address.length) {
-            [HUDClass showHUDWithText:@"请选择您的地址"];
-            return;
-        }
-        
-        
-        NSString *linkName = _uLinkNameCell.tfValue.text;
-        
-        NSString *linkTel = _uLinkTelCell.tfValue.text;
-        
-        if (0 == linkName || 0 == linkTel) {
-            
-            [HUDClass showHUDWithText:@"请正确填写联系人信息"];
-            return;
-        }        
-        
-        request.brand = brand;
-        request.model = type;
-        request.name = name;
-        request.tel = tel;
-        request.address = address;
-        request.lat = _lat;
-        request.lng = _lng;
-        request.contacts = name;
-        request.contactsTel = tel;
+    NSString *brand = _brandCell.getContentValue;
+    
+    if (0 == brand.length) {
+        [HUDClass showHUDWithText:@"请选择电梯品牌"];
+        return;
     }
+    
+    NSString *weight = [Utils string:_weightCell.getContentValue substringBeforeChar:@"k"];
+    
+    if (0 == weight.length) {
+        [HUDClass showHUDWithText:@"请选择电梯载重量"];
+        return;
+    }
+    
+    NSString *layer = [Utils string:_layerCell.getContentValue substringBeforeChar:@"层"];
+    
+    if (0 == layer.length) {
+        [HUDClass showHUDWithText:@"请选择电梯电梯层站"];
+        return;
+    }
+    
+    NSString *name = _nameCell.tfValue.text;
+    
+    if (0 == name.length) {
+        [HUDClass showHUDWithText:@"请填写业主姓名"];
+        return;
+    }
+    
+    NSString *tel = _telCell.tfValue.text;
+    
+    if (0 == tel.length) {
+        [HUDClass showHUDWithText:@"请填写业主手机号码"];
+        return;
+    }
+    
+    NSString *code = _tfCode.text;
+    
+    if (0 == code.length) {
+        [HUDClass showHUDWithText:@"请填写验证码"];
+        return;
+    }
+    
+    if (![code isEqualToString:[[Config shareConfig] getSMSCode]]) {
+        [HUDClass showHUDWithText:@"验证码不正确，请确认验证码"];
+        return;
+        
+    }
+    
+    NSString *address = _addressCell.lbValue.text;
+    
+    if (0 == address.length) {
+        [HUDClass showHUDWithText:@"请选择您的地址"];
+        return;
+    }
+    
+    
+    NSString *linkName = _linkNameCell.tfValue.text;
+    
+    NSString *linkTel = _linkTelCell.tfValue.text;
+    
+    if (0 == linkName || 0 == linkTel) {
+        
+        [HUDClass showHUDWithText:@"请正确填写联系人信息"];
+        return;
+    }
+    
+    request.brand = brand;
+    request.weight = weight.floatValue;
+    request.layerAmount = layer.integerValue;
+    request.name = name;
+    request.tel = tel;
+    request.cellName = _cellName;
+    request.address = _address;
+    request.lat = _lat;
+    request.lng = _lng;
+    request.contacts = name;
+    request.contactsTel = tel;
     
     
     [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -175,9 +183,6 @@
             [self presentViewController:controller animated:YES completion:^{
                 [self.navigationController popViewControllerAnimated:NO];
             }];
-            //controller.hidesBottomBarWhenPushed = YES;
-            //[self.navigationController popViewControllerAnimated:NO];
-            //[self.navigationController pushViewController:controller animated:YES];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -189,11 +194,6 @@
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)initData
-{
-
 }
 
 - (void)initView
@@ -246,16 +246,11 @@
         return 2;
         
     } else if (1 == section) {
-        return 2;
+        return 3;
         
     } else {
+        return 6;
         
-        if (self.login) {
-            return 2;
-            
-        } else {
-            return 6;
-        }
     }
 }
 
@@ -301,144 +296,130 @@
                 
                 cell.lbKey.text = @"电梯品牌";
                 
-                _lbBrand = cell.lbContent;
-                
                 __weak typeof (cell) weakCell = cell;
                 
                 __weak typeof (self) weakSelf = self;
-                
-                if (!self.login) {
-                    [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                        BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
-                        [weakCell setData:[response getBrandList]];
-                        
-                        [weakCell setAfterSelectedListener:^(NSString *key, NSString *content) {
-                            if ([content isEqualToString:@"其他"]) {
-                                [weakSelf showEditDialog:weakCell];
-                            }
-                        }];
-                    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                        
-                    }];
+                [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
+                    [weakCell setData:[response getBrandList]];
                     
-                } else {
-                    cell.lbContent.text = [[Config shareConfig] getBrand];
-                    cell.showable = NO;
-                }
+                    [weakCell setBeforeSelectedListener:^(NSString *preContent, NSString *content) {
+                        if ([content isEqualToString:@"其他"]) {
+                            [weakSelf showEditDialog:weakCell pre:preContent];
+                        }
+                    }];
+                } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                    
+                }];
+                
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
             }
             
-        } else {
-            if (_modelCell) {
-                return _modelCell;
-                
+        } else if (1 == indexPath.row) {
+            if (_weightCell) {
+                return _weightCell;
+            
             } else {
-                KeyEditCell *cell = [KeyEditCell cellFromNib];
-                _modelCell = cell;
+            
+                SelectableCell *cell = [SelectableCell cellFromNib];
+                _weightCell = cell;
                 
-                cell.lbKey.text = @"电梯型号";
+                cell.lbKey.text = @"载重量";
                 
-                if (!self.login) {
-                    cell.tfValue.placeholder = @"电梯型号";
-                    
-                    _tfType = cell.tfValue;
-                    
-                } else {
-                    cell.tfValue.text = [[Config shareConfig] getLiftType];
-                    
-                    cell.tfValue.enabled = NO;
-                }
+                __weak typeof (self) weakSelf = self;
+                __weak typeof (cell) weakCell = cell;
+                
+                ListDialogData *data1 = [[ListDialogData alloc] initWithKey:nil content:@"240kg"];
+                
+                ListDialogData *data2 = [[ListDialogData alloc] initWithKey:nil content:@"320kg"];
+                
+                ListDialogData *data3 = [[ListDialogData alloc] initWithKey:nil content:@"480kg"];
+                
+                ListDialogData *data4 = [[ListDialogData alloc] initWithKey:nil content:@"640kg"];
+                
+                ListDialogData *data5 = [[ListDialogData alloc] initWithKey:nil content:@"其他"];
+                
+                NSArray *array = [[NSArray alloc] initWithObjects:data1, data2, data3, data4, data5, nil];
+                
+                [cell setData:array];
+                
+                [cell setBeforeSelectedListener:^(NSString *preContent, NSString *content) {
+                    if ([content isEqualToString:@"其他"]) {
+                        [weakSelf showWeightEditDialog:weakCell pre:preContent];
+                    }
+                }];
+                
+                
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
+            }
+            
+        } else if (2 == indexPath.row) {
+            if (_layerCell) {
+                return _layerCell;
+                
+            } else {
+                SelectableCell *cell = [SelectableCell cellFromNib];
+                _layerCell = cell;
+                
+                cell.lbKey.text = @"电梯层站";
+                
+                ListDialogData *data1 = [[ListDialogData alloc] initWithKey:nil content:@"2层"];
+                
+                ListDialogData *data2 = [[ListDialogData alloc] initWithKey:nil content:@"3层"];
+                
+                ListDialogData *data3 = [[ListDialogData alloc] initWithKey:nil content:@"4层"];
+                
+                ListDialogData *data4 = [[ListDialogData alloc] initWithKey:nil content:@"5层"];
+                
+                ListDialogData *data5 = [[ListDialogData alloc] initWithKey:nil content:@"6层"];
+                
+                ListDialogData *data6 = [[ListDialogData alloc] initWithKey:nil content:@"7层"];
+                
+                
+                NSArray *array = [[NSArray alloc] initWithObjects:data1, data2, data3, data4, data5, data6, nil];
+                
+                [cell setData:array];
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            
             }
         }
         
     } else if (2 == indexPath.section) {
         
         if (0 == indexPath.row) {
-            if (self.login) {
-                
-                if (_linkNameCell) {
-                    return _linkNameCell;
-                    
-                } else {
-                    KeyValueBtnCell *cell = [KeyValueBtnCell cellFromNib];
-                    
-                    _linkNameCell = cell;
-                    cell.lbKey.text = @"联系人";
-                    
-                    NSString *linkName = [Config shareConfig].linkName;
-                    
-                    
-                    cell.lbValue.text = 0 == linkName.length ? [Config shareConfig].getName : linkName;
-                    
-                    __weak typeof (self) weakSelf = self;
-                    [cell addOnClickListener:^{
-                        LinkModifyController *controller = [[LinkModifyController alloc] init];
-                        controller.delegate = weakSelf;
-                        
-                        controller.hidesBottomBarWhenPushed = YES;
-                        
-                        [weakSelf.navigationController pushViewController:controller animated:YES];
-                    }];
-                    
-                    return cell;
-                }
+            if (_linkNameCell) {
+                return _linkNameCell;
                 
             } else {
+                KeyEditCell *cell = [KeyEditCell cellFromNib];
+                _linkNameCell = cell;
                 
-                if (_uLinkNameCell) {
-                    return _uLinkNameCell;
-                    
-                } else {
-                    KeyEditCell *cell = [KeyEditCell cellFromNib];
-                    _uLinkNameCell = cell;
-                    
-                    cell.lbKey.text = @"联系人";
-                    cell.tfValue.placeholder = @"请输入别墅联系人";
-                    
-                    return cell;
-                }
+                cell.lbKey.text = @"联系人";
+                cell.tfValue.placeholder = @"请输入别墅联系人";
+                
+                return cell;
             }
+
             
         } else if (1 == indexPath.row) {
-            
-            if (self.login) {
-                if (_linkTelCell) {
-                    return _linkTelCell;
-                    
-                } else {
-                    KeyValueCell *cell = [KeyValueCell cellFromNib];
-                    _linkTelCell = cell;
-                    cell.lbKey.text = @"联系人电话";
-                    
-                    NSString *linkTel = [Config shareConfig].linkTel;
-                    
-                    
-                    cell.lbValue.text = 0 == linkTel.length ? [Config shareConfig].getTel : linkTel;
-                    
-                    return cell;
-                }
+            if (_linkTelCell) {
+                return _linkTelCell;
                 
             } else {
                 
-                if (_uLinkTelCell) {
-                    return _uLinkTelCell;
-                    
-                } else {
-                    
-                    KeyEditCell *cell = [KeyEditCell cellFromNib];
-                    _uLinkTelCell = cell;
-                    
-                    cell.lbKey.text = @"联系人电话";
-                    cell.tfValue.placeholder = @"请输入别墅联系人电话";
-                    
-                    return cell;
-                }
+                KeyEditCell *cell = [KeyEditCell cellFromNib];
+                _linkTelCell = cell;
                 
+                cell.lbKey.text = @"联系人电话";
+                cell.tfValue.placeholder = @"请输入别墅联系人电话";
+                
+                return cell;
             }
         
         } else if (2 == indexPath.row) {
@@ -449,10 +430,9 @@
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _nameCell = cell;
                 
-                cell.lbKey.text = @"姓名";
+                cell.lbKey.text = @"业主";
                 
-                cell.tfValue.placeholder = @"姓名";
-                _tfName = cell.tfValue;
+                cell.tfValue.placeholder = @"输入业主姓名";
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -467,12 +447,9 @@
                 KeyEditBtnCell *cell = [KeyEditBtnCell cellFromNib];
                 _telCell = cell;
                 
-                cell.lbKey.text = @"手机";
-                cell.tfValue.placeholder = @"手机";
+                cell.lbKey.text = @"业主手机";
+                cell.tfValue.placeholder = @"请输入业主手机号码";
                 cell.tfValue.keyboardType = UIKeyboardTypePhonePad;
-                
-                _tfTel = cell.tfValue;
-                
                 
                 __weak typeof(cell) weakCell = cell;
                 
@@ -533,10 +510,6 @@
     
     
     KeyEditCell *cell = [KeyEditCell cellFromNib];
-    cell.lbKey.text = @"验证码";
-    
-    cell.tfValue.placeholder = @"验证码";
-    _tfCode = cell.tfValue;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -623,11 +596,17 @@
 }
 
 #pragma mark - LocationControllerDelegate
-- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+
+- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
 {
-    _addressCell.lbValue.text = address;
+    _cellName = cell;
+    _address = address;
+    
     _lat = lat;
     _lng = lng;
+    
+    _addressCell.lbValue.text = [NSString stringWithFormat:@"%@%@", cell, address];
+    
 }
 
 #pragma mark - PayViewControllerDelegate
@@ -637,7 +616,7 @@
     
 }
 
-- (void)showEditDialog:(SelectableCell *)cell
+- (void)showEditDialog:(SelectableCell *)cell pre:(NSString *)preContent
 {
     DialogEditView *dialog = [DialogEditView viewFromNib];
     
@@ -647,21 +626,33 @@
     }];
     
     [dialog addOnClickCancelListener:^{
-        cell.lbContent.text = @"";
+        cell.lbContent.text = preContent;
     }];
     
     [dialog show];
 }
 
-#pragma mark - LinkModifyControllerDelegate
-
-- (void)onModifyComplete:(NSString *)name tel:(NSString *)tel
+- (void)showWeightEditDialog:(SelectableCell *)cell pre:(NSString *)preContent
 {
-    if (self.login) {
-        _linkNameCell.lbValue.text = name;
-        _linkTelCell.lbValue.text = tel;
+    DialogEditView *dialog = [DialogEditView viewFromNib];
+    
+    dialog.lbTitle.text = @"输入电梯的载重量";
+    
+    dialog.tfContent.placeholder = @"请输入电梯的载重量";
+    
+    dialog.tfContent.keyboardType = UIKeyboardTypeNumberPad;
+    
+    [dialog addOnClickOkListener:^(NSString *content) {
+        cell.lbContent.text = [NSString stringWithFormat:@"%@kg", content];
         
-    }
+    }];
+    
+    [dialog addOnClickCancelListener:^{
+        cell.lbContent.text = preContent;
+    }];
+    
+    [dialog show];
 }
+
 
 @end

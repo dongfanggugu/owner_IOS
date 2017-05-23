@@ -42,6 +42,9 @@
 
 + (NSString *)getIp;
 
++ (NSInteger)character:(NSString *)ch atIndexOfString:(NSString *)string;
+
++ (NSString *)string:(NSString *)string substringBeforeChar:(NSString *)ch;
 
 @end
 

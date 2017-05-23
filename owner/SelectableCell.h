@@ -33,6 +33,8 @@
 
 - (void)setAfterSelectedListener:(void(^)(NSString *key, NSString *content))selection;
 
+- (void)setBeforeSelectedListener:(void (^)(NSString *, NSString *))selection;
+
 @property (assign, nonatomic) BOOL showable;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbKey;

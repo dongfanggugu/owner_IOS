@@ -192,8 +192,7 @@
     
     InfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
     
-    if (0 == section)
-    {
+    if (0 == section) {
         
         
         cell.imageViewInfoIcon.image = [UIImage imageNamed:@"icon_account"];
@@ -201,9 +200,7 @@
         cell.keyLabel.text = @"我的账户";
         cell.selectionStyle = UITableViewCellEditingStyleNone;
         
-    }
-    else if (1 == section)
-    {
+    } else if (1 == section) {
         
         
         cell.imageViewInfoIcon.image = [UIImage imageNamed:@"icon_branch"];

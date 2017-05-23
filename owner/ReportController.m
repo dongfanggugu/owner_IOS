@@ -19,9 +19,12 @@
 #import "MainOrderController.h"
 #import "MainTypeListResponse.h"
 #import "MainTypeDetailController.h"
+#import "ListDialogData.h"
+#import "ListDialogView.h"
+#import "MainOrderLoginController.h"
 
 
-@interface ReportController () <BMKMapViewDelegate, BMKGeoCodeSearchDelegate, MaintFloatViewDelegate>
+@interface ReportController () <BMKMapViewDelegate, BMKGeoCodeSearchDelegate, MaintFloatViewDelegate, ListDialogViewDelegate>
 
 @property (strong, nonatomic) IBOutlet BMKMapView *mapView;
 
@@ -35,6 +38,10 @@
 
 @property (strong, nonatomic) NSMutableArray<MainTypeInfo *> *arrayMaint;
 
+@property (strong, nonatomic) NSMutableArray *arrayHouse;
+
+@property (weak, nonatomic) NSDictionary *curHouse;
+
 @end
 
 @implementation ReportController
@@ -43,7 +50,7 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"电梯管家"];
-    [self  initNavRightWithText:@"联系我们"];
+    [self initNavRightWithText:@"联系我们"];
     [self initView];
     [self initData];
 }
@@ -55,6 +62,15 @@
     }
     
     return _location;
+}
+
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse) {
+        _arrayHouse = [NSMutableArray array];
+    }
+    
+    return _arrayHouse;
 }
 
 - (void)onClickNavRight
@@ -101,9 +117,10 @@
     [self.view addSubview:_floatView];
     
     if (self.login) {
-        _floatView.lbLocation.text = [[Config shareConfig] getBranchAddress];
+        _floatView.lbLocation.userInteractionEnabled = YES;
+        [_floatView.lbLocation addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getHouses)]];
         
-        [self markOnMapWithLat:[[Config shareConfig] getLat] lng:[[Config shareConfig] getLng]];
+        [self getHouses];
         
     } else {
         
@@ -138,7 +155,6 @@
 - (void)initData
 {
     _arrayProject = [NSMutableArray array];
-    [self getProjectInfo];
     [self getMainType];
 }
 
@@ -155,6 +171,8 @@
     [self markOnMapWithLat:location.location.coordinate.latitude lng:location.location.coordinate.longitude];
     
     [self codeSearchWithLat:location.location.coordinate.latitude lng:location.location.coordinate.longitude];
+    
+    [self getProjectInfo];
 }
 
 - (void)codeSearchWithLat:(CLLocationDegrees)lat lng:(CLLocationDegrees)lng
@@ -226,11 +244,28 @@
     for (NSInteger i = 0; i < _arrayProject.count; i++) {
         CGFloat lat = [[_arrayProject[i] objectForKey:@"lat"] floatValue];
         CGFloat lng = [[_arrayProject[i] objectForKey:@"lng"] floatValue];
-        CalloutMapAnnotation *marker = [[CalloutMapAnnotation alloc] init];
-        marker.latitude = lat;
-        marker.longitude = lng;
-        marker.info = _arrayProject[i];
-        [_mapView addAnnotation:marker];
+        
+        CLLocationCoordinate2D coorProject;
+        coorProject.latitude = lat;
+        coorProject.longitude = lng;
+        
+        CLLocationCoordinate2D coorCenter;
+        
+        coorCenter.latitude = _mapView.centerCoordinate.latitude;
+        coorCenter.longitude = _mapView.centerCoordinate.longitude;
+        
+        
+        CLLocationDistance distance = [Location distancePoint:coorProject with:coorCenter];
+        NSLog(@"distance:%lf", distance);
+        
+        if (distance < 5 * 1000) {
+            
+            CalloutMapAnnotation *marker = [[CalloutMapAnnotation alloc] init];
+            marker.latitude = lat;
+            marker.longitude = lng;
+            marker.info = _arrayProject[i];
+            [_mapView addAnnotation:marker];
+        }
     }
 }
 
@@ -384,14 +419,97 @@
         NSInteger i = info.typeId.integerValue;
         
         if ((i - 1) == index) {
-            MainOrderController *controller = [[MainOrderController alloc] init];
-            controller.mainInfo = info;
+            if (self.login) {
+                MainOrderLoginController *controller = [[MainOrderLoginController alloc] init];
+                controller.mainInfo = info;
+                controller.houseInfo = _curHouse;
+                
+                controller.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:controller animated:YES];
+                
+            } else {
+                MainOrderController *controller = [[MainOrderController alloc] init];
+                controller.mainInfo = info;
+                
+                controller.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:controller animated:YES];
+            }
             
-            controller.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:controller animated:YES];
-            return;
         }
     }
+}
+
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count) {
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        
+        _curHouse = self.arrayHouse[0];
+        
+        _floatView.lbLocation.text = self.arrayHouse[0][@"cellName"];
+        [self markOnMapWithLat:[[self.arrayHouse[0] objectForKey:@"lat"] floatValue]
+                           lng:[[self.arrayHouse[0] objectForKey:@"lng"] floatValue]];
+        return;
+    }
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSDictionary *info in self.arrayHouse) {
+        ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cell"]];
+        [array addObject:data];
+    }
+    
+    ListDialogView *dialog = [ListDialogView viewFromNib];
+    dialog.delegate = self;
+    [dialog setData:array];
+    [dialog show];
+}
+
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse) {
+        if ([key isEqualToString:info[@"id"]]) {
+            
+            _curHouse = info;
+            _floatView.lbLocation.text = info[@"cellName"];
+            [self markOnMapWithLat:[info[@"lat"] floatValue] lng:[info[@"lng"] floatValue]];
+            break;
+        }
+    }
+}
+
+- (void)onDismiss
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ villaId
+ brand
+ model
+ cellName
+ address
+ lng
+ lat
+ weight
+ layerAmount
+ contacts
+ contactsTel
+ */
+- (void)getHouses
+{
+    [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.arrayHouse removeAllObjects];
+        [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
+        [self showHouselist];
+        [self getProjectInfo];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
 }
 
 @end

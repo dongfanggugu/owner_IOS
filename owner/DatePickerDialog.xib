@@ -18,16 +18,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htL-73-vVr">
                     <rect key="frame" x="37" y="214" width="300" height="240"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuZ-dl-oeP">
-                            <rect key="frame" x="60" y="207" width="60" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="Kxr-B7-DQW"/>
-                                <constraint firstAttribute="height" constant="25" id="bCl-fW-ePH"/>
-                            </constraints>
-                            <state key="normal" title="确认">
-                                <color key="titleColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pA-Q2-jQf">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                             <subviews>
@@ -51,7 +41,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W06-Gp-cyG">
-                            <rect key="frame" x="180" y="207" width="60" height="25"/>
+                            <rect key="frame" x="60" y="207" width="60" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="L7G-SI-aaT"/>
                                 <constraint firstAttribute="height" constant="25" id="pMy-Af-YOb"/>
@@ -74,18 +64,28 @@
                             </date>
                             <locale key="locale" localeIdentifier="zh-Hans"/>
                         </datePicker>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuZ-dl-oeP">
+                            <rect key="frame" x="180" y="207" width="60" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="Kxr-B7-DQW"/>
+                                <constraint firstAttribute="height" constant="25" id="bCl-fW-ePH"/>
+                            </constraints>
+                            <state key="normal" title="确认">
+                                <color key="titleColor" red="0.0" green="0.60392156860000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="6pA-Q2-jQf" firstAttribute="top" secondItem="htL-73-vVr" secondAttribute="top" id="1i9-pM-emb"/>
-                        <constraint firstItem="TuZ-dl-oeP" firstAttribute="leading" secondItem="htL-73-vVr" secondAttribute="leading" constant="60" id="2iL-ti-LhL"/>
+                        <constraint firstItem="W06-Gp-cyG" firstAttribute="leading" secondItem="htL-73-vVr" secondAttribute="leading" constant="60" id="53I-N9-VYH"/>
                         <constraint firstAttribute="bottom" secondItem="TuZ-dl-oeP" secondAttribute="bottom" constant="8" id="9oe-kR-GEx"/>
                         <constraint firstAttribute="height" constant="240" id="HZI-eN-Kpd"/>
                         <constraint firstAttribute="bottom" secondItem="W06-Gp-cyG" secondAttribute="bottom" constant="8" id="Mgx-mk-1nB"/>
+                        <constraint firstAttribute="trailing" secondItem="TuZ-dl-oeP" secondAttribute="trailing" constant="60" id="Ory-im-rx6"/>
                         <constraint firstAttribute="width" constant="300" id="PSO-KI-Ftm"/>
                         <constraint firstItem="Yot-BD-S5f" firstAttribute="top" secondItem="6pA-Q2-jQf" secondAttribute="bottom" constant="8" id="UAU-Ls-yml"/>
                         <constraint firstAttribute="trailing" secondItem="6pA-Q2-jQf" secondAttribute="trailing" id="XTO-fv-FhG"/>
-                        <constraint firstAttribute="trailing" secondItem="W06-Gp-cyG" secondAttribute="trailing" constant="60" id="bMn-qf-DON"/>
                         <constraint firstItem="Yot-BD-S5f" firstAttribute="leading" secondItem="htL-73-vVr" secondAttribute="leading" constant="8" id="n3E-fs-G4T"/>
                         <constraint firstItem="6pA-Q2-jQf" firstAttribute="leading" secondItem="htL-73-vVr" secondAttribute="leading" id="pjD-iZ-gnp"/>
                         <constraint firstAttribute="trailing" secondItem="Yot-BD-S5f" secondAttribute="trailing" constant="8" id="u4D-eW-rd7"/>

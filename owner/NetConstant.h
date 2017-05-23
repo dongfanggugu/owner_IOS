@@ -26,7 +26,7 @@
 #define URL_LIFT_BRAND @"getBrandInfo"
 
 //获取短信验证码
-#define URL_SMS_CODE @"getSMSCode"
+#define URL_SMS_CODE @"getSMSCodeBySmallOwner"
 
 //添加维保订单
 #define URL_MAIN_ADD @"addMaintOrder"
@@ -69,5 +69,8 @@
 
 //忘记密码
 #define URL_PWD_FORGET @"pwdForget"
+
+//获取别墅信息
+#define URL_GET_HOUSE @"getVillaBySmallOwner"
 
 #endif /* NetConstant_h */

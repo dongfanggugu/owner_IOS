@@ -41,6 +41,10 @@
 
 @property (copy, nonatomic) NSString *contactsTel;
 
+@property (assign, nonatomic) CGFloat weight;
+
+@property (assign, nonatomic) NSInteger layerAmount;
+
 
 //增值服务订单使用
 @property (copy, nonatomic) NSString *incrementTypeId;

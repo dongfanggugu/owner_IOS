@@ -24,7 +24,9 @@
 
 + (NSString *)getIp
 {
-    return @"http://47.93.11.158:8081/";
+    //return @"http://47.93.11.158:8081/";
+    
+    return @"http://192.168.0.82:8080/";
 }
 
 /**
@@ -128,6 +130,26 @@
 {
     NSDate *date = [[NSDate alloc] init];
     return [self formatDate:date];
+}
+
++ (NSInteger)character:(NSString *)ch atIndexOfString:(NSString *)string
+{
+    if (ch.length != 1) {
+        return -1;
+    }
+    
+    NSRange range = [string rangeOfString:ch];
+    
+    return range.location;
+}
+
++ (NSString *)string:(NSString *)string substringBeforeChar:(NSString *)ch
+{
+    NSInteger index = [self character:ch atIndexOfString:string];
+    
+    NSRange range = NSMakeRange(0, index);
+    
+    return [string substringWithRange:range];
 }
 
 @end

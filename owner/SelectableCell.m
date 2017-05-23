@@ -21,6 +21,8 @@
 
 @property (strong, nonatomic) void(^afterSelected)(NSString *key, NSString *content);
 
+@property (strong, nonatomic) void(^beforeSelected)(NSString *preContent, NSString *content);
+
 @end
 
 @implementation SelectableCell
@@ -116,8 +118,16 @@
 {
     _afterSelected = selection;
     
-    if (nil == selection)
-    {
+    if (nil == selection) {
+        NSLog(@"block is nil");
+    }
+}
+
+- (void)setBeforeSelectedListener:(void (^)(NSString *, NSString *))selection
+{
+    _beforeSelected = selection;
+    
+    if (nil == selection) {
         NSLog(@"block is nil");
     }
 }
@@ -138,15 +148,20 @@
 
 - (void)onSelectItem:(NSString *)key content:(NSString *)content
 {
+    _ivFlag.image = [UIImage imageNamed:@"icon_down"];
+    
+    
+    if (_beforeSelected) {
+        _beforeSelected(_content, content);
+    }
+    
     _key = key;
     _content = content;
-    _ivFlag.image = [UIImage imageNamed:@"icon_down"];
+    
     _lbContent.text = _content;
     
-    if (_afterSelected != nil) {
+    if (_afterSelected) {
         _afterSelected(key, content);
-        
-    } else {
         
     }
 }

@@ -108,6 +108,13 @@
 		6525450D1E2324A40027B28B /* icon_person_center.png in Resources */ = {isa = PBXBuildFile; fileRef = 6525450C1E2324A40027B28B /* icon_person_center.png */; };
 		652545101E236AB40027B28B /* HelpContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6525450F1E236AB40027B28B /* HelpContentController.m */; };
 		652545121E2372E70027B28B /* icon_account.png in Resources */ = {isa = PBXBuildFile; fileRef = 652545111E2372E70027B28B /* icon_account.png */; };
+		652FBEAA1ED3CAAB00DA2729 /* ListDialogData.m in Sources */ = {isa = PBXBuildFile; fileRef = 652FBEA91ED3CAAB00DA2729 /* ListDialogData.m */; };
+		652FBEAD1ED3D80B00DA2729 /* HouseManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652FBEAC1ED3D80B00DA2729 /* HouseManagerController.m */; };
+		652FBEAF1ED3D82100DA2729 /* HouseItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 652FBEAE1ED3D82100DA2729 /* HouseItemCell.xib */; };
+		652FBEB21ED3DBB200DA2729 /* HouseItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 652FBEB11ED3DBB200DA2729 /* HouseItemCell.m */; };
+		652FBEB51ED404C600DA2729 /* HouseAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652FBEB41ED404C600DA2729 /* HouseAddController.m */; };
+		652FBEB81ED414A300DA2729 /* HouseModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652FBEB71ED414A300DA2729 /* HouseModifyController.m */; };
+		652FBEBB1ED42D3200DA2729 /* MainOrderLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652FBEBA1ED42D3200DA2729 /* MainOrderLoginController.m */; };
 		6544C73F1E67FCA30050A9D3 /* RapidRepairController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C73E1E67FCA30050A9D3 /* RapidRepairController.m */; };
 		6544C7431E67FFE50050A9D3 /* FaultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C7421E67FFE50050A9D3 /* FaultInfo.m */; };
 		6544C7461E6800670050A9D3 /* FaultListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C7451E6800670050A9D3 /* FaultListResponse.m */; };
@@ -209,6 +216,7 @@
 		658CB55C1ECED4D100A29498 /* welcome_page_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 658CB55B1ECED4D100A29498 /* welcome_page_gif.gif */; };
 		658CB55E1ECED4F100A29498 /* welcome_page.png in Resources */ = {isa = PBXBuildFile; fileRef = 658CB55D1ECED4F100A29498 /* welcome_page.png */; };
 		658E22011EBB04FF008D9227 /* ExtraServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E22001EBB04FF008D9227 /* ExtraServiceController.m */; };
+		658FB59D1ED2D381004DCAB8 /* icon_location_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FB59C1ED2D381004DCAB8 /* icon_location_pin.png */; };
 		658FE6041E9F14D1002CA85F /* icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6031E9F14D1002CA85F /* icon_up.png */; };
 		658FE6061E9F14DC002CA85F /* icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 658FE6051E9F14DC002CA85F /* icon_down.png */; };
 		65A1FB611EC433A4005C8E6B /* HelpWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A1FB601EC433A4005C8E6B /* HelpWebViewController.m */; };
@@ -442,6 +450,19 @@
 		6525450E1E236AA80027B28B /* HelpContentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpContentController.h; sourceTree = "<group>"; };
 		6525450F1E236AB40027B28B /* HelpContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpContentController.m; sourceTree = "<group>"; };
 		652545111E2372E70027B28B /* icon_account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_account.png; sourceTree = "<group>"; };
+		652FBEA81ED3CAAB00DA2729 /* ListDialogData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDialogData.h; sourceTree = "<group>"; };
+		652FBEA91ED3CAAB00DA2729 /* ListDialogData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDialogData.m; sourceTree = "<group>"; };
+		652FBEAB1ED3D80B00DA2729 /* HouseManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseManagerController.h; sourceTree = "<group>"; };
+		652FBEAC1ED3D80B00DA2729 /* HouseManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseManagerController.m; sourceTree = "<group>"; };
+		652FBEAE1ED3D82100DA2729 /* HouseItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseItemCell.xib; sourceTree = "<group>"; };
+		652FBEB01ED3DBB200DA2729 /* HouseItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseItemCell.h; sourceTree = "<group>"; };
+		652FBEB11ED3DBB200DA2729 /* HouseItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseItemCell.m; sourceTree = "<group>"; };
+		652FBEB31ED404C600DA2729 /* HouseAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAddController.h; sourceTree = "<group>"; };
+		652FBEB41ED404C600DA2729 /* HouseAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAddController.m; sourceTree = "<group>"; };
+		652FBEB61ED414A300DA2729 /* HouseModifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseModifyController.h; sourceTree = "<group>"; };
+		652FBEB71ED414A300DA2729 /* HouseModifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseModifyController.m; sourceTree = "<group>"; };
+		652FBEB91ED42D3200DA2729 /* MainOrderLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainOrderLoginController.h; sourceTree = "<group>"; };
+		652FBEBA1ED42D3200DA2729 /* MainOrderLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainOrderLoginController.m; sourceTree = "<group>"; };
 		6544C73E1E67FCA30050A9D3 /* RapidRepairController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RapidRepairController.m; sourceTree = "<group>"; };
 		6544C7401E67FCB20050A9D3 /* RapidRepairController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RapidRepairController.h; sourceTree = "<group>"; };
 		6544C7411E67FFDB0050A9D3 /* FaultInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaultInfo.h; sourceTree = "<group>"; };
@@ -591,6 +612,7 @@
 		658CB55D1ECED4F100A29498 /* welcome_page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_page.png; sourceTree = "<group>"; };
 		658E21FF1EBB04FF008D9227 /* ExtraServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceController.h; sourceTree = "<group>"; };
 		658E22001EBB04FF008D9227 /* ExtraServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceController.m; sourceTree = "<group>"; };
+		658FB59C1ED2D381004DCAB8 /* icon_location_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_location_pin.png; sourceTree = "<group>"; };
 		658FE6031E9F14D1002CA85F /* icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_up.png; sourceTree = "<group>"; };
 		658FE6051E9F14DC002CA85F /* icon_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_down.png; sourceTree = "<group>"; };
 		65A1FB5F1EC433A4005C8E6B /* HelpWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpWebViewController.h; sourceTree = "<group>"; };
@@ -943,6 +965,8 @@
 				655593B11EC9453400977291 /* MaintFloatView.m */,
 				655593F81ECAFAF100977291 /* UITableView+CoverView.h */,
 				655593F91ECAFAF100977291 /* UITableView+CoverView.m */,
+				652FBEB01ED3DBB200DA2729 /* HouseItemCell.h */,
+				652FBEB11ED3DBB200DA2729 /* HouseItemCell.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -991,6 +1015,7 @@
 				65E19BD71E67C76200C6860D /* SelectableCell.xib */,
 				65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */,
 				6525447C1E1F37EF0027B28B /* WorkerInfoView.xib */,
+				652FBEAE1ED3D82100DA2729 /* HouseItemCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1017,6 +1042,7 @@
 				652545021E230E640027B28B /* background.png */,
 				652544771E1F2DAB0027B28B /* banner.png */,
 				658CB55B1ECED4D100A29498 /* welcome_page_gif.gif */,
+				658FB59C1ED2D381004DCAB8 /* icon_location_pin.png */,
 				652544E01E1F754C0027B28B /* beijing_districts.json */,
 				652544E11E1F754C0027B28B /* city_json.json */,
 				655593E71ECAE1DC00977291 /* five_star.png */,
@@ -1157,6 +1183,8 @@
 				65E3692C1E6CFF0B00E4CF04 /* MainTypeDetailController.m */,
 				65FE09141EB9A2C2002C9397 /* PayViewController.h */,
 				65FE09151EB9A2C2002C9397 /* PayViewController.m */,
+				652FBEB91ED42D3200DA2729 /* MainOrderLoginController.h */,
+				652FBEBA1ED42D3200DA2729 /* MainOrderLoginController.m */,
 			);
 			name = Maintenance;
 			sourceTree = "<group>";
@@ -1205,6 +1233,12 @@
 				655594001ECC1A7D00977291 /* ForgetViewController.m */,
 				658CB5561ECE85C100A29498 /* LinkModifyController.h */,
 				658CB5571ECE85C100A29498 /* LinkModifyController.m */,
+				652FBEAB1ED3D80B00DA2729 /* HouseManagerController.h */,
+				652FBEAC1ED3D80B00DA2729 /* HouseManagerController.m */,
+				652FBEB31ED404C600DA2729 /* HouseAddController.h */,
+				652FBEB41ED404C600DA2729 /* HouseAddController.m */,
+				652FBEB61ED414A300DA2729 /* HouseModifyController.h */,
+				652FBEB71ED414A300DA2729 /* HouseModifyController.m */,
 			);
 			name = Person;
 			sourceTree = "<group>";
@@ -1270,6 +1304,8 @@
 				6544C7771E6911490050A9D3 /* MainWorkerInfo.m */,
 				6544C7821E692FBE0050A9D3 /* RepairTaskInfo.h */,
 				6544C7831E692FC90050A9D3 /* RepairTaskInfo.m */,
+				652FBEA81ED3CAAB00DA2729 /* ListDialogData.h */,
+				652FBEA91ED3CAAB00DA2729 /* ListDialogData.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1541,6 +1577,7 @@
 				650596B01E8A33A7009A5602 /* icon_person_new.png in Resources */,
 				65E19BAE1E67BFDA00C6860D /* MainOrderInfoCell.xib in Resources */,
 				650596CF1E8A4609009A5602 /* icon_decorate.png in Resources */,
+				658FB59D1ED2D381004DCAB8 /* icon_location_pin.png in Resources */,
 				652545091E230FE90027B28B /* icon_user.png in Resources */,
 				658CB5521ECD942700A29498 /* DialogEditView.xib in Resources */,
 				652544FF1E1F87EF0027B28B /* icon_maintenance_record.png in Resources */,
@@ -1625,6 +1662,7 @@
 				655593E21ECAD6C600977291 /* process_3.png in Resources */,
 				655593E81ECAE1DC00977291 /* five_star.png in Resources */,
 				65FE08A51EA59ECE002C9397 /* ListDialogView.xib in Resources */,
+				652FBEAF1ED3D82100DA2729 /* HouseItemCell.xib in Resources */,
 				655593EC1ECAF3EB00977291 /* icon_repair_new.png in Resources */,
 				65FE09081EB82C45002C9397 /* icon_ensurance.png in Resources */,
 				65FE090F1EB9746A002C9397 /* icon_repair_normal.png in Resources */,
@@ -1723,6 +1761,7 @@
 				65228ED01EBC42EA007A1300 /* ExtraServiceCell.m in Sources */,
 				65228ECD1EBC20AC007A1300 /* ExtraPayOrderController.m in Sources */,
 				6525443C1E1F1F960027B28B /* NSArray+Log.m in Sources */,
+				652FBEB81ED414A300DA2729 /* HouseModifyController.m in Sources */,
 				6544C7811E692F0B0050A9D3 /* RepairInfoController.m in Sources */,
 				6525446F1E1F26C80027B28B /* BaseTabBarController.m in Sources */,
 				6544C7951E6943B30050A9D3 /* RepairEvaluateRequest.m in Sources */,
@@ -1761,6 +1800,7 @@
 				6525446D1E1F26C80027B28B /* BaseViewController.m in Sources */,
 				65FE08D71EB044EA002C9397 /* MaintOrderController.m in Sources */,
 				65CABE421E22A2F0007EC96C /* LauncherController.m in Sources */,
+				652FBEBB1ED42D3200DA2729 /* MainOrderLoginController.m in Sources */,
 				652544D91E1F65050027B28B /* README.md in Sources */,
 				6544C7651E68FD660050A9D3 /* MainListResponse.m in Sources */,
 				655ADFC01E2EFE9E00F1F036 /* OtherController.m in Sources */,
@@ -1773,11 +1813,13 @@
 				655ADF3A1E26027400F1F036 /* EvaluateView.m in Sources */,
 				65228ECA1EBC155E007A1300 /* ExtraOrderAddController.m in Sources */,
 				652544751E1F29390027B28B /* MainPageController.m in Sources */,
+				652FBEB51ED404C600DA2729 /* HouseAddController.m in Sources */,
 				65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */,
 				6544C7921E693ED60050A9D3 /* RepairTaskDetailController.m in Sources */,
 				655ADFA21E2DECB100F1F036 /* MarketCell.m in Sources */,
 				652544D81E1F65050027B28B /* UIDownPicker.m in Sources */,
 				6544C7751E6910840050A9D3 /* MainTaskListResponse.m in Sources */,
+				652FBEAA1ED3CAAB00DA2729 /* ListDialogData.m in Sources */,
 				6525444C1E1F206B0027B28B /* ResponseHead.m in Sources */,
 				652544851E1F37FC0027B28B /* CalloutAnnotationView.m in Sources */,
 				65228EDE1EC30C54007A1300 /* WebViewController.m in Sources */,
@@ -1800,6 +1842,7 @@
 				650596CB1E8A4347009A5602 /* ElevatorDecorateController.m in Sources */,
 				65EA23A91E1F1BE100F2BE18 /* main.m in Sources */,
 				65CABE381E224464007EC96C /* RegisterController.m in Sources */,
+				652FBEAD1ED3D80B00DA2729 /* HouseManagerController.m in Sources */,
 				655ADF951E2C634000F1F036 /* AddBannerView.m in Sources */,
 				652544BA1E1F62AE0027B28B /* ProLocationController.m in Sources */,
 				65FE08A81EA59EDE002C9397 /* ListDialogView.m in Sources */,
@@ -1814,6 +1857,7 @@
 				655594061ECC244200977291 /* CommonWebViewController.m in Sources */,
 				65E19BA61E67B4F300C6860D /* MainTypeInfo.m in Sources */,
 				652545101E236AB40027B28B /* HelpContentController.m in Sources */,
+				652FBEB21ED3DBB200DA2729 /* HouseItemCell.m in Sources */,
 				6544C7781E6911490050A9D3 /* MainWorkerInfo.m in Sources */,
 				652544BD1E1F63030027B28B /* FileUtils.m in Sources */,
 				652544B41E1F62A80027B28B /* AddressViewController.m in Sources */,

@@ -13,6 +13,7 @@
 #import "HttpClient.h"
 #import "JPUSHService.h"
 #import "LinkModifyController.h"
+#import "HouseManagerController.h"
 
 
 #define ICON_PATH @"/tmp/person/"
@@ -108,7 +109,7 @@
     }
     else if (1 == section)
     {
-        return 7;
+        return 3;
     }
     else
     {
@@ -146,34 +147,7 @@
             cell.labelContent.textAlignment = NSTextAlignmentRight;
             
         } else if (2 == row) {
-            cell.labelTitle.text = @"联系人";
-            
-            NSString *name = [Config shareConfig].linkName;
-            
-            cell.labelContent.text = 0 == name.length ? [[Config shareConfig] getName] : name;
-            cell.labelContent.textAlignment = NSTextAlignmentRight;
-            
-        } else if (3 == row) {
-        
-            cell.labelTitle.text = @"联系人电话";
-            
-            NSString *tel = [Config shareConfig].linkTel;
-            
-            cell.labelContent.text = 0 == tel.length ? [[Config shareConfig] getName] : tel;
-            cell.labelContent.textAlignment = NSTextAlignmentRight;
-        } else if (4 == row) {
-            cell.labelTitle.text = @"电梯品牌";
-            cell.labelContent.text = [[Config shareConfig] getBrand];
-            cell.labelContent.textAlignment = NSTextAlignmentRight;
-            
-        } else if (5 == row) {
-            
-            cell.labelTitle.text = @"电梯型号";
-            cell.labelContent.text = [[Config shareConfig] getLiftType];
-            cell.labelContent.textAlignment = NSTextAlignmentRight;
-            
-        } else if (6 == row) {
-            cell.labelTitle.text = @"我的地址";
+            cell.labelTitle.text = @"别墅管理";
             cell.labelContent.text = [[Config shareConfig] getBranchAddress];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
         }
@@ -218,30 +192,10 @@
             destinationVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:destinationVC animated:YES];
             
-        } else if (2 == row || 3 == row) {
-            LinkModifyController *controller = [[LinkModifyController alloc] init];
+        } else if (2 == row) {
+            HouseManagerController *controller = [[HouseManagerController alloc] init];
             controller.hidesBottomBarWhenPushed = YES;
             
-            [self.navigationController pushViewController:controller animated:YES];
-                        
-        } else if (4 == row) {
-            UIViewController *destinationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ModifyDetail"];
-            [destinationVC setValue:@"brand" forKey:@"enterType"];
-            
-            destinationVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:destinationVC animated:YES];
-            
-        } else if (5 == row) {
-            UIViewController *destinationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ModifyDetail"];
-            [destinationVC setValue:@"model" forKey:@"enterType"];
-            
-            destinationVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:destinationVC animated:YES];
-            
-        } else if (6 == row) {
-            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"pro_location_controller"];
-            
-            controller.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:controller animated:YES];
         }
         

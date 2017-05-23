@@ -10,7 +10,11 @@
 
 @protocol AddressLocationControllerDelegate <NSObject>
 
+@optional
+
 - (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng;
+
+- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng;
 
 @end
 
