@@ -24,6 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbValue;
 
+@property (copy, nonatomic) NSString *btnTitle;
+
 
 @end
 

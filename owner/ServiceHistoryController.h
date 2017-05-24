@@ -10,4 +10,6 @@
 
 @interface ServiceHistoryController : BaseViewController
 
+@property (copy, nonatomic) NSString *houseId;
+
 @end

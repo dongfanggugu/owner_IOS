@@ -112,6 +112,16 @@
         return;
     }
     
+    NSString *linkName = _linkNameCell.tfValue.text;
+    
+    NSString *linkTel = _linkTelCell.tfValue.text;
+    
+    if (0 == linkName || 0 == linkTel) {
+        
+        [HUDClass showHUDWithText:@"请正确填写联系人信息"];
+        return;
+    }
+    
     NSString *name = _nameCell.tfValue.text;
     
     if (0 == name.length) {
@@ -146,16 +156,6 @@
         return;
     }
     
-    
-    NSString *linkName = _linkNameCell.tfValue.text;
-    
-    NSString *linkTel = _linkTelCell.tfValue.text;
-    
-    if (0 == linkName || 0 == linkTel) {
-        
-        [HUDClass showHUDWithText:@"请正确填写联系人信息"];
-        return;
-    }
     
     request.brand = brand;
     request.weight = weight.floatValue;

@@ -18,6 +18,8 @@
 
 - (void)onClickOrder:(MaintFloatView *)view index:(NSInteger)index;
 
+- (void)onClickChange:(MaintFloatView *)view;
+
 @end
 
 @interface MaintFloatView : UIView
@@ -49,5 +51,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbLevel3Bottom;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbDetail;
+
+@property (assign, nonatomic) BOOL changeHiden;
 
 @end

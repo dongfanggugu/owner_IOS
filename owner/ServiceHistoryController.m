@@ -51,6 +51,8 @@
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    [_tableView showCopyWrite];
+    
     [self.view addSubview:_tableView];
 }
 
@@ -71,7 +73,11 @@
 
 - (void)getHistory
 {
-    [[HttpClient shareClient] post:@"getMaintOrderHistoryList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    params[@"villaId"] = _houseId;
+    
+    [[HttpClient shareClient] post:@"getMaintOrderHistoryList" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
         

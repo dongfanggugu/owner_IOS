@@ -17,6 +17,7 @@
 #import "HelpWebViewController.h"
 #import "ReportController.h"
 #import "CommonWebViewController.h"
+#import "RapidRepairLoginController.h"
 
 
 @interface MainPageController  () <AddBannerViewDelegate>
@@ -134,10 +135,18 @@
 
 - (void)repair
 {
-    RapidRepairController *controller = [[RapidRepairController alloc] init];
-    
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
+    if (self.login) {
+        RapidRepairLoginController *controller = [[RapidRepairLoginController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } else {
+        RapidRepairController *controller = [[RapidRepairController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (void)maintenance

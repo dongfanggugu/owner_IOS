@@ -45,6 +45,8 @@
 
 @property (assign, nonatomic) NSInteger layerAmount;
 
+@property (copy, nonatomic) NSString *villaId;
+
 
 //增值服务订单使用
 @property (copy, nonatomic) NSString *incrementTypeId;

@@ -1,13 +1,12 @@
 //
-//  RapidRepairController.m
+//  RapidRepairLoginController.m
 //  owner
 //
-//  Created by 长浩 张 on 2017/3/2.
+//  Created by 长浩 张 on 2017/5/24.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "RapidRepairController.h"
+#import "RapidRepairLoginController.h"
 #import "KeyEditCell.h"
 #import "KeyMultiEditCell.h"
 #import "KeyEditBtnCell.h"
@@ -19,78 +18,52 @@
 #import "SMSCodeResponse.h"
 #import "DatePickerDialog.h"
 #import "RepairAddRequest.h"
-#import "AddressLocationController.h"
 #import "DialogEditView.h"
 #import "KeyValueBtnCell.h"
-#import "LinkModifyController.h"
 #import "ListDialogData.h"
 #import "KeyImageViewCell.h"
 #import "ImageUtils.h"
 
 
-
-#define DATE_INIT @"点击选择上门日期"
-
 #define IMAGE_PATH @"/tmp/person/"
 
 #define IMAGE_TEMP @"rapid_repair.jpg"
 
-@interface RapidRepairController()<UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate, AddressLocationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+#define DATE_INIT @"点击选择上门日期"
+
+@interface RapidRepairLoginController () <UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate, ListDialogViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
 
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (weak, nonatomic) UITextField *tfType;
-
-@property (weak, nonatomic) NSString *falutType;
-
-@property (weak, nonatomic) UITextField *tfCode;
-
-@property (weak, nonatomic) SelectableCell *brandCell;
-
-@property (weak, nonatomic) SelectableCell *weightCell;
-
-@property (weak, nonatomic) SelectableCell *layerCell;
+@property (copy, nonatomic) NSString *falutType;
 
 @property (weak, nonatomic) SelectableCell *faultCell;
 
 @property (weak, nonatomic) KeyMultiEditCell *desCell;
 
-@property (weak, nonatomic) KeyValueCell *dateCell;
-
 @property (weak, nonatomic) KeyImageViewCell *imageCell;
 
-@property (weak, nonatomic) KeyEditCell *nameCell;
+@property (weak, nonatomic) KeyValueCell *dateCell;
 
-@property (weak, nonatomic) KeyEditBtnCell *telCell;
+@property (strong, nonatomic) NSDictionary *houseInfo;
 
-@property (weak, nonatomic) KeyValueCell *addressCell;
-
-@property (weak, nonatomic) KeyEditCell *linkNameCell;
-
-@property (weak, nonatomic) KeyEditCell *linkTelCell;
-
-@property (copy, nonatomic) NSString *cellName;
-
-@property (copy, nonatomic) NSString *address;
-
-@property (assign, nonatomic) CGFloat lat;
-
-@property (assign, nonatomic) CGFloat lng;
+@property (strong, nonatomic) NSMutableArray *arrayHouse;
 
 @property (copy, nonatomic) NSString *url;
 
 @end
 
-@implementation RapidRepairController
+@implementation RapidRepairLoginController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setNavTitle:@"快修服务"];
     [self initNavRightWithText:@"联系我们"];
-    [self initData];
     [self initView];
+    [self getHouses];
 }
 
 - (void)onClickNavRight
@@ -103,24 +76,8 @@
 
 - (void)submit
 {
-    NSString *brand = _brandCell.getContentValue;
-    
-    if (0 == brand.length) {
-        [HUDClass showHUDWithText:@"请选择电梯品牌"];
-        return;
-    }
-    
-    NSString *weight = [Utils string:_weightCell.getContentValue substringBeforeChar:@"k"];
-    
-    if (0 == weight.length) {
-        [HUDClass showHUDWithText:@"请选择电梯载重量"];
-        return;
-    }
-    
-    NSString *layer = [Utils string:_layerCell.getContentValue substringBeforeChar:@"层"];
-    
-    if (0 == layer.length) {
-        [HUDClass showHUDWithText:@"请选择电梯电梯层站"];
+    if (!_houseInfo) {
+        [HUDClass showHUDWithText:@"请先选择您的别墅"];
         return;
     }
     
@@ -136,7 +93,6 @@
         return;
     }
     
-    
     NSString *date = _dateCell.lbValue.text;
     
     if ([date isEqualToString:DATE_INIT]) {
@@ -144,73 +100,15 @@
         return;
     }
     
-    NSString *linkName = _linkNameCell.tfValue.text;
-    
-    NSString *linkTel = _linkTelCell.tfValue.text;
-    
-    if (0 == linkName || 0 == linkTel) {
-        
-        [HUDClass showHUDWithText:@"请正确填写联系人信息"];
-        return;
-    }
-    
-    NSString *name = _nameCell.tfValue.text;
-    
-    if (0 == name.length) {
-        [HUDClass showHUDWithText:@"请填写业主姓名"];
-        return;
-    }
-    
-    NSString *tel = _telCell.tfValue.text;
-    
-    if (0 == tel.length) {
-        [HUDClass showHUDWithText:@"请填写业主手机号码"];
-        return;
-    }
-    
-    NSString *code = _tfCode.text;
-    
-    if (0 == code.length) {
-        [HUDClass showHUDWithText:@"请填写验证码"];
-        return;
-    }
-    
-    if (![code isEqualToString:[[Config shareConfig] getSMSCode]]) {
-        [HUDClass showHUDWithText:@"验证码不正确，请确认验证码"];
-        return;
-        
-    }
-    
-    NSString *address = _addressCell.lbValue.text;
-    
-    if (0 == address.length) {
-        [HUDClass showHUDWithText:@"请选择您的地址"];
-        return;
-    }
-    
-
-    
     RepairAddRequest *request = [[RepairAddRequest alloc] init];
     
     request.repairTypeId = _falutType;
     request.phenomenon = faultInfo;
     request.url = _url;
     request.repairTime = date;
-        
-    request.brand = brand;
-    request.weight = weight.floatValue;
-    request.layerAmount = layer.integerValue;
-    request.tel = tel;
-    request.name = name;
-    request.cellName = _cellName;
-    request.address = _address;
-    request.lat = _lat;
-    request.lng = _lng;
-    request.contacts = linkName;
-    request.contactsTel = linkTel;
+    request.villaId = _houseInfo[@"id"];
     
     
-
     [[HttpClient shareClient] post:URL_REPAIR_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         [HUDClass showHUDWithText:@"快修单提交成功"];
         [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
@@ -219,14 +117,18 @@
     }];
 }
 
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse) {
+        _arrayHouse = [NSMutableArray array];
+    }
+    
+    return _arrayHouse;
+}
+
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)initData
-{
-   
 }
 
 - (void)initView
@@ -237,8 +139,6 @@
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
-    //_tableView.bounces = NO;
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -260,7 +160,7 @@
     [footView addSubview:btn];
     
     _tableView.tableFooterView = footView;
-
+    
 }
 
 
@@ -278,7 +178,7 @@
         return 7;
         
     } else {
-        return 6;
+        return 5;
     }
 }
 
@@ -295,113 +195,38 @@
     if (0 == indexPath.section) {
         if (0 == indexPath.row) {
             
-            if (_brandCell) {
-                return _brandCell;
-                
-            } else {
-                SelectableCell *cell = [SelectableCell cellFromNib];
-                _brandCell = cell;
-                
-                cell.lbKey.text = @"电梯品牌";
-                
-                __weak typeof (cell) weakCell = cell;
-                
-                __weak typeof (self) weakSelf = self;
-                
-                [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                    BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
-                    [weakCell setData:[response getBrandList]];
-                    
-                    [weakCell setBeforeSelectedListener:^(NSString *preConent, NSString *content) {
-                        if ([content isEqualToString:@"其他"]) {
-                            [weakSelf showEditDialog:weakCell pre:preConent];
-                        }
-                    }];
-                } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                    
-                }];
-                
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-                
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"电梯品牌";
+            
+            if (_houseInfo) {
+                cell.lbValue.text = _houseInfo[@"brand"];
             }
+            
+            return cell;
             
         } else if (1 == indexPath.row) {
-            if (_weightCell) {
-                return _weightCell;
-                
-            } else {
-                
-                SelectableCell *cell = [SelectableCell cellFromNib];
-                _weightCell = cell;
-                
-                cell.lbKey.text = @"载重量";
-                
-                __weak typeof (self) weakSelf = self;
-                __weak typeof (cell) weakCell = cell;
-                
-                ListDialogData *data1 = [[ListDialogData alloc] initWithKey:nil content:@"240kg"];
-                
-                ListDialogData *data2 = [[ListDialogData alloc] initWithKey:nil content:@"320kg"];
-                
-                ListDialogData *data3 = [[ListDialogData alloc] initWithKey:nil content:@"480kg"];
-                
-                ListDialogData *data4 = [[ListDialogData alloc] initWithKey:nil content:@"640kg"];
-                
-                ListDialogData *data5 = [[ListDialogData alloc] initWithKey:nil content:@"其他"];
-                
-                NSArray *array = [[NSArray alloc] initWithObjects:data1, data2, data3, data4, data5, nil];
-                
-                [cell setData:array];
-                
-                [cell setBeforeSelectedListener:^(NSString *preContent, NSString *content) {
-                    if ([content isEqualToString:@"其他"]) {
-                        [weakSelf showWeightEditDialog:weakCell pre:preContent];
-                    }
-                }];
-                
-                
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"载重量";
+            if (_houseInfo) {
+                cell.lbValue.text = [NSString stringWithFormat:@"%@kg", _houseInfo[@"weight"]];
             }
             
+            return cell;
+            
         } else if (2 == indexPath.row) {
-            if (_layerCell) {
-                return _layerCell;
-                
-            } else {
-                SelectableCell *cell = [SelectableCell cellFromNib];
-                _layerCell = cell;
-                
-                cell.lbKey.text = @"电梯层站";
-                
-                ListDialogData *data1 = [[ListDialogData alloc] initWithKey:nil content:@"2层"];
-                
-                ListDialogData *data2 = [[ListDialogData alloc] initWithKey:nil content:@"3层"];
-                
-                ListDialogData *data3 = [[ListDialogData alloc] initWithKey:nil content:@"4层"];
-                
-                ListDialogData *data4 = [[ListDialogData alloc] initWithKey:nil content:@"5层"];
-                
-                ListDialogData *data5 = [[ListDialogData alloc] initWithKey:nil content:@"6层"];
-                
-                ListDialogData *data6 = [[ListDialogData alloc] initWithKey:nil content:@"7层"];
-                
-                
-                NSArray *array = [[NSArray alloc] initWithObjects:data1, data2, data3, data4, data5, data6, nil];
-                
-                [cell setData:array];
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-                
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"电梯层站";
+            
+            if (_houseInfo) {
+                cell.lbValue.text = [NSString stringWithFormat:@"%@层", _houseInfo[@"layerAmount"]];
             }
+            
+            return cell;
+            
         } else if (3 == indexPath.row) {
             if (_faultCell) {
                 return _faultCell;
-            
+                
             } else {
                 SelectableCell *cell = [SelectableCell cellFromNib];
                 
@@ -411,17 +236,15 @@
                 
                 __weak typeof (self) weakSelf = self;
                 
-                __weak typeof (cell) weakCell = cell;
-                
                 [[HttpClient shareClient] post:URL_FAULT_LIST parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                     FaultListResponse *response = [[FaultListResponse alloc] initWithDictionary:responseObject];
                     
                     if ([response getFaultList].count > 0) {
-                        weakSelf.falutType = [[response getFaultList] objectAtIndex:0].faultId;
+                        _falutType = [[response getFaultList] objectAtIndex:0].faultId;
                         
-                        [weakCell setData:[response getFaultList]];
+                        [cell setData:[response getFaultList]];
                         
-                        [weakCell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                        [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
                             weakSelf.falutType = key;
                         }];
                     }
@@ -436,7 +259,7 @@
         } else if (4 == indexPath.row) {
             if (_desCell) {
                 return _desCell;
-            
+                
             } else {
                 KeyMultiEditCell *cell = [KeyMultiEditCell viewFromNib];
                 _desCell = cell;
@@ -451,7 +274,7 @@
         } else if (5 == indexPath.row) {
             if (_dateCell) {
                 return _dateCell;
-            
+                
             } else {
                 KeyValueCell *cell = [KeyValueCell cellFromNib];
                 _dateCell = cell;
@@ -465,10 +288,10 @@
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
-
+                
             }
             
-        } else if (6 == indexPath.row) {
+        }else if (6 == indexPath.row) {
             
             if (_imageCell) {
                 return _imageCell;
@@ -503,125 +326,126 @@
             }
         }
         
-    } else if (1 == indexPath.section) {
+    }  else if (1 == indexPath.section) {
         if (0 == indexPath.row) {
-            if (_linkNameCell) {
-                return _linkNameCell;
-                
-            } else {
-                KeyEditCell *cell = [KeyEditCell cellFromNib];
-                _linkNameCell = cell;
-                
-                cell.lbKey.text = @"联系人";
-                cell.tfValue.placeholder = @"请输入别墅联系人";
-                
-                return cell;
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"联系人";
+            if (_houseInfo) {
+                cell.lbValue.text = _houseInfo[@"contacts"];
             }
-            
-            
-            
-        } else if (1 == indexPath.row) {
-            if (_linkTelCell) {
-                return _linkTelCell;
-                
-            } else {
-                
-                KeyEditCell *cell = [KeyEditCell cellFromNib];
-                _linkTelCell = cell;
-                
-                cell.lbKey.text = @"联系人电话";
-                cell.tfValue.placeholder = @"请输入别墅联系人电话";
-                
-                return cell;
-            }
-            
-        } else if (2 == indexPath.row) {
-            if (_nameCell) {
-                return _nameCell;
-                
-            } else {
-                KeyEditCell *cell = [KeyEditCell cellFromNib];
-                _nameCell = cell;
-                
-                cell.lbKey.text = @"姓名";
-                
-                cell.tfValue.placeholder = @"姓名";
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
-            
-        } else if (3 == indexPath.row) {
-            if (_telCell) {
-                return _telCell;
-                
-            } else {
-                KeyEditBtnCell *cell = [KeyEditBtnCell cellFromNib];
-                _telCell = cell;
-                
-                cell.lbKey.text = @"手机";
-                cell.tfValue.placeholder = @"手机";
-                cell.tfValue.keyboardType = UIKeyboardTypePhonePad;
-                
-                __weak typeof(cell) weakCell = cell;
-                [cell setOnClickBtnListener:^{
-                    
-                    NSString *tel = weakCell.tfValue.text;
-                    
-                    if (0 == tel.length || tel.length != 11) {
-                        [HUDClass showHUDWithText:@"请输入正确的手机号码"];
-                        return;
-                    }
-                    
-                    SMSCodeRequest *request = [[SMSCodeRequest alloc] init];
-                    request.tel = tel;
-                    
-                    [[HttpClient shareClient] post:URL_SMS_CODE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-                        SMSCodeResponse *response = [[SMSCodeResponse alloc] initWithDictionary:responseObject];
-                        [[Config shareConfig] setSMCode:[response getSMSCode]];
-                    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                        
-                    }];
-                }];
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
-            
-        } else if (4 == indexPath.row) {
-            KeyEditCell *cell = [KeyEditCell cellFromNib];
-            cell.lbKey.text = @"验证码";
-            
-            cell.tfValue.placeholder = @"验证码";
-            _tfCode = cell.tfValue;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
             
-        } else if (5 == indexPath.row) {
-            if (_addressCell) {
-                return _addressCell;
-                
-            } else {
-                KeyValueCell *cell =  [KeyValueCell cellFromNib];
-                _addressCell = cell;
-                
-                cell.lbKey.text = @"别墅地址";
-                cell.lbValue.text = @"点击选择别墅地址";
-                
-                cell.lbValue.userInteractionEnabled = YES;
-                
-                [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressLocation)]];
-                
-                return cell;
+        } else if (1 == indexPath.row) {
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"联系人手机";
+            if (_houseInfo) {
+                cell.lbValue.text = _houseInfo[@"contactsTel"];
             }
+            
+            return cell;
+            
+        } else if (2 == indexPath.row) {
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"业主";
+            cell.lbValue.text = [[Config shareConfig] getName];
+            
+            return cell;
+            
+        } else if (3 == indexPath.row) {
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"业主手机";
+            cell.lbValue.text = [[Config shareConfig] getTel];
+            
+            return cell;
+            
+        } else if (4 == indexPath.row) {
+            KeyValueBtnCell *cell =  [KeyValueBtnCell cellFromNib];
+            
+            cell.lbKey.text = @"别墅地址";
+            cell.lbValue.text = _houseInfo[@"cellName"];
+            cell.btnTitle = @"切换";
+            
+            __weak typeof (self) weakSelf = self;
+            [cell addOnClickListener:^{
+                [weakSelf showHouselist];
+            }];
+            
+            return cell;
+            
         }
         
     }
     
-    return nil;
+    return [KeyValueCell cellFromNib];
     
+}
+
+/**
+ villaId
+ brand
+ model
+ cellName
+ address
+ lng
+ lat
+ weight
+ layerAmount
+ contacts
+ contactsTel
+ */
+- (void)getHouses
+{
+    [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.arrayHouse removeAllObjects];
+        [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
+        [self showHouselist];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
+
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count) {
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        
+        _houseInfo = self.arrayHouse[0];
+        
+        [_tableView reloadData];
+        
+        return;
+    }
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSDictionary *info in self.arrayHouse) {
+        ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
+        [array addObject:data];
+    }
+    
+    ListDialogView *dialog = [ListDialogView viewFromNib];
+    dialog.delegate = self;
+    [dialog setData:array];
+    [dialog show];
+}
+
+#pragma mark - LisDialogViewDelegate
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse) {
+        if ([key isEqualToString:info[@"id"]]) {
+            
+            _houseInfo = info;
+            
+            [_tableView reloadData];
+            break;
+        }
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -632,10 +456,9 @@
         
         if (4 == indexPath.row) {
             return [KeyMultiEditCell cellHeight];
-        
+            
         } else if (6 == indexPath.row) {
             return [KeyImageViewCell cellHeight];
-            
         }
         
         return [KeyEditCell cellHeight];
@@ -663,18 +486,11 @@
     [view addSubview:titleView];
     [view addSubview:label];
     
-    if (0 == section)
-    {
+    if (0 == section) {
         label.text = @"订单信息";
         return view;
-    }
-    else if (1 == section)
-    {
-        label.text = @"业主信息";
-        return view;
-    }
-    else
-    {
+        
+    } else {
         label.text = @"业主信息";
         return view;
     }
@@ -696,30 +512,7 @@
     _dateCell.lbValue.text = dateStr;
 }
 
-- (void)addressLocation
-{
-    AddressLocationController *controller = [[AddressLocationController alloc] init];
-    controller.delegate = self;
-    
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
-#pragma mark - LocationControllerDelegate
-
-- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
-{
-    _cellName = cell;
-    _address = address;
-    
-    _lat = lat;
-    _lng = lng;
-    
-    _addressCell.lbValue.text = [NSString stringWithFormat:@"%@%@", cell, address];
-    
-}
-
-- (void)showEditDialog:(SelectableCell *)cell pre:(NSString *)preContent
+- (void)showEditDialog:(SelectableCell *)cell
 {
     DialogEditView *dialog = [DialogEditView viewFromNib];
     
@@ -729,29 +522,7 @@
     }];
     
     [dialog addOnClickCancelListener:^{
-        cell.lbContent.text = preContent;
-    }];
-    
-    [dialog show];
-}
-
-- (void)showWeightEditDialog:(SelectableCell *)cell pre:(NSString *)preContent
-{
-    DialogEditView *dialog = [DialogEditView viewFromNib];
-    
-    dialog.lbTitle.text = @"输入电梯的载重量";
-    
-    dialog.tfContent.placeholder = @"请输入电梯的载重量";
-    
-    dialog.tfContent.keyboardType = UIKeyboardTypeNumberPad;
-    
-    [dialog addOnClickOkListener:^(NSString *content) {
-        cell.lbContent.text = [NSString stringWithFormat:@"%@kg", content];
-        
-    }];
-    
-    [dialog addOnClickCancelListener:^{
-        cell.lbContent.text = preContent;
+        cell.lbContent.text = @"";
     }];
     
     [dialog show];

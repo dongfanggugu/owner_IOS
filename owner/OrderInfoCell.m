@@ -36,6 +36,9 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     _lbIndex.layer.masksToBounds = YES;
     _lbIndex.layer.cornerRadius = 12;
 }

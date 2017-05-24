@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnChange;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnDetail;
 
 @property (weak, nonatomic) IBOutlet UIView *viewLevel1;
@@ -53,12 +55,22 @@
     }
 }
 
+- (void)onClickChange
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickChange:)]) {
+        [_delegate onClickChange:self];
+    }
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     
     _btn.layer.masksToBounds = YES;
     _btn.layer.cornerRadius = 5;
+    
+    _btnChange.layer.masksToBounds = YES;
+    _btnChange.layer.cornerRadius = 5;
     
     _btnDetail.layer.masksToBounds = YES;
     _btnDetail.layer.cornerRadius = 5;
@@ -74,6 +86,8 @@
     
     
     [_btn addTarget:self action:@selector(onClickOrder) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnChange addTarget:self action:@selector(onClickChange) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnDetail addTarget:self action:@selector(onClickDetail) forControlEvents:UIControlEventTouchUpInside];
     
@@ -172,6 +186,17 @@
 - (void)defaultSel
 {
     [self viewSel1];
+}
+
+- (void)setChangeHiden:(BOOL)changeHiden
+{
+    if (changeHiden) {
+        _btnChange.hidden = YES;
+        
+    } else {
+        _btnChange.hidden = NO;
+        
+    }
 }
 
 @end

@@ -42,9 +42,28 @@
 
 + (NSString *)getIp;
 
+
+
+
+/**
+ 截取字符串
+
+ @param ch <#ch description#>
+ @param string <#string description#>
+ @return <#return value description#>
+ */
 + (NSInteger)character:(NSString *)ch atIndexOfString:(NSString *)string;
 
 + (NSString *)string:(NSString *)string substringBeforeChar:(NSString *)ch;
+
+
+
+/**
+ 图片转换为base64
+
+ @return <#return value description#>
+ */
++ (NSString *)image2Base64From:(UIImage *)image;
 
 @end
 

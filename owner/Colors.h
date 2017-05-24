@@ -9,9 +9,9 @@
 #ifndef Colors_h
 #define Colors_h
 
-#define TITLE_COLOR @"#009A65"
+//#define TITLE_COLOR @"#009A65"
 
-//#define TITLE_COLOR @"#51a938"
+#define TITLE_COLOR @"#36b0f3"
 
 #define COLOR_SEGMENT_UNSEL @"#06577C"
 

@@ -23,12 +23,17 @@
 
 - (void)onClickDetailButton:(MainOrderInfoView *)view;
 
+- (void)onClickChangeButton:(MainOrderInfoView *)view;
+
 @end
 
 
 @interface MainOrderInfoView : UIView
 
 + (id)viewFromNib;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *lbAddress;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbName;
 
@@ -43,6 +48,8 @@
 @property (strong, nonatomic) NSDictionary *data;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (assign, nonatomic) BOOL viewHidden;
 
 @end
 

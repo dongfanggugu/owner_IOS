@@ -57,15 +57,6 @@
 
 @property (weak, nonatomic) KeyValueCell *addressCell;
 
-@property (weak, nonatomic) KeyValueBtnCell *linkNameCell;
-
-@property (weak, nonatomic) KeyValueCell *linkTelCell;
-
-@property (weak, nonatomic) KeyEditCell *uLinkNameCell;
-
-@property (weak, nonatomic) KeyEditCell *uLinkTelCell;
-
-
 @end
 
 @implementation MainOrderLoginController
@@ -92,6 +83,7 @@
     MainOrderAddRequest *request = [[MainOrderAddRequest alloc] init];
     request.mainttypeId = _mainInfo.typeId;
     request.frequency = _amountCell.amount;
+    request.villaId = _houseInfo[@"id"];
     
     
     [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -107,9 +99,6 @@
             [self presentViewController:controller animated:YES completion:^{
                 [self.navigationController popViewControllerAnimated:NO];
             }];
-            //controller.hidesBottomBarWhenPushed = YES;
-            //[self.navigationController popViewControllerAnimated:NO];
-            //[self.navigationController pushViewController:controller animated:YES];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -177,7 +166,7 @@
         return 2;
         
     } else if (1 == section) {
-        return 2;
+        return 3;
         
     } else {
         return 5;
@@ -215,70 +204,25 @@
         
         if (0 == indexPath.row) {
             
-            if (_brandCell) {
-                return _brandCell;
-                
-            } else {
-                SelectableCell *cell = [SelectableCell cellFromNib];
-                
-                _brandCell = cell;
-                
-                
-                cell.lbKey.text = @"电梯品牌";
-                
-                _lbBrand = cell.lbContent;
-                
-                __weak typeof (cell) weakCell = cell;
-                
-                __weak typeof (self) weakSelf = self;
-                
-                if (!self.login) {
-                    [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                        BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
-                        [weakCell setData:[response getBrandList]];
-                        
-                        [weakCell setBeforeSelectedListener:^(NSString *preContent, NSString *content) {
-                            if ([content isEqualToString:@"其他"]) {
-                                [weakSelf showEditDialog:weakCell pre:preContent];
-                            }
-                        }];
-                    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                        
-                    }];
-                    
-                } else {
-                    cell.lbContent.text = [[Config shareConfig] getBrand];
-                    cell.showable = NO;
-                }
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"电梯品牌";
+            cell.lbValue.text = _houseInfo[@"brand"];
             
-        } else {
-            if (_modelCell) {
-                return _modelCell;
-                
-            } else {
-                KeyEditCell *cell = [KeyEditCell cellFromNib];
-                _modelCell = cell;
-                
-                cell.lbKey.text = @"电梯型号";
-                
-                if (!self.login) {
-                    cell.tfValue.placeholder = @"电梯型号";
-                    
-                    _tfType = cell.tfValue;
-                    
-                } else {
-                    cell.tfValue.text = [[Config shareConfig] getLiftType];
-                    
-                    cell.tfValue.enabled = NO;
-                }
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
+            return cell;
+            
+        } else if (1 == indexPath.row) {
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"载重量";
+            cell.lbValue.text = [NSString stringWithFormat:@"%@kg", _houseInfo[@"weight"]];
+            
+            return cell;
+            
+        } else if (2 == indexPath.row) {
+            KeyValueCell *cell = [KeyValueCell cellFromNib];
+            cell.lbKey.text = @"电梯层站";
+            cell.lbValue.text = [NSString stringWithFormat:@"%@层", _houseInfo[@"layerAmount"]];
+            
+            return cell;
         }
         
     } else if (2 == indexPath.section) {

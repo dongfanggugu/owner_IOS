@@ -71,7 +71,7 @@
     
     infoView.lbBrand.text = _orderInfo.brand;
     
-    infoView.lbFault.text = _orderInfo.repairTypeName;
+    infoView.lbFault.text = _orderInfo.repairTypeInfo[@"name"];
     
     UILabel *desKey = [[UILabel alloc] initWithFrame:CGRectMake(8, 124, 80, 21)];
     

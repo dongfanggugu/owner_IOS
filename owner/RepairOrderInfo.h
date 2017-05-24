@@ -48,6 +48,8 @@
 
 @property (copy, nonatomic) NSString *repairTypeName;
 
+@property (strong, nonatomic) NSDictionary *repairTypeInfo;
+
 @end
 
 

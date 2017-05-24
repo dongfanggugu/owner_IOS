@@ -51,7 +51,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _btn.layer.masksToBounds = YES;
-    _btn.layer.cornerRadius = 10;
+    _btn.layer.cornerRadius = 5;
 }
 
 - (void)addOnClickListener:(void(^)())onClick
@@ -63,11 +63,14 @@
 
 - (void)onClickBtn
 {
-    if (_onClick)
-    {
+    if (_onClick) {
         _onClick();
     }
 }
 
+- (void)setBtnTitle:(NSString *)btnTitle
+{
+    [_btn setTitle:btnTitle forState:UIControlStateNormal];
+}
 
 @end

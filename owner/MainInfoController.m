@@ -20,16 +20,24 @@
 #import "MainTypeDetailController.h"
 #import "MainOrderController.h"
 #import "ServiceHistoryController.h"
+#import "ListDialogData.h"
+#import "ListDialogView.h"
 
-@interface MainInfoController() <UITableViewDelegate, UITableViewDataSource, MainOrderInfoViewDelegate>
+@interface MainInfoController() <UITableViewDelegate, UITableViewDataSource, MainOrderInfoViewDelegate, ListDialogViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) MainOrderInfoView *infoView;
 
+@property (strong, nonatomic) UILabel *lbNone;
+
 @property (strong, nonatomic) NSMutableArray<MainTaskInfo *> *arrayTask;
 
 @property (strong, nonatomic) MainOrderInfo *serviceInfo;
+
+@property (strong, nonatomic) NSDictionary *houseInfo;
+
+@property (strong, nonatomic) NSMutableArray *arrayHouse;
 
 @end
 
@@ -40,18 +48,20 @@
     [super viewDidLoad];
     [self setNavTitle:@"维保服务"];
     [self initNavRightWithText:@"查看历史"];
+    [self initView];
     [self initData];
+    [self getHouses];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getSeviceInfo];
 }
 
 - (void)onClickNavRight
 {
     ServiceHistoryController *controller = [[ServiceHistoryController alloc] init];
+    controller.houseId = _houseInfo[@"id"];
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
@@ -62,6 +72,31 @@
     _arrayTask = [NSMutableArray array];
 }
 
+
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse) {
+        _arrayHouse = [NSMutableArray array];
+    }
+    
+    return _arrayHouse;
+}
+
+/**
+ 设置别墅信息
+
+ @param houseInfo <#houseInfo description#>
+ */
+- (void)setHouseInfo:(NSDictionary *)houseInfo
+{
+    _houseInfo = houseInfo;
+    
+    if (_infoView) {
+        _infoView.lbAddress.text = houseInfo[@"cellName"];
+    }
+    [self getSeviceInfo];
+}
+
 - (Maint_Type)maintType
 {
     return _serviceInfo.mainttypeId.integerValue;
@@ -69,22 +104,10 @@
 
 - (void)initView
 {
-    if (!_serviceInfo) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 70, self.screenWidth - 32, 40)];
-        label.font = [UIFont systemFontOfSize:14];
-        label.textAlignment = NSTextAlignmentCenter;
-        
-        label.numberOfLines = 0;
-        
-        label.text = @"您还没有订购有效的维保服务,请到服务->电梯管家中订制您的维保!";
-        
-        [self.view addSubview:label];
-        
-        return;
-    }
-
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    
+    //维保记录
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     
     _tableView.delegate = self;
@@ -99,10 +122,40 @@
     
     _infoView.delegate = self;
     
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [self.view addSubview:_tableView];
+    
+    //当没有维保信息时，提示
+    _lbNone = [[UILabel alloc] initWithFrame:CGRectMake(16, 120, self.screenWidth - 32, 40)];
+    _lbNone.font = [UIFont systemFontOfSize:14];
+    _lbNone.textAlignment = NSTextAlignmentCenter;
+    
+    _lbNone.numberOfLines = 0;
+    
+    _lbNone.text = @"您还没有订购有效的维保服务,请到服务->电梯管家中订制您的维保!";
+    
+    [self.view addSubview:_lbNone];
+}
+
+- (void)initMainInfo
+{
+    if (!_serviceInfo) {
+        
+        _infoView.viewHidden = YES;
+        
+        _lbNone.hidden = NO;
+        
+        return;
+    }
+    
+    _infoView.viewHidden = NO;
+    
+    _lbNone.hidden = YES;
+    
     _infoView.lbName.text = [_serviceInfo.maintypeInfo name];
     
     _infoView.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [_serviceInfo.maintypeInfo price]];
-    
     
     
     if (Maint_Low == self.maintType) {
@@ -132,25 +185,96 @@
         
         _infoView.image = [UIImage imageNamed:@"icon_level_1"];
     }
-    
-    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    [self.view addSubview:_tableView];
+
 }
 
 #pragma mark - Network Request
 
+/**
+ villaId
+ brand
+ model
+ cellName
+ address
+ lng
+ lat
+ weight
+ layerAmount
+ contacts
+ contactsTel
+ */
+- (void)getHouses
+{
+    [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.arrayHouse removeAllObjects];
+        [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
+        [self showHouselist];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
+
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count) {
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        
+        self.houseInfo = self.arrayHouse[0];
+        return;
+    }
+    
+    if (!self.houseInfo) {
+        self.houseInfo = self.arrayHouse[0];
+    }
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSDictionary *info in self.arrayHouse) {
+        ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
+        [array addObject:data];
+    }
+    
+    ListDialogView *dialog = [ListDialogView viewFromNib];
+    dialog.delegate = self;
+    [dialog setData:array];
+    [dialog show];
+}
+
+#pragma mark - LisDialogViewDelegate
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse) {
+        if ([key isEqualToString:info[@"id"]]) {
+            self.houseInfo = info;
+            break;
+        }
+    }
+}
+
+
 - (void)getSeviceInfo
 {
-    OrderListRequest *request = [[OrderListRequest alloc] init];
+    if (!_houseInfo) {
+        return;
+    }
     
-    [[HttpClient shareClient] post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"villaId"] = _houseInfo[@"id"];
+    
+    [[HttpClient shareClient] post:URL_MAIN_LIST parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
         
         if ([response getOrderList].count > 0) {
             _serviceInfo = [[response getOrderList] objectAtIndex:0];
+            
+        } else {
+            _serviceInfo = nil;
         }
-        [self initView];
+        [self initMainInfo];
         [self getTask];
         
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -162,13 +286,16 @@
 - (void)getTask
 {
     if (!_serviceInfo) {
+        [_arrayTask removeAllObjects];
+        [_tableView reloadData];
         return;
     }
-    MainTaskListRequest *request = [[MainTaskListRequest alloc] init];
     
-    request.maintOrderId = _serviceInfo.orderId;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"villaId"] = _houseInfo[@"id"];
+    params[@"maintOrderId"] = _serviceInfo.orderId;
     
-    [[HttpClient shareClient] post:URL_MAIN_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_MAIN_TASK parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         MainTaskListResponse *response = [[MainTaskListResponse alloc] initWithDictionary:responseObject];
         
         [_arrayTask removeAllObjects];
@@ -285,6 +412,21 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)onClickChangeButton:(MainOrderInfoView *)view
+{
+    if (0 == self.arrayHouse.count) {
+        [HUDClass showHUDWithText:@"您需要先添加别墅"];
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
+        return;
+    }
+    
+    [self showHouselist];
+}
+
 
 - (void)onClickBackButton:(MainOrderInfoView *)view
 {
@@ -293,5 +435,6 @@
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     [self.view addSubview:webView];
 }
+
 
 @end

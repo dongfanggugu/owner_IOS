@@ -29,6 +29,13 @@
     return [UIScreen mainScreen].bounds.size.width;
 }
 
+- (BOOL)login
+{
+    NSString *userId = [[Config shareConfig] getUserId];
+    
+    return userId.length;
+}
+
 - (CGFloat)screenHeight
 {
     return [UIScreen mainScreen].bounds.size.height;

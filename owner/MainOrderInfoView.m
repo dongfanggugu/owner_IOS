@@ -21,6 +21,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnChange;
+
+@property (weak, nonatomic) IBOutlet UIView *viewTop;
+
+@property (weak, nonatomic) IBOutlet UIView *viewBottom;
+
+
 @end
 
 @implementation MainOrderInfoView
@@ -46,6 +53,9 @@
     _btnOrder.layer.masksToBounds = YES;
     _btnOrder.layer.cornerRadius = 5;
     
+    _btnChange.layer.masksToBounds = YES;
+    _btnChange.layer.cornerRadius = 5;
+    
     [_btnPay addTarget:self action:@selector(onClickPay) forControlEvents:UIControlEventTouchUpInside];
     [_btnBack addTarget:self action:@selector(onClickBack) forControlEvents:UIControlEventTouchUpInside];
     
@@ -54,6 +64,8 @@
     [_btnDetail addTarget:self action:@selector(onClickDetail) forControlEvents:UIControlEventTouchUpInside];
     
     [_btn addTarget:self action:@selector(onClickDetail) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnChange addTarget:self action:@selector(onClickChange) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)layoutSubviews
@@ -91,6 +103,28 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickBackButton:)]) {
         [_delegate onClickBackButton:self];
+    }
+}
+
+- (void)onClickChange
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickChangeButton:)]) {
+        [_delegate onClickChangeButton:self];
+    }
+}
+
+- (void)setViewHidden:(BOOL)viewHidden
+{
+    _viewHidden = viewHidden;
+    if (viewHidden) {
+        _viewTop.hidden = YES;
+        _viewBottom.hidden = YES;
+        _btnOrder.hidden = YES;
+        
+    } else {
+        _viewTop.hidden = NO;
+        _viewBottom.hidden = NO;
+        _btnOrder.hidden = NO;
     }
 }
 

@@ -41,6 +41,14 @@
 
 @property (assign, nonatomic) CGFloat lng;
 
+@property (copy, nonatomic) NSString *villaId;
+
+@property (assign, nonatomic) CGFloat weight;
+
+@property (assign, nonatomic) NSInteger layerAmount;
+
+@property (copy, nonatomic) NSString *url;
+
 @end
 
 

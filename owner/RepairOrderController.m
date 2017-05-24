@@ -12,12 +12,21 @@
 #import "RepairListResponse.h"
 #import "RepairInfoController.h"
 #import "DialogEditView.h"
+#import "HouseChangeView.h"
+#import "ListDialogData.h"
+#import "ListDialogView.h"
 
-@interface RepairOrderController () <UITableViewDelegate, UITableViewDataSource>
+@interface RepairOrderController () <UITableViewDelegate, UITableViewDataSource, HouseChangeViewDelegate, ListDialogViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *arrayOrder;
+
+@property (strong, nonatomic) IBOutlet HouseChangeView *headView;
+
+@property (strong, nonatomic) NSDictionary *houseInfo;
+
+@property (strong, nonatomic) NSMutableArray *arrayHouse;
 
 @end
 
@@ -28,12 +37,12 @@
     [super viewDidLoad];
     [self setNavTitle:@"维修订单"];
     [self initView];
+    [self getHouses];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getRepair];
 }
 
 - (NSMutableArray *)arrayOrder
@@ -45,6 +54,29 @@
     return _arrayOrder;
 }
 
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse) {
+        _arrayHouse = [NSMutableArray array];
+    }
+    
+    return _arrayHouse;
+}
+
+/**
+ 设置别墅信息
+ 
+  */
+- (void)setHouseInfo:(NSDictionary *)houseInfo
+{
+    _houseInfo = houseInfo;
+    
+    if (_headView) {
+        _headView.lbContent.text = houseInfo[@"cellName"];
+    }
+    [self getRepair];
+}
+
 - (void)initView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -53,6 +85,13 @@
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    
+    
+    _headView = [HouseChangeView viewFromNib];
+    
+    _headView.delegate = self;
+    
+    _tableView.tableHeaderView = _headView;
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -89,8 +128,76 @@
 
 #pragma mark - Network Request
 
+/**
+ villaId
+ brand
+ model
+ cellName
+ address
+ lng
+ lat
+ weight
+ layerAmount
+ contacts
+ contactsTel
+ */
+- (void)getHouses
+{
+    [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.arrayHouse removeAllObjects];
+        [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
+        [self showHouselist];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
+
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count) {
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        
+        self.houseInfo = self.arrayHouse[0];
+        return;
+    }
+    
+    if (!self.houseInfo) {
+        self.houseInfo = self.arrayHouse[0];
+    }
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSDictionary *info in self.arrayHouse) {
+        ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
+        [array addObject:data];
+    }
+    
+    ListDialogView *dialog = [ListDialogView viewFromNib];
+    dialog.delegate = self;
+    [dialog setData:array];
+    [dialog show];
+}
+
+#pragma mark - LisDialogViewDelegate
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse) {
+        if ([key isEqualToString:info[@"id"]]) {
+            self.houseInfo = info;
+            break;
+        }
+    }
+}
+
 - (void)getRepair
 {
+    if (!_houseInfo) {
+        return;
+    }
     OrderListRequest *request = [[OrderListRequest alloc] init];
     
     [[HttpClient shareClient] post:URL_REPAIR_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -153,6 +260,21 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+#pragma mark - HouseInfoViewDelegate
+
+- (void)onClickBtn:(HouseChangeView *)view
+{
+    if (0 == self.arrayHouse.count) {
+        [HUDClass showHUDWithText:@"您需要先添加别墅"];
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
+        return;
+    }
+    
+    [self showHouselist];}
 
 
 @end

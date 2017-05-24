@@ -117,12 +117,11 @@
     [self.view addSubview:_floatView];
     
     if (self.login) {
-        _floatView.lbLocation.userInteractionEnabled = YES;
-        [_floatView.lbLocation addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getHouses)]];
-        
+        _floatView.changeHiden = NO;
         [self getHouses];
         
     } else {
+        _floatView.changeHiden = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLocationComplete:) name:Custom_Location_Complete object:nil];
         
@@ -256,10 +255,11 @@
         
         
         CLLocationDistance distance = [Location distancePoint:coorProject with:coorCenter];
-        NSLog(@"distance:%lf", distance);
+        
         
         if (distance < 5 * 1000) {
             
+            NSLog(@"distance:%lf", distance);
             CalloutMapAnnotation *marker = [[CalloutMapAnnotation alloc] init];
             marker.latitude = lat;
             marker.longitude = lng;
@@ -276,7 +276,7 @@
     coor.longitude = lng;
     
     
-    //[_mapView removeAnnotations:[_mapView annotations]];
+    [_mapView removeAnnotations:[_mapView annotations]];
     BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
     annotation.coordinate = coor;
     [_mapView addAnnotation:annotation];
@@ -439,6 +439,15 @@
     }
 }
 
+- (void)onClickChange:(MaintFloatView *)view
+{
+    if (!self.login) {
+        return;
+    }
+    
+    [self getHouses];
+}
+
 - (void)showHouselist
 {
     if (0 == self.arrayHouse.count) {
@@ -452,13 +461,15 @@
         _floatView.lbLocation.text = self.arrayHouse[0][@"cellName"];
         [self markOnMapWithLat:[[self.arrayHouse[0] objectForKey:@"lat"] floatValue]
                            lng:[[self.arrayHouse[0] objectForKey:@"lng"] floatValue]];
+        
+        [self showProjects];
         return;
     }
     
     NSMutableArray *array = [NSMutableArray array];
     
     for (NSDictionary *info in self.arrayHouse) {
-        ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cell"]];
+        ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
         [array addObject:data];
     }
     
@@ -468,6 +479,7 @@
     [dialog show];
 }
 
+#pragma mark - LisDialogViewDelegate
 - (void)onSelectItem:(NSString *)key content:(NSString *)content
 {
     for (NSDictionary *info in self.arrayHouse) {
@@ -476,6 +488,8 @@
             _curHouse = info;
             _floatView.lbLocation.text = info[@"cellName"];
             [self markOnMapWithLat:[info[@"lat"] floatValue] lng:[info[@"lng"] floatValue]];
+            
+            [self getProjectInfo];
             break;
         }
     }
@@ -483,7 +497,7 @@
 
 - (void)onDismiss
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 /**
@@ -505,7 +519,6 @@
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
         [self showHouselist];
-        [self getProjectInfo];
         
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
