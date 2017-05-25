@@ -10,7 +10,7 @@
 #import "PayInfoCell.h"
 #import "PayViewController.h"
 #import "MainTypeInfo.h"
-
+#import "MainOrderDetaIlController.h"
 
 @interface ExtraPayOrderController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -149,48 +149,25 @@
     
     NSString *payType = _serviceInfo.name;
     
-    cell.lbPayType.text = [NSString stringWithFormat:@"支付类型:%@", payType];
+    cell.lbPayType.text = [NSString stringWithFormat:@"服务类型:%@", payType];
     
-    cell.lbSum.text = [NSString stringWithFormat:@"支付金额:%.2lf", [info[@"payMoney"] floatValue]];
     
     NSInteger state = [info[@"isPay"] integerValue];
     
-    
     //支付单是否有效
-    NSInteger delete =[[info[@"incrementInfo"] objectForKey:@"isDelete"] integerValue];
+    NSInteger delete =[[info[@"maintOrderInfo"] objectForKey:@"isDelete"] integerValue];
     
     if (0 == state) {
         
         if (0 == delete) {
-            cell.lbState.text = @"支付状态:未支付";
-            
-            cell.payHiden = NO;
-            
-            cell.lbPayTime.text = @"支付时间:暂未支付";
-            
-            __weak typeof (self) weakSelf = self;
-            
-            [cell addOnPayClickListener:^{
-                NSString *payMentId = info[@"id"];
-                [weakSelf payment:payMentId];
-                
-            }];
+            cell.lbState.text = @"未支付";
             
         } else {
-            cell.payHiden = YES;
-            
-            cell.lbState.text = @"支付状态:已过期";
-            
-            cell.lbPayTime.text = @"支付时间:已过期";
+            cell.lbState.text = @"已过期";
         }
         
     } else {
-        cell.lbState.text = @"支付状态:已支付";
-        
-        cell.payHiden = YES;
-        
-        cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:%@", info[@"payTime"]];
-        
+        cell.lbState.text = @"已支付";
     }
     
     return cell;
@@ -201,6 +178,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [PayInfoCell cellHeight];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MainOrderDetaIlController *controller = [[MainOrderDetaIlController alloc] init];
+    controller.orderInfo = self.arrayOrder[indexPath.row];
+    controller.houseInfo = _houseInfo;
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

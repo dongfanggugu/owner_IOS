@@ -10,4 +10,8 @@
 
 @interface PayOrderController : BaseViewController
 
+@property (copy, nonatomic) NSString *serviceId;
+
+@property (strong, nonatomic) NSDictionary *houseInfo;
+
 @end

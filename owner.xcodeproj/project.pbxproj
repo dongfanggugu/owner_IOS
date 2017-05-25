@@ -37,6 +37,16 @@
 		65228ED21EBC42FF007A1300 /* ExtraServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65228ED11EBC42FF007A1300 /* ExtraServiceCell.xib */; };
 		65228ED51EBC4D4C007A1300 /* ExtraServiceHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65228ED41EBC4D4C007A1300 /* ExtraServiceHistoryController.m */; };
 		65228EDE1EC30C54007A1300 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65228EDD1EC30C54007A1300 /* WebViewController.m */; };
+		65243EC11ED668BC00BB2D32 /* MainOrderDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65243EC01ED668BC00BB2D32 /* MainOrderDetailCell.xib */; };
+		65243EC41ED66E4D00BB2D32 /* MainOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243EC31ED66E4D00BB2D32 /* MainOrderDetailCell.m */; };
+		65243EC71ED6714700BB2D32 /* icon_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243EC51ED6714700BB2D32 /* icon_red.png */; };
+		65243EC81ED6714700BB2D32 /* icon_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243EC61ED6714700BB2D32 /* icon_blue.png */; };
+		65243ECB1ED672D500BB2D32 /* MainOrderDetaIlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243ECA1ED672D500BB2D32 /* MainOrderDetaIlController.m */; };
+		65243ECD1ED6B5AA00BB2D32 /* icon_house.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243ECC1ED6B5AA00BB2D32 /* icon_house.png */; };
+		65243ECF1ED6B91200BB2D32 /* MainTaskDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65243ECE1ED6B91200BB2D32 /* MainTaskDetailCell.xib */; };
+		65243ED21ED6BE7A00BB2D32 /* MainTaskDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243ED11ED6BE7A00BB2D32 /* MainTaskDetailCell.m */; };
+		65243ED41ED6C6C300BB2D32 /* MainTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65243ED31ED6C6C300BB2D32 /* MainTaskCell.xib */; };
+		65243ED71ED6C96200BB2D32 /* MainTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243ED61ED6C96200BB2D32 /* MainTaskCell.m */; };
 		6525443C1E1F1F960027B28B /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544331E1F1F950027B28B /* NSArray+Log.m */; };
 		6525443D1E1F1F960027B28B /* Obj2Dic.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544351E1F1F950027B28B /* Obj2Dic.m */; };
 		6525443E1E1F1F960027B28B /* HUDClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544371E1F1F950027B28B /* HUDClass.m */; };
@@ -347,6 +357,20 @@
 		65228ED41EBC4D4C007A1300 /* ExtraServiceHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceHistoryController.m; sourceTree = "<group>"; };
 		65228EDC1EC30C54007A1300 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		65228EDD1EC30C54007A1300 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		65243EC01ED668BC00BB2D32 /* MainOrderDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainOrderDetailCell.xib; sourceTree = "<group>"; };
+		65243EC21ED66E4D00BB2D32 /* MainOrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainOrderDetailCell.h; sourceTree = "<group>"; };
+		65243EC31ED66E4D00BB2D32 /* MainOrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainOrderDetailCell.m; sourceTree = "<group>"; };
+		65243EC51ED6714700BB2D32 /* icon_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_red.png; sourceTree = "<group>"; };
+		65243EC61ED6714700BB2D32 /* icon_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blue.png; sourceTree = "<group>"; };
+		65243EC91ED672D500BB2D32 /* MainOrderDetaIlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainOrderDetaIlController.h; sourceTree = "<group>"; };
+		65243ECA1ED672D500BB2D32 /* MainOrderDetaIlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainOrderDetaIlController.m; sourceTree = "<group>"; };
+		65243ECC1ED6B5AA00BB2D32 /* icon_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_house.png; sourceTree = "<group>"; };
+		65243ECE1ED6B91200BB2D32 /* MainTaskDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTaskDetailCell.xib; sourceTree = "<group>"; };
+		65243ED01ED6BE7A00BB2D32 /* MainTaskDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTaskDetailCell.h; sourceTree = "<group>"; };
+		65243ED11ED6BE7A00BB2D32 /* MainTaskDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTaskDetailCell.m; sourceTree = "<group>"; };
+		65243ED31ED6C6C300BB2D32 /* MainTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTaskCell.xib; sourceTree = "<group>"; };
+		65243ED51ED6C96200BB2D32 /* MainTaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTaskCell.h; sourceTree = "<group>"; };
+		65243ED61ED6C96200BB2D32 /* MainTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTaskCell.m; sourceTree = "<group>"; };
 		652544321E1F1F950027B28B /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
 		652544331E1F1F950027B28B /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		652544341E1F1F950027B28B /* Obj2Dic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obj2Dic.h; sourceTree = "<group>"; };
@@ -990,6 +1014,12 @@
 				652FBEB11ED3DBB200DA2729 /* HouseItemCell.m */,
 				65D126AE1ED57B4000AF6FC5 /* HouseChangeView.h */,
 				65D126AF1ED57B4000AF6FC5 /* HouseChangeView.m */,
+				65243EC21ED66E4D00BB2D32 /* MainOrderDetailCell.h */,
+				65243EC31ED66E4D00BB2D32 /* MainOrderDetailCell.m */,
+				65243ED01ED6BE7A00BB2D32 /* MainTaskDetailCell.h */,
+				65243ED11ED6BE7A00BB2D32 /* MainTaskDetailCell.m */,
+				65243ED51ED6C96200BB2D32 /* MainTaskCell.h */,
+				65243ED61ED6C96200BB2D32 /* MainTaskCell.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -1041,6 +1071,9 @@
 				652FBEAE1ED3D82100DA2729 /* HouseItemCell.xib */,
 				659417001ED5307B007D3E7F /* KeyImageViewCell.xib */,
 				65D126AC1ED57A9600AF6FC5 /* HouseChangeView.xib */,
+				65243EC01ED668BC00BB2D32 /* MainOrderDetailCell.xib */,
+				65243ECE1ED6B91200BB2D32 /* MainTaskDetailCell.xib */,
+				65243ED31ED6C6C300BB2D32 /* MainTaskCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1065,6 +1098,8 @@
 			children = (
 				65A1FB621EC54243005C8E6B /* back_normal.png */,
 				652545021E230E640027B28B /* background.png */,
+				65243EC51ED6714700BB2D32 /* icon_red.png */,
+				65243EC61ED6714700BB2D32 /* icon_blue.png */,
 				651268CE1ED5555A0053241E /* icon_photo.png */,
 				659417041ED53160007D3E7F /* icon_repair_photo.png */,
 				659417021ED5313F007D3E7F /* icon_del_img.png */,
@@ -1079,6 +1114,7 @@
 				652544EA1E1F816F0027B28B /* icon_alarm.png */,
 				65FE08D01EB02840002C9397 /* icon_amount_add.png */,
 				65FE08D11EB02840002C9397 /* icon_amount_minus.png */,
+				65243ECC1ED6B5AA00BB2D32 /* icon_house.png */,
 				655593A91EC9403200977291 /* icon_around.png */,
 				652544E61E1F76320027B28B /* icon_branch.png */,
 				65FE09091EB8532B002C9397 /* icon_custom_service.png */,
@@ -1461,6 +1497,8 @@
 				65228ECB1EBC20AC007A1300 /* ExtraPayOrderController.h */,
 				65228ECC1EBC20AC007A1300 /* ExtraPayOrderController.m */,
 				65228ED31EBC4D4C007A1300 /* ExtraServiceHistoryController.h */,
+				65243EC91ED672D500BB2D32 /* MainOrderDetaIlController.h */,
+				65243ECA1ED672D500BB2D32 /* MainOrderDetaIlController.m */,
 				65228ED41EBC4D4C007A1300 /* ExtraServiceHistoryController.m */,
 			);
 			name = Order;
@@ -1577,6 +1615,7 @@
 				65E19BC31E67C0E500C6860D /* KeyValueBtnCell.xib in Resources */,
 				650596BC1E8A36A1009A5602 /* process.jpg in Resources */,
 				65EEEB901E7791380095432B /* page_4.jpg in Resources */,
+				65243ED41ED6C6C300BB2D32 /* MainTaskCell.xib in Resources */,
 				652544D61E1F65050027B28B /* downArrow@3x.png in Resources */,
 				65FE08AD1EA73B59002C9397 /* ContentCell.xib in Resources */,
 				65EEEB8D1E7791380095432B /* page_8.jpg in Resources */,
@@ -1606,6 +1645,7 @@
 				655593E61ECAD6C600977291 /* process_7.png in Resources */,
 				65A1FB631EC54243005C8E6B /* back_normal.png in Resources */,
 				65FE08FD1EB2E1A7002C9397 /* ServiceHistoryCell.xib in Resources */,
+				65243EC81ED6714700BB2D32 /* icon_blue.png in Resources */,
 				650596B01E8A33A7009A5602 /* icon_person_new.png in Resources */,
 				65E19BAE1E67BFDA00C6860D /* MainOrderInfoCell.xib in Resources */,
 				650596CF1E8A4609009A5602 /* icon_decorate.png in Resources */,
@@ -1622,6 +1662,7 @@
 				655ADFB31E2E0E7F00F1F036 /* icon_markt3.png in Resources */,
 				655593E01ECAD6C600977291 /* process_1.png in Resources */,
 				655ADFAA1E2E0B0000F1F036 /* Market.storyboard in Resources */,
+				65243ECF1ED6B91200BB2D32 /* MainTaskDetailCell.xib in Resources */,
 				652544F11E1F867A0027B28B /* icon_share.png in Resources */,
 				65EA23B41E1F1BE100F2BE18 /* Assets.xcassets in Resources */,
 				6525447D1E1F37EF0027B28B /* WorkerInfoView.xib in Resources */,
@@ -1658,6 +1699,7 @@
 				655593D31ECA987000977291 /* market_2.png in Resources */,
 				658CB55A1ECED39C00A29498 /* icon_market_top.png in Resources */,
 				655593EA1ECAF3D300977291 /* icon_main_new.png in Resources */,
+				65243ECD1ED6B5AA00BB2D32 /* icon_house.png in Resources */,
 				658FE6061E9F14DC002CA85F /* icon_down.png in Resources */,
 				650596C01E8A37B8009A5602 /* process_bg.png in Resources */,
 				655ADF3D1E2605A100F1F036 /* icon_star_normal.png in Resources */,
@@ -1669,6 +1711,7 @@
 				65EEEB911E7791380095432B /* page_5.jpg in Resources */,
 				6525450B1E231A840027B28B /* start_page.png in Resources */,
 				652544D41E1F65050027B28B /* downArrow.png in Resources */,
+				65243EC11ED668BC00BB2D32 /* MainOrderDetailCell.xib in Resources */,
 				655593FC1ECBD88500977291 /* process_0_new.png in Resources */,
 				655593E31ECAD6C600977291 /* process_4.png in Resources */,
 				650596A61E8A3302009A5602 /* icon_knowledge.png in Resources */,
@@ -1681,6 +1724,7 @@
 				652544BF1E1F63760027B28B /* PersonHeaderView.xib in Resources */,
 				652544F31E1F868D0027B28B /* icon_person.png in Resources */,
 				652544AF1E1F62A70027B28B /* Person.storyboard in Resources */,
+				65243EC71ED6714700BB2D32 /* icon_red.png in Resources */,
 				65E19BA31E67B26600C6860D /* MainTypeCell.xib in Resources */,
 				65EEEB921E7791380095432B /* page_6.jpg in Resources */,
 				6544C7A01E6952D20050A9D3 /* PersonInfoView.xib in Resources */,
@@ -1828,6 +1872,7 @@
 				656230FB1E67A7B000335819 /* MainTabBarController.m in Sources */,
 				652544721E1F27DE0027B28B /* BaseTableViewController.m in Sources */,
 				65E19BA11E67B1E100C6860D /* MaintenanceController.m in Sources */,
+				65243EC41ED66E4D00BB2D32 /* MainOrderDetailCell.m in Sources */,
 				65FE08E81EB184EB002C9397 /* PayOrderController.m in Sources */,
 				65E19BBB1E67C0D300C6860D /* KeyMultiEditCell.m in Sources */,
 				652544B11E1F62A70027B28B /* PersonBasicInfoController.m in Sources */,
@@ -1850,6 +1895,7 @@
 				655ADF3A1E26027400F1F036 /* EvaluateView.m in Sources */,
 				65228ECA1EBC155E007A1300 /* ExtraOrderAddController.m in Sources */,
 				652544751E1F29390027B28B /* MainPageController.m in Sources */,
+				65243ED71ED6C96200BB2D32 /* MainTaskCell.m in Sources */,
 				652FBEB51ED404C600DA2729 /* HouseAddController.m in Sources */,
 				65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */,
 				6544C7921E693ED60050A9D3 /* RepairTaskDetailController.m in Sources */,
@@ -1866,6 +1912,7 @@
 				659416FF1ED53067007D3E7F /* KeyImageViewCell.m in Sources */,
 				65E3692D1E6CFF0B00E4CF04 /* MainTypeDetailController.m in Sources */,
 				65EA23AC1E1F1BE100F2BE18 /* AppDelegate.m in Sources */,
+				65243ECB1ED672D500BB2D32 /* MainOrderDetaIlController.m in Sources */,
 				6544C75F1E68FB430050A9D3 /* MainOrderInfo.m in Sources */,
 				65FE09031EB30CAB002C9397 /* ServiceTaskController.m in Sources */,
 				65E19BD61E67C75400C6860D /* SelectableCell.m in Sources */,
@@ -1892,6 +1939,7 @@
 				65E19BCD1E67C24300C6860D /* MainOrderInfoCell.m in Sources */,
 				652544861E1F37FC0027B28B /* WorkerInfoView.m in Sources */,
 				65E19BBC1E67C0D300C6860D /* KeyValueCell.m in Sources */,
+				65243ED21ED6BE7A00BB2D32 /* MainTaskDetailCell.m in Sources */,
 				655594061ECC244200977291 /* CommonWebViewController.m in Sources */,
 				65E19BA61E67B4F300C6860D /* MainTypeInfo.m in Sources */,
 				652545101E236AB40027B28B /* HelpContentController.m in Sources */,

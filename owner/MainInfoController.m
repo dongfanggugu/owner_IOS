@@ -12,13 +12,13 @@
 #import "MainTaskInfo.h"
 #import "MainTaskListResponse.h"
 #import "MainTaskListRequest.h"
-#import "RepairTaskCell.h"
+#import "MainTaskCell.h"
 #import "MainTaskDetailController.h"
 #import "OrderListRequest.h"
 #import "MainListResponse.h"
 #import "PayOrderController.h"
 #import "MainTypeDetailController.h"
-#import "MainOrderController.h"
+#import "MainOrderLoginController.h"
 #import "ServiceHistoryController.h"
 #import "ListDialogData.h"
 #import "ListDialogView.h"
@@ -114,6 +114,8 @@
     
     _tableView.dataSource = self;
     
+    [_tableView showCopyWrite];
+    
     
     //显示服务订单信息
     _infoView = [MainOrderInfoView viewFromNib];
@@ -155,35 +157,33 @@
     
     _infoView.lbName.text = [_serviceInfo.maintypeInfo name];
     
-    _infoView.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [_serviceInfo.maintypeInfo price]];
-    
     
     if (Maint_Low == self.maintType) {
         _infoView.lbInfo.text = [NSString stringWithFormat:@"剩余次数:%ld", _serviceInfo.frequency];
         
-        _infoView.image = [UIImage imageNamed:@"icon_level_3"];
+        _infoView.lbTag.text = @"三级管家";
         
     } else if (Maint_Mid == self.maintType) {
         if (0 == _serviceInfo.expireTime) {
             _infoView.lbInfo.text = @"无效";
             
         } else {
-            _infoView.lbInfo.text =  [NSString stringWithFormat:@"到期日期:%@", _serviceInfo.expireTime];
+            _infoView.lbInfo.text =  [NSString stringWithFormat:@"%@ 到期", _serviceInfo.expireTime];
             
         }
         
-        _infoView.image = [UIImage imageNamed:@"icon_level_2"];
+        _infoView.lbTag.text = @"二级管家";
         
     } else {
         if (0 == _serviceInfo.expireTime) {
             _infoView.lbInfo.text = @"无效";
             
         } else {
-            _infoView.lbInfo.text =  [NSString stringWithFormat:@"到期日期:%@", _serviceInfo.expireTime];
+            _infoView.lbInfo.text =  [NSString stringWithFormat:@"%@ 到期", _serviceInfo.expireTime];
             
         }
         
-        _infoView.image = [UIImage imageNamed:@"icon_level_1"];
+         _infoView.lbTag.text = @"一级管家";
     }
 
 }
@@ -350,26 +350,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RepairTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[RepairTaskCell identifier]];
+    MainTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[MainTaskCell identifier]];
     
     if (!cell) {
-        cell = [RepairTaskCell cellFromNib];
+        cell = [MainTaskCell cellFromNib];
     }
     
     MainTaskInfo *info = _arrayTask[indexPath.row];
+    
+    cell.lbIndex.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
     
     cell.lbCode.text = info.taskCode;
     
     cell.lbState.text = [self getStateDes:info.state.integerValue];
     
-    cell.lbInfo.text = [NSString stringWithFormat:@"%@ %@", info.maintUserInfo.name, info.maintUserInfo.tel];
+    cell.lbWorker.text = [NSString stringWithFormat:@"维保工人: %@",  info.maintUserInfo.name];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RepairTaskCell cellHeight];
+    return [MainTaskCell cellHeight];
 }
 
 
@@ -387,8 +389,9 @@
 
 - (void)onClickPayButton:(MainOrderInfoView *)view
 {
-    MainOrderController *controller = [[MainOrderController alloc] init];
-    controller.mainInfo =  _serviceInfo.maintypeInfo;
+    MainOrderLoginController *controller = [[MainOrderLoginController alloc] init];
+    controller.mainInfo = _serviceInfo.maintypeInfo;
+    controller.houseInfo = _houseInfo;
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
@@ -397,6 +400,8 @@
 - (void)onClickOrderButton:(MainOrderInfoView *)view
 {
     PayOrderController *controller = [[PayOrderController alloc] init];
+    controller.serviceId = _serviceInfo.orderId;
+    controller.houseInfo = _houseInfo;
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
@@ -407,7 +412,7 @@
     MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
     
     controller.detail = _serviceInfo.maintypeInfo.content;
-    
+     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }

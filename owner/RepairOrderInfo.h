@@ -18,6 +18,8 @@
 
 @property (copy, nonatomic) NSString *phenomenon;
 
+@property (copy, nonatomic) NSString *picture;
+
 //保修时间
 @property (copy, nonatomic) NSString *createTime;
 

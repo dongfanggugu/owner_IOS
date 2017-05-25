@@ -1,18 +1,16 @@
 //
-//  ExtraPayOrderController.h
+//  MainOrderDetaIlController.h
 //  owner
 //
-//  Created by 长浩 张 on 2017/5/5.
+//  Created by 长浩 张 on 2017/5/25.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
 #import "BaseViewController.h"
 
-@class MainTypeInfo;
+@interface MainOrderDetaIlController : BaseViewController
 
-@interface ExtraPayOrderController : BaseViewController
-
-@property (strong, nonatomic) MainTypeInfo *serviceInfo;
+@property (strong, nonatomic) NSDictionary *orderInfo;
 
 @property (strong, nonatomic) NSDictionary *houseInfo;
 

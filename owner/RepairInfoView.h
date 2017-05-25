@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIImageView+AFNetworking.h>
 
 @interface RepairInfoView : UIView
 
@@ -16,8 +17,18 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbDate;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbBrand;
+@property (weak, nonatomic) IBOutlet UILabel *lbAppoint;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbFault;
+
+@property (weak, nonatomic) IBOutlet UITextView *lbFaultDes;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ivFault;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbAddress;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbBrand;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbWeight;
 
 @end

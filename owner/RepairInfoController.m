@@ -57,86 +57,79 @@
     
     _tableView.dataSource = self;
     
-    //_tableView.bounces = NO;
+     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     RepairInfoView *infoView = [RepairInfoView viewFromNib];
     
-    infoView.frame = CGRectMake(0, 0, self.screenWidth, 124);
     
-    infoView.lbCode.text = _orderInfo.code;
+    infoView.lbCode.text = [NSString stringWithFormat:@"订单编号: %@", _orderInfo.code];
     
-    infoView.lbDate.text = _orderInfo.createTime;
+    infoView.lbDate.text = [NSString stringWithFormat:@"订单时间: %@", _orderInfo.createTime];
     
-    infoView.lbBrand.text = _orderInfo.brand;
+    infoView.lbAppoint.text = [NSString stringWithFormat:@"预约时间: %@", _orderInfo.repairTime];
     
-    infoView.lbFault.text = _orderInfo.repairTypeInfo[@"name"];
+    infoView.lbFault.text = [NSString stringWithFormat:@"故障类型: %@", _orderInfo.repairTypeInfo[@"name"]];
     
-    UILabel *desKey = [[UILabel alloc] initWithFrame:CGRectMake(8, 124, 80, 21)];
+    infoView.lbFaultDes.text = _orderInfo.phenomenon;
     
-    desKey.font = [UIFont systemFontOfSize:14];
+    [infoView.ivFault setImageWithURL:[NSURL URLWithString:_orderInfo.picture]];
     
-    desKey.text = @"故障描述";
+    infoView.lbAddress.text = [NSString stringWithFormat:@"别墅地址: %@", _houseInfo[@"cellName"]];
     
+    infoView.lbBrand.text = [NSString stringWithFormat:@"电梯品牌: %@", _houseInfo[@"brand"]];
     
-    UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(8 + 80 + 8, 124, self.screenWidth - 8 - 80 - 8 - 8, 0)];
+     infoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_houseInfo[@"layerAmount"] integerValue]];
     
-    desLabel.numberOfLines = 0;
-    
-    desLabel.font = [UIFont systemFontOfSize:14];
-    
-    desLabel.text = _orderInfo.phenomenon;
-    
-    [desLabel sizeToFit];
-    
-    CGFloat labelHeight = desLabel.frame.size.height;
+    _tableView.tableHeaderView = infoView;
     
     
     
-    NSInteger state = _orderInfo.state.integerValue;
-    
-    if (8 == state) {
-        _evaluateView = [EvaluteView viewFromNib];
-        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
-        
-        _evaluateView.delegate = self;
-        
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
-        
-        [headerView addSubview:infoView];
-        [headerView addSubview:desKey];
-        [headerView addSubview:desLabel];
-        [headerView addSubview:_evaluateView];
-        
-        _tableView.tableHeaderView = headerView;
-        
-    } else if (9 == state) {
-        _evaluateView = [EvaluteView viewFromNib];
-        [_evaluateView setModeShow];
-        [_evaluateView setStar:_orderInfo.evaluate.integerValue];
-        [_evaluateView setContent:_orderInfo.evaluateInfo];
-        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
-        
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
-        
-        [headerView addSubview:infoView];
-        [headerView addSubview:desKey];
-        [headerView addSubview:desLabel];
-        [headerView addSubview:_evaluateView];
-        
-        _tableView.tableHeaderView = headerView;
-
-    } else {
-        
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight)];
-        
-        [headerView addSubview:infoView];
-        [headerView addSubview:desKey];
-        [headerView addSubview:desLabel];
-        
-        _tableView.tableHeaderView = headerView;
-    }
+//    NSInteger state = _orderInfo.state.integerValue;
+//    
+//    if (8 == state) {
+//        _evaluateView = [EvaluteView viewFromNib];
+//        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
+//        
+//        _evaluateView.delegate = self;
+//        
+//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
+//        
+//        [headerView addSubview:infoView];
+//        [headerView addSubview:desKey];
+//        [headerView addSubview:desLabel];
+//        [headerView addSubview:_evaluateView];
+//        
+//        _tableView.tableHeaderView = headerView;
+//        
+//    } else if (9 == state) {
+//        _evaluateView = [EvaluteView viewFromNib];
+//        [_evaluateView setModeShow];
+//        [_evaluateView setStar:_orderInfo.evaluate.integerValue];
+//        [_evaluateView setContent:_orderInfo.evaluateInfo];
+//        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
+//        
+//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
+//        
+//        [headerView addSubview:infoView];
+//        [headerView addSubview:desKey];
+//        [headerView addSubview:desLabel];
+//        [headerView addSubview:_evaluateView];
+//        
+//        _tableView.tableHeaderView = headerView;
+//
+//    } else {
+//        
+//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight)];
+//        
+//        [headerView addSubview:infoView];
+//        [headerView addSubview:desKey];
+//        [headerView addSubview:desLabel];
+//        
+//        _tableView.tableHeaderView = headerView;
+//    }
     
     [self.view addSubview:_tableView];
 }
@@ -208,8 +201,7 @@
 {
     RepairTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[RepairTaskCell identifier]];
     
-    if (!cell)
-    {
+    if (!cell) {
         cell = [RepairTaskCell cellFromNib];
     }
     
@@ -219,7 +211,11 @@
     
     cell.lbState.text = [self getStateDes:info.state.integerValue];
     
-    cell.lbInfo.text = [NSString stringWithFormat:@"维修人员姓名:%@ 电话:%@", info.workerName, info.workerTel];
+    cell.lbWorker.text = [NSString stringWithFormat:@"维修人员:%@", info.workerName];
+    
+    cell.lbTel.text = [NSString stringWithFormat:@"联系电话:%@", info.workerTel];
+    
+    cell.lbDate.text = [NSString stringWithFormat:@"维修时间:%@", info.createTime];
     
     return cell;
 }
@@ -233,12 +229,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    RepairTaskDetailController *controller = [[RepairTaskDetailController alloc] init];
-    controller.taskInfo = _arrayTask[indexPath.row];
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    
+//    RepairTaskDetailController *controller = [[RepairTaskDetailController alloc] init];
+//    controller.taskInfo = _arrayTask[indexPath.row];
+//    self.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:controller animated:YES];
     
 }
 

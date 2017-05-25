@@ -34,6 +34,8 @@
 
 @property (strong, nonatomic) MainTypeInfo *maintypeInfo;
 
+@property (strong, nonatomic) NSDictionary *villaInfo;
+
 @end
 
 

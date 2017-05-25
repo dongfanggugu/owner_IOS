@@ -21,7 +21,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbState;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbInfo;
+@property (weak, nonatomic) IBOutlet UILabel *lbWorker;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbTel;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbDate;
 
 @end
 

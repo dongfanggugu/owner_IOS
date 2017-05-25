@@ -150,7 +150,7 @@
     
     cell.lbState.text = [self getStateDes:info.state.integerValue];
     
-    cell.lbInfo.text = [NSString stringWithFormat:@"%@ %@", info.maintUserInfo.name, info.maintUserInfo.tel];
+    //cell.lbInfo.text = [NSString stringWithFormat:@"%@ %@", info.maintUserInfo.name, info.maintUserInfo.tel];
     
     return cell;
 }

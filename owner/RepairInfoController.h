@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) RepairOrderInfo *orderInfo;
 
+@property (strong, nonatomic) NSDictionary *houseInfo;
+
 @end
 
 

@@ -11,9 +11,6 @@
 
 @interface PayInfoCell ()
 
-@property (strong, nonatomic) void (^onClickPay) ();
-
-@property (weak, nonatomic) IBOutlet UIButton *btnPay;
 
 @end
 
@@ -37,7 +34,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 153;
+    return 75;
 }
 
 
@@ -47,35 +44,6 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    _btnPay.layer.masksToBounds = YES;
-    
-    _btnPay.layer.cornerRadius = 5;
 }
-
-- (void)addOnPayClickListener:(void(^)())onClickPay
-{
-    _onClickPay = onClickPay;
-    
-    [_btnPay addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)clickPay
-{
-    if (_onClickPay) {
-        _onClickPay();
-    }
-}
-
-- (void)setPayHiden:(BOOL)payHiden
-{
-    if (payHiden) {
-        self.btnPay.hidden = YES;
-    
-    } else {
-        self.btnPay.hidden = NO;
-    
-    }
-}
-
 
 @end

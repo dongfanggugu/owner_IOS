@@ -37,17 +37,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbName;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbPrice;
-
 @property (weak, nonatomic) IBOutlet UILabel *lbInfo;
 
-@property (weak, nonatomic) UIImage *image;
+@property (weak, nonatomic) IBOutlet UILabel *lbTag;
 
 @property (weak, nonatomic) id<MainOrderInfoViewDelegate> delegate;
 
 @property (strong, nonatomic) NSDictionary *data;
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (assign, nonatomic) BOOL viewHidden;
 

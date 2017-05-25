@@ -16,20 +16,14 @@
 
 + (CGFloat)cellHeight;
 
-- (void)addOnPayClickListener:(void(^)())onClickPay;
-
 @property (weak, nonatomic) IBOutlet UILabel *lbCode;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbDate;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbPayType;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbSum;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbState;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbPayTime;
-
-@property (assign, nonatomic) BOOL payHiden;
 
 @end

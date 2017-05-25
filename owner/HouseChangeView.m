@@ -31,9 +31,6 @@
 {
     [super awakeFromNib];
     
-    _btn.layer.masksToBounds = YES;
-    _btn.layer.cornerRadius = 5;
-    
     [_btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
 }
 

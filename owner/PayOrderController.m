@@ -9,6 +9,7 @@
 #import "PayOrderController.h"
 #import "PayInfoCell.h"
 #import "PayViewController.h"
+#import "MainOrderDetaIlController.h"
 
 @interface PayOrderController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -76,7 +77,10 @@
  */
 - (void)getOrders
 {
-    [[HttpClient shareClient] post:@"getPaymentBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"maintOrderId"] = _serviceId;
+    
+    [[HttpClient shareClient] post:@"getPaymentBySmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayOrder removeAllObjects];
         
         [self.arrayOrder addObjectsFromArray:[responseObject objectForKey:@"body"]];
@@ -141,9 +145,8 @@
     
     NSString *payType = [info[@"mainttypeInfo"] objectForKey:@"name"];
     
-    cell.lbPayType.text = [NSString stringWithFormat:@"支付类型:%@", payType];
+    cell.lbPayType.text = [NSString stringWithFormat:@"服务类型:%@", payType];
     
-    cell.lbSum.text = [NSString stringWithFormat:@"支付金额:%.2lf", [info[@"payMoney"] floatValue]];
     
     NSInteger state = [info[@"isPay"] integerValue];
     
@@ -153,35 +156,14 @@
     if (0 == state) {
         
         if (0 == delete) {
-            cell.lbState.text = @"支付状态:未支付";
-            
-            cell.payHiden = NO;
-            
-            cell.lbPayTime.text = @"支付时间:暂未支付";
-            
-            __weak typeof (self) weakSelf = self;
-            
-            [cell addOnPayClickListener:^{
-                NSString *payMentId = info[@"id"];
-                [weakSelf payment:payMentId];
-                
-            }];
+            cell.lbState.text = @"未支付";
             
         } else {
-            cell.payHiden = YES;
-            
-            cell.lbState.text = @"支付状态:已过期";
-            
-            cell.lbPayTime.text = @"支付时间:已过期";
+            cell.lbState.text = @"已过期";
         }
         
     } else {
-        cell.lbState.text = @"支付状态:已支付";
-        
-        cell.payHiden = YES;
-        
-        cell.lbPayTime.text = [NSString stringWithFormat:@"支付时间:%@", info[@"payTime"]];
-        
+        cell.lbState.text = @"已支付";
     }
 
     
@@ -193,6 +175,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [PayInfoCell cellHeight];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MainOrderDetaIlController *controller = [[MainOrderDetaIlController alloc] init];
+    controller.orderInfo = self.arrayOrder[indexPath.row];
+    controller.houseInfo = _houseInfo;
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

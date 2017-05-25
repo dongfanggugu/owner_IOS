@@ -255,6 +255,7 @@
 {
     RepairInfoController *controller = [[RepairInfoController alloc] init];
     controller.orderInfo = self.arrayOrder[indexPath.row];
+    controller.houseInfo = _houseInfo;
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
@@ -274,7 +275,8 @@
         return;
     }
     
-    [self showHouselist];}
+    [self showHouselist];
+}
 
 
 @end

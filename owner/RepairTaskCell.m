@@ -25,12 +25,18 @@
 
 + (CGFloat)cellHeight
 {
-    return 66;
+    return 130;
 }
 
 +(NSString *)identifier
 {
     return @"repair_task_cell";
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSeparatorStyleNone;
 }
 
 @end

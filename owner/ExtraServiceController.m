@@ -16,12 +16,21 @@
 #import "ExtraPayOrderController.h"
 #import "ExtraServiceCell.h"
 #import "ExtraServiceHistoryController.h"
+#import "HouseChangeView.h"
+#import "ListDialogData.h"
+#import "ListDialogView.h"
 
-@interface ExtraServiceController () <UITableViewDelegate, UITableViewDataSource>
+@interface ExtraServiceController () <UITableViewDelegate, UITableViewDataSource, HouseChangeViewDelegate, ListDialogViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *arrayService;
+
+@property (strong, nonatomic) IBOutlet HouseChangeView *headView;
+
+@property (strong, nonatomic) NSDictionary *houseInfo;
+
+@property (strong, nonatomic) NSMutableArray *arrayHouse;
 
 @end
 
@@ -33,13 +42,12 @@
     [self setNavTitle:@"增值服务"];
     [self initNavRightWithText:@"查看历史"];
     [self initTableView];
+    [self getHouses];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self getServices];
 }
 
 - (void)onClickNavRight
@@ -57,6 +65,29 @@
     }
     
     return _arrayService;
+}
+
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse) {
+        _arrayHouse = [NSMutableArray array];
+    }
+    
+    return _arrayHouse;
+}
+
+/**
+ 设置别墅信息
+ 
+ */
+- (void)setHouseInfo:(NSDictionary *)houseInfo
+{
+    _houseInfo = houseInfo;
+    
+    if (_headView) {
+        _headView.lbContent.text = houseInfo[@"cellName"];
+    }
+    [self getServices];
 }
 
 - (void)initNoView
@@ -84,6 +115,12 @@
     
     _tableView.dataSource = self;
     
+    _headView = [HouseChangeView viewFromNib];
+    
+    _headView.delegate = self;
+    
+    _tableView.tableHeaderView = _headView;
+    
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     //_tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -92,6 +129,71 @@
 }
 
 #pragma mark - 网络请求
+
+/**
+ villaId
+ brand
+ model
+ cellName
+ address
+ lng
+ lat
+ weight
+ layerAmount
+ contacts
+ contactsTel
+ */
+- (void)getHouses
+{
+    [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.arrayHouse removeAllObjects];
+        [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
+        [self showHouselist];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
+
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count) {
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        
+        self.houseInfo = self.arrayHouse[0];
+        return;
+    }
+    
+    if (!self.houseInfo) {
+        self.houseInfo = self.arrayHouse[0];
+    }
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSDictionary *info in self.arrayHouse) {
+        ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
+        [array addObject:data];
+    }
+    
+    ListDialogView *dialog = [ListDialogView viewFromNib];
+    dialog.delegate = self;
+    [dialog setData:array];
+    [dialog show];
+}
+
+#pragma mark - LisDialogViewDelegate
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse) {
+        if ([key isEqualToString:info[@"id"]]) {
+            self.houseInfo = info;
+            break;
+        }
+    }
+}
 
 
 /** 获取用户订购的增值服务
@@ -119,13 +221,15 @@
         
         [self.arrayService addObjectsFromArray:responseObject[@"body"]];
         
-        if (0 == self.arrayService) {
-            [self initNoView];
-            
-        } else {
-            [_tableView reloadData];
-            
-        }
+         [_tableView reloadData];
+        
+//        if (0 == self.arrayService) {
+//            [self initNoView];
+//            
+//        } else {
+//            [_tableView reloadData];
+//            
+//        }
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
     }];
@@ -239,8 +343,27 @@
     ExtraPayOrderController *controller = [[ExtraPayOrderController alloc] init];
     
     controller.serviceInfo = [[MainTypeInfo alloc] initWithDictionary:serviceInfo];
+    controller.houseInfo = _houseInfo;
+    
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - HouseInfoViewDelegate
+
+- (void)onClickBtn:(HouseChangeView *)view
+{
+    if (0 == self.arrayHouse.count) {
+        [HUDClass showHUDWithText:@"您需要先添加别墅"];
+        return;
+    }
+    
+    if (1 == self.arrayHouse.count) {
+        [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
+        return;
+    }
+    
+    [self showHouselist];
 }
 
 @end
