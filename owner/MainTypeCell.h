@@ -9,7 +9,20 @@
 #ifndef MainTypeCell_h
 #define MainTypeCell_h
 
-#import "UIImageView+AFNetworking.h"
+
+@protocol MainTypeCellDelegate <NSObject>
+
+- (void)onClick1;
+
+- (void)onClick2;
+
+- (void)onClick3;
+
+- (void)onClick4;
+
+- (void)onClick5;
+
+@end
 
 @interface MainTypeCell : UITableViewCell
 
@@ -19,19 +32,18 @@
 
 + (CGFloat)cellHeight;
 
-- (void)setOnClickListener:(void(^)())onClickBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *iv1;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbName;
+@property (weak, nonatomic) IBOutlet UIImageView *iv2;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbPrice;
+@property (weak, nonatomic) IBOutlet UIImageView *iv3;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbContent;
+@property (weak, nonatomic) IBOutlet UIImageView *iv4;
 
-@property (weak, nonatomic) UIImage *image;
+@property (weak, nonatomic) IBOutlet UIImageView *iv5;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) id<MainTypeCellDelegate> delegate;
 
-@property (weak, nonatomic) IBOutlet UIView *viewBottom;
 
 @end
 

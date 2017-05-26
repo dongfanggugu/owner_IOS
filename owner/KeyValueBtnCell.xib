@@ -61,6 +61,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btn" destination="HEa-lV-EbZ" id="2Cq-Mg-jyl"/>
+                <outlet property="btnWidth" destination="kTq-TE-nCS" id="Ilb-Nw-Lx8"/>
                 <outlet property="lbKey" destination="c7x-rT-Bds" id="WKx-ib-CQe"/>
                 <outlet property="lbValue" destination="o5J-mr-YFL" id="SUH-hr-1it"/>
             </connections>

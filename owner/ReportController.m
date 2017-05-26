@@ -457,7 +457,7 @@
     if (1 == self.arrayHouse.count) {
         
         _curHouse = self.arrayHouse[0];
-        
+        _floatView.changeHiden = YES;
         _floatView.lbLocation.text = self.arrayHouse[0][@"cellName"];
         [self markOnMapWithLat:[[self.arrayHouse[0] objectForKey:@"lat"] floatValue]
                            lng:[[self.arrayHouse[0] objectForKey:@"lng"] floatValue]];

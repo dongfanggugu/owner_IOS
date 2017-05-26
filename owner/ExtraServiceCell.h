@@ -30,6 +30,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbInfo;
 
-@property (weak, nonatomic) IBOutlet UIImageView *ivLogo;
 
 @end

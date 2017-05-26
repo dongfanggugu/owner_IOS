@@ -162,6 +162,7 @@
     if (1 == self.arrayHouse.count) {
         
         self.houseInfo = self.arrayHouse[0];
+        _headView.btnHidden = YES;
         return;
     }
     
@@ -199,6 +200,9 @@
         return;
     }
     OrderListRequest *request = [[OrderListRequest alloc] init];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"villaId"] = _houseInfo[@"id"];
     
     [[HttpClient shareClient] post:URL_REPAIR_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         RepairListResponse *response = [[RepairListResponse alloc] initWithDictionary:responseObject];

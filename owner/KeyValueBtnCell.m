@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnWidth;
+
 @end
 
 
@@ -71,6 +73,13 @@
 - (void)setBtnTitle:(NSString *)btnTitle
 {
     [_btn setTitle:btnTitle forState:UIControlStateNormal];
+}
+
+- (void)hideBtn
+{
+   // _btn.hidden = YES;
+    
+    _btnWidth.constant = 0;
 }
 
 @end

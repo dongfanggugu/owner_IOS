@@ -8,25 +8,31 @@
 
 #import <Foundation/Foundation.h>
 #import "MainPageController.h"
-#import "MaintenanceController.h"
 #import "RapidRepairController.h"
 #import "AddBannerView.h"
 #import "AddBannerData.h"
 #import "EnsuranceMainController.h"
 #import "OtherController.h"
-#import "HelpWebViewController.h"
 #import "ReportController.h"
 #import "CommonWebViewController.h"
 #import "RapidRepairLoginController.h"
+#import "KnowledgeController.h"
+#import "HelpController.h"
 
 
-@interface MainPageController  () <AddBannerViewDelegate>
+@interface MainPageController () <AddBannerViewDelegate>
 
 @property (strong, nonatomic) AddBannerView *bannerView;
 
+@property (strong, nonatomic) UILabel *lbLocation;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ivMaintenance;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbMaint;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ivRepair;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbRepair;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivInsure;
 
@@ -34,11 +40,23 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivMarket;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbMarket;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ivOther;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivExpert;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivHonyum;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbKn1;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbKn2;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbKn3;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbKn4;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ivConstraint;
 
 
 @end
@@ -48,12 +66,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"怡墅"];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self initView];
     [self checkUpdate];
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 - (void)onClickNavRight
 {
@@ -62,6 +92,15 @@
 
 - (void)initView
 {
+    
+    self.tableView.bounces = NO;
+    UIView *statusView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, self.screenWidth, 20)];
+    statusView.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
+    
+    [self.view addSubview:statusView];
+    
+    self.ivConstraint.constant = self.screenWidth / 3;
+    
     [self.tableView showCopyWrite];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -76,9 +115,14 @@
     _ivMaintenance.userInteractionEnabled = YES;
     [_ivMaintenance addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maintenance)]];
     
+    _lbMaint.userInteractionEnabled = YES;
+    [_lbMaint addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maintenance)]];
+    
     _ivRepair.userInteractionEnabled = YES;
     [_ivRepair addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(repair)]];
     
+    _lbRepair.userInteractionEnabled = YES;
+    [_lbRepair addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(repair)]];
     
     _ivInsure.userInteractionEnabled = YES;
     [_ivInsure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ensurance)]];
@@ -88,6 +132,9 @@
     
     _ivMarket.userInteractionEnabled = YES;
     [_ivMarket addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(market)]];
+    
+    _lbMarket.userInteractionEnabled = YES;
+    [_lbMarket addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(market)]];
     
     _ivOther.userInteractionEnabled = YES;
     [_ivOther addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(other)]];
@@ -99,7 +146,60 @@
     _ivHonyum.userInteractionEnabled = YES;
     [_ivHonyum addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(honyum)]];
     
+    //电梯常识
+    _lbKn1.userInteractionEnabled = YES;
+    [_lbKn1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(QA)]];
+    
+    _lbKn2.userInteractionEnabled = YES;
+    [_lbKn2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(faultCode)]];
+    
+    _lbKn3.userInteractionEnabled = YES;
+    [_lbKn3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(operation)]];
+    
+    _lbKn4.userInteractionEnabled = YES;
+    [_lbKn4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(safety)]];
 }
+
+- (void)QA
+{
+    KnowledgeController *controller = [[KnowledgeController alloc] init];
+    
+    controller.knType = @"常见问题";
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)faultCode
+{
+    KnowledgeController *controller = [[KnowledgeController alloc] init];
+    
+    controller.knType = @"故障码";
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)operation
+{
+    KnowledgeController *controller = [[KnowledgeController alloc] init];
+    
+    controller.knType = @"操作手册";
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)safety
+{
+    KnowledgeController *controller = [[KnowledgeController alloc] init];
+    
+    controller.knType = @"安全法规";
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 - (void)initBannerView
 {
@@ -128,7 +228,26 @@
 {
     if (!_bannerView) {
         _bannerView = [[AddBannerView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
+        
+        _lbLocation = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 21)];
+        _lbLocation.backgroundColor = [UIColor colorWithRed:54 / 256.0 green:176 / 256.0 blue:243 / 256.0 alpha:0.5];
+        _lbLocation.font = [UIFont systemFontOfSize:13];
+        
+        _lbLocation.textColor = [UIColor whiteColor];
+        
+        _lbLocation.textAlignment = NSTextAlignmentCenter;
+        
+        _lbLocation.text = @"北京";
+        
+        _lbLocation.layer.masksToBounds = YES;
+        
+        _lbLocation.layer.cornerRadius = 10;
+        
+        _lbLocation.center = CGPointMake(self.screenWidth - 40, 15);
+        
+        [_bannerView addSubview:_lbLocation];
     }
+    
     
     return _bannerView;
 }
@@ -176,7 +295,7 @@
 
 - (void)help
 {    
-    HelpWebViewController *controller = [[HelpWebViewController alloc] init];
+    HelpController *controller = [[HelpController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:controller animated:YES];
@@ -214,14 +333,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (3 == indexPath.row) {
-        return 240;
+    if (0 == indexPath.row) {
+        return 865;
         
-    } else if (2 == indexPath.row) {
-        return 255;
     }
-    
-    return 120;
+    return 240;
 }
 
 

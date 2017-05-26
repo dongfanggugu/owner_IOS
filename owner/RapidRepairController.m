@@ -89,7 +89,6 @@
     [super viewDidLoad];
     [self setNavTitle:@"快修服务"];
     [self initNavRightWithText:@"联系我们"];
-    [self initData];
     [self initView];
 }
 
@@ -222,11 +221,6 @@
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)initData
-{
-   
 }
 
 - (void)initView

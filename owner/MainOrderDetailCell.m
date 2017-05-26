@@ -46,6 +46,14 @@
     
     _lbContent.userInteractionEnabled = NO;
     
+    _lbContent.layer.masksToBounds = YES;
+    
+    _lbContent.layer.cornerRadius = 5;
+    
+    _lbContent.layer.borderWidth = 1;
+    
+    _lbContent.layer.borderColor = [Utils getColorByRGB:@"#f1f1f1"].CGColor;
+    
     _btn.layer.masksToBounds = YES;
     
     _btn.layer.cornerRadius = 5;

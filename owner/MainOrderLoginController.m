@@ -7,7 +7,6 @@
 //
 
 #import "MainOrderLoginController.h"
-#import "MainOrderController.h"
 #import "MainOrderInfoCell.h"
 #import "KeyValueCell.h"
 #import "KeyEditCell.h"
@@ -29,20 +28,6 @@
 @interface MainOrderLoginController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
-
-@property (weak, nonatomic) UILabel *lbBrand;
-
-@property (weak, nonatomic) UITextField *tfType;
-
-@property (weak, nonatomic) UITextField *tfName;
-
-@property (weak, nonatomic) UITextField *tfTel;
-
-@property (weak, nonatomic) UITextField *tfCode;
-
-@property (assign, nonatomic) CGFloat lat;
-
-@property (assign, nonatomic) CGFloat lng;
 
 
 @property (weak, nonatomic) OrderAmountCell *amountCell;

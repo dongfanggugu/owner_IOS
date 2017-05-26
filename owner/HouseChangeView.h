@@ -22,6 +22,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbContent;
 
+@property (assign, nonatomic) BOOL btnHidden;
+
 @property (weak, nonatomic) id<HouseChangeViewDelegate> delegate;
+
+
 
 @end

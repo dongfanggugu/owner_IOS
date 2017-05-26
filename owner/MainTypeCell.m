@@ -15,12 +15,6 @@
     void(^_onClickBtn)();
 }
 
-@property (weak, nonatomic) IBOutlet UIButton *btn;
-
-@property (weak, nonatomic) IBOutlet UIButton *btnDetail;
-
-@property (weak, nonatomic) IBOutlet UIView *viewBg;
-
 @end
 
 
@@ -46,43 +40,70 @@
 
 + (CGFloat)cellHeight
 {
-    return 140;
+    return 240;
 }
 
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-        
-    [self.viewBg layoutIfNeeded];
-    
-    [self.viewBg clipCornerWithTopLeft:YES andTopRight:YES andBottomLeft:NO andBottomRight:NO];
-}
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    _iv1.userInteractionEnabled = YES;
+    
+    [_iv1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click1)]];
+    
+    _iv2.userInteractionEnabled = YES;
+    
+    [_iv2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click2)]];
+    
+    _iv3.userInteractionEnabled = YES;
+    
+    [_iv3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click3)]];
+    
+    _iv4.userInteractionEnabled = YES;
+    
+    [_iv4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click4)]];
+    
+    _iv5.userInteractionEnabled = YES;
+    
+    [_iv5 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click5)]];
 }
 
-- (void)setImage:(UIImage *)image
+- (void)click1
 {
-    imageView.image = image;
-}
-
-- (void)onClick
-{
-    if (_onClickBtn) {
-        _onClickBtn();
+    if (_delegate && [_delegate respondsToSelector:@selector(onClick1)]) {
+        [_delegate onClick1];
     }
 }
 
-- (void)setOnClickListener:(void(^)())onClickBtn
+- (void)click2
 {
-    _onClickBtn = onClickBtn;
-    
-    [_btn addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_btnDetail addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
+    if (_delegate && [_delegate respondsToSelector:@selector(onClick2)]) {
+        [_delegate onClick2];
+    }
 }
+
+- (void)click3
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClick3)]) {
+        [_delegate onClick3];
+    }
+}
+
+- (void)click4
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClick4)]) {
+        [_delegate onClick4];
+    }
+}
+
+- (void)click5
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClick5)]) {
+        [_delegate onClick5];
+    }
+}
+
 
 @end

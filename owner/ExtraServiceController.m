@@ -164,6 +164,9 @@
     if (1 == self.arrayHouse.count) {
         
         self.houseInfo = self.arrayHouse[0];
+        
+        _headView.btnHidden = YES;
+        
         return;
     }
     
@@ -260,11 +263,6 @@
     
     cell.lbName.text = info[@"incrementTypeName"];
     
-    NSString *url = [info[@"incrementTypeInfo"] objectForKey:@"logo"];
-    
-    if (url.length > 0) {
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:url]];
-    }
     
     NSString *expireTime = info[@"expireTime"];
     
@@ -272,7 +270,7 @@
         cell.lbInfo.text = @"无效";
         
     } else {
-        cell.lbInfo.text = [NSString stringWithFormat:@"到期日期:%@", expireTime];
+        cell.lbInfo.text = [NSString stringWithFormat:@"%@ 到期", expireTime];
         
     }
     
@@ -306,7 +304,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 190;
+    return [ExtraServiceCell cellHeight];
 }
 
 #pragma mark - MainOrderInfoViewDelegate

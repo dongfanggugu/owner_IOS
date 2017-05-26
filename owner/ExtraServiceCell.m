@@ -12,8 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnDetail;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnQa;
-
 @property (weak, nonatomic) IBOutlet UIButton *btnPay;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLink;
@@ -47,7 +45,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 190;
+    return 160;
 }
 
 + (NSString *)identifier
@@ -68,9 +66,7 @@
 {
     _onClickDetail = onClickDetail;
     
-    [_btnDetail addTarget:self action:@selector(clickDetail) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_btnQa addTarget:self action:@selector(clickDetail) forControlEvents:UIControlEventTouchUpInside];
+    [_btnDetail addTarget:self action:@selector(clickDetail) forControlEvents:UIControlEventTouchUpInside];    
 }
 
 - (void)clickDetail

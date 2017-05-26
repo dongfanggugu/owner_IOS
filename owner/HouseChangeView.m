@@ -41,4 +41,14 @@
     }
 }
 
+- (void)setBtnHidden:(BOOL)btnHidden
+{
+    if (btnHidden) {
+        _btn.hidden = YES;
+        
+    } else {
+        _btn.hidden = NO;
+    }
+}
+
 @end

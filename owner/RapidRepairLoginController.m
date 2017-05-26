@@ -360,11 +360,16 @@
             return cell;
             
         } else if (4 == indexPath.row) {
+            
             KeyValueBtnCell *cell =  [KeyValueBtnCell cellFromNib];
             
             cell.lbKey.text = @"别墅地址";
             cell.lbValue.text = _houseInfo[@"cellName"];
             cell.btnTitle = @"切换";
+            
+            if (1 == self.arrayHouse.count) {
+                [cell hideBtn];
+            }
             
             __weak typeof (self) weakSelf = self;
             [cell addOnClickListener:^{
@@ -372,6 +377,7 @@
             }];
             
             return cell;
+            
             
         }
         
@@ -413,7 +419,7 @@
     }
     
     if (1 == self.arrayHouse.count) {
-        
+                
         _houseInfo = self.arrayHouse[0];
         
         [_tableView reloadData];

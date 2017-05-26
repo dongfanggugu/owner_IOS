@@ -10,7 +10,7 @@
 #import "PayInfoCell.h"
 #import "PayViewController.h"
 #import "MainTypeInfo.h"
-#import "MainOrderDetaIlController.h"
+#import "ExtraServiceOrderDetailController.h"
 
 @interface ExtraPayOrderController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -182,7 +182,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MainOrderDetaIlController *controller = [[MainOrderDetaIlController alloc] init];
+    ExtraServiceOrderDetailController *controller = [[ExtraServiceOrderDetailController alloc] init];
     controller.orderInfo = self.arrayOrder[indexPath.row];
     controller.houseInfo = _houseInfo;
     

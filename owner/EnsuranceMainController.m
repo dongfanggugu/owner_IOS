@@ -95,8 +95,8 @@
 - (void)clickDetail
 {
     EnsuranceController *controller = [[EnsuranceController alloc] init];
-    controller.hidesBottomBarWhenPushed = YES;
     
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

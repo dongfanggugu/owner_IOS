@@ -14,7 +14,7 @@
 #import "MainOrderController.h"
 #import "ExtraOrderAddController.h"
 
-@interface OtherController() <UITableViewDelegate, UITableViewDataSource>
+@interface OtherController() <UITableViewDelegate, UITableViewDataSource, MainTypeCellDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -29,7 +29,6 @@
     [super viewDidLoad];
     [self setNavTitle:@"增值服务"];
     [self initView];
-    [self getServices];
 }
 
 - (NSMutableArray *)arrayService
@@ -56,16 +55,11 @@
     [self.view addSubview:_tableView];
     
     
-    //headview
-//    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
-//    
-//    _tableView.tableHeaderView = headView;
-//    
-//    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
-//    
-//    iv.image = [UIImage imageNamed:@"icon_other_banner.png"];
-//    
-//    [headView addSubview:iv];
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 3)];
+    
+    iv.image = [UIImage imageNamed:@"icon_other_banner.png"];
+    
+    _tableView.tableHeaderView = iv;
     
 }
 
@@ -79,7 +73,9 @@
         
         [self.arrayService addObjectsFromArray:responseObject[@"body"]];
         
-        [self.tableView reloadData];
+        if (self.arrayService.count > 0) {
+            [self addOrder:self.arrayService[0]];
+        }
         
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
@@ -95,61 +91,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayService.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MainTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:[MainTypeCell identifier]];
     
-    if (!cell) {
-        cell = [MainTypeCell cellFromNib];
-    }
+    MainTypeCell *cell = [MainTypeCell cellFromNib];
     
+    cell.delegate = self;
     
-    
-    NSDictionary *info = self.arrayService[indexPath.row];
-    
-    if (indexPath.row > 0) {
-        cell.viewBottom.backgroundColor = [Utils getColorByRGB:@"#cccccc"];
-        
-        cell.lbName.textColor = [Utils getColorByRGB:@"#cccccc"];
-        cell.lbContent.textColor = [Utils getColorByRGB:@"#cccccc"];
-    }
-    
-    cell.lbName.text = info[@"name"];
-    
-    cell.lbContent.text = info[@"content"];
-    
-    if (0 == indexPath.row) {
-        cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf/月", [info[@"price"] floatValue]];
-        
-    } else {
-        if ([info[@"price"] floatValue] <= 0.001) {
-            cell.lbPrice.text = @"";
-        }
-    }
-    NSString *url = info[@"logo"];
-    
-    if (url.length > 0) {
-        [cell.imageView setImageWithURL:[NSURL URLWithString:url]];
-    }
-    
-    
-    __weak typeof (self) weakSelf = self;
-    
-    if (0 == indexPath.row) {
-        [cell setOnClickListener:^{
-            MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
-            
-            controller.detail = info[@"content"];
-            
-            controller.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:controller animated:YES];
-        }];
-    }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -160,21 +111,52 @@
     return [MainTypeCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+- (void)addOrder:(NSDictionary *)serviceInfo
 {
+    MainTypeInfo *info = [[MainTypeInfo alloc] initWithDictionary:serviceInfo];
     
-    if (0 == indexPath.row) {
-        MainTypeInfo *info = [[MainTypeInfo alloc] initWithDictionary:self.arrayService[indexPath.row]];
-        
-        ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
-        controller.serviceInfo = info;
-        
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
-        
-    } else {
-        [HUDClass showHUDWithText:@"功能开发中"];
+    ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
+    controller.serviceInfo = info;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+
+}
+
+#pragma mark - MainTypeCellDelegate
+
+- (void)onClick1
+{
+    if (!self.login) {
+        [HUDClass showHUDWithText:@"您需要先登录才能购买增值服务"];
+        return;
     }
+    [self getServices];
+}
+
+- (void)onClick2
+{
+    [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
+    return;
+}
+
+- (void)onClick3
+{
+    [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
+    return;
+}
+
+- (void)onClick4
+{
+    [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
+    return;
+}
+
+- (void)onClick5
+{
+    [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
+    return;
 }
 
 @end

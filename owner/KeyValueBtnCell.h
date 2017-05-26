@@ -20,6 +20,8 @@
 
 - (void)addOnClickListener:(void(^)())onClick;
 
+- (void)hideBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *lbKey;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbValue;
