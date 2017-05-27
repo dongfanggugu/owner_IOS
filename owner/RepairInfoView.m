@@ -14,10 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTitleTask;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnOrder;
-
-@property (weak, nonatomic) IBOutlet UIButton *btnEvaluate;
-
 @end
 
 @implementation RepairInfoView
@@ -52,6 +48,24 @@
 
     _lbTitleOrder.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_blue"]];
     _lbTitleTask.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_red"]];
+    
+    [_btnOrder addTarget:self action:@selector(clickPayOrder) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnEvaluate addTarget:self action:@selector(clickEvaluate) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)clickPayOrder
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickPay)]) {
+        [_delegate onClickPay];
+    }
+}
+
+- (void)clickEvaluate
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickEvaluate)]) {
+        [_delegate onClickEvaluate];
+    }
 }
 
 @end

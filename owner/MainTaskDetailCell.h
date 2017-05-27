@@ -28,4 +28,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbAddress;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnEvaluate;
+
+@property (strong, nonatomic) void(^onClickEvaluate)();
+
+
 @end

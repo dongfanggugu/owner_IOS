@@ -229,10 +229,6 @@
     
 }
 
-
-#pragma mark - Network Request
-
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

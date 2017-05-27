@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MainTaskDetailController.h"
 #import "MainTaskDetailCell.h"
+#import "EvaluateController.h"
 
 
 @interface MainTaskDetailController() <UITableViewDelegate, UITableViewDataSource>
@@ -27,6 +28,12 @@
     [self initView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
+}
+
 - (void)initView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -38,67 +45,7 @@
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.view addSubview:_tableView];
-    
-//    NSInteger state = _taskInfo.state.integerValue;
-//    
-//    if (0 == state) {
-//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-//        
-//        _btnConfirm = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120, 20, 80, 30)];
-//        
-//        [_btnConfirm setTitle:@"确认" forState:UIControlStateNormal];
-//        
-//        [_btnConfirm setBackgroundColor:[Utils getColorByRGB:TITLE_COLOR]];
-//        
-//        [_btnConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        
-//        _btnConfirm.titleLabel.font = [UIFont systemFontOfSize:13];
-//        
-//        _btnConfirm.layer.masksToBounds = YES;
-//        
-//        _btnConfirm.layer.cornerRadius = 5;
-//        
-//        [_btnConfirm addTarget:self action:@selector(confirmTask) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        [view addSubview:_btnConfirm];
-//        
-//        _tableView.tableFooterView = view;
-//        
-//    } else if (2 == state) {
-//        EvaluteView *view = [EvaluteView viewFromNib];
-//        
-//        view.delegate = self;
-//        
-//        _tableView.tableFooterView = view;
-//        
-//    } else if (3 == state) {
-//        EvaluteView *view = [EvaluteView viewFromNib];
-//        
-//        _tableView.tableFooterView = view;
-//        
-//        [view setModeShow];
-//        
-//        [view setStar:_taskInfo.evaluateResult];
-//        
-//        [view setContent:_taskInfo.evaluateContent];
-//    }
 }
-
-//- (void)confirmTask
-//{
-//    MainTaskConfirmRequest *request = [[MainTaskConfirmRequest alloc] init];
-//    
-//    request.maintOrderPorcessId = _taskInfo.taskId;
-//    
-//    [[HttpClient shareClient]post:URL_CONFIRM_MAIN_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-//        [HUDClass showHUDWithText:@"维保任务确认成功"];
-//        
-//        [_btnConfirm removeFromSuperview];
-//        
-//    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-//        
-//    }];
-//}
 
 #pragma mark - UITableViewDataSource
 
@@ -130,7 +77,35 @@
     
     CGFloat lng = [_taskInfo.maintOrderInfo.villaInfo[@"lng"] floatValue];
     
+    NSInteger state = _taskInfo.state.integerValue;
+    
+    if (3 == state) {
+        [cell.btnEvaluate setTitle:@"查看评价" forState:UIControlStateNormal];
+    }
+    
     [cell markOnMapWithLat:lat lng:lng];
+    
+    __weak typeof (self) weakSelf = self;
+    
+    [cell setOnClickEvaluate:^{
+        EvaluateController *controller = [[EvaluateController alloc] init];
+        
+        NSInteger state = weakSelf.taskInfo.state.integerValue;
+        
+        if (3 == state) {
+            controller.enterType = Show;
+            controller.content = weakSelf.taskInfo.evaluateContent;
+            controller.star = weakSelf.taskInfo.evaluateResult;
+        
+        } else {
+            controller.enterType = Maint_Submit;
+            controller.mainTaskInfo = weakSelf.taskInfo;
+        }
+        
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
     
     return cell;
 }
@@ -139,24 +114,6 @@
 {
     return [MainTaskDetailCell cellHeight];
 }
-
-//#pragma mark - EvaluateViewDelegate
-//
-//- (void)onSubmit:(NSInteger)star content:(NSString *)content
-//{
-//    MainTaskEvaluateRequest *request = [[MainTaskEvaluateRequest alloc] init];
-//    request.maintOrderProcessId = _taskInfo.taskId;
-//    request.evaluateContent = content;
-//    request.evaluateResult = star;
-//    
-//    [[HttpClient shareClient] post:URL_MAIN_TASK_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-//        [HUDClass showHUDWithText:@"维保评价成功"];
-//        
-//        [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
-//    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-//        
-//    }];
-//}
 
 - (void)back
 {

@@ -25,10 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"我的订单"];
-    
+    [self setNavTitle:@"增值服务订单"];
     [self  initView];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated

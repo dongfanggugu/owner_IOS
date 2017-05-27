@@ -45,12 +45,15 @@
     self.selectionStyle = UITableViewCellSeparatorStyleNone;
     
     _mapView.zoomLevel = 15;
+    
+    [_btnEvaluate addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)clickBtn
+{
+    if (_onClickEvaluate) {
+        _onClickEvaluate();
+    }
 }
 
 - (void)markOnMapWithLat:(CGFloat)lat lng:(CGFloat)lng
@@ -95,7 +98,6 @@
     
     return hitView;
 }
-
 
 
 @end

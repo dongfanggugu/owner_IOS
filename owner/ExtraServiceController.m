@@ -219,7 +219,10 @@
  */
 - (void)getServices
 {
-    [[HttpClient shareClient] post:URL_GET_EXTRA parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"villaId"] = _houseInfo[@"id"];
+    
+    [[HttpClient shareClient] post:URL_GET_EXTRA parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayService removeAllObjects];
         
         [self.arrayService addObjectsFromArray:responseObject[@"body"]];

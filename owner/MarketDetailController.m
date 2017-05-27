@@ -29,6 +29,11 @@
     [self initView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+}
 
 - (void)initView
 {

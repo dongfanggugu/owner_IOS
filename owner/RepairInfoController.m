@@ -15,14 +15,14 @@
 #import "RepairTaskCell.h"
 #import "RepairTaskDetailController.h"
 #import "RepairEvaluateRequest.h"
+#import "EvaluateController.h"
+#import "RepairPaymentController.h"
 
 
-@interface RepairInfoController()<UITableViewDelegate, UITableViewDataSource, EvaluateViewDelegate>
+@interface RepairInfoController () <UITableViewDelegate, UITableViewDataSource, RepairInfoViewDelegate>
 
 
 @property (strong, nonatomic) UITableView *tableView;
-
-//@property (strong, nonatomic) RepairInfoView *infoView;
 
 @property (strong, nonatomic) EvaluteView *evaluateView;
 
@@ -40,6 +40,12 @@
     [self initData];
     [self initView];
     [self getTask];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
 }
 
 - (void)initData
@@ -64,6 +70,7 @@
     
     RepairInfoView *infoView = [RepairInfoView viewFromNib];
     
+    infoView.delegate = self;
     
     infoView.lbCode.text = [NSString stringWithFormat:@"订单编号: %@", _orderInfo.code];
     
@@ -81,55 +88,22 @@
     
     infoView.lbBrand.text = [NSString stringWithFormat:@"电梯品牌: %@", _houseInfo[@"brand"]];
     
-     infoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_houseInfo[@"layerAmount"] integerValue]];
+    infoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_houseInfo[@"layerAmount"] integerValue]];
+    
+    NSInteger state = _orderInfo.state.integerValue;
+    
+    if (9 == state) {
+        [infoView.btnEvaluate setTitle:@"查看评价" forState:UIControlStateNormal];
+    }
+    
+    NSInteger isPay = _orderInfo.isPayment.integerValue;
+    
+    if (1 == isPay) {
+        [infoView.btnOrder setTitle:@"查看支付" forState:UIControlStateNormal];
+    }
+    
     
     _tableView.tableHeaderView = infoView;
-    
-    
-    
-//    NSInteger state = _orderInfo.state.integerValue;
-//    
-//    if (8 == state) {
-//        _evaluateView = [EvaluteView viewFromNib];
-//        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
-//        
-//        _evaluateView.delegate = self;
-//        
-//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
-//        
-//        [headerView addSubview:infoView];
-//        [headerView addSubview:desKey];
-//        [headerView addSubview:desLabel];
-//        [headerView addSubview:_evaluateView];
-//        
-//        _tableView.tableHeaderView = headerView;
-//        
-//    } else if (9 == state) {
-//        _evaluateView = [EvaluteView viewFromNib];
-//        [_evaluateView setModeShow];
-//        [_evaluateView setStar:_orderInfo.evaluate.integerValue];
-//        [_evaluateView setContent:_orderInfo.evaluateInfo];
-//        _evaluateView.frame = CGRectMake(0, 124 + labelHeight, self.screenWidth, 240);
-//        
-//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight + 240)];
-//        
-//        [headerView addSubview:infoView];
-//        [headerView addSubview:desKey];
-//        [headerView addSubview:desLabel];
-//        [headerView addSubview:_evaluateView];
-//        
-//        _tableView.tableHeaderView = headerView;
-//
-//    } else {
-//        
-//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 124 + labelHeight)];
-//        
-//        [headerView addSubview:infoView];
-//        [headerView addSubview:desKey];
-//        [headerView addSubview:desLabel];
-//        
-//        _tableView.tableHeaderView = headerView;
-//    }
     
     [self.view addSubview:_tableView];
 }
@@ -227,36 +201,42 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)onClickEvaluate
 {
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    
-//    RepairTaskDetailController *controller = [[RepairTaskDetailController alloc] init];
-//    controller.taskInfo = _arrayTask[indexPath.row];
-//    self.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:controller animated:YES];
+    EvaluateController *controller = [[EvaluateController alloc] init];
     
-}
-
-#pragma mark - EvaluateViewDelegate
-
-- (void)onSubmit:(NSInteger)star content:(NSString *)content
-{
-    RepairEvaluateRequest *request = [[RepairEvaluateRequest alloc] init];
-    request.repairOrderId = _orderInfo.orderId;
-    request.evaluate = [NSString stringWithFormat:@"%ld", star];
-    request.evaluateInfo = content;
+    NSInteger state = _orderInfo.state.integerValue;
     
-    [[HttpClient shareClient] post:URL_REPAIR_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"评价已经提交"];
-        [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+    if (9 == state) {
+        controller.enterType = Show;
+        controller.content = _orderInfo.evaluateInfo;
+        controller.star = _orderInfo.evaluate.integerValue;
         
-    }];
+    } else {
+        controller.enterType = Repair_Submit;
+        controller.repairOrderInfo = _orderInfo;
+    }
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)back
+- (void)onClickPay
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    NSInteger isPay = _orderInfo.isPayment.integerValue;
+    
+    RepairPaymentController *controller = [[RepairPaymentController alloc] init];
+    
+    if (1 == isPay) {
+        controller.enterType = Repair_Show;
+        controller.payTime = _orderInfo.payTime;
+        
+    } else {
+        controller.enterType = Repair_Pay;
+        controller.orderId = _orderInfo.orderId;
+    }
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
+
 @end

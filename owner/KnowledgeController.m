@@ -13,7 +13,7 @@
 
 @interface KnowledgeController () <UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate>
 
-@property (strong, nonatomic) PullTableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *arrayKn;
 
@@ -43,13 +43,13 @@
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    _tableView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     
     _tableView.delegate = self;
     
     _tableView.dataSource = self;
     
-    _tableView.pullDelegate = self;
+    //_tableView.pullDelegate = self;
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -66,7 +66,7 @@
     
     params[@"kntype"] = _knType;
     
-    params[@"rows"] = [NSNumber numberWithInteger:10];
+    params[@"rows"] = [NSNumber numberWithInteger:100];
     
     params[@"page"] = [NSNumber numberWithInteger:1];
     

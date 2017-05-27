@@ -40,6 +40,8 @@
 
 @property (copy, nonatomic) NSString *isPayment;
 
+@property (copy, nonatomic) NSString *payTime;
+
 @property (copy, nonatomic) NSString *evaluate;
 
 @property (copy, nonatomic) NSString *evaluateInfo;

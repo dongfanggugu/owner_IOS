@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavIcon];
+    //[self setNavIcon];
     [self initNaviTitle];
     self.view.backgroundColor = [UIColor whiteColor];
     if (self.navigationController) {
@@ -31,7 +31,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    //self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 

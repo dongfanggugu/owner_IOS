@@ -72,6 +72,13 @@
 		65243F181ED81FB800BB2D32 /* icon_op.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243F171ED81FB800BB2D32 /* icon_op.png */; };
 		65243F1A1ED8205700BB2D32 /* icon_law.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243F191ED8205700BB2D32 /* icon_law.png */; };
 		65243F1C1ED8233F00BB2D32 /* knowledge_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243F1B1ED8233F00BB2D32 /* knowledge_banner.png */; };
+		65243F1E1ED9164B00BB2D32 /* MainOrderConfirmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65243F1D1ED9164B00BB2D32 /* MainOrderConfirmCell.xib */; };
+		65243F211ED917EA00BB2D32 /* MainOrderConfirmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243F201ED917EA00BB2D32 /* MainOrderConfirmCell.m */; };
+		65243F241ED9209300BB2D32 /* EvaluateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243F231ED9209300BB2D32 /* EvaluateController.m */; };
+		65243F261ED92A5D00BB2D32 /* icon_star_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243F251ED92A5D00BB2D32 /* icon_star_sel.png */; };
+		65243F291ED94DEB00BB2D32 /* RepairPaymentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243F281ED94DEB00BB2D32 /* RepairPaymentController.m */; };
+		65243F2B1ED9538300BB2D32 /* RepairPayInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65243F2A1ED9538300BB2D32 /* RepairPayInfoCell.xib */; };
+		65243F2E1ED9547400BB2D32 /* RepairPayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243F2D1ED9547400BB2D32 /* RepairPayInfoCell.m */; };
 		6525443C1E1F1F960027B28B /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544331E1F1F950027B28B /* NSArray+Log.m */; };
 		6525443D1E1F1F960027B28B /* Obj2Dic.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544351E1F1F950027B28B /* Obj2Dic.m */; };
 		6525443E1E1F1F960027B28B /* HUDClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 652544371E1F1F950027B28B /* HUDClass.m */; };
@@ -215,7 +222,6 @@
 		655ADF371E25FE8D00F1F036 /* EvaluateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655ADF361E25FE8D00F1F036 /* EvaluateView.xib */; };
 		655ADF3A1E26027400F1F036 /* EvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 655ADF391E26027400F1F036 /* EvaluateView.m */; };
 		655ADF3D1E2605A100F1F036 /* icon_star_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 655ADF3B1E2605A100F1F036 /* icon_star_normal.png */; };
-		655ADF3E1E2605A100F1F036 /* icon_star_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 655ADF3C1E2605A100F1F036 /* icon_star_sel.png */; };
 		655ADF771E27641200F1F036 /* AppReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655ADF761E27641200F1F036 /* AppReportController.m */; };
 		655ADF7F1E2861E100F1F036 /* icon_person_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 655ADF7E1E2861E100F1F036 /* icon_person_default.png */; };
 		655ADF811E28635900F1F036 /* icon_person_default2.png in Resources */ = {isa = PBXBuildFile; fileRef = 655ADF801E28635900F1F036 /* icon_person_default2.png */; };
@@ -411,6 +417,17 @@
 		65243F171ED81FB800BB2D32 /* icon_op.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_op.png; sourceTree = "<group>"; };
 		65243F191ED8205700BB2D32 /* icon_law.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_law.png; sourceTree = "<group>"; };
 		65243F1B1ED8233F00BB2D32 /* knowledge_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = knowledge_banner.png; sourceTree = "<group>"; };
+		65243F1D1ED9164B00BB2D32 /* MainOrderConfirmCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainOrderConfirmCell.xib; sourceTree = "<group>"; };
+		65243F1F1ED917EA00BB2D32 /* MainOrderConfirmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainOrderConfirmCell.h; sourceTree = "<group>"; };
+		65243F201ED917EA00BB2D32 /* MainOrderConfirmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainOrderConfirmCell.m; sourceTree = "<group>"; };
+		65243F221ED9209300BB2D32 /* EvaluateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateController.h; sourceTree = "<group>"; };
+		65243F231ED9209300BB2D32 /* EvaluateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateController.m; sourceTree = "<group>"; };
+		65243F251ED92A5D00BB2D32 /* icon_star_sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star_sel.png; sourceTree = "<group>"; };
+		65243F271ED94DEB00BB2D32 /* RepairPaymentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairPaymentController.h; sourceTree = "<group>"; };
+		65243F281ED94DEB00BB2D32 /* RepairPaymentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairPaymentController.m; sourceTree = "<group>"; };
+		65243F2A1ED9538300BB2D32 /* RepairPayInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairPayInfoCell.xib; sourceTree = "<group>"; };
+		65243F2C1ED9547400BB2D32 /* RepairPayInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairPayInfoCell.h; sourceTree = "<group>"; };
+		65243F2D1ED9547400BB2D32 /* RepairPayInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairPayInfoCell.m; sourceTree = "<group>"; };
 		652544321E1F1F950027B28B /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
 		652544331E1F1F950027B28B /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		652544341E1F1F950027B28B /* Obj2Dic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obj2Dic.h; sourceTree = "<group>"; };
@@ -637,7 +654,6 @@
 		655ADF381E26026600F1F036 /* EvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EvaluateView.h; sourceTree = "<group>"; };
 		655ADF391E26027400F1F036 /* EvaluateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateView.m; sourceTree = "<group>"; };
 		655ADF3B1E2605A100F1F036 /* icon_star_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star_normal.png; sourceTree = "<group>"; };
-		655ADF3C1E2605A100F1F036 /* icon_star_sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star_sel.png; sourceTree = "<group>"; };
 		655ADF751E27640500F1F036 /* AppReportController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppReportController.h; sourceTree = "<group>"; };
 		655ADF761E27641200F1F036 /* AppReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppReportController.m; sourceTree = "<group>"; };
 		655ADF7E1E2861E100F1F036 /* icon_person_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_person_default.png; sourceTree = "<group>"; };
@@ -1048,6 +1064,10 @@
 				65243ED61ED6C96200BB2D32 /* MainTaskCell.m */,
 				65243F061ED8110800BB2D32 /* KnInfoCell.h */,
 				65243F071ED8110800BB2D32 /* KnInfoCell.m */,
+				65243F1F1ED917EA00BB2D32 /* MainOrderConfirmCell.h */,
+				65243F201ED917EA00BB2D32 /* MainOrderConfirmCell.m */,
+				65243F2C1ED9547400BB2D32 /* RepairPayInfoCell.h */,
+				65243F2D1ED9547400BB2D32 /* RepairPayInfoCell.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -1104,6 +1124,8 @@
 				65243ED31ED6C6C300BB2D32 /* MainTaskCell.xib */,
 				65243F041ED80FA800BB2D32 /* KnInfoCell.xib */,
 				65243F111ED81B4300BB2D32 /* KnMainCell.xib */,
+				65243F1D1ED9164B00BB2D32 /* MainOrderConfirmCell.xib */,
+				65243F2A1ED9538300BB2D32 /* RepairPayInfoCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1188,6 +1210,7 @@
 				65243EFD1ED80CBF00BB2D32 /* icon_other4.png */,
 				65243EFF1ED80D1500BB2D32 /* icon_other5.png */,
 				650596CD1E8A4609009A5602 /* icon_part.png */,
+				65243F251ED92A5D00BB2D32 /* icon_star_sel.png */,
 				652545061E230FE90027B28B /* icon_password.png */,
 				650596B31E8A340F009A5602 /* icon_person_bottom.png */,
 				6525450C1E2324A40027B28B /* icon_person_center.png */,
@@ -1210,7 +1233,6 @@
 				652544E81E1F76420027B28B /* icon_settings.png */,
 				652544F01E1F867A0027B28B /* icon_share.png */,
 				655ADF3B1E2605A100F1F036 /* icon_star_normal.png */,
-				655ADF3C1E2605A100F1F036 /* icon_star_sel.png */,
 				658FE6031E9F14D1002CA85F /* icon_up.png */,
 				652545071E230FE90027B28B /* icon_user.png */,
 				6516C9FF1E24D06F00A54C64 /* icon_worker_pic.png */,
@@ -1538,6 +1560,10 @@
 				65228ED41EBC4D4C007A1300 /* ExtraServiceHistoryController.m */,
 				65243EEC1ED7F43300BB2D32 /* ExtraServiceOrderDetailController.h */,
 				65243EED1ED7F43300BB2D32 /* ExtraServiceOrderDetailController.m */,
+				65243F221ED9209300BB2D32 /* EvaluateController.h */,
+				65243F231ED9209300BB2D32 /* EvaluateController.m */,
+				65243F271ED94DEB00BB2D32 /* RepairPaymentController.h */,
+				65243F281ED94DEB00BB2D32 /* RepairPaymentController.m */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -1671,7 +1697,6 @@
 				65243EE91ED7F35700BB2D32 /* icon_other_person.png in Resources */,
 				6525448A1E1F39390027B28B /* img_phone.png in Resources */,
 				655593D61ECAD56500977291 /* mainpage_bg.png in Resources */,
-				655ADF3E1E2605A100F1F036 /* icon_star_sel.png in Resources */,
 				650596D01E8A4609009A5602 /* icon_part.png in Resources */,
 				655593D41ECA987000977291 /* market_3.png in Resources */,
 				6544C78C1E693AF50050A9D3 /* RepairTaskCell.xib in Resources */,
@@ -1732,9 +1757,12 @@
 				652544991E1F61780027B28B /* Help.storyboard in Resources */,
 				65FE08D31EB02840002C9397 /* icon_amount_minus.png in Resources */,
 				652545121E2372E70027B28B /* icon_account.png in Resources */,
+				65243F2B1ED9538300BB2D32 /* RepairPayInfoCell.xib in Resources */,
 				65243EFC1ED80C6700BB2D32 /* icon_other3.png in Resources */,
 				655593D21ECA987000977291 /* market_1.png in Resources */,
+				65243F1E1ED9164B00BB2D32 /* MainOrderConfirmCell.xib in Resources */,
 				65243EEB1ED7F39400BB2D32 /* icon_repair_normal.png in Resources */,
+				65243F261ED92A5D00BB2D32 /* icon_star_sel.png in Resources */,
 				65A1FB651EC55069005C8E6B /* icon_phone.png in Resources */,
 				65E19BC21E67C0E500C6860D /* KeyMultiEditCell.xib in Resources */,
 				65243EDB1ED7E24400BB2D32 /* login_bg.png in Resources */,
@@ -1891,6 +1919,7 @@
 				652FBEB81ED414A300DA2729 /* HouseModifyController.m in Sources */,
 				6544C7811E692F0B0050A9D3 /* RepairInfoController.m in Sources */,
 				6525446F1E1F26C80027B28B /* BaseTabBarController.m in Sources */,
+				65243F2E1ED9547400BB2D32 /* RepairPayInfoCell.m in Sources */,
 				6544C7951E6943B30050A9D3 /* RepairEvaluateRequest.m in Sources */,
 				652544B51E1F62A80027B28B /* LocationViewController.m in Sources */,
 				6525449C1E1F61B60027B28B /* HelpController.m in Sources */,
@@ -1907,6 +1936,7 @@
 				6544C7431E67FFE50050A9D3 /* FaultInfo.m in Sources */,
 				6544C77E1E6915050050A9D3 /* MainTaskListRequest.m in Sources */,
 				65E19BE31E67EC6E00C6860D /* SMSCodeResponse.m in Sources */,
+				65243F241ED9209300BB2D32 /* EvaluateController.m in Sources */,
 				65E19BA91E67B64200C6860D /* MainTypeListResponse.m in Sources */,
 				6544C74B1E6806F70050A9D3 /* DatePickerDialog.m in Sources */,
 				6525443D1E1F1F960027B28B /* Obj2Dic.m in Sources */,
@@ -1948,6 +1978,7 @@
 				6544C7921E693ED60050A9D3 /* RepairTaskDetailController.m in Sources */,
 				655ADFA21E2DECB100F1F036 /* MarketCell.m in Sources */,
 				652544D81E1F65050027B28B /* UIDownPicker.m in Sources */,
+				65243F211ED917EA00BB2D32 /* MainOrderConfirmCell.m in Sources */,
 				6544C7751E6910840050A9D3 /* MainTaskListResponse.m in Sources */,
 				652FBEAA1ED3CAAB00DA2729 /* ListDialogData.m in Sources */,
 				6525444C1E1F206B0027B28B /* ResponseHead.m in Sources */,
@@ -1985,6 +2016,7 @@
 				655ADF991E2C722400F1F036 /* AddBannerData.m in Sources */,
 				65E19BCD1E67C24300C6860D /* MainOrderInfoCell.m in Sources */,
 				652544861E1F37FC0027B28B /* WorkerInfoView.m in Sources */,
+				65243F291ED94DEB00BB2D32 /* RepairPaymentController.m in Sources */,
 				65E19BBC1E67C0D300C6860D /* KeyValueCell.m in Sources */,
 				65243ED21ED6BE7A00BB2D32 /* MainTaskDetailCell.m in Sources */,
 				655594061ECC244200977291 /* CommonWebViewController.m in Sources */,

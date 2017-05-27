@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <UIImageView+AFNetworking.h>
 
+@protocol RepairInfoViewDelegate <NSObject>
+
+- (void)onClickPay;
+
+- (void)onClickEvaluate;
+
+@end
+
 @interface RepairInfoView : UIView
 
 + (id)viewFromNib;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *lbCode;
 
@@ -30,5 +39,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbBrand;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbWeight;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnOrder;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnEvaluate;
+
+@property (weak, nonatomic) id<RepairInfoViewDelegate> delegate;
 
 @end

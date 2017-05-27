@@ -198,13 +198,11 @@
 {
     if (!_houseInfo) {
         return;
-    }
-    OrderListRequest *request = [[OrderListRequest alloc] init];
-    
+    }    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"villaId"] = _houseInfo[@"id"];
     
-    [[HttpClient shareClient] post:URL_REPAIR_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_REPAIR_LIST parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         RepairListResponse *response = [[RepairListResponse alloc] initWithDictionary:responseObject];
         [self.arrayOrder removeAllObjects];
         [self.arrayOrder addObjectsFromArray:[response getOrderList]];

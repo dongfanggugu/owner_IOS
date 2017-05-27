@@ -74,17 +74,13 @@
 
 - (void)submit
 {
-    MainOrderAddRequest *request = [[MainOrderAddRequest alloc] init];
-    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     params[@"incrementTypeId"] = _serviceInfo.typeId;
     params[@"frequency"] = [NSNumber numberWithInteger:_amountCell.amount];
     params[@"villaId"] = _houseInfo[@"id"];
 
-    
-    
-    [[HttpClient shareClient] post:URL_EXTRA_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:URL_EXTRA_ADD parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
         

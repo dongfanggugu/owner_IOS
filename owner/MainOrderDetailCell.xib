@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rON-DD-Aqa" id="u2C-cK-QxS">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="799.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="WXn-sL-UcO">
@@ -299,7 +299,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="bRz-e1-zT4"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGb-rH-9l3">

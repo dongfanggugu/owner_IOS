@@ -73,4 +73,7 @@
 //获取别墅信息
 #define URL_GET_HOUSE @"getVillaBySmallOwner"
 
+//获取维修支付单
+#define URL_REPAIR_PAYMENT @"getRepairPaymentBySmallOwner"
+
 #endif /* NetConstant_h */

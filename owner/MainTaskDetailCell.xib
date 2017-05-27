@@ -71,11 +71,11 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhl-CV-iPY">
-                        <rect key="frame" x="317" y="238" width="50" height="24"/>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhl-CV-iPY">
+                        <rect key="frame" x="287" y="238" width="80" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="2ff-0T-9hZ"/>
-                            <constraint firstAttribute="width" constant="50" id="S3N-H2-Qp7"/>
+                            <constraint firstAttribute="width" constant="80" id="S3N-H2-Qp7"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="更多&gt;&gt;">
@@ -142,10 +142,9 @@
                         <color key="textColor" red="0.21176470589999999" green="0.69019607839999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1H-El-eHu">
-                        <rect key="frame" x="317" y="394" width="50" height="24"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1H-El-eHu">
+                        <rect key="frame" x="287" y="394" width="80" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="I3m-Nw-uuv"/>
                             <constraint firstAttribute="height" constant="24" id="qGx-1N-wFI"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -214,6 +213,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnEvaluate" destination="t1H-El-eHu" id="nKB-ro-GSw"/>
                 <outlet property="lbAddress" destination="I8Q-Ug-LUZ" id="2x0-jL-POh"/>
                 <outlet property="lbContent" destination="Yf4-4Z-Dr4" id="1kf-Pv-oYT"/>
                 <outlet property="lbPlanDate" destination="cRZ-6I-cWt" id="zQ2-SP-P04"/>

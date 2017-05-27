@@ -23,7 +23,7 @@
     [super viewDidLoad];
     [self setNavTitle:@"订单详情"];
     
-    [self  initView];
+    [self initView];
 }
 
 
@@ -139,6 +139,7 @@
             controller.urlStr = url;
             
             [self presentViewController:controller animated:YES completion:^{
+                [self.navigationController popViewControllerAnimated:NO];
             }];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
