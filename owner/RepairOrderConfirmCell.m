@@ -1,18 +1,18 @@
 //
-//  MainOrderConfirmCell.m
+//  RepairOrderConfirmCell.m
 //  owner
 //
-//  Created by 长浩 张 on 2017/5/27.
+//  Created by 长浩 张 on 2017/6/2.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import "MainOrderConfirmCell.h"
+#import "RepairOrderConfirmCell.h"
 
-@implementation MainOrderConfirmCell
+@implementation RepairOrderConfirmCell
 
 + (id)cellFromNib
 {
-    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainOrderConfirmCell" owner:nil options:nil];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"RepairOrderConfirmCell" owner:nil options:nil];
     
     if (0 == array.count) {
         return nil;
@@ -23,12 +23,12 @@
 
 + (CGFloat)cellHeight
 {
-    return 800;
+    return 500;
 }
 
 + (NSString *)identifier
 {
-    return @"main_order_confirm_cell";
+    return @"repair_order_confirm_cell";
 }
 
 
@@ -54,14 +54,14 @@
     
     [_lbCom3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selCom3)]];
     
-    [_btnCoupon addTarget:self action:@selector(clickCoupon) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnAgreement addTarget:self action:@selector(clickAgreement) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnMoreCom addTarget:self action:@selector(clickMoreCom) forControlEvents:UIControlEventTouchUpInside];
     
-    [_btnPay addTarget:self action:@selector(clickPay) forControlEvents:(UIControlEventTouchUpInside)];
+    [_btnPay addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
 }
+
 
 - (void)clickPay
 {
@@ -87,16 +87,6 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickAgreement)]) {
         [_delegate onClickAgreement];
-    }
-}
-
-/**
- 优惠券
- */
-- (void)clickCoupon
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickCoupon)]) {
-        [_delegate onClickCoupon];
     }
 }
 
@@ -157,7 +147,7 @@
 
 /**
  选择公司
-
+ 
  @param index 公司的排序
  */
 - (void)selCom:(NSInteger)index
@@ -184,5 +174,6 @@
     }
     
 }
+
 
 @end

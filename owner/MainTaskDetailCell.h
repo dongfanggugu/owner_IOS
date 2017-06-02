@@ -30,7 +30,15 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnEvaluate;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnMore;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnFinish;
+
 @property (strong, nonatomic) void(^onClickEvaluate)();
+
+@property (strong, nonatomic) void(^onClickMore)();
+
+@property (strong, nonatomic) void(^onClickFinish)();
 
 
 @end

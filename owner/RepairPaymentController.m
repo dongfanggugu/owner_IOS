@@ -9,6 +9,7 @@
 #import "RepairPaymentController.h"
 #import "RepairPayInfoCell.h"
 #import "PayViewController.h"
+#import "RepairCouponCell.h"
 
 @interface RepairPaymentController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -155,15 +156,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (0 == indexPath.section) {
-        RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
         
-        NSDictionary *info = self.arrayPay[indexPath.row];
-        
-        cell.lbName.text = info[@"name"];
-        
-        cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [info[@"price"] floatValue]];
-        
-        return cell;
+        if (indexPath.row == self.arrayPay.count - 1) {
+            RepairCouponCell *cell = [RepairCouponCell cellFromNib];
+            return cell;
+            
+        } else {
+            RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
+            
+            NSDictionary *info = self.arrayPay[indexPath.row];
+            
+            cell.lbName.text = info[@"name"];
+            
+            cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [info[@"price"] floatValue]];
+            
+            
+            
+            return cell;
+        }
         
     } else if (1 == indexPath.section) {
         

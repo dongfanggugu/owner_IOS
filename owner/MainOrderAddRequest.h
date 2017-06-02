@@ -47,6 +47,8 @@
 
 @property (copy, nonatomic) NSString *villaId;
 
+@property (assign, nonatomic) CGFloat payMoney;
+
 
 //增值服务订单使用
 @property (copy, nonatomic) NSString *incrementTypeId;

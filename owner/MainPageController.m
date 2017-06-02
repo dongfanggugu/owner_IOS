@@ -254,19 +254,18 @@
 
 - (void)repair
 {
-    if (self.login) {
-        RapidRepairLoginController *controller = [[RapidRepairLoginController alloc] init];
-        
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
-        
-    } else {
-        RapidRepairController *controller = [[RapidRepairController alloc] init];
-        
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
+    if (!self.login) {
+        [HUDClass showHUDWithText:@"您需要先登录才能使用快修服务"];
+        return;
     }
+   
+    RapidRepairLoginController *controller = [[RapidRepairLoginController alloc] init];
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
+
+
 
 - (void)maintenance
 {

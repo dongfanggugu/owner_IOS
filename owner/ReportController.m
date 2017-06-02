@@ -52,7 +52,8 @@
     [self setNavTitle:@"电梯管家"];
     [self initNavRightWithText:@"联系我们"];
     [self initView];
-    [self initData];
+    
+    [self getMainType];
 }
 
 - (Location *)location
@@ -151,10 +152,13 @@
     [_floatView defaultSel];
 }
 
-- (void)initData
+- (NSMutableArray *)arrayProject
 {
-    _arrayProject = [NSMutableArray array];
-    [self getMainType];
+    if (!_arrayProject) {
+        _arrayProject = [NSMutableArray array];
+    }
+    
+    return _arrayProject;
 }
 
 
@@ -240,9 +244,9 @@
 
 - (void)showProjects
 {
-    for (NSInteger i = 0; i < _arrayProject.count; i++) {
-        CGFloat lat = [[_arrayProject[i] objectForKey:@"lat"] floatValue];
-        CGFloat lng = [[_arrayProject[i] objectForKey:@"lng"] floatValue];
+    for (NSInteger i = 0; i < self.arrayProject.count; i++) {
+        CGFloat lat = [[self.arrayProject[i] objectForKey:@"lat"] floatValue];
+        CGFloat lng = [[self.arrayProject[i] objectForKey:@"lng"] floatValue];
         
         CLLocationCoordinate2D coorProject;
         coorProject.latitude = lat;
@@ -263,7 +267,7 @@
             CalloutMapAnnotation *marker = [[CalloutMapAnnotation alloc] init];
             marker.latitude = lat;
             marker.longitude = lng;
-            marker.info = _arrayProject[i];
+            marker.info = self.arrayProject[i];
             [_mapView addAnnotation:marker];
         }
     }
@@ -415,6 +419,11 @@
 
 - (void)onClickOrder:(MaintFloatView *)view index:(NSInteger)index
 {
+    if (!self.login) {
+        [HUDClass showHUDWithText:@"您需要先登录才能购买管家服务"];
+        return;
+    }
+    
     for (MainTypeInfo *info in self.arrayMaint) {
         NSInteger i = info.typeId.integerValue;
         
@@ -427,14 +436,7 @@
                 controller.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:controller animated:YES];
                 
-            } else {
-                MainOrderController *controller = [[MainOrderController alloc] init];
-                controller.mainInfo = info;
-                
-                controller.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:controller animated:YES];
             }
-            
         }
     }
 }

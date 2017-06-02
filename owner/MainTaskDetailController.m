@@ -10,6 +10,7 @@
 #import "MainTaskDetailController.h"
 #import "MainTaskDetailCell.h"
 #import "EvaluateController.h"
+#import "MainTypeDetailController.h"
 
 
 @interface MainTaskDetailController() <UITableViewDelegate, UITableViewDataSource>
@@ -105,6 +106,32 @@
         
         controller.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
+    
+    [cell setOnClickMore:^{
+        MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
+        controller.detail = weakSelf.taskInfo.maintOrderInfo.maintypeInfo.content;
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
+    
+    
+    [cell setOnClickFinish:^{
+        EvaluateController *controller = [[EvaluateController alloc] init];
+        
+        NSInteger state = weakSelf.taskInfo.state.integerValue;
+        
+        if (3 == state) {
+            controller.enterType = Show;
+            controller.content = weakSelf.taskInfo.evaluateContent;
+            controller.star = weakSelf.taskInfo.evaluateResult;
+            
+        } else {
+            controller.enterType = Maint_Submit;
+            controller.mainTaskInfo = weakSelf.taskInfo;
+        }
+
     }];
     
     return cell;

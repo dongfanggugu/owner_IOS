@@ -19,6 +19,7 @@
 #import "OrderListRequest.h"
 #import "MainListResponse.h"
 #import "ExtraServiceController.h"
+#import "CouponViewController.h"
 
 
 
@@ -123,7 +124,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,6 +158,16 @@
         
     } else if (3 == indexPath.row) {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
+        cell.lbItem.text = @"我的优惠券";
+        cell.ivIcon.image = [UIImage imageNamed:@"icon_settings_new"];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+        
+    } else if (4 == indexPath.row) {
+    
+        PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"设置";
         cell.ivIcon.image = [UIImage imageNamed:@"icon_settings_new"];
         
@@ -165,7 +176,7 @@
         return cell;
     }
     
-    return nil;
+    return [PersonItemCell cellFromNib];
 }
 
 #pragma mark - UITableViewDelegate
@@ -213,6 +224,17 @@
         [self.navigationController pushViewController:controller animated:YES];
         
     } else if (3 == indexPath.row) {
+        
+        if (!self.login) {
+            [HUDClass showHUDWithText:@"请您先登录"];
+            return;
+        }
+        CouponViewController *controller = [[CouponViewController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } else if (4 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Person" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"settings_controller"];
         

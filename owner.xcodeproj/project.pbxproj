@@ -289,6 +289,26 @@
 		65E19BE61E67F5A200C6860D /* MainOrderAddRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E19BE51E67F5A200C6860D /* MainOrderAddRequest.m */; };
 		65E3692D1E6CFF0B00E4CF04 /* MainTypeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E3692C1E6CFF0B00E4CF04 /* MainTypeDetailController.m */; };
 		65E3694A1E6E93CE00E4CF04 /* EnsuranceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E369491E6E93CE00E4CF04 /* EnsuranceController.m */; };
+		65E8B2E91EE100D600C5BD19 /* MaintOrderConfirmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B2E81EE100D600C5BD19 /* MaintOrderConfirmController.m */; };
+		65E8B2EC1EE127C400C5BD19 /* CompanyListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B2EB1EE127C400C5BD19 /* CompanyListController.m */; };
+		65E8B2EE1EE127EE00C5BD19 /* TextDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B2ED1EE127EE00C5BD19 /* TextDetailCell.xib */; };
+		65E8B2F11EE12A1800C5BD19 /* RepairOrderConfirmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B2F01EE12A1800C5BD19 /* RepairOrderConfirmController.m */; };
+		65E8B2F31EE12BE100C5BD19 /* CouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B2F21EE12BE100C5BD19 /* CouponCell.xib */; };
+		65E8B2F91EE1300600C5BD19 /* RepairOrderConfirmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B2F81EE1300600C5BD19 /* RepairOrderConfirmCell.xib */; };
+		65E8B2FC1EE1309900C5BD19 /* RepairOrderConfirmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B2FB1EE1309900C5BD19 /* RepairOrderConfirmCell.m */; };
+		65E8B2FF1EE136E700C5BD19 /* icon_coupon_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B2FD1EE136E700C5BD19 /* icon_coupon_person.png */; };
+		65E8B3001EE136E700C5BD19 /* icon_coupon_company.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B2FE1EE136E700C5BD19 /* icon_coupon_company.png */; };
+		65E8B3031EE1386100C5BD19 /* icon_coupon_person_useless.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B3011EE1386100C5BD19 /* icon_coupon_person_useless.png */; };
+		65E8B3041EE1386100C5BD19 /* icon_coupon_company_useless.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B3021EE1386100C5BD19 /* icon_coupon_company_useless.png */; };
+		65E8B3071EE13ADD00C5BD19 /* CouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B3061EE13ADD00C5BD19 /* CouponCell.m */; };
+		65E8B30A1EE13BF000C5BD19 /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B3091EE13BF000C5BD19 /* CouponViewController.m */; };
+		65E8B30C1EE1435400C5BD19 /* CompanyInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B30B1EE1435400C5BD19 /* CompanyInfoCell.xib */; };
+		65E8B30F1EE1444F00C5BD19 /* CompanyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B30E1EE1444F00C5BD19 /* CompanyInfoCell.m */; };
+		65E8B3111EE1565E00C5BD19 /* RepairCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B3101EE1565E00C5BD19 /* RepairCouponCell.xib */; };
+		65E8B3161EE159BB00C5BD19 /* RepairCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B3151EE159BB00C5BD19 /* RepairCouponCell.m */; };
+		65E8B3181EE15A9800C5BD19 /* icon_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B3171EE15A9800C5BD19 /* icon_right.png */; };
+		65E8B31B1EE16BE100C5BD19 /* MaintEvaluateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8B31A1EE16BE100C5BD19 /* MaintEvaluateController.m */; };
+		65E8B31D1EE16C8200C5BD19 /* MaintEvaluateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E8B31C1EE16C8200C5BD19 /* MaintEvaluateView.xib */; };
 		65EA23A91E1F1BE100F2BE18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA23A81E1F1BE100F2BE18 /* main.m */; };
 		65EA23AC1E1F1BE100F2BE18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA23AB1E1F1BE100F2BE18 /* AppDelegate.m */; };
 		65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA23AE1E1F1BE100F2BE18 /* ViewController.m */; };
@@ -758,6 +778,35 @@
 		65E3692C1E6CFF0B00E4CF04 /* MainTypeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTypeDetailController.m; sourceTree = "<group>"; };
 		65E369481E6E93C000E4CF04 /* EnsuranceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnsuranceController.h; sourceTree = "<group>"; };
 		65E369491E6E93CE00E4CF04 /* EnsuranceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnsuranceController.m; sourceTree = "<group>"; };
+		65E8B2E71EE100D600C5BD19 /* MaintOrderConfirmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintOrderConfirmController.h; sourceTree = "<group>"; };
+		65E8B2E81EE100D600C5BD19 /* MaintOrderConfirmController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintOrderConfirmController.m; sourceTree = "<group>"; };
+		65E8B2EA1EE127C400C5BD19 /* CompanyListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyListController.h; sourceTree = "<group>"; };
+		65E8B2EB1EE127C400C5BD19 /* CompanyListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyListController.m; sourceTree = "<group>"; };
+		65E8B2ED1EE127EE00C5BD19 /* TextDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextDetailCell.xib; sourceTree = "<group>"; };
+		65E8B2EF1EE12A1800C5BD19 /* RepairOrderConfirmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderConfirmController.h; sourceTree = "<group>"; };
+		65E8B2F01EE12A1800C5BD19 /* RepairOrderConfirmController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderConfirmController.m; sourceTree = "<group>"; };
+		65E8B2F21EE12BE100C5BD19 /* CouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponCell.xib; sourceTree = "<group>"; };
+		65E8B2F81EE1300600C5BD19 /* RepairOrderConfirmCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairOrderConfirmCell.xib; sourceTree = "<group>"; };
+		65E8B2FA1EE1309900C5BD19 /* RepairOrderConfirmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderConfirmCell.h; sourceTree = "<group>"; };
+		65E8B2FB1EE1309900C5BD19 /* RepairOrderConfirmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderConfirmCell.m; sourceTree = "<group>"; };
+		65E8B2FD1EE136E700C5BD19 /* icon_coupon_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_coupon_person.png; sourceTree = "<group>"; };
+		65E8B2FE1EE136E700C5BD19 /* icon_coupon_company.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_coupon_company.png; sourceTree = "<group>"; };
+		65E8B3011EE1386100C5BD19 /* icon_coupon_person_useless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_coupon_person_useless.png; sourceTree = "<group>"; };
+		65E8B3021EE1386100C5BD19 /* icon_coupon_company_useless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_coupon_company_useless.png; sourceTree = "<group>"; };
+		65E8B3051EE13ADD00C5BD19 /* CouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCell.h; sourceTree = "<group>"; };
+		65E8B3061EE13ADD00C5BD19 /* CouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCell.m; sourceTree = "<group>"; };
+		65E8B3081EE13BF000C5BD19 /* CouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponViewController.h; sourceTree = "<group>"; };
+		65E8B3091EE13BF000C5BD19 /* CouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponViewController.m; sourceTree = "<group>"; };
+		65E8B30B1EE1435400C5BD19 /* CompanyInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyInfoCell.xib; sourceTree = "<group>"; };
+		65E8B30D1EE1444F00C5BD19 /* CompanyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyInfoCell.h; sourceTree = "<group>"; };
+		65E8B30E1EE1444F00C5BD19 /* CompanyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyInfoCell.m; sourceTree = "<group>"; };
+		65E8B3101EE1565E00C5BD19 /* RepairCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairCouponCell.xib; sourceTree = "<group>"; };
+		65E8B3141EE159BB00C5BD19 /* RepairCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairCouponCell.h; sourceTree = "<group>"; };
+		65E8B3151EE159BB00C5BD19 /* RepairCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairCouponCell.m; sourceTree = "<group>"; };
+		65E8B3171EE15A9800C5BD19 /* icon_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_right.png; sourceTree = "<group>"; };
+		65E8B3191EE16BE100C5BD19 /* MaintEvaluateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintEvaluateController.h; sourceTree = "<group>"; };
+		65E8B31A1EE16BE100C5BD19 /* MaintEvaluateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintEvaluateController.m; sourceTree = "<group>"; };
+		65E8B31C1EE16C8200C5BD19 /* MaintEvaluateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaintEvaluateView.xib; sourceTree = "<group>"; };
 		65EA23A41E1F1BE100F2BE18 /* owner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = owner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EA23A81E1F1BE100F2BE18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		65EA23AA1E1F1BE100F2BE18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1068,6 +1117,14 @@
 				65243F201ED917EA00BB2D32 /* MainOrderConfirmCell.m */,
 				65243F2C1ED9547400BB2D32 /* RepairPayInfoCell.h */,
 				65243F2D1ED9547400BB2D32 /* RepairPayInfoCell.m */,
+				65E8B2FA1EE1309900C5BD19 /* RepairOrderConfirmCell.h */,
+				65E8B2FB1EE1309900C5BD19 /* RepairOrderConfirmCell.m */,
+				65E8B3051EE13ADD00C5BD19 /* CouponCell.h */,
+				65E8B3061EE13ADD00C5BD19 /* CouponCell.m */,
+				65E8B30D1EE1444F00C5BD19 /* CompanyInfoCell.h */,
+				65E8B30E1EE1444F00C5BD19 /* CompanyInfoCell.m */,
+				65E8B3141EE159BB00C5BD19 /* RepairCouponCell.h */,
+				65E8B3151EE159BB00C5BD19 /* RepairCouponCell.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -1126,6 +1183,12 @@
 				65243F111ED81B4300BB2D32 /* KnMainCell.xib */,
 				65243F1D1ED9164B00BB2D32 /* MainOrderConfirmCell.xib */,
 				65243F2A1ED9538300BB2D32 /* RepairPayInfoCell.xib */,
+				65E8B2ED1EE127EE00C5BD19 /* TextDetailCell.xib */,
+				65E8B2F21EE12BE100C5BD19 /* CouponCell.xib */,
+				65E8B2F81EE1300600C5BD19 /* RepairOrderConfirmCell.xib */,
+				65E8B30B1EE1435400C5BD19 /* CompanyInfoCell.xib */,
+				65E8B3101EE1565E00C5BD19 /* RepairCouponCell.xib */,
+				65E8B31C1EE16C8200C5BD19 /* MaintEvaluateView.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1163,6 +1226,10 @@
 				655593A91EC9403200977291 /* icon_around.png */,
 				65243EC61ED6714700BB2D32 /* icon_blue.png */,
 				652544E61E1F76320027B28B /* icon_branch.png */,
+				65E8B3021EE1386100C5BD19 /* icon_coupon_company_useless.png */,
+				65E8B2FE1EE136E700C5BD19 /* icon_coupon_company.png */,
+				65E8B3011EE1386100C5BD19 /* icon_coupon_person_useless.png */,
+				65E8B2FD1EE136E700C5BD19 /* icon_coupon_person.png */,
 				65FE09091EB8532B002C9397 /* icon_custom_service.png */,
 				650596CC1E8A4609009A5602 /* icon_decorate.png */,
 				659417021ED5313F007D3E7F /* icon_del_img.png */,
@@ -1210,7 +1277,6 @@
 				65243EFD1ED80CBF00BB2D32 /* icon_other4.png */,
 				65243EFF1ED80D1500BB2D32 /* icon_other5.png */,
 				650596CD1E8A4609009A5602 /* icon_part.png */,
-				65243F251ED92A5D00BB2D32 /* icon_star_sel.png */,
 				652545061E230FE90027B28B /* icon_password.png */,
 				650596B31E8A340F009A5602 /* icon_person_bottom.png */,
 				6525450C1E2324A40027B28B /* icon_person_center.png */,
@@ -1227,12 +1293,14 @@
 				659417041ED53160007D3E7F /* icon_repair_photo.png */,
 				65243EE41ED7E74300BB2D32 /* icon_repair.png */,
 				652544EC1E1F864E0027B28B /* icon_report.png */,
+				65E8B3171EE15A9800C5BD19 /* icon_right.png */,
 				650596CE1E8A4609009A5602 /* icon_sell.png */,
 				650596B11E8A33F6009A5602 /* icon_service_bottom.png */,
 				650596AB1E8A3338009A5602 /* icon_settings_new.png */,
 				652544E81E1F76420027B28B /* icon_settings.png */,
 				652544F01E1F867A0027B28B /* icon_share.png */,
 				655ADF3B1E2605A100F1F036 /* icon_star_normal.png */,
+				65243F251ED92A5D00BB2D32 /* icon_star_sel.png */,
 				658FE6031E9F14D1002CA85F /* icon_up.png */,
 				652545071E230FE90027B28B /* icon_user.png */,
 				6516C9FF1E24D06F00A54C64 /* icon_worker_pic.png */,
@@ -1284,6 +1352,8 @@
 				6544C7911E693ED60050A9D3 /* RepairTaskDetailController.m */,
 				659416FA1ED51988007D3E7F /* RapidRepairLoginController.h */,
 				659416FB1ED51988007D3E7F /* RapidRepairLoginController.m */,
+				65E8B2EF1EE12A1800C5BD19 /* RepairOrderConfirmController.h */,
+				65E8B2F01EE12A1800C5BD19 /* RepairOrderConfirmController.m */,
 			);
 			name = Repair;
 			sourceTree = "<group>";
@@ -1305,6 +1375,12 @@
 				65FE09151EB9A2C2002C9397 /* PayViewController.m */,
 				652FBEB91ED42D3200DA2729 /* MainOrderLoginController.h */,
 				652FBEBA1ED42D3200DA2729 /* MainOrderLoginController.m */,
+				65E8B2E71EE100D600C5BD19 /* MaintOrderConfirmController.h */,
+				65E8B2E81EE100D600C5BD19 /* MaintOrderConfirmController.m */,
+				65E8B2EA1EE127C400C5BD19 /* CompanyListController.h */,
+				65E8B2EB1EE127C400C5BD19 /* CompanyListController.m */,
+				65E8B3191EE16BE100C5BD19 /* MaintEvaluateController.h */,
+				65E8B31A1EE16BE100C5BD19 /* MaintEvaluateController.m */,
 			);
 			name = Maintenance;
 			sourceTree = "<group>";
@@ -1363,6 +1439,8 @@
 				652FBEB41ED404C600DA2729 /* HouseAddController.m */,
 				652FBEB61ED414A300DA2729 /* HouseModifyController.h */,
 				652FBEB71ED414A300DA2729 /* HouseModifyController.m */,
+				65E8B3081EE13BF000C5BD19 /* CouponViewController.h */,
+				65E8B3091EE13BF000C5BD19 /* CouponViewController.m */,
 			);
 			name = Person;
 			sourceTree = "<group>";
@@ -1669,14 +1747,19 @@
 				65243EF81ED80B5700BB2D32 /* icon_other1.png in Resources */,
 				658CB55E1ECED4F100A29498 /* welcome_page.png in Resources */,
 				655ADF9C1E2DEA5800F1F036 /* MarketCell.xib in Resources */,
+				65E8B3181EE15A9800C5BD19 /* icon_right.png in Resources */,
 				65243EFE1ED80CBF00BB2D32 /* icon_other4.png in Resources */,
 				65FE08D21EB02840002C9397 /* icon_amount_add.png in Resources */,
 				65FE08F41EB1D25C002C9397 /* icon_q_a.png in Resources */,
+				65E8B3031EE1386100C5BD19 /* icon_coupon_person_useless.png in Resources */,
 				65E19BC41E67C0E500C6860D /* KeyValueCell.xib in Resources */,
+				65E8B3001EE136E700C5BD19 /* icon_coupon_company.png in Resources */,
 				65243EE11ED7E5A400BB2D32 /* icon_ensure.png in Resources */,
 				652544911E1F44C60027B28B /* Maintenance.storyboard in Resources */,
+				65E8B30C1EE1435400C5BD19 /* CompanyInfoCell.xib in Resources */,
 				65EEEB8B1E7791380095432B /* page_1.jpg in Resources */,
 				652545081E230FE90027B28B /* icon_password.png in Resources */,
+				65E8B2FF1EE136E700C5BD19 /* icon_coupon_person.png in Resources */,
 				65EEEB8F1E7791380095432B /* page_3.jpg in Resources */,
 				652544E51E1F75C40027B28B /* marker_location.png in Resources */,
 				65EEEB8E1E7791380095432B /* page_2.jpg in Resources */,
@@ -1689,6 +1772,7 @@
 				65EEEB8D1E7791380095432B /* page_8.jpg in Resources */,
 				65243EE71ED7E75700BB2D32 /* icon_maint.png in Resources */,
 				652544881E1F38420027B28B /* icon_info_window.png in Resources */,
+				65E8B2F91EE1300600C5BD19 /* RepairOrderConfirmCell.xib in Resources */,
 				659417011ED5307B007D3E7F /* KeyImageViewCell.xib in Resources */,
 				6516CA001E24D06F00A54C64 /* icon_worker_pic.png in Resources */,
 				655ADFB21E2E0E7F00F1F036 /* icon_market2.png in Resources */,
@@ -1715,6 +1799,7 @@
 				65A1FB631EC54243005C8E6B /* back_normal.png in Resources */,
 				65243F1C1ED8233F00BB2D32 /* knowledge_banner.png in Resources */,
 				65FE08FD1EB2E1A7002C9397 /* ServiceHistoryCell.xib in Resources */,
+				65E8B3111EE1565E00C5BD19 /* RepairCouponCell.xib in Resources */,
 				65243EC81ED6714700BB2D32 /* icon_blue.png in Resources */,
 				650596B01E8A33A7009A5602 /* icon_person_new.png in Resources */,
 				65E19BAE1E67BFDA00C6860D /* MainOrderInfoCell.xib in Resources */,
@@ -1725,6 +1810,7 @@
 				658CB5521ECD942700A29498 /* DialogEditView.xib in Resources */,
 				65243F051ED80FA800BB2D32 /* KnInfoCell.xib in Resources */,
 				652544FF1E1F87EF0027B28B /* icon_maintenance_record.png in Resources */,
+				65E8B3041EE1386100C5BD19 /* icon_coupon_company_useless.png in Resources */,
 				655ADF7F1E2861E100F1F036 /* icon_person_default.png in Resources */,
 				658FE6041E9F14D1002CA85F /* icon_up.png in Resources */,
 				655593E51ECAD6C600977291 /* process_6.png in Resources */,
@@ -1779,6 +1865,7 @@
 				658FE6061E9F14DC002CA85F /* icon_down.png in Resources */,
 				650596C01E8A37B8009A5602 /* process_bg.png in Resources */,
 				655ADF3D1E2605A100F1F036 /* icon_star_normal.png in Resources */,
+				65E8B2F31EE12BE100C5BD19 /* CouponCell.xib in Resources */,
 				655593FE1ECBE25200977291 /* process_temp.png in Resources */,
 				65E19BC11E67C0E500C6860D /* KeyEditCell.xib in Resources */,
 				652545031E230E640027B28B /* background.png in Resources */,
@@ -1788,6 +1875,7 @@
 				652544D41E1F65050027B28B /* downArrow.png in Resources */,
 				65243EC11ED668BC00BB2D32 /* MainOrderDetailCell.xib in Resources */,
 				655593FC1ECBD88500977291 /* process_0_new.png in Resources */,
+				65E8B2EE1EE127EE00C5BD19 /* TextDetailCell.xib in Resources */,
 				655593E31ECAD6C600977291 /* process_4.png in Resources */,
 				65FE08F01EB1CC0F002C9397 /* icon_level_1.png in Resources */,
 				65EEEB8C1E7791380095432B /* page_7.jpg in Resources */,
@@ -1802,6 +1890,7 @@
 				65EEEB921E7791380095432B /* page_6.jpg in Resources */,
 				6544C7A01E6952D20050A9D3 /* PersonInfoView.xib in Resources */,
 				652544931E1F455E0027B28B /* icon_more_normal.png in Resources */,
+				65E8B31D1EE16C8200C5BD19 /* MaintEvaluateView.xib in Resources */,
 				650596B41E8A340F009A5602 /* icon_person_bottom.png in Resources */,
 				65243EFA1ED80BF300BB2D32 /* icon_other2.png in Resources */,
 				6544C7671E68FEF60050A9D3 /* OrderInfoCell.xib in Resources */,
@@ -1888,9 +1977,11 @@
 				650596C81E8A42D5009A5602 /* ElevatorPartsController.m in Sources */,
 				65CABE3E1E22A244007EC96C /* CDPGifScrollView.m in Sources */,
 				6544C78A1E6931470050A9D3 /* RepairTaskResponse.m in Sources */,
+				65E8B2F11EE12A1800C5BD19 /* RepairOrderConfirmController.m in Sources */,
 				65FE09161EB9A2C2002C9397 /* PayViewController.m in Sources */,
 				6544C76A1E69012D0050A9D3 /* OrderInfoCell.m in Sources */,
 				65CABE3F1E22A244007EC96C /* CDPGifView.m in Sources */,
+				65E8B2EC1EE127C400C5BD19 /* CompanyListController.m in Sources */,
 				655594011ECC1A7D00977291 /* ForgetViewController.m in Sources */,
 				659416FC1ED51988007D3E7F /* RapidRepairLoginController.m in Sources */,
 				65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */,
@@ -1922,6 +2013,7 @@
 				65243F2E1ED9547400BB2D32 /* RepairPayInfoCell.m in Sources */,
 				6544C7951E6943B30050A9D3 /* RepairEvaluateRequest.m in Sources */,
 				652544B51E1F62A80027B28B /* LocationViewController.m in Sources */,
+				65E8B3161EE159BB00C5BD19 /* RepairCouponCell.m in Sources */,
 				6525449C1E1F61B60027B28B /* HelpController.m in Sources */,
 				6525443E1E1F1F960027B28B /* HUDClass.m in Sources */,
 				652544511E1F207C0027B28B /* Request.m in Sources */,
@@ -1938,6 +2030,7 @@
 				65E19BE31E67EC6E00C6860D /* SMSCodeResponse.m in Sources */,
 				65243F241ED9209300BB2D32 /* EvaluateController.m in Sources */,
 				65E19BA91E67B64200C6860D /* MainTypeListResponse.m in Sources */,
+				65E8B2FC1EE1309900C5BD19 /* RepairOrderConfirmCell.m in Sources */,
 				6544C74B1E6806F70050A9D3 /* DatePickerDialog.m in Sources */,
 				6525443D1E1F1F960027B28B /* Obj2Dic.m in Sources */,
 				6525444E1E1F206B0027B28B /* ResponseArrary.m in Sources */,
@@ -1974,6 +2067,7 @@
 				652544751E1F29390027B28B /* MainPageController.m in Sources */,
 				65243ED71ED6C96200BB2D32 /* MainTaskCell.m in Sources */,
 				652FBEB51ED404C600DA2729 /* HouseAddController.m in Sources */,
+				65E8B30F1EE1444F00C5BD19 /* CompanyInfoCell.m in Sources */,
 				65FE08CF1EAF4735002C9397 /* OrderAmountCell.m in Sources */,
 				6544C7921E693ED60050A9D3 /* RepairTaskDetailController.m in Sources */,
 				655ADFA21E2DECB100F1F036 /* MarketCell.m in Sources */,
@@ -1995,6 +2089,7 @@
 				65FE09031EB30CAB002C9397 /* ServiceTaskController.m in Sources */,
 				65E19BD61E67C75400C6860D /* SelectableCell.m in Sources */,
 				6544C7841E692FC90050A9D3 /* RepairTaskInfo.m in Sources */,
+				65E8B31B1EE16BE100C5BD19 /* MaintEvaluateController.m in Sources */,
 				655593AF1EC9442700977291 /* Location.m in Sources */,
 				6544C78F1E693B9B0050A9D3 /* RepairTaskCell.m in Sources */,
 				6525443F1E1F1F960027B28B /* Utils.m in Sources */,
@@ -2007,6 +2102,8 @@
 				65CABE381E224464007EC96C /* RegisterController.m in Sources */,
 				652FBEAD1ED3D80B00DA2729 /* HouseManagerController.m in Sources */,
 				655ADF951E2C634000F1F036 /* AddBannerView.m in Sources */,
+				65E8B2E91EE100D600C5BD19 /* MaintOrderConfirmController.m in Sources */,
+				65E8B30A1EE13BF000C5BD19 /* CouponViewController.m in Sources */,
 				652544BA1E1F62AE0027B28B /* ProLocationController.m in Sources */,
 				65FE08A81EA59EDE002C9397 /* ListDialogView.m in Sources */,
 				652544D71E1F65050027B28B /* DownPicker.m in Sources */,
@@ -2031,6 +2128,7 @@
 				65FE09061EB8176B002C9397 /* EnsuranceMainController.m in Sources */,
 				652544B31E1F62A80027B28B /* PersonPasswordController.m in Sources */,
 				6525446C1E1F26C80027B28B /* BaseNavigationController.m in Sources */,
+				65E8B3071EE13ADD00C5BD19 /* CouponCell.m in Sources */,
 				6544C79B1E69500F0050A9D3 /* MainTaskConfirmRequest.m in Sources */,
 				65243F081ED8110800BB2D32 /* KnInfoCell.m in Sources */,
 				65E19BDB1E67E93800C6860D /* KeyEditBtnCell.m in Sources */,

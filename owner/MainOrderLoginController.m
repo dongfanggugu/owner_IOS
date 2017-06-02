@@ -24,6 +24,7 @@
 #import "DialogEditView.h"
 #import "KeyValueBtnCell.h"
 #import "MainTypeInfo.h"
+#import "MaintOrderConfirmController.h"
 
 @interface MainOrderLoginController () <UITableViewDelegate, UITableViewDataSource, PayViewControllerDelegate>
 
@@ -69,27 +70,13 @@
     request.mainttypeId = _mainInfo.typeId;
     request.frequency = _amountCell.amount;
     request.villaId = _houseInfo[@"id"];
+    request.payMoney = _mainInfo.price * _amountCell.amount;
     
+    MaintOrderConfirmController *controller = [[MaintOrderConfirmController alloc] init];
     
-    [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        NSString *url = [responseObject[@"body"] objectForKey:@"url"];
-        
-        if (url.length != 0) {
-            PayViewController *controller = [[PayViewController alloc] init];
-            controller.urlStr = url;
-            
-            controller.delegate = self;
-            
-            [self presentViewController:controller animated:YES completion:^{
-                [self.navigationController popViewControllerAnimated:NO];
-            }];
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
-    }];
-    
+    controller.request = request;
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)back
@@ -123,7 +110,7 @@
     btn.layer.cornerRadius = 5;
     
     btn.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
-    [btn setTitle:@"确认并支付" forState:UIControlStateNormal];
+    [btn setTitle:@"确认订单" forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     [btn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     

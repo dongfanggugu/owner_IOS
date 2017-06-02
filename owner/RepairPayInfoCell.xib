@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ￥24" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFx-JX-aGv">
-                        <rect key="frame" x="144" y="14.5" width="215" height="21"/>
+                        <rect key="frame" x="144" y="14.5" width="203" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="n1o-VB-UT4"/>
                         </constraints>
@@ -37,11 +37,20 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOj-cW-t6q">
+                        <rect key="frame" x="351" y="15" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="VKo-tl-uNG"/>
+                            <constraint firstAttribute="height" constant="20" id="opd-sz-XWH"/>
+                        </constraints>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="MFx-JX-aGv" firstAttribute="centerY" secondItem="bzZ-ny-duH" secondAttribute="centerY" id="1nh-Hc-Fzw"/>
-                    <constraint firstAttribute="trailing" secondItem="MFx-JX-aGv" secondAttribute="trailing" constant="16" id="G5k-t5-Hgh"/>
                     <constraint firstItem="MFx-JX-aGv" firstAttribute="leading" secondItem="FX5-Tx-0co" secondAttribute="trailing" constant="8" id="KRf-w7-FMA"/>
+                    <constraint firstAttribute="trailing" secondItem="fOj-cW-t6q" secondAttribute="trailing" constant="4" id="NbF-rD-d8P"/>
+                    <constraint firstItem="fOj-cW-t6q" firstAttribute="leading" secondItem="MFx-JX-aGv" secondAttribute="trailing" constant="4" id="QcW-lI-VFO"/>
+                    <constraint firstItem="fOj-cW-t6q" firstAttribute="centerY" secondItem="bzZ-ny-duH" secondAttribute="centerY" id="Yuk-Hf-dgD"/>
                     <constraint firstItem="FX5-Tx-0co" firstAttribute="leading" secondItem="bzZ-ny-duH" secondAttribute="leading" constant="16" id="gXS-6O-Crb"/>
                     <constraint firstItem="FX5-Tx-0co" firstAttribute="centerY" secondItem="bzZ-ny-duH" secondAttribute="centerY" id="lNZ-9r-myo"/>
                 </constraints>
@@ -50,7 +59,7 @@
                 <outlet property="lbName" destination="FX5-Tx-0co" id="eDX-vS-exA"/>
                 <outlet property="lbPrice" destination="MFx-JX-aGv" id="Au1-Am-i1E"/>
             </connections>
-            <point key="canvasLocation" x="-22" y="90"/>
+            <point key="canvasLocation" x="-22.5" y="90"/>
         </tableViewCell>
     </objects>
 </document>

@@ -30,7 +30,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 620;
+    return 750;
 }
 
 + (NSString *)identifier
@@ -44,15 +44,36 @@
     
     self.selectionStyle = UITableViewCellSeparatorStyleNone;
     
+    _btnFinish.layer.masksToBounds = YES;
+    
+    _btnFinish.layer.cornerRadius = 5;
+    
     _mapView.zoomLevel = 15;
     
     [_btnEvaluate addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnMore addTarget:self action:@selector(clickMore) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnFinish addTarget:self action:@selector(clickFinish) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)clickFinish
+{
+    if (_onClickFinish) {
+        _onClickFinish();
+    }
+}
 - (void)clickBtn
 {
     if (_onClickEvaluate) {
         _onClickEvaluate();
+    }
+}
+
+- (void)clickMore
+{
+    if (_onClickMore) {
+        _onClickMore();
     }
 }
 

@@ -23,6 +23,7 @@
 #import "ListDialogData.h"
 #import "KeyImageViewCell.h"
 #import "ImageUtils.h"
+#import "RepairOrderConfirmController.h"
 
 
 #define IMAGE_PATH @"/tmp/person/"
@@ -108,13 +109,12 @@
     request.repairTime = date;
     request.villaId = _houseInfo[@"id"];
     
+    RepairOrderConfirmController *controller = [[RepairOrderConfirmController alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
+    controller.request = request;
     
-    [[HttpClient shareClient] post:URL_REPAIR_ADD parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"快修单提交成功"];
-        [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
-    }];
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 - (NSMutableArray *)arrayHouse
