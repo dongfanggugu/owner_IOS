@@ -33,7 +33,7 @@
 
 @property (copy, nonatomic) NSString *finishResult;
 
-//1待出发 2已出发 3工作中 5检修完成 6维修完成
+//1待出发 2已出发 3已到达 5检修完成 6维修完成
 @property (copy, nonatomic) NSString *state;
 
 @property (copy, nonatomic) NSString *code;

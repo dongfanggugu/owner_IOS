@@ -23,7 +23,7 @@
 
 @property (copy, nonatomic) NSString *planTime;
 
-//0待确认 1已确认 2已完成 3已评价
+//0待确认 1已确认 2已出发 3已到达 4已完成 5已评价
 @property (copy, nonatomic) NSString *state;
 
 @property (copy, nonatomic) NSString *taskCode;

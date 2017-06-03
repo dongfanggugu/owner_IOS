@@ -25,7 +25,10 @@
 
 @property (copy, nonatomic) NSString *repairTime;
 
-//1待确认 2已确认 4已委派 6维修中 8维修完成 9确认完成
+//1待确认 2已确认 4已委派 6维修中 8维修完成 9已评价
+@property (copy, nonatomic) NSString *state;
+
+//1待确认 2已确认 4已委派 6维修中 8维修完成 9已评价
 @property (copy, nonatomic) NSString *state;
 
 @property (copy, nonatomic) NSString *smallOwnerId;

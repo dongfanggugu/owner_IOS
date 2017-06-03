@@ -76,4 +76,7 @@
 //获取维修支付单
 #define URL_REPAIR_PAYMENT @"getRepairPaymentBySmallOwner"
 
+//确认维保计划
+#define URL_OWNER_CONFIRM @"saveMaintOrderProcessConfirm"
+
 #endif /* NetConstant_h */

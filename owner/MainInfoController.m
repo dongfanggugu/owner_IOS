@@ -318,13 +318,24 @@
         case 0:
             res = @"待确认";
             break;
+            
         case 1:
             res = @"已确认";
             break;
+            
         case 2:
+            res = @"已出发";
+            break;
+            
+        case 3:
+            res = @"已到达";
+            break;
+            
+        case 4:
             res = @"已完成";
             break;
-        case 3:
+            
+        case 5:
             res = @"已评价";
             break;
             

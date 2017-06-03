@@ -1,15 +1,16 @@
 //
-//  EvaluateView.m
+//  MaintEvaluateView.m
 //  owner
 //
-//  Created by 长浩 张 on 2017/1/11.
+//  Created by changhaozhang on 2017/6/3.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "EvaluateView.h"
+#import "MaintEvaluateView.h"
 
-@interface EvaluteView()
+
+
+@interface MaintEvaluateView ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btnStar1;
 
@@ -25,15 +26,15 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 
-@property NSInteger starCount;
+@property (assign, nonatomic) NSInteger starCount;
 
 @end
 
-@implementation EvaluteView
+@implementation MaintEvaluateView
 
 + (id)viewFromNib
 {
-    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"EvaluateView" owner:nil options:nil];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MaintEvaluateView" owner:nil options:nil];
     
     if (0 == array.count) {
         return nil;
@@ -42,79 +43,9 @@
     return array[0];
 }
 
-+ (CGFloat)viewHight
-{
-    return 200;
-}
-
-- (void)setModeShow
-{
-    _btnSubmit.hidden = YES;
-    _tvContent.userInteractionEnabled = NO;
-    _btnStar1.enabled = false;
-    _btnStar2.enabled = false;
-    _btnStar3.enabled = false;
-    _btnStar4.enabled = false;
-    _btnStar5.enabled = false;
-}
-
-
-- (void)setContent:(NSString *)content
-{
-    _tvContent.text = content;
-}
-
-- (void)setStar:(NSInteger)star
-{
-    _starCount = star;
-    if (1 == star)
-    {
-        [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-        [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-        [_btnStar4 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-        [_btnStar5 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-    }
-    else if (2 == star)
-    {
-        [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-        [_btnStar4 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-        [_btnStar5 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-    }
-    else if (3 == star)
-    {
-        [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar4 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-        [_btnStar5 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-    }
-    else if (4 == star)
-    {
-        [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar4 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar5 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
-    }
-    else if (5 == star)
-    {
-        [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar4 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-        [_btnStar5 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
-
-    }
-    
-}
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    _starCount = 0;
     
     _btnSubmit.layer.masksToBounds = YES;
     _btnSubmit.layer.cornerRadius = 3;
@@ -131,6 +62,15 @@
     _tvContent.layer.cornerRadius = 5;
     _tvContent.layer.borderWidth = 1;
     _tvContent.layer.borderColor = [UIColor grayColor].CGColor;
+    
+    //默认三星
+    _starCount = 3;
+    
+    [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
+    [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
+    [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
+    [_btnStar4 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
+    [_btnStar5 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
     
 }
 
@@ -174,7 +114,7 @@
     [_btnStar5 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
     
     _starCount = 4;
-
+    
 }
 
 - (void)clickBtn5
@@ -192,16 +132,6 @@
     if (_delegate) {
         [_delegate onSubmit:_starCount content:_tvContent.text];
     }
-}
-
-- (NSInteger)getStarCount
-{
-    return _starCount;
-}
-
-- (NSString *)getContent
-{
-    return _tvContent.text;
 }
 
 @end

@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
+@class MainTaskInfo;
+
 @interface MaintEvaluateController : BaseViewController
+
+@property (strong, nonatomic) MainTaskInfo *taskInfo;
 
 @end

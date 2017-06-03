@@ -11,11 +11,16 @@
 #import "MainTaskDetailCell.h"
 #import "EvaluateController.h"
 #import "MainTypeDetailController.h"
+#import "MaintEvaluateController.h"
+#import "MaintResultController.h"
+#import "DatePickerDialog.h"
 
 
-@interface MainTaskDetailController() <UITableViewDelegate, UITableViewDataSource>
+@interface MainTaskDetailController () <UITableViewDelegate, UITableViewDataSource, DatePickerDialogDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
+
+@property (weak, nonatomic) MainTaskDetailCell *taskCell;
 
 @end
 
@@ -64,6 +69,8 @@
 {
     MainTaskDetailCell *cell = [MainTaskDetailCell cellFromNib];
     
+    _taskCell = cell;
+    
     cell.lbPlanDate.text = _taskInfo.planTime;
     
     cell.lbContent.text = _taskInfo.maintOrderInfo.maintypeInfo.content;
@@ -80,33 +87,12 @@
     
     NSInteger state = _taskInfo.state.integerValue;
     
-    if (3 == state) {
-        [cell.btnEvaluate setTitle:@"查看评价" forState:UIControlStateNormal];
-    }
+    [self showViewWithState:state cell:cell];
     
     [cell markOnMapWithLat:lat lng:lng];
     
     __weak typeof (self) weakSelf = self;
     
-    [cell setOnClickEvaluate:^{
-        EvaluateController *controller = [[EvaluateController alloc] init];
-        
-        NSInteger state = weakSelf.taskInfo.state.integerValue;
-        
-        if (3 == state) {
-            controller.enterType = Show;
-            controller.content = weakSelf.taskInfo.evaluateContent;
-            controller.star = weakSelf.taskInfo.evaluateResult;
-        
-        } else {
-            controller.enterType = Maint_Submit;
-            controller.mainTaskInfo = weakSelf.taskInfo;
-        }
-        
-        
-        controller.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:controller animated:YES];
-    }];
     
     [cell setOnClickMore:^{
         MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
@@ -116,25 +102,148 @@
         [weakSelf.navigationController pushViewController:controller animated:YES];
     }];
     
-    
-    [cell setOnClickFinish:^{
-        EvaluateController *controller = [[EvaluateController alloc] init];
-        
-        NSInteger state = weakSelf.taskInfo.state.integerValue;
-        
-        if (3 == state) {
-            controller.enterType = Show;
-            controller.content = weakSelf.taskInfo.evaluateContent;
-            controller.star = weakSelf.taskInfo.evaluateResult;
-            
-        } else {
-            controller.enterType = Maint_Submit;
-            controller.mainTaskInfo = weakSelf.taskInfo;
-        }
+    return cell;
+}
 
+- (void)showViewWithState:(NSInteger)state cell:(MainTaskDetailCell *)cell
+{
+    switch (state) {
+        case 0:     //待确认
+            [self state0:cell];
+            break;
+            
+        case 1:     //已确认
+            [self state1:cell];
+            break;
+            
+        case 2:     //已出发
+            [self state2:cell];
+            break;
+            
+        case 3:     //已到达
+            [self state3:cell];
+            break;
+            
+        case 4:     //已完成
+            [self state4:cell];
+            break;
+            
+        case 5:     //已评价
+            [self state5:cell];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)state0:(MainTaskDetailCell *)cell
+{
+    [cell.btnFinish setTitle:@"确认计划" forState:UIControlStateNormal];
+    
+    cell.btnResult.hidden = YES;
+    
+    __weak typeof (self) weakSelf = self;
+    
+    [cell setOnClickModify:^{
+        [weakSelf showDatePicker];
     }];
     
-    return cell;
+    NSString *planTime = cell.lbPlanDate.text;
+    [cell setOnClickFinish:^{
+        [weakSelf confirmPlan:planTime];
+    }];
+}
+
+- (void)state1:(MainTaskDetailCell *)cell
+{
+    cell.btnPlanDate.hidden = YES;
+    cell.btnResult.hidden = YES;
+    cell.btnFinish.hidden = YES;
+}
+
+- (void)state2:(MainTaskDetailCell *)cell
+{
+    cell.btnPlanDate.hidden = YES;
+    cell.btnResult.hidden = YES;
+    cell.btnFinish.hidden = YES;
+}
+
+- (void)state3:(MainTaskDetailCell *)cell
+{
+    cell.btnPlanDate.hidden = YES;
+    cell.btnResult.hidden = YES;
+    cell.btnFinish.hidden = YES;
+}
+
+- (void)state4:(MainTaskDetailCell *)cell
+{
+    cell.btnPlanDate.hidden = YES;
+    cell.btnResult.hidden = NO;
+    
+    __weak typeof (self) weakSelf = self;
+    
+    [cell setOnClickResult:^{
+        MaintResultController *controller = [[MaintResultController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
+    
+    [cell.btnFinish setTitle:@"维保完成" forState:UIControlStateNormal];
+    
+    
+    
+    [cell setOnClickFinish:^{
+        MaintEvaluateController *controller = [[MaintEvaluateController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
+}
+
+- (void)state5:(MainTaskDetailCell *)cell
+{
+    cell.btnPlanDate.hidden = YES;
+    cell.btnResult.hidden = NO;
+    
+    __weak typeof (self) weakSelf = self;
+    
+    [cell setOnClickResult:^{
+        MaintResultController *controller = [[MaintResultController alloc] init];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
+
+    [cell.btnFinish setTitle:@"查看评价" forState:UIControlStateNormal];
+    
+    [cell setOnClickFinish:^{
+        
+        EvaluateController *controller = [[EvaluateController alloc] init];
+        controller.enterType = Show;
+        controller.content = weakSelf.taskInfo.evaluateContent;
+        controller.star = weakSelf.taskInfo.evaluateResult;
+        
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
+}
+
+- (void)confirmPlan:(NSString *)planTime
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"maintOrderPorcessId"] = _taskInfo.taskId;
+    params[@"planTime"] = planTime;
+    
+    __weak typeof (self) weakSelf = self;
+    [[HttpClient shareClient] post:URL_OWNER_CONFIRM parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        weakSelf.taskInfo.planTime = planTime;
+        weakSelf.taskInfo.state = @"1";
+        [HUDClass showHUDWithText:@"维保计划确认已经确认,请等待维修工上门服务"];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,9 +251,23 @@
     return [MainTaskDetailCell cellHeight];
 }
 
-- (void)back
+
+- (void)showDatePicker
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    DatePickerDialog *dialog = [DatePickerDialog viewFromNib];
+    dialog.delegate = self;
+    
+    [dialog show];
+}
+
+#pragma mark - DatePickerDelegate
+
+- (void)onPickerDate:(NSDate *)date
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSString *dateStr = [format stringFromDate:date];
+    _taskCell.lbPlanDate.text = dateStr;
 }
 
 @end

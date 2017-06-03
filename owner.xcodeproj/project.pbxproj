@@ -239,6 +239,10 @@
 		655ADFB31E2E0E7F00F1F036 /* icon_markt3.png in Resources */ = {isa = PBXBuildFile; fileRef = 655ADFB01E2E0E7F00F1F036 /* icon_markt3.png */; };
 		655ADFC01E2EFE9E00F1F036 /* OtherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655ADFBF1E2EFE9E00F1F036 /* OtherController.m */; };
 		656230FB1E67A7B000335819 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656230FA1E67A7B000335819 /* MainTabBarController.m */; };
+		6574F2111EE2849500B8F17A /* MaintEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F2101EE2849500B8F17A /* MaintEvaluateView.m */; };
+		6574F2131EE29AF900B8F17A /* MaintResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6574F2121EE29AF900B8F17A /* MaintResultView.xib */; };
+		6574F2161EE29CC600B8F17A /* MaintResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F2151EE29CC600B8F17A /* MaintResultView.m */; };
+		6574F2191EE29D4400B8F17A /* MaintResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F2181EE29D4400B8F17A /* MaintResultController.m */; };
 		658CB5521ECD942700A29498 /* DialogEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658CB5511ECD942700A29498 /* DialogEditView.xib */; };
 		658CB5551ECD943A00A29498 /* DialogEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5541ECD943A00A29498 /* DialogEditView.m */; };
 		658CB5581ECE85C100A29498 /* LinkModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5571ECE85C100A29498 /* LinkModifyController.m */; };
@@ -699,6 +703,13 @@
 		655ADFBF1E2EFE9E00F1F036 /* OtherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherController.m; sourceTree = "<group>"; };
 		656230F91E67A7A000335819 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		656230FA1E67A7B000335819 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		6574F20F1EE2849500B8F17A /* MaintEvaluateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintEvaluateView.h; sourceTree = "<group>"; };
+		6574F2101EE2849500B8F17A /* MaintEvaluateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintEvaluateView.m; sourceTree = "<group>"; };
+		6574F2121EE29AF900B8F17A /* MaintResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaintResultView.xib; sourceTree = "<group>"; };
+		6574F2141EE29CC600B8F17A /* MaintResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintResultView.h; sourceTree = "<group>"; };
+		6574F2151EE29CC600B8F17A /* MaintResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintResultView.m; sourceTree = "<group>"; };
+		6574F2171EE29D4400B8F17A /* MaintResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintResultController.h; sourceTree = "<group>"; };
+		6574F2181EE29D4400B8F17A /* MaintResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintResultController.m; sourceTree = "<group>"; };
 		658CB5511ECD942700A29498 /* DialogEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialogEditView.xib; sourceTree = "<group>"; };
 		658CB5531ECD943A00A29498 /* DialogEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogEditView.h; sourceTree = "<group>"; };
 		658CB5541ECD943A00A29498 /* DialogEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogEditView.m; sourceTree = "<group>"; };
@@ -1125,6 +1136,10 @@
 				65E8B30E1EE1444F00C5BD19 /* CompanyInfoCell.m */,
 				65E8B3141EE159BB00C5BD19 /* RepairCouponCell.h */,
 				65E8B3151EE159BB00C5BD19 /* RepairCouponCell.m */,
+				6574F20F1EE2849500B8F17A /* MaintEvaluateView.h */,
+				6574F2101EE2849500B8F17A /* MaintEvaluateView.m */,
+				6574F2141EE29CC600B8F17A /* MaintResultView.h */,
+				6574F2151EE29CC600B8F17A /* MaintResultView.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -1189,6 +1204,7 @@
 				65E8B30B1EE1435400C5BD19 /* CompanyInfoCell.xib */,
 				65E8B3101EE1565E00C5BD19 /* RepairCouponCell.xib */,
 				65E8B31C1EE16C8200C5BD19 /* MaintEvaluateView.xib */,
+				6574F2121EE29AF900B8F17A /* MaintResultView.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1381,6 +1397,8 @@
 				65E8B2EB1EE127C400C5BD19 /* CompanyListController.m */,
 				65E8B3191EE16BE100C5BD19 /* MaintEvaluateController.h */,
 				65E8B31A1EE16BE100C5BD19 /* MaintEvaluateController.m */,
+				6574F2171EE29D4400B8F17A /* MaintResultController.h */,
+				6574F2181EE29D4400B8F17A /* MaintResultController.m */,
 			);
 			name = Maintenance;
 			sourceTree = "<group>";
@@ -1771,6 +1789,7 @@
 				65FE08AD1EA73B59002C9397 /* ContentCell.xib in Resources */,
 				65EEEB8D1E7791380095432B /* page_8.jpg in Resources */,
 				65243EE71ED7E75700BB2D32 /* icon_maint.png in Resources */,
+				6574F2131EE29AF900B8F17A /* MaintResultView.xib in Resources */,
 				652544881E1F38420027B28B /* icon_info_window.png in Resources */,
 				65E8B2F91EE1300600C5BD19 /* RepairOrderConfirmCell.xib in Resources */,
 				659417011ED5307B007D3E7F /* KeyImageViewCell.xib in Resources */,
@@ -1970,6 +1989,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6544C7511E680C230050A9D3 /* PersonController.m in Sources */,
+				6574F2191EE29D4400B8F17A /* MaintResultController.m in Sources */,
 				65E3694A1E6E93CE00E4CF04 /* EnsuranceController.m in Sources */,
 				658E22011EBB04FF008D9227 /* ExtraServiceController.m in Sources */,
 				65E19BAC1E67B6F500C6860D /* MainTypeCell.m in Sources */,
@@ -1996,6 +2016,7 @@
 				6544C7721E690FA50050A9D3 /* MainTaskInfo.m in Sources */,
 				6544C7621E68FC670050A9D3 /* RepairListResponse.m in Sources */,
 				65FE08EE1EB1B6FC002C9397 /* UIView+CornerRadius.m in Sources */,
+				6574F2161EE29CC600B8F17A /* MaintResultView.m in Sources */,
 				65D126B01ED57B4000AF6FC5 /* HouseChangeView.m in Sources */,
 				65228ED51EBC4D4C007A1300 /* ExtraServiceHistoryController.m in Sources */,
 				65FE08AB1EA733D9002C9397 /* AddressLocationController.m in Sources */,
@@ -2007,6 +2028,7 @@
 				65228ED01EBC42EA007A1300 /* ExtraServiceCell.m in Sources */,
 				65228ECD1EBC20AC007A1300 /* ExtraPayOrderController.m in Sources */,
 				6525443C1E1F1F960027B28B /* NSArray+Log.m in Sources */,
+				6574F2111EE2849500B8F17A /* MaintEvaluateView.m in Sources */,
 				652FBEB81ED414A300DA2729 /* HouseModifyController.m in Sources */,
 				6544C7811E692F0B0050A9D3 /* RepairInfoController.m in Sources */,
 				6525446F1E1F26C80027B28B /* BaseTabBarController.m in Sources */,

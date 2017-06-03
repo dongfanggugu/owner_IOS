@@ -50,11 +50,24 @@
     
     _mapView.zoomLevel = 15;
     
-    [_btnEvaluate addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
+    [_btnResult addTarget:self action:@selector(clickResult) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnMore addTarget:self action:@selector(clickMore) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnFinish addTarget:self action:@selector(clickFinish) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnPlanDate addTarget:self action:@selector(clickPlan) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+/**
+ 修改计划时间
+ */
+- (void)clickPlan
+{
+    if (_onClickModify) {
+        _onClickModify();
+    }
 }
 
 - (void)clickFinish
@@ -63,10 +76,10 @@
         _onClickFinish();
     }
 }
-- (void)clickBtn
+- (void)clickResult
 {
-    if (_onClickEvaluate) {
-        _onClickEvaluate();
+    if (_onClickResult) {
+        _onClickResult();
     }
 }
 

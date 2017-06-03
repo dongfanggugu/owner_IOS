@@ -11,7 +11,6 @@
 #import "RepairTaskRequest.h"
 #import "RepairTaskResponse.h"
 #import "RepairInfoView.h"
-#import "EvaluateView.h"
 #import "RepairTaskCell.h"
 #import "RepairTaskDetailController.h"
 #import "RepairEvaluateRequest.h"
@@ -21,10 +20,9 @@
 
 @interface RepairInfoController () <UITableViewDelegate, UITableViewDataSource, RepairInfoViewDelegate>
 
-
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic) EvaluteView *evaluateView;
+@property (strong, nonatomic) RepairInfoView *repairInfoView;
 
 @property (strong, nonatomic) NSMutableArray<RepairTaskInfo *> *arrayTask;
 
@@ -68,46 +66,101 @@
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    RepairInfoView *infoView = [RepairInfoView viewFromNib];
+    _repairInfoView = [RepairInfoView viewFromNib];
     
-    infoView.delegate = self;
+    _repairInfoView.delegate = self;
     
-    infoView.lbCode.text = [NSString stringWithFormat:@"订单编号: %@", _orderInfo.code];
+    _repairInfoView.lbCode.text = [NSString stringWithFormat:@"订单编号: %@", _orderInfo.code];
     
-    infoView.lbDate.text = [NSString stringWithFormat:@"订单时间: %@", _orderInfo.createTime];
+    _repairInfoView.lbDate.text = [NSString stringWithFormat:@"订单时间: %@", _orderInfo.createTime];
     
-    infoView.lbAppoint.text = [NSString stringWithFormat:@"预约时间: %@", _orderInfo.repairTime];
+    _repairInfoView.lbAppoint.text = [NSString stringWithFormat:@"预约时间: %@", _orderInfo.repairTime];
     
-    infoView.lbFault.text = [NSString stringWithFormat:@"故障类型: %@", _orderInfo.repairTypeInfo[@"name"]];
+    _repairInfoView.lbFault.text = [NSString stringWithFormat:@"故障类型: %@", _orderInfo.repairTypeInfo[@"name"]];
     
-    infoView.lbFaultDes.text = _orderInfo.phenomenon;
+    _repairInfoView.lbFaultDes.text = _orderInfo.phenomenon;
     
-    [infoView.ivFault setImageWithURL:[NSURL URLWithString:_orderInfo.picture]];
+    [_repairInfoView.ivFault setImageWithURL:[NSURL URLWithString:_orderInfo.picture]];
     
-    infoView.lbAddress.text = [NSString stringWithFormat:@"别墅地址: %@", _houseInfo[@"cellName"]];
+    _repairInfoView.lbAddress.text = [NSString stringWithFormat:@"别墅地址: %@", _houseInfo[@"cellName"]];
     
-    infoView.lbBrand.text = [NSString stringWithFormat:@"电梯品牌: %@", _houseInfo[@"brand"]];
+    _repairInfoView.lbBrand.text = [NSString stringWithFormat:@"电梯品牌: %@", _houseInfo[@"brand"]];
     
-    infoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_houseInfo[@"layerAmount"] integerValue]];
+    _repairInfoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_houseInfo[@"layerAmount"] integerValue]];
     
     NSInteger state = _orderInfo.state.integerValue;
     
     if (9 == state) {
-        [infoView.btnEvaluate setTitle:@"查看评价" forState:UIControlStateNormal];
+        [_repairInfoView.btnEvaluate setTitle:@"查看评价" forState:UIControlStateNormal];
     }
     
     NSInteger isPay = _orderInfo.isPayment.integerValue;
     
     if (1 == isPay) {
-        [infoView.btnOrder setTitle:@"查看支付" forState:UIControlStateNormal];
+        [_repairInfoView.btnOrder setTitle:@"查看支付" forState:UIControlStateNormal];
     }
     
     
-    _tableView.tableHeaderView = infoView;
+    _tableView.tableHeaderView = _repairInfoView;
     
     [self.view addSubview:_tableView];
 }
 
+/**
+ 待确认
+ */
+- (void)state1
+{
+    _repairInfoView.btnOrder.hidden = YES;
+    
+    _repairInfoView.viewSeparator.hidden = YES;
+    
+    _repairInfoView.ivTask.hidden = YES;
+    
+    _repairInfoView.btnEvaluate.hidden = YES;
+}
+
+/**
+ 已确认
+ */
+- (void)state2
+{
+    _repairInfoView.btnOrder.hidden = YES;
+    
+    _repairInfoView.viewSeparator.hidden = YES;
+    
+    _repairInfoView.ivTask.hidden = YES;
+    
+    _repairInfoView.btnEvaluate.hidden = YES;
+}
+
+/**
+ 已委派
+ */
+- (void)state4
+{
+    _repairInfoView.btnOrder.hidden = YES;
+    
+    _repairInfoView.btnEvaluate.hidden = YES;
+}
+
+/**
+ 开始维修
+ */
+- (void)state6
+{
+    _repairInfoView.btnOrder.hidden = YES;
+    
+    _repairInfoView.btnEvaluate.hidden = YES;
+}
+
+/**
+ 维修完成
+ */
+- (void)state8
+{
+    
+}
 
 //1待出发 2已出发 3工作中 5检修完成 6维修完成
 - (NSString *)getStateDes:(NSInteger)state

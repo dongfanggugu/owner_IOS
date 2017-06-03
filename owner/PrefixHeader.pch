@@ -24,6 +24,7 @@
 #import "Config.h"
 #import "AppDelegate.h"
 #import "UITableView+CoverView.h"
+#import "UIImageView+AFNetworking.h"
 
 #ifdef DEBUG
 #define NSLog(FORMAT, ...) fprintf(stderr,"\n %s:%d   %s %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],__LINE__, \

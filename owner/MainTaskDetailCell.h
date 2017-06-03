@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbPlanDate;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnPlanDate;
+
 @property (weak, nonatomic) IBOutlet UITextView *lbContent;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbWorker;
@@ -28,13 +30,15 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbAddress;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnEvaluate;
+@property (weak, nonatomic) IBOutlet UIButton *btnResult;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnMore;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnFinish;
 
-@property (strong, nonatomic) void(^onClickEvaluate)();
+@property (strong, nonatomic) void(^onClickModify)();
+
+@property (strong, nonatomic) void(^onClickResult)();
 
 @property (strong, nonatomic) void(^onClickMore)();
 
