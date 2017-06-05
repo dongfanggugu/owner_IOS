@@ -40,6 +40,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbWeight;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbTitleTask;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnEvaluate;

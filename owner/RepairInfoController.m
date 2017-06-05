@@ -16,6 +16,8 @@
 #import "RepairEvaluateRequest.h"
 #import "EvaluateController.h"
 #import "RepairPaymentController.h"
+#import "RepairCheckController.h"
+#import "RepairResultController.h"
 
 
 @interface RepairInfoController () <UITableViewDelegate, UITableViewDataSource, RepairInfoViewDelegate>
@@ -89,10 +91,8 @@
     _repairInfoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_houseInfo[@"layerAmount"] integerValue]];
     
     NSInteger state = _orderInfo.state.integerValue;
+    [self showViewWithState:state];
     
-    if (9 == state) {
-        [_repairInfoView.btnEvaluate setTitle:@"查看评价" forState:UIControlStateNormal];
-    }
     
     NSInteger isPay = _orderInfo.isPayment.integerValue;
     
@@ -106,6 +106,38 @@
     [self.view addSubview:_tableView];
 }
 
+- (void)showViewWithState:(NSInteger)state
+{
+    switch (state) {
+        case 1:
+            [self state1];
+            break;
+            
+        case 2:
+            [self state2];
+            break;
+            
+        case 4:
+            [self state4];
+            break;
+            
+        case 6:
+            [self state6];
+            break;
+            
+        case 8:
+            [self state8];
+            break;
+            
+        case 9:
+            [self state9];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 /**
  待确认
  */
@@ -116,6 +148,8 @@
     _repairInfoView.viewSeparator.hidden = YES;
     
     _repairInfoView.ivTask.hidden = YES;
+    
+    _repairInfoView.lbTitleTask.hidden = YES;
     
     _repairInfoView.btnEvaluate.hidden = YES;
 }
@@ -130,6 +164,8 @@
     _repairInfoView.viewSeparator.hidden = YES;
     
     _repairInfoView.ivTask.hidden = YES;
+    
+    _repairInfoView.lbTitleTask.hidden = YES;
     
     _repairInfoView.btnEvaluate.hidden = YES;
 }
@@ -159,8 +195,22 @@
  */
 - (void)state8
 {
+    _repairInfoView.btnOrder.hidden = NO;
     
+    _repairInfoView.btnEvaluate.hidden = NO;
 }
+
+
+- (void)state9
+{
+    _repairInfoView.btnOrder.hidden = NO;
+    
+    _repairInfoView.btnEvaluate.hidden = NO;
+    
+    [_repairInfoView.btnEvaluate setTitle:@"查看评价" forState:UIControlStateNormal];
+}
+
+
 
 //1待出发 2已出发 3工作中 5检修完成 6维修完成
 - (NSString *)getStateDes:(NSInteger)state
@@ -175,7 +225,7 @@
             res = @"已出发";
             break;
         case 3:
-            res = @"工作中";
+            res = @"已到达";
             break;
         case 5:
             res = @"检修完成";
@@ -247,6 +297,29 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RepairTaskInfo *info = self.arrayTask[indexPath.row];
+    
+    NSInteger state = info.state.integerValue;
+    
+    if (5 == state) {
+        RepairCheckController *controller = [[RepairCheckController alloc] init];
+        controller.chcekResult = @"需要换件";
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } else if (6 == state) {
+        RepairResultController *controller = [[RepairResultController alloc] init];
+        
+        controller.repairResult = @"维修完成";
+        controller.urls = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496651112189&di=84d87604a1c275ad9a4b6954e5ce8c5f&imgtype=0&src=http%3A%2F%2Fimage.tianjimedia.com%2FuploadImages%2F2015%2F156%2F44%2F891VW0Q49W96.jpg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496651135858&di=7bccb2d14a6660d7d0552d5f38e35755&imgtype=0&src=http%3A%2F%2Fimg.meimi.cc%2Fmeinv%2F20170506%2Fvfvuvqlc5ec1476.jpg";
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

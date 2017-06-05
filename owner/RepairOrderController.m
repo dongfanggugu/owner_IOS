@@ -119,7 +119,7 @@
         res = @"维修完成";
         
     } else if (9 == state) {
-        res = @"确认完成";
+        res = @"已评价";
     }
     
     return res;

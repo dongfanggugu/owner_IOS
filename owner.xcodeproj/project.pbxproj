@@ -243,6 +243,10 @@
 		6574F2131EE29AF900B8F17A /* MaintResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6574F2121EE29AF900B8F17A /* MaintResultView.xib */; };
 		6574F2161EE29CC600B8F17A /* MaintResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F2151EE29CC600B8F17A /* MaintResultView.m */; };
 		6574F2191EE29D4400B8F17A /* MaintResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F2181EE29D4400B8F17A /* MaintResultController.m */; };
+		6574F21C1EE4FD3400B8F17A /* RepairCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F21B1EE4FD3400B8F17A /* RepairCheckController.m */; };
+		6574F21E1EE4FD5C00B8F17A /* CheckResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6574F21D1EE4FD5C00B8F17A /* CheckResultView.xib */; };
+		6574F2211EE5006100B8F17A /* CheckResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F2201EE5006100B8F17A /* CheckResultView.m */; };
+		6574F2241EE5019C00B8F17A /* RepairResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574F2231EE5019C00B8F17A /* RepairResultController.m */; };
 		658CB5521ECD942700A29498 /* DialogEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658CB5511ECD942700A29498 /* DialogEditView.xib */; };
 		658CB5551ECD943A00A29498 /* DialogEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5541ECD943A00A29498 /* DialogEditView.m */; };
 		658CB5581ECE85C100A29498 /* LinkModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5571ECE85C100A29498 /* LinkModifyController.m */; };
@@ -710,6 +714,13 @@
 		6574F2151EE29CC600B8F17A /* MaintResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintResultView.m; sourceTree = "<group>"; };
 		6574F2171EE29D4400B8F17A /* MaintResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintResultController.h; sourceTree = "<group>"; };
 		6574F2181EE29D4400B8F17A /* MaintResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintResultController.m; sourceTree = "<group>"; };
+		6574F21A1EE4FD3400B8F17A /* RepairCheckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairCheckController.h; sourceTree = "<group>"; };
+		6574F21B1EE4FD3400B8F17A /* RepairCheckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairCheckController.m; sourceTree = "<group>"; };
+		6574F21D1EE4FD5C00B8F17A /* CheckResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckResultView.xib; sourceTree = "<group>"; };
+		6574F21F1EE5006100B8F17A /* CheckResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckResultView.h; sourceTree = "<group>"; };
+		6574F2201EE5006100B8F17A /* CheckResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckResultView.m; sourceTree = "<group>"; };
+		6574F2221EE5019C00B8F17A /* RepairResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairResultController.h; sourceTree = "<group>"; };
+		6574F2231EE5019C00B8F17A /* RepairResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairResultController.m; sourceTree = "<group>"; };
 		658CB5511ECD942700A29498 /* DialogEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialogEditView.xib; sourceTree = "<group>"; };
 		658CB5531ECD943A00A29498 /* DialogEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogEditView.h; sourceTree = "<group>"; };
 		658CB5541ECD943A00A29498 /* DialogEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogEditView.m; sourceTree = "<group>"; };
@@ -1140,6 +1151,8 @@
 				6574F2101EE2849500B8F17A /* MaintEvaluateView.m */,
 				6574F2141EE29CC600B8F17A /* MaintResultView.h */,
 				6574F2151EE29CC600B8F17A /* MaintResultView.m */,
+				6574F21F1EE5006100B8F17A /* CheckResultView.h */,
+				6574F2201EE5006100B8F17A /* CheckResultView.m */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -1205,6 +1218,7 @@
 				65E8B3101EE1565E00C5BD19 /* RepairCouponCell.xib */,
 				65E8B31C1EE16C8200C5BD19 /* MaintEvaluateView.xib */,
 				6574F2121EE29AF900B8F17A /* MaintResultView.xib */,
+				6574F21D1EE4FD5C00B8F17A /* CheckResultView.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1370,6 +1384,10 @@
 				659416FB1ED51988007D3E7F /* RapidRepairLoginController.m */,
 				65E8B2EF1EE12A1800C5BD19 /* RepairOrderConfirmController.h */,
 				65E8B2F01EE12A1800C5BD19 /* RepairOrderConfirmController.m */,
+				6574F21A1EE4FD3400B8F17A /* RepairCheckController.h */,
+				6574F21B1EE4FD3400B8F17A /* RepairCheckController.m */,
+				6574F2221EE5019C00B8F17A /* RepairResultController.h */,
+				6574F2231EE5019C00B8F17A /* RepairResultController.m */,
 			);
 			name = Repair;
 			sourceTree = "<group>";
@@ -1838,6 +1856,7 @@
 				655ADFB31E2E0E7F00F1F036 /* icon_markt3.png in Resources */,
 				655593E01ECAD6C600977291 /* process_1.png in Resources */,
 				655ADFAA1E2E0B0000F1F036 /* Market.storyboard in Resources */,
+				6574F21E1EE4FD5C00B8F17A /* CheckResultView.xib in Resources */,
 				65243ECF1ED6B91200BB2D32 /* MainTaskDetailCell.xib in Resources */,
 				65243EDD1ED7E43500BB2D32 /* icon_knowledge.png in Resources */,
 				652544F11E1F867A0027B28B /* icon_share.png in Resources */,
@@ -2003,6 +2022,7 @@
 				65CABE3F1E22A244007EC96C /* CDPGifView.m in Sources */,
 				65E8B2EC1EE127C400C5BD19 /* CompanyListController.m in Sources */,
 				655594011ECC1A7D00977291 /* ForgetViewController.m in Sources */,
+				6574F21C1EE4FD3400B8F17A /* RepairCheckController.m in Sources */,
 				659416FC1ED51988007D3E7F /* RapidRepairLoginController.m in Sources */,
 				65EA23AF1E1F1BE100F2BE18 /* ViewController.m in Sources */,
 				658CB5581ECE85C100A29498 /* LinkModifyController.m in Sources */,
@@ -2098,6 +2118,7 @@
 				6544C7751E6910840050A9D3 /* MainTaskListResponse.m in Sources */,
 				652FBEAA1ED3CAAB00DA2729 /* ListDialogData.m in Sources */,
 				6525444C1E1F206B0027B28B /* ResponseHead.m in Sources */,
+				6574F2241EE5019C00B8F17A /* RepairResultController.m in Sources */,
 				652544851E1F37FC0027B28B /* CalloutAnnotationView.m in Sources */,
 				65228EDE1EC30C54007A1300 /* WebViewController.m in Sources */,
 				658CB5551ECD943A00A29498 /* DialogEditView.m in Sources */,
@@ -2148,6 +2169,7 @@
 				655ADFAD1E2E0B5500F1F036 /* MarketDetailController.m in Sources */,
 				652544B71E1F62A80027B28B /* AboutViewController.m in Sources */,
 				65FE09061EB8176B002C9397 /* EnsuranceMainController.m in Sources */,
+				6574F2211EE5006100B8F17A /* CheckResultView.m in Sources */,
 				652544B31E1F62A80027B28B /* PersonPasswordController.m in Sources */,
 				6525446C1E1F26C80027B28B /* BaseNavigationController.m in Sources */,
 				65E8B3071EE13ADD00C5BD19 /* CouponCell.m in Sources */,
