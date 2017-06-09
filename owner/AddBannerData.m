@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AddBannerData.h"
 
-@interface AddBannerData()
+@interface AddBannerData ()
 
 @property (copy, nonatomic) NSString *picUrl;
 
@@ -19,25 +19,21 @@
 
 @implementation AddBannerData
 
-- (instancetype)initWithUrl:(NSString *)url clickUrl:(NSString *)clickUrl
-{
+- (instancetype)initWithUrl:(NSString *)url clickUrl:(NSString *)clickUrl {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         _picUrl = url;
         _clickUrl = clickUrl;
     }
-    
+
     return self;
 }
 
-- (NSString *)getPicUrl
-{
+- (NSString *)getPicUrl {
     return _picUrl;
 }
 
-- (NSString *)getClickUrl
-{
+- (NSString *)getClickUrl {
     return _clickUrl;
 }
 

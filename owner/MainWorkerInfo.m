@@ -11,15 +11,13 @@
 
 @implementation MainWorkerInfo
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
+- (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
-    
-    if (self)
-    {
+
+    if (self) {
         self.workerId = dictionary[@"id"];
     }
-    
+
     return self;
 }
 

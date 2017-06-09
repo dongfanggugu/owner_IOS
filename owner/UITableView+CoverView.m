@@ -11,14 +11,13 @@
 @implementation UITableView (CoverView)
 
 
-- (void)showCopyWrite
-{
+- (void)showCopyWrite {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, -50, self.frame.size.width, 30)];
     label.text = @"怡墅（中融智达提供）";
     label.font = [UIFont systemFontOfSize:12];
     label.textColor = [Utils getColorByRGB:@"#AAAAAA"];
     label.textAlignment = NSTextAlignmentCenter;
-    
+
     [self addSubview:label];
 }
 

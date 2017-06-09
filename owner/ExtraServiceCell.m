@@ -18,13 +18,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
-@property (strong, nonatomic) void(^onClickDetail)();
+@property (strong, nonatomic) void (^onClickDetail)();
 
-@property (strong, nonatomic) void(^onClickPay)();
+@property (strong, nonatomic) void (^onClickPay)();
 
-@property (strong, nonatomic) void(^onClickLink)();
+@property (strong, nonatomic) void (^onClickLink)();
 
-@property (strong, nonatomic) void(^onClickOrder)();
+@property (strong, nonatomic) void (^onClickOrder)();
 
 
 @end
@@ -32,87 +32,75 @@
 @implementation ExtraServiceCell
 
 
-+ (id)cellFromNib
-{
++ (id)cellFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ExtraServiceCell" owner:nil options:nil];
-    
+
     if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-+ (CGFloat)cellHeight
-{
++ (CGFloat)cellHeight {
     return 160;
 }
 
-+ (NSString *)identifier
-{
++ (NSString *)identifier {
     return @"extra_service_cell";
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     _btnOrder.layer.masksToBounds = YES;
     _btnOrder.layer.cornerRadius = 5;
 }
 
 
-- (void)addOnClickDetailListener:(void(^)())onClickDetail
-{
+- (void)addOnClickDetailListener:(void (^)())onClickDetail {
     _onClickDetail = onClickDetail;
-    
-    [_btnDetail addTarget:self action:@selector(clickDetail) forControlEvents:UIControlEventTouchUpInside];    
+
+    [_btnDetail addTarget:self action:@selector(clickDetail) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickDetail
-{
+- (void)clickDetail {
     if (_onClickDetail) {
         _onClickDetail();
     }
 }
 
-- (void)addOnClickPayListener:(void(^)())onClickPay
-{
+- (void)addOnClickPayListener:(void (^)())onClickPay {
     _onClickPay = onClickPay;
-    
+
     [_btnPay addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickPay
-{
+- (void)clickPay {
     if (_onClickPay) {
         _onClickPay();
     }
 }
 
-- (void)addOnClickLinkListener:(void(^)())onClickLink
-{
+- (void)addOnClickLinkListener:(void (^)())onClickLink {
     _onClickLink = onClickLink;
-    
+
     [_btnLink addTarget:self action:@selector(clickLink) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickLink
-{
+- (void)clickLink {
     if (_onClickLink) {
         _onClickLink();
     }
 }
 
-- (void)addOnClickOrderListener:(void(^)())onClickOrder
-{
+- (void)addOnClickOrderListener:(void (^)())onClickOrder {
     _onClickOrder = onClickOrder;
-    
+
     [_btnOrder addTarget:self action:@selector(clickOrder) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickOrder
-{
+- (void)clickOrder {
     if (_onClickOrder) {
         _onClickOrder();
     }

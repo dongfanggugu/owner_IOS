@@ -11,49 +11,46 @@
 #import "CDPGifScrollView.h"
 #import "AppDelegate.h"
 
-@interface LauncherController()
+@interface LauncherController ()
 
 @end
 
 @implementation LauncherController
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    NSMutableArray *dataArr=[[NSMutableArray alloc] init];
-    
+
+
+    NSMutableArray *dataArr = [[NSMutableArray alloc] init];
+
     NSString *file = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"welcome_page_gif"] ofType:@"gif"];
 
     [dataArr addObject:file];
-    
-    CDPGifScrollView *gifScrollView=[[CDPGifScrollView alloc] initWithGifImageArr:dataArr
-                                                                         andFrame:CGRectMake(0, 0,
-                                                                                             self.view.bounds.size.width, self.view.bounds.size.height)];
-    
+
+    CDPGifScrollView *gifScrollView = [[CDPGifScrollView alloc] initWithGifImageArr:dataArr
+                                                                           andFrame:CGRectMake(0, 0,
+                                                                                   self.view.bounds.size.width, self.view.bounds.size.height)];
+
     [self.view addSubview:gifScrollView];
-    
+
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    
+
+
     [NSTimer scheduledTimerWithTimeInterval:4.5 target:self
-                                                    selector:@selector(login) userInfo:nil repeats:NO];
+                                   selector:@selector(login) userInfo:nil repeats:NO];
 
 }
 
-- (void)login
-{
-    
+- (void)login {
+
     //NSString *userId = [[Config shareConfig] getUserId];
-    
+
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    
+
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     window.rootViewController = [board instantiateViewControllerWithIdentifier:@"main_tab_bar_controller"];
 

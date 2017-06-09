@@ -21,8 +21,7 @@
 
 @implementation KnowledgeController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:_knType];
     [self initView];
@@ -30,116 +29,106 @@
     // Do any additional setup after loading the view.
 }
 
-- (NSMutableArray *)arrayKn
-{
+- (NSMutableArray *)arrayKn {
     if (!_arrayKn) {
         _arrayKn = [NSMutableArray array];
     }
-    
+
     return _arrayKn;
 }
 
-- (void)initView
-{
+- (void)initView {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
-    
+
     _tableView.delegate = self;
-    
+
     _tableView.dataSource = self;
-    
+
     //_tableView.pullDelegate = self;
-    
+
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+
     [self.view addSubview:_tableView];
 }
 
-- (void)getKnowledge
-{
+- (void)getKnowledge {
     if (0 == _knType.length) {
         return;
     }
-    
+
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
+
     params[@"kntype"] = _knType;
-    
+
     params[@"rows"] = [NSNumber numberWithInteger:100];
-    
+
     params[@"page"] = [NSNumber numberWithInteger:1];
-    
+
     [[HttpClient shareClient] post:@"getKnowledgeByKntype" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayKn removeAllObjects];
         [self.arrayKn addObjectsFromArray:responseObject[@"body"]];
         [self.tableView reloadData];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
+
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
     }];
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayKn.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KnInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[KnInfoCell identifier]];
-    
+
     if (!cell) {
         cell = [KnInfoCell cellFromNib];
     }
-    
+
     cell.lbIndex.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
-    
+
     NSDictionary *info = self.arrayKn[indexPath.row];
-    
+
     cell.lbTitle.text = info[@"title"];
-    
+
     cell.lbKeywords.text = info[@"keywords"];
-    
+
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [KnInfoCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *info = self.arrayKn[indexPath.row];
-    
+
     KnowledgeDetailController *controller = [[KnowledgeDetailController alloc] init];
-    
+
     controller.content = info[@"content"];
-    
+
     controller.knTitle = info[@"title"];
-    
+
     controller.hidesBottomBarWhenPushed = YES;
-    
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 
-- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
-{
-    
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+
 }
 
-- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
-{
-    
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+
 }
 
 @end

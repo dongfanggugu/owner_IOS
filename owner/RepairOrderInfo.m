@@ -11,15 +11,13 @@
 
 @implementation RepairOrderInfo
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
+- (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
-    
-    if (self)
-    {
+
+    if (self) {
         self.orderId = dictionary[@"id"];
     }
-    
+
     return self;
 }
 

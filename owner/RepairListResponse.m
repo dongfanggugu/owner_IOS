@@ -11,14 +11,12 @@
 
 @implementation RepairListResponse
 
-+ (Class)body_class
-{
++ (Class)body_class {
     return [RepairOrderInfo class];
 }
 
-- (NSArray<RepairOrderInfo *> *)getOrderList
-{
-    return (NSArray<RepairOrderInfo *> *)self.body;
+- (NSArray<RepairOrderInfo *> *)getOrderList {
+    return (NSArray<RepairOrderInfo *> *) self.body;
 }
 
 @end

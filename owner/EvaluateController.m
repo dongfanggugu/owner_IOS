@@ -22,24 +22,22 @@
 
 @implementation EvaluateController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:@"用户评价"];
     [self initView];
 }
 
 
-- (void)initView
-{
+- (void)initView {
     _evaluateView = [EvaluteView viewFromNib];
-    
+
     _evaluateView.frame = CGRectMake(0, 64, self.screenWidth, 300);
-    
+
     _evaluateView.delegate = self;
-    
+
     [self.view addSubview:_evaluateView];
-    
+
     if (Show == _enterType) {
         [_evaluateView setModeShow];
         [_evaluateView setStar:_star];
@@ -49,42 +47,41 @@
 
 #pragma mark - EvaluateViewDelegate
 
-- (void)onSubmit:(NSInteger)star content:(NSString *)content
-{
-    
+- (void)onSubmit:(NSInteger)star content:(NSString *)content {
+
     if (Maint_Submit == _enterType) {
         MainTaskEvaluateRequest *request = [[MainTaskEvaluateRequest alloc] init];
         request.maintOrderProcessId = _mainTaskInfo.taskId;
         request.evaluateContent = content;
         request.evaluateResult = star;
-        
+
         [[HttpClient shareClient] post:URL_MAIN_TASK_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
             [HUDClass showHUDWithText:@"维保评价成功"];
             _mainTaskInfo.evaluateContent = content;
             _mainTaskInfo.evaluateResult = star;
             _mainTaskInfo.state = @"3";
             [self.navigationController popViewControllerAnimated:YES];
-        } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-            
+        }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
         }];
-        
+
     } else {
         RepairEvaluateRequest *request = [[RepairEvaluateRequest alloc] init];
         request.repairOrderId = _repairOrderInfo.orderId;
         request.evaluateInfo = content;
         request.evaluate = [NSString stringWithFormat:@"%ld", star];
-        
+
         [[HttpClient shareClient] post:URL_REPAIR_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
             [HUDClass showHUDWithText:@"快修评价成功"];
             _repairOrderInfo.evaluateInfo = content;
             _repairOrderInfo.evaluate = [NSString stringWithFormat:@"%ld", star];
             _repairOrderInfo.state = @"9";
             [self.navigationController popViewControllerAnimated:YES];
-        } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-            
+        }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
         }];
     }
-   
+
 }
 
 @end

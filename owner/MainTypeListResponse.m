@@ -11,14 +11,12 @@
 
 @implementation MainTypeListResponse
 
-+ (Class)body_class
-{
++ (Class)body_class {
     return [MainTypeInfo class];
 }
 
-- (NSArray<MainTypeInfo *> *)getMainTypeList
-{
-    return (NSArray<MainTypeInfo *> *)self.body;
+- (NSArray<MainTypeInfo *> *)getMainTypeList {
+    return (NSArray<MainTypeInfo *> *) self.body;
 }
 
 @end

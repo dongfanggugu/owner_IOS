@@ -12,13 +12,11 @@
 @implementation BaseTabBarController
 
 
-- (void)setNavTitle:(NSString *)title
-{
-    if (!self.navigationController)
-    {
+- (void)setNavTitle:(NSString *)title {
+    if (!self.navigationController) {
         return;
     }
-    
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
     label.text = title;
     label.font = [UIFont fontWithName:@"System" size:17];
@@ -28,8 +26,8 @@
 }
 
 #pragma mark -- 设置状态栏字体为白色
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 

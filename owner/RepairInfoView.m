@@ -17,51 +17,47 @@
 
 @implementation RepairInfoView
 
-+ (id)viewFromNib
-{
++ (id)viewFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"RepairInfoView" owner:nil options:nil];
-    
+
     if (0 == array) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     _lbFaultDes.userInteractionEnabled = NO;
-    
+
     _lbFaultDes.layer.masksToBounds = YES;
     _lbFaultDes.layer.cornerRadius = 5;
-    
+
     _lbFaultDes.layer.borderColor = [Utils getColorByRGB:@"#999999"].CGColor;
-    
+
     _lbFaultDes.layer.borderWidth = 1;
-    
+
     _btnOrder.layer.masksToBounds = YES;
     _btnOrder.layer.cornerRadius = 5;
-    
+
 
     _lbTitleOrder.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_blue"]];
     _lbTitleTask.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_red"]];
-    
+
     [_btnOrder addTarget:self action:@selector(clickPayOrder) forControlEvents:UIControlEventTouchUpInside];
-    
+
     [_btnEvaluate addTarget:self action:@selector(clickEvaluate) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickPayOrder
-{
+- (void)clickPayOrder {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickPay)]) {
         [_delegate onClickPay];
     }
 }
 
-- (void)clickEvaluate
-{
+- (void)clickEvaluate {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickEvaluate)]) {
         [_delegate onClickEvaluate];
     }

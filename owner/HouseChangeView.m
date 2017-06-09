@@ -16,36 +16,32 @@
 
 @implementation HouseChangeView
 
-+ (id)viewFromNib
-{
++ (id)viewFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"HouseChangeView" owner:nil options:nil];
-    
+
     if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     [_btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickBtn
-{
+- (void)clickBtn {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickBtn:)]) {
         [_delegate onClickBtn:self];
     }
 }
 
-- (void)setBtnHidden:(BOOL)btnHidden
-{
+- (void)setBtnHidden:(BOOL)btnHidden {
     if (btnHidden) {
         _btn.hidden = YES;
-        
+
     } else {
         _btn.hidden = NO;
     }

@@ -19,9 +19,7 @@
 #endif
 
 
-
-@interface AppDelegate ()
-{
+@interface AppDelegate () {
     BMKMapManager *_mapManager;
 }
 
@@ -32,67 +30,63 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _window.backgroundColor = [UIColor whiteColor];
-    
+
     [_window makeKeyAndVisible];
 
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     _window.rootViewController = [board instantiateViewControllerWithIdentifier:@"launcher_controller"];
-    
 
-    
+
+
 //    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    _window.rootViewController = [board instantiateViewControllerWithIdentifier:@"main_tab_bar_controller"];
-    
-   // [self checkUpdate];
-    
+
+    // [self checkUpdate];
+
     //键盘处理
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = NO;
-    
+
     //百度地图处理
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:BM_APPKEY generalDelegate:nil];
-    
-    if (!ret)
-    {
+
+    if (!ret) {
         NSLog(@"manager start failed");
-    }
-    else
-    {
+    } else {
         NSLog(@"manager start succeffully");
     }
-    
+
     [self registerJPushWithOptions:launchOptions];
-    
-    
+
+
     //UIDevice *device = [UIDevice currentDevice];
-    
+
     //if ([[device model] isEqualToString:@"iPhone"])
     //{
-        //[self redirectNSLogToDocumentFolder];
+    //[self redirectNSLogToDocumentFolder];
     //}
-        
+
     return YES;
 }
 
 
-- (void)redirectNSLogToDocumentFolder
-{
+- (void)redirectNSLogToDocumentFolder {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,
-                                                         YES);
+            YES);
     NSString *documentDirectory = [paths objectAtIndex:0];
     NSString *fileName = [NSString stringWithFormat:@"dr.log"];
     NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName];
-    
+
     //NSFileManager *defaultManager = [NSFileManager defaultManager];
     //[defaultManager removeItemAtPath:logFilePath error:nil];
-    
+
     //output the log to the file
     freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stdout);
     freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
@@ -133,11 +127,10 @@
 //}
 
 
-- (void)registerJPushWithOptions:(NSDictionary *)launchOptions
-{
-    
+- (void)registerJPushWithOptions:(NSDictionary *)launchOptions {
+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
-    
+
     CGFloat version = [[UIDevice currentDevice].systemVersion floatValue];
     
     if (version >= 10.0)
@@ -159,33 +152,30 @@
          categories:nil];
         
     }
-    
-    
+
+
 #else
-    
+
     [JPUSHService
-     registerForRemoteNotificationTypes:UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert
-     categories:nil];
-    
+            registerForRemoteNotificationTypes:UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert
+                                    categories:nil];
+
 #endif
-    
+
     [JPUSHService setupWithOption:launchOptions appKey:JPUSH_APPKEY channel:@"ios" apsForProduction:0];
 }
 
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken
-{
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken {
     [JPUSHService registerDeviceToken:deviceToken];
 }
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error
-{
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {
     NSLog(@"fail to register for remote notifications with error:%@", error);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
+- (void)   application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"remote notificaiton:%@", userInfo);
     completionHandler(UIBackgroundFetchResultNewData);

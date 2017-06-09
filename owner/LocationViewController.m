@@ -24,13 +24,12 @@
 @implementation AddressCell
 
 
-
 @end
 
 #pragma mark -- LocationViewController
 
-@interface LocationViewController()<BMKMapViewDelegate, BMKPoiSearchDelegate, UITableViewDelegate,
-                                    UITableViewDataSource>
+@interface LocationViewController () <BMKMapViewDelegate, BMKPoiSearchDelegate, UITableViewDelegate,
+        UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet BMKMapView *mapView;
 
@@ -52,27 +51,26 @@
 
 @implementation LocationViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:@"地址选择"];
     [self initNavRightWithText:@"确定"];
     [self initView];
-    
+
     _poiSearch = [[BMKPoiSearch alloc] init];
-    
+
     _poiSearch.delegate = self;
-    
+
     _mapView.delegate = self;
-    
+
     [_mapView setZoomLevel:15];
-    
+
     _tableView.delegate = self;
-    
+
     _tableView.dataSource = self;
-    
+
     [self search];
-    
+
 }
 
 /**
@@ -86,30 +84,27 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-- (void)initView
-{
+- (void)initView {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)onClickNavRight
-{
+- (void)onClickNavRight {
     [self submit];
 }
-- (void)search
-{
+
+- (void)search {
     BMKCitySearchOption *option = [[BMKCitySearchOption alloc] init];
     option.pageIndex = 0;
     option.pageCapacity = 10;
     option.city = @"北京";
     option.keyword = _address;
-    
+
     _progress = [HUDClass showLoadingHUD];
-    
+
     BOOL result = [_poiSearch poiSearchInCity:option];
-    if (!result)
-    {
+    if (!result) {
         [HUDClass hideLoadingHUD:_progress];
         _progress = nil;
         [HUDClass showHUDWithText:@"查询失败,请稍后再试!"];
@@ -118,44 +113,41 @@
 
 #pragma mark -- BMKSearchDelegate
 
-- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult *)poiResult errorCode:(BMKSearchErrorCode)errorCode
-{
+- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult *)poiResult errorCode:(BMKSearchErrorCode)errorCode {
     [HUDClass hideLoadingHUD:_progress];
     _progress = nil;
-    
+
     if (errorCode == BMK_SEARCH_NO_ERROR) {
         _dataArray = poiResult.poiInfoList;
         [_tableView reloadData];
         [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         [self setSelection:0];
-        
+
     } else {
         [HUDClass showHUDWithText:@"查找失败,请退出再次进入!"];
     }
 }
 
-- (void)submit
-{
+- (void)submit {
     if (nil == _annotationView) {
         [HUDClass showHUDWithText:@"请先选择你的地址!"];
         return;
     }
-    
+
     CLLocationCoordinate2D coor = _annotationView.annotation.coordinate;
-    
-   
-    
+
+
     if (0 == _enterType) {
         NSInteger count = [self.navigationController.viewControllers count];
-        
-        
+
+
         AddressViewController *controller = [self.navigationController.viewControllers objectAtIndex:count - 2];
         controller.latView.hidden = NO;
         controller.lngView.hidden = NO;
-        
+
         controller.latValueLabel.hidden = NO;
         controller.lngValueLabel.hidden = NO;
-        
+
         controller.lngValueLabel.text = [NSString stringWithFormat:@"%lf", coor.longitude];
         controller.latValueLabel.text = [NSString stringWithFormat:@"%lf", coor.latitude];
 
@@ -167,22 +159,19 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setSelection:(NSInteger)index
-{
-    if (_tipLable.hidden)
-    {
+- (void)setSelection:(NSInteger)index {
+    if (_tipLable.hidden) {
         _tipLable.hidden = NO;
     }
-    
-    if (nil ==  _annotation)
-    {
+
+    if (nil == _annotation) {
         _annotation = [[BMKPointAnnotation alloc] init];
     }
-    
+
     [_mapView removeAnnotation:_annotation];
-    
+
     BMKPoiInfo *info = _dataArray[index];
-    
+
     _annotation.coordinate = info.pt;
     [_mapView addAnnotation:_annotation];
     NSArray *array = [[NSArray alloc] initWithObjects:_annotation, nil];
@@ -191,50 +180,44 @@
 
 #pragma mark -- UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataArray.count;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"address_cell"];
-    
+
     BMKPoiInfo *info = _dataArray[indexPath.row];
-    
+
     cell.addLabel.text = info.name;
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self setSelection:indexPath.row];
 }
 
 #pragma mark -- BMKMapViewDelegate
 
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation
-{
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]])
-    {
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         _annotationView = (BMKPinAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:@"marker"];
-        
+
         if (nil == _annotationView) {
             _annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"marker"];
         }
-     
-        
+
+
         [_annotationView setBounds:CGRectMake(0, 0, 40, 40)];
         [_annotationView setBackgroundColor:[UIColor clearColor]];
         [_annotationView setDraggable:YES];
         return _annotationView;
     }
-    
+
     return nil;
 }
 

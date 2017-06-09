@@ -11,7 +11,7 @@
 #import "Utils.h"
 #import "HttpClient.h"
 
-@interface PersonPasswordController()
+@interface PersonPasswordController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *tfOriginal;
 
@@ -59,30 +59,30 @@
     NSString *original = self.tfOriginal.text;
     NSString *password = self.tfPassword.text;
     NSString *confirm = self.tfConfirm.text;
-    
+
     if (0 == original.length || 0 == password.length || 0 == confirm) {
         [HUDClass showHUDWithText:@"密码输入不能为空,请重新输入!"];
         return;
     }
-    
+
     if (![password isEqualToString:confirm]) {
         [HUDClass showHUDWithText:@"确认密码和密码输入不一致,请重新输入!"];
         return;
     }
-    
+
     if (password.length < 6) {
         [HUDClass showHUDWithText:@"密码至少为6位,请重新输入!"];
         return;
     }
-    
+
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:[Utils md5:original] forKey:@"oldPwd"];
     [params setObject:[Utils md5:password] forKey:@"newPwd"];
     [[HttpClient shareClient] post:@"editSmallOwnerPwd" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [HUDClass showHUDWithText:@"密码修改成功!"];
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
     }];
-   }
+}
 @end

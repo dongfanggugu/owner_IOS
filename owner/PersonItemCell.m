@@ -11,25 +11,21 @@
 
 @implementation PersonItemCell
 
-+ (id)cellFromNib
-{
++ (id)cellFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PersonItemCell" owner:nil options:nil];
-    
-    if (0 == array.count)
-    {
+
+    if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-+ (NSString *)identifier
-{
++ (NSString *)identifier {
     return @"person_item_cell";
 }
 
-+ (CGFloat)cellHeight
-{
++ (CGFloat)cellHeight {
     return 55;
 }
 

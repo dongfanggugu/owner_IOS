@@ -22,90 +22,82 @@
 
 @implementation KnMainCell
 
-+ (id)cellFromNib
-{
++ (id)cellFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"KnMainCell" owner:nil options:nil];
-    
+
     if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-+ (NSString *)identifier
-{
++ (NSString *)identifier {
     return @"kn_main_cell";
 }
 
-+ (CGFloat)cellHeight
-{
++ (CGFloat)cellHeight {
     return 300;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     _viewQA.layer.masksToBounds = YES;
     _viewQA.layer.cornerRadius = 45;
-    
+
     _viewQA.userInteractionEnabled = YES;
     [_viewQA addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickQA)]];
-    
-    
+
+
     _viewFault.layer.masksToBounds = YES;
     _viewFault.layer.cornerRadius = 45;
-    
+
     _viewFault.userInteractionEnabled = YES;
     [_viewFault addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFault)]];
-    
+
     _viewOp.layer.masksToBounds = YES;
     _viewOp.layer.cornerRadius = 45;
-    
+
     _viewOp.userInteractionEnabled = YES;
     [_viewOp addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOp)]];
-    
+
     _viewLaw.layer.masksToBounds = YES;
     _viewLaw.layer.cornerRadius = 45;
-    
+
     _viewLaw.userInteractionEnabled = YES;
     [_viewLaw addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickLaw)]];
 }
 
-- (void)clickQA
-{
+- (void)clickQA {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickQA)]) {
         [_delegate onClickQA];
     }
-    
+
 }
 
-- (void)clickFault
-{
+- (void)clickFault {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickFault)]) {
         [_delegate onClickFault];
     }
-    
+
 }
 
-- (void)clickOp
-{
+- (void)clickOp {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickOperation)]) {
         [_delegate onClickOperation];
     }
-    
+
 }
 
-- (void)clickLaw
-{
+- (void)clickLaw {
     if (_delegate && [_delegate respondsToSelector:@selector(onClickLaw)]) {
         [_delegate onClickLaw];
     }
-    
+
 }
 
 

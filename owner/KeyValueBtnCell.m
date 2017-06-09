@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KeyValueBtnCell.h"
 
-@interface KeyValueBtnCell()
-{
+@interface KeyValueBtnCell () {
     void(^_onClick)();
 }
 
@@ -24,61 +23,52 @@
 @implementation KeyValueBtnCell
 
 
-+ (id)cellFromNib
-{
++ (id)cellFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"KeyValueBtnCell" owner:nil options:nil];
-    
-    if (0 == array.count)
-    {
+
+    if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-+ (CGFloat)cellHeight
-{
++ (CGFloat)cellHeight {
     return 44;
 }
 
-+ (NSString *)identifier
-{
++ (NSString *)identifier {
     return @"key_value_btn_cell";
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     _btn.layer.masksToBounds = YES;
     _btn.layer.cornerRadius = 5;
 }
 
-- (void)addOnClickListener:(void(^)())onClick
-{
+- (void)addOnClickListener:(void (^)())onClick {
     _onClick = onClick;
-    
+
     [_btn addTarget:self action:@selector(onClickBtn) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)onClickBtn
-{
+- (void)onClickBtn {
     if (_onClick) {
         _onClick();
     }
 }
 
-- (void)setBtnTitle:(NSString *)btnTitle
-{
+- (void)setBtnTitle:(NSString *)btnTitle {
     [_btn setTitle:btnTitle forState:UIControlStateNormal];
 }
 
-- (void)hideBtn
-{
-   // _btn.hidden = YES;
-    
+- (void)hideBtn {
+    // _btn.hidden = YES;
+
     _btnWidth.constant = 0;
 }
 

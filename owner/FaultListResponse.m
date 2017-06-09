@@ -11,14 +11,12 @@
 
 @implementation FaultListResponse
 
-+ (Class)body_class
-{
++ (Class)body_class {
     return [FaultInfo class];
 }
 
-- (NSArray<FaultInfo *> *)getFaultList
-{
-    return (NSArray<FaultInfo *> *)self.body;
+- (NSArray<FaultInfo *> *)getFaultList {
+    return (NSArray<FaultInfo *> *) self.body;
 }
 
 @end

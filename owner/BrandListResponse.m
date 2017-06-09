@@ -11,14 +11,12 @@
 
 @implementation BrandListResponse
 
-+ (Class)body_class
-{
++ (Class)body_class {
     return [ElevatorBrandInfo class];
 }
 
-- (NSArray<ElevatorBrandInfo *> *)getBrandList
-{
-    return (NSArray<ElevatorBrandInfo *> *)self.body;
+- (NSArray<ElevatorBrandInfo *> *)getBrandList {
+    return (NSArray<ElevatorBrandInfo *> *) self.body;
 }
 
 @end

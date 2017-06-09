@@ -19,64 +19,58 @@
 
 @implementation MaintEvaluateController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:@"维保评价"];
     [self initView];
 }
 
-- (void)initView
-{
+- (void)initView {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
-    
+
     tableView.delegate = self;
     tableView.dataSource = self;
-    
+
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:tableView];
-    
+
     //处理评价界面
     self.evaluateView = [MaintEvaluateView viewFromNib];
     self.evaluateView.delegate = self;
-    
+
     tableView.tableHeaderView = self.evaluateView;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 0;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
 }
 
 #pragma mark - MaintEvaluateViewDelegate
 
-- (void)onSubmit:(NSInteger)star content:(NSString *)content
-{
+- (void)onSubmit:(NSInteger)star content:(NSString *)content {
     MainTaskEvaluateRequest *request = [[MainTaskEvaluateRequest alloc] init];
     request.maintOrderProcessId = self.taskInfo.taskId;
     request.evaluateContent = content;
     request.evaluateResult = star;
-    
+
     [[HttpClient shareClient] post:URL_MAIN_TASK_EVALUATE parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         [HUDClass showHUDWithText:@"维保评价成功"];
         _taskInfo.evaluateContent = content;
         _taskInfo.evaluateResult = star;
         _taskInfo.state = @"3";
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
     }];
 }
 

@@ -21,41 +21,37 @@
 
 @implementation PayOrderController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:@"维保服务订单"];
-    
-    [self  initView];
+
+    [self initView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self getOrders];
 }
 
-- (void)initView
-{    
+- (void)initView {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
-    
+
     _tableView.delegate = self;
-    
+
     _tableView.dataSource = self;
-    
+
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+
     [self.view addSubview:_tableView];
 }
 
-- (NSMutableArray *)arrayOrder
-{
+- (NSMutableArray *)arrayOrder {
     if (!_arrayOrder) {
         _arrayOrder = [NSMutableArray array];
     }
-    
+
     return _arrayOrder;
 }
 
@@ -75,114 +71,107 @@
  tel 电话
  address 地址
  */
-- (void)getOrders
-{
+- (void)getOrders {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"maintOrderId"] = _serviceId;
-    
+
     [[HttpClient shareClient] post:@"getPaymentBySmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayOrder removeAllObjects];
-        
+
         [self.arrayOrder addObjectsFromArray:[responseObject objectForKey:@"body"]];
-        
+
         if (0 == self.arrayOrder) {
-            
+
         }
-        
+
         [self.tableView reloadData];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
+
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
     }];
 }
 
-- (void)payment:(NSString *)paymentId
-{
+- (void)payment:(NSString *)paymentId {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"paymentId"] = paymentId;
-    
+
     [[HttpClient shareClient] post:@"continuePayment" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
-        
+
         if (url.length != 0) {
             PayViewController *controller = [[PayViewController alloc] init];
             controller.urlStr = url;
-            
+
             [self presentViewController:controller animated:YES completion:^{
             }];
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
     }];
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayOrder.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PayInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[PayInfoCell identifier]];
-    
+
     if (!cell) {
         cell = [PayInfoCell cellFromNib];
     }
-    
+
     NSDictionary *info = self.arrayOrder[indexPath.row];
-    
+
     cell.lbCode.text = info[@"code"];
-    
+
     cell.lbDate.text = info[@"createTime"];
-    
+
     NSString *payType = [info[@"mainttypeInfo"] objectForKey:@"name"];
-    
+
     cell.lbPayType.text = [NSString stringWithFormat:@"服务类型:%@", payType];
-    
-    
+
+
     NSInteger state = [info[@"isPay"] integerValue];
-    
+
     //支付单是否有效
-    NSInteger delete =[[info[@"maintOrderInfo"] objectForKey:@"isDelete"] integerValue];
-  
+    NSInteger delete = [[info[@"maintOrderInfo"] objectForKey:@"isDelete"] integerValue];
+
     if (0 == state) {
-        
+
         if (0 == delete) {
             cell.lbState.text = @"未支付";
-            
+
         } else {
             cell.lbState.text = @"已过期";
         }
-        
+
     } else {
         cell.lbState.text = @"已支付";
     }
 
-    
+
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [PayInfoCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MainOrderDetaIlController *controller = [[MainOrderDetaIlController alloc] init];
     controller.orderInfo = self.arrayOrder[indexPath.row];
     controller.houseInfo = _houseInfo;
-    
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 

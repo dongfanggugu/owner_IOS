@@ -64,7 +64,6 @@
 		65243F051ED80FA800BB2D32 /* KnInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65243F041ED80FA800BB2D32 /* KnInfoCell.xib */; };
 		65243F081ED8110800BB2D32 /* KnInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243F071ED8110800BB2D32 /* KnInfoCell.m */; };
 		65243F0A1ED813A000BB2D32 /* festival_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243F091ED813A000BB2D32 /* festival_banner.png */; };
-		65243F0D1ED815B100BB2D32 /* KnowledgeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243F0C1ED815B100BB2D32 /* KnowledgeDetailController.m */; };
 		65243F101ED81B3500BB2D32 /* KnMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65243F0F1ED81B3500BB2D32 /* KnMainCell.m */; };
 		65243F121ED81B4300BB2D32 /* KnMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65243F111ED81B4300BB2D32 /* KnMainCell.xib */; };
 		65243F141ED81E1F00BB2D32 /* icon_fault.png in Resources */ = {isa = PBXBuildFile; fileRef = 65243F131ED81E1F00BB2D32 /* icon_fault.png */; };
@@ -360,6 +359,7 @@
 		65FE090A1EB8532B002C9397 /* icon_custom_service.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE09091EB8532B002C9397 /* icon_custom_service.png */; };
 		65FE090C1EB860CE002C9397 /* icon_maintenance_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE090B1EB860CE002C9397 /* icon_maintenance_banner.png */; };
 		65FE09161EB9A2C2002C9397 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE09151EB9A2C2002C9397 /* PayViewController.m */; };
+		699E4A667E890FD81CA48717 /* KnowledgeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4DFB4B559F0B58FCB2E7 /* KnowledgeDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -435,8 +435,6 @@
 		65243F061ED8110800BB2D32 /* KnInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnInfoCell.h; sourceTree = "<group>"; };
 		65243F071ED8110800BB2D32 /* KnInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnInfoCell.m; sourceTree = "<group>"; };
 		65243F091ED813A000BB2D32 /* festival_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = festival_banner.png; sourceTree = "<group>"; };
-		65243F0B1ED815B100BB2D32 /* KnowledgeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowledgeDetailController.h; sourceTree = "<group>"; };
-		65243F0C1ED815B100BB2D32 /* KnowledgeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeDetailController.m; sourceTree = "<group>"; };
 		65243F0E1ED81B3500BB2D32 /* KnMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnMainCell.h; sourceTree = "<group>"; };
 		65243F0F1ED81B3500BB2D32 /* KnMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnMainCell.m; sourceTree = "<group>"; };
 		65243F111ED81B4300BB2D32 /* KnMainCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KnMainCell.xib; sourceTree = "<group>"; };
@@ -891,6 +889,8 @@
 		65FE090B1EB860CE002C9397 /* icon_maintenance_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_maintenance_banner.png; sourceTree = "<group>"; };
 		65FE09141EB9A2C2002C9397 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
 		65FE09151EB9A2C2002C9397 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
+		699E42C0066B2E453B1EC36D /* KnowledgeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowledgeDetailController.h; sourceTree = "<group>"; };
+		699E4DFB4B559F0B58FCB2E7 /* KnowledgeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeDetailController.m; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1417,6 +1417,8 @@
 				65E8B31A1EE16BE100C5BD19 /* MaintEvaluateController.m */,
 				6574F2171EE29D4400B8F17A /* MaintResultController.h */,
 				6574F2181EE29D4400B8F17A /* MaintResultController.m */,
+				699E4DFB4B559F0B58FCB2E7 /* KnowledgeDetailController.m */,
+				699E42C0066B2E453B1EC36D /* KnowledgeDetailController.h */,
 			);
 			name = Maintenance;
 			sourceTree = "<group>";
@@ -1432,8 +1434,6 @@
 				65A1FB601EC433A4005C8E6B /* HelpWebViewController.m */,
 				65243F011ED80D7B00BB2D32 /* KnowledgeController.h */,
 				65243F021ED80D7B00BB2D32 /* KnowledgeController.m */,
-				65243F0B1ED815B100BB2D32 /* KnowledgeDetailController.h */,
-				65243F0C1ED815B100BB2D32 /* KnowledgeDetailController.m */,
 			);
 			name = Help;
 			sourceTree = "<group>";
@@ -2101,7 +2101,6 @@
 				65E19BD01E67C4CD00C6860D /* ElevatorBrandInfo.m in Sources */,
 				6544C7541E6812020050A9D3 /* MyOrderController.m in Sources */,
 				6544C7A51E6953E40050A9D3 /* PersonInfoView.m in Sources */,
-				65243F0D1ED815B100BB2D32 /* KnowledgeDetailController.m in Sources */,
 				65E19BD31E67C5FF00C6860D /* BrandListResponse.m in Sources */,
 				6544C77B1E6913A80050A9D3 /* MainInfoController.m in Sources */,
 				655ADF3A1E26027400F1F036 /* EvaluateView.m in Sources */,
@@ -2177,6 +2176,7 @@
 				65243F081ED8110800BB2D32 /* KnInfoCell.m in Sources */,
 				65E19BDB1E67E93800C6860D /* KeyEditBtnCell.m in Sources */,
 				65FE08B01EA73BAD002C9397 /* ContentCell.m in Sources */,
+				699E4A667E890FD81CA48717 /* KnowledgeDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HelpContentController.h"
 
-@interface HelpContentController()
+@interface HelpContentController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *lbContent;
 
@@ -17,21 +17,19 @@
 
 @implementation HelpContentController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:_pageTitle];
     [self initView];
 }
 
-- (void)initView
-{
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 64 + 8, self.view.bounds.size.width - 16, 100)];
+- (void)initView {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 64 + 8, self.view.bounds.size.width - 16, 100)];
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.text = _content;
     label.font = [UIFont systemFontOfSize:14];
-    
+
     CGSize size = [label sizeThatFits:CGSizeMake(label.frame.size.width, MAXFLOAT)];
     label.frame = CGRectMake(8, 64 + 8, self.view.bounds.size.width - 16, size.height);
     [self.view addSubview:label];

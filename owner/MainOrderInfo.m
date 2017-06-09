@@ -12,15 +12,14 @@
 
 @implementation MainOrderInfo
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
+- (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
-    
+
     if (self) {
         self.orderId = dictionary[@"id"];
         self.maintypeInfo = [[MainTypeInfo alloc] initWithDictionary:dictionary[@"maintypeInfo"]];
     }
-    
+
     return self;
 }
 

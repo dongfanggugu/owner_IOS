@@ -9,25 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "CalloutMapAnnotation.h"
 
-@interface CalloutMapAnnotation()
+@interface CalloutMapAnnotation ()
 
 @end
 
 @implementation CalloutMapAnnotation
 
-- (id)initWithLatitude:(CLLocationDegrees)lat andLongitude:(CLLocationDegrees)lng
-{
-    if (self = [super init])
-    {
+- (id)initWithLatitude:(CLLocationDegrees)lat andLongitude:(CLLocationDegrees)lng {
+    if (self = [super init]) {
         self.latitude = lat;
         self.longitude = lng;
     }
-    
+
     return self;
 }
 
-- (CLLocationCoordinate2D)coordinate
-{
+- (CLLocationCoordinate2D)coordinate {
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = self.latitude;
     coordinate.longitude = self.longitude;

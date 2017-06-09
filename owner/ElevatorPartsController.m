@@ -14,34 +14,30 @@
 
 @implementation ElevatorPartsController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:@"电梯配件"];
     [self initView];
 }
 
 
-- (void)initView
-{
+- (void)initView {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
-    
+
     imageView.image = [UIImage imageNamed:@"icon_part"];
-   
+
     imageView.userInteractionEnabled = YES;
-    
+
     [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(detail)]];
-    
+
     [self.view addSubview:imageView];
 }
 
-- (void)detail
-{
-    
+- (void)detail {
+
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

@@ -11,14 +11,12 @@
 
 @implementation MainListResponse
 
-+ (Class)body_class
-{
++ (Class)body_class {
     return [MainOrderInfo class];
 }
 
-- (NSArray<MainOrderInfo *> *)getOrderList
-{
-    return (NSArray<MainOrderInfo *> *)self.body;
+- (NSArray<MainOrderInfo *> *)getOrderList {
+    return (NSArray<MainOrderInfo *> *) self.body;
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseViewController.h"
 
-@interface BaseViewController() <UIGestureRecognizerDelegate>
+@interface BaseViewController () <UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UILabel *lbTitle;
 
@@ -17,8 +17,7 @@
 
 @implementation BaseViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     //[self setNavIcon];
     [self initNaviTitle];
@@ -28,48 +27,41 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 
-
-- (CGFloat)screenWidth
-{
+- (CGFloat)screenWidth {
     return [UIScreen mainScreen].bounds.size.width;
 }
 
-- (CGFloat)screenHeight
-{
+- (CGFloat)screenHeight {
     return [UIScreen mainScreen].bounds.size.height;
 }
 
-- (BOOL)login
-{
+- (BOOL)login {
     NSString *userId = [[Config shareConfig] getUserId];
-    
+
     return userId.length;
 }
 
-- (void)setNavTitle:(NSString *)title
-{
+- (void)setNavTitle:(NSString *)title {
     if (!self.navigationController) {
         return;
     }
-    
+
     _lbTitle.text = title;
 }
 
-- (void)initNaviTitle
-{
+- (void)initNaviTitle {
     if (!self.navigationController) {
         return;
     }
-    
+
     _lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-    
+
     _lbTitle.font = [UIFont systemFontOfSize:17];
     _lbTitle.textColor = [UIColor whiteColor];
     [_lbTitle setTextAlignment:NSTextAlignmentCenter];
@@ -79,21 +71,20 @@
 /**
  使用文字初始化导航栏右侧按钮
  **/
-- (void)initNavRightWithText:(NSString *)text
-{
+- (void)initNavRightWithText:(NSString *)text {
     if (!self.navigationController) {
         return;
     }
-    
+
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 60, 60)];
     [btnRight setTitle:text forState:UIControlStateNormal];
     [btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btnRight.titleLabel.font = [UIFont systemFontOfSize:13];
-    
+
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
-    
+
     self.navigationItem.rightBarButtonItem = rightButton;
-    
+
     if ([self respondsToSelector:@selector(onClickNavRight)]) {
         [btnRight addTarget:self action:@selector(onClickNavRight) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -102,64 +93,59 @@
 /**
  使用文字初始化导航栏右侧按钮
  **/
-- (void)initNavRightWithImage:(UIImage *)image
-{
+- (void)initNavRightWithImage:(UIImage *)image {
     if (!self.navigationController) {
         return;
     }
-    
+
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [btnRight setImage:image forState:UIControlStateNormal];
-    
+
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
-    
+
     self.navigationItem.rightBarButtonItem = rightButton;
-    
+
     if ([self respondsToSelector:@selector(onClickNavRight)]) {
         [btnRight addTarget:self action:@selector(onClickNavRight) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
 
-- (void)onClickNavRight
-{
-    
+- (void)onClickNavRight {
+
 }
 
-- (void)popup
-{
+- (void)popup {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setNavIcon
-{
+- (void)setNavIcon {
     if (!self.navigationController) {
         return;
     }
-    
+
     NSArray *array = self.navigationController.viewControllers;
-    
+
     if (1 == array.count) {
         return;
     }
-    
+
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     imageView.image = [UIImage imageNamed:@"back_normal"];
     [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popup)]];
-    
+
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.navigationItem.leftBarButtonItem = item;
 }
 
 
-- (void)dealloc
-{
+- (void)dealloc {
     NSLog(@"%@ dealloc", [self class]);
 }
 
 #pragma mark -- 设置状态栏字体为白色
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 

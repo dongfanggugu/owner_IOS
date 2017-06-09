@@ -11,7 +11,7 @@
 
 @interface Location () <BMKLocationServiceDelegate>
 
-@property (strong ,nonatomic) BMKLocationService *locService;
+@property (strong, nonatomic) BMKLocationService *locService;
 
 @property (strong, nonatomic) NSDictionary *customInfo;
 
@@ -19,26 +19,24 @@
 
 @implementation Location
 
-- (instancetype)initLocationWith:(NSDictionary *)info
-{
+- (instancetype)initLocationWith:(NSDictionary *)info {
     self = [super init];
-    
+
     if (self) {
         self.customInfo = info;
     }
-    
+
     return self;
 }
 
-- (void)startLocationService
-{
-    _locService = [[BMKLocationService alloc]init];
+- (void)startLocationService {
+    _locService = [[BMKLocationService alloc] init];
     _locService.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     _locService.distanceFilter = 1.0f;
-    
-    
+
+
     _locService.delegate = self;
-    
+
     [_locService startUserLocationService];
 }
 
@@ -47,54 +45,50 @@
  *用户位置更新后，会调用此函数
  *@param userLocation 新的用户位置
  */
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
     //关闭定位
     [_locService stopUserLocationService];
-    
+
     _locService = nil;
-    
+
     NSLog(@"custom before send notify");
-    
+
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-    
+
     userInfo[User_Location] = userLocation;
-    
+
     userInfo[User_Custom] = _customInfo;
-    
-    
-    NSNotification *notification =[NSNotification notificationWithName:Custom_Location_Complete object:nil userInfo:userInfo];
-    
+
+
+    NSNotification *notification = [NSNotification notificationWithName:Custom_Location_Complete object:nil userInfo:userInfo];
+
     //通过通知中心发送通知
     [[NSNotificationCenter defaultCenter] postNotification:notification];
-    
+
     NSLog(@"custom after send notify");
 }
 
-- (void)didFailToLocateUserWithError:(NSError *)error
-{
+- (void)didFailToLocateUserWithError:(NSError *)error {
     [_locService stopUserLocationService];
-    
+
     _locService = nil;
-    
-    NSNotification *notification =[NSNotification notificationWithName:Custom_Location_Complete object:nil userInfo:nil];
-    
+
+    NSNotification *notification = [NSNotification notificationWithName:Custom_Location_Complete object:nil userInfo:nil];
+
     //通过通知中心发送通知
     [[NSNotificationCenter defaultCenter] postNotification:notification];
-    
+
 }
 
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-{
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation {
     //NSLog(@"heading is %@", userLocation.heading);
 }
 
-+ (CLLocationDistance)distancePoint:(CLLocationCoordinate2D)point1 with:(CLLocationCoordinate2D)point2
-{
++ (CLLocationDistance)distancePoint:(CLLocationCoordinate2D)point1 with:(CLLocationCoordinate2D)point2 {
     BMKMapPoint p1 = BMKMapPointForCoordinate(point1);
     BMKMapPoint p2 = BMKMapPointForCoordinate(point2);
-    
-    return  BMKMetersBetweenMapPoints(p1,p2);
+
+    return BMKMetersBetweenMapPoints(p1, p2);
 }
 
 @end

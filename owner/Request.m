@@ -12,8 +12,7 @@
 
 @implementation Request
 
-- (NSDictionary *)parsToDictionary
-{
+- (NSDictionary *)parsToDictionary {
     return [self toDictionary];
 }
 

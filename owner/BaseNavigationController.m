@@ -9,18 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "BaseNavigationController.h"
 
-@interface BaseNavigationController()
+@interface BaseNavigationController ()
 
 @end
 
 @implementation BaseNavigationController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.barTintColor = [Utils getColorByRGB:TITLE_COLOR];
     self.navigationBar.tintColor = [UIColor whiteColor];
-    
+
 }
 
 

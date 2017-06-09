@@ -12,28 +12,26 @@
 @implementation MainTypeDetailController
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:@"服务详情"];
     [self initView];
 }
 
 
-- (void)initView
-{
+- (void)initView {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 70, self.self.screenWidth - 32, 0)];
-    
+
     label.font = [UIFont systemFontOfSize:14];
-    
+
     label.lineBreakMode = NSLineBreakByWordWrapping;
-    
+
     label.text = _detail;
-    
+
     label.numberOfLines = 0;
-    
+
     [label sizeToFit];
-    
+
     [self.view addSubview:label];
 }
 

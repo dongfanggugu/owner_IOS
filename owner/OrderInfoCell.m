@@ -11,34 +11,29 @@
 
 @implementation OrderInfoCell
 
-+ (id)cellFromNib
-{
++ (id)cellFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"OrderInfoCell" owner:nil options:nil];
-    
-    if (0 == array.count)
-    {
+
+    if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-+ (NSString *)identifier
-{
++ (NSString *)identifier {
     return @"order_info_cell";
 }
 
-+ (CGFloat)cellHeight
-{
++ (CGFloat)cellHeight {
     return 66;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     _lbIndex.layer.masksToBounds = YES;
     _lbIndex.layer.cornerRadius = 12;
 }

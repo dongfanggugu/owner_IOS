@@ -12,95 +12,84 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
 
-@property (strong, nonatomic) void(^onClickImage)();
+@property (strong, nonatomic) void (^onClickImage)();
 
-@property (strong, nonatomic) void(^onClickBtn)();
+@property (strong, nonatomic) void (^onClickBtn)();
 
 @end
 
 @implementation KeyImageViewCell
 
-+ (id)cellFromNib
-{
++ (id)cellFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"KeyImageViewCell" owner:nil options:nil];
-    
+
     if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-+ (NSString *)identifier
-{
++ (NSString *)identifier {
     return @"key_image_view_cell";
 }
 
-+ (CGFloat)cellHeight
-{
++ (CGFloat)cellHeight {
     return 140;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     self.hasImage = NO;
 }
 
-- (void)setHasImage:(BOOL)hasImage
-{
+- (void)setHasImage:(BOOL)hasImage {
     _hasImage = hasImage;
-    
+
     if (hasImage) {
         _btnDel.hidden = NO;
-        
+
     } else {
         _btnDel.hidden = YES;
     }
 }
 
 
-- (void)setOnClickImageListener:(void(^)())onClickImage
-{
+- (void)setOnClickImageListener:(void (^)())onClickImage {
     _onClickImage = onClickImage;
-    
+
     _ivPhoto.userInteractionEnabled = YES;
-    
+
     [_ivPhoto addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)]];
 }
 
-- (void)setOnClickBtnListener:(void(^)())onClickBtn
-{
+- (void)setOnClickBtnListener:(void (^)())onClickBtn {
     _onClickBtn = onClickBtn;
-    
+
     [_btnDel addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickImage
-{
+- (void)clickImage {
     if (_onClickImage) {
         _onClickImage();
     }
 }
 
-- (void)clickBtn
-{
+- (void)clickBtn {
     if (_onClickBtn) {
         _onClickBtn();
     }
 }
 
-- (void)setPhoto:(UIImage *)photo
-{
+- (void)setPhoto:(UIImage *)photo {
     self.hasImage = YES;
     _ivPhoto.image = photo;
 }
 
-- (void)delPhoto
-{
+- (void)delPhoto {
     self.hasImage = NO;
     _ivPhoto.image = [UIImage imageNamed:@"icon_photo"];
 }

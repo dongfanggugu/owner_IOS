@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ImageUtils.h"
 
-@interface ImageUtils()
+@interface ImageUtils ()
 
 @end
 
@@ -25,15 +25,15 @@
  *  @return <#return value description#>
  */
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    
+
     UIGraphicsBeginImageContext(newSize);
-    
+
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    
+
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    
+
     UIGraphicsEndImageContext();
-    
+
     return newImage;
 }
 

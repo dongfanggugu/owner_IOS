@@ -16,34 +16,30 @@
 
 @implementation PayInfoCell
 
-+ (instancetype)cellFromNib
-{
++ (instancetype)cellFromNib {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PayInfoCell" owner:nil options:nil];
-    
+
     if (0 == array.count) {
         return nil;
     }
-    
+
     return array[0];
 }
 
-+ (NSString *)identifier
-{
++ (NSString *)identifier {
     return @"pay_info_cell";
 }
 
-+ (CGFloat)cellHeight
-{
++ (CGFloat)cellHeight {
     return 75;
 }
 
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
 }
 
 @end
