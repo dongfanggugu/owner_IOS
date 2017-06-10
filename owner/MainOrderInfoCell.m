@@ -16,25 +16,30 @@
 
 @implementation MainOrderInfoCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainOrderInfoCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"main_order_info_cell";
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 66;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 }
 

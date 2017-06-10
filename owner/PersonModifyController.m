@@ -35,7 +35,8 @@
 
 @synthesize enterType;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self initView];
@@ -44,7 +45,8 @@
 /**
  *  初始化视图
  */
-- (void)initView {
+- (void)initView
+{
 
     _btnSubmit.layer.masksToBounds = YES;
 
@@ -52,7 +54,8 @@
 
     [_btnSubmit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
 
-    if ([enterType isEqualToString:@"brand"]) {
+    if ([enterType isEqualToString:@"brand"])
+    {
         [self setNavTitle:@"电梯品牌"];
 
         [_textFieldContent removeFromSuperview];
@@ -76,7 +79,9 @@
 
         [self.view addSubview:_lbBrand];
 
-    } else {
+    }
+    else
+    {
         //设置左右边框，看起来美观
         UIView *padView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
         self.textFieldContent.leftView = padView;
@@ -85,15 +90,20 @@
         self.textFieldContent.rightView = padView;
         self.textFieldContent.rightViewMode = UITextFieldViewModeAlways;
 
-        if ([enterType isEqualToString:@"name"]) {
+        if ([enterType isEqualToString:@"name"])
+        {
             [self setNavTitle:@"姓名"];
             self.textFieldContent.text = [[Config shareConfig] getName];
 
-        } else if ([enterType isEqualToString:@"branch_name"]) {
+        }
+        else if ([enterType isEqualToString:@"branch_name"])
+        {
             [self setNavTitle:@"地址"];
             _textFieldContent.text = [[Config shareConfig] getBranchName];
 
-        } else if ([enterType isEqualToString:@"model"]) {
+        }
+        else if ([enterType isEqualToString:@"model"])
+        {
             [self setNavTitle:@"电梯型号"];
             _textFieldContent.text = [[Config shareConfig] getLiftType];
 
@@ -105,36 +115,48 @@
 /**
  *  提交到服务器
  */
-- (void)submit {
+- (void)submit
+{
 
-    if ([enterType isEqualToString:@"brand"]) {
+    if ([enterType isEqualToString:@"brand"])
+    {
         NSString *content = _lbBrand.text;
 
-        if (0 == content.length) {
+        if (0 == content.length)
+        {
             [HUDClass showHUDWithText:@"输入不能为空,请重新输入!"];
             return;
         }
 
         [self submitKey:@"brand" value:content];
-    } else {
+    }
+    else
+    {
         NSString *content = self.textFieldContent.text;
-        if (0 == content.length) {
+        if (0 == content.length)
+        {
             [HUDClass showHUDWithText:@"输入不能为空,请重新输入!"];
             return;
         }
 
 
-        if ([enterType isEqualToString:@"name"]) {
+        if ([enterType isEqualToString:@"name"])
+        {
             [self submitKey:@"name" value:content];
-        } else if ([enterType isEqualToString:@"branch_name"]) {
+        }
+        else if ([enterType isEqualToString:@"branch_name"])
+        {
             [self submitKey:@"cellName" value:content];
-        } else if ([enterType isEqualToString:@"model"]) {
+        }
+        else if ([enterType isEqualToString:@"model"])
+        {
             [self submitKey:@"model" value:content];
         }
     }
 }
 
-- (void)selBrand {
+- (void)selBrand
+{
     [[HttpClient shareClient] post:URL_LIFT_BRAND parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         BrandListResponse *response = [[BrandListResponse alloc] initWithDictionary:responseObject];
         [self showBrandList:[response getBrandList]];
@@ -143,14 +165,16 @@
     }];
 }
 
-- (void)showBrandList:(NSArray<ElevatorBrandInfo *> *)arrayBrand {
+- (void)showBrandList:(NSArray<ElevatorBrandInfo *> *)arrayBrand
+{
     ListDialogView *dialog = [ListDialogView viewFromNib];
     dialog.delegate = self;
     [dialog setArrayData:arrayBrand];
     [dialog show];
 }
 
-- (void)submitKey:(NSString *)key value:(NSString *)value {
+- (void)submitKey:(NSString *)key value:(NSString *)value
+{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 
     [params setObject:value forKey:key];
@@ -165,14 +189,21 @@
                            success:^(NSURLSessionDataTask *task, id responseObject) {
                                //更新本地存储的个人信息
 
-                               if ([key isEqualToString:@"name"]) {
+                               if ([key isEqualToString:@"name"])
+                               {
                                    [[Config shareConfig] setName:value];
-                               } else if ([key isEqualToString:@"cellName"]) {
+                               }
+                               else if ([key isEqualToString:@"cellName"])
+                               {
                                    [[Config shareConfig] setBranchName:value];
 
-                               } else if ([key isEqualToString:@"brand"]) {
+                               }
+                               else if ([key isEqualToString:@"brand"])
+                               {
                                    [[Config shareConfig] setBrand:value];
-                               } else if ([key isEqualToString:@"model"]) {
+                               }
+                               else if ([key isEqualToString:@"model"])
+                               {
                                    [[Config shareConfig] setLiftType:value];
                                }
 
@@ -185,18 +216,23 @@
 
 #pragma mark - ListDialogViewDelegate
 
-- (void)onSelectItem:(NSString *)key content:(NSString *)content {
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
 
 
-    if ([content isEqualToString:@"其他"]) {
+    if ([content isEqualToString:@"其他"])
+    {
         [self showEditDialog:_lbBrand];
 
-    } else {
+    }
+    else
+    {
         _lbBrand.text = content;
     }
 }
 
-- (void)showEditDialog:(UILabel *)label {
+- (void)showEditDialog:(UILabel *)label
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
     [dialog addOnClickOkListener:^(NSString *content) {

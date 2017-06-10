@@ -10,26 +10,31 @@
 
 @implementation CouponCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"CouponCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 140;
 }
 
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"coupon_cell";
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 

@@ -10,26 +10,31 @@
 
 @implementation MainTaskCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainTaskCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 80;
 }
 
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"main_task_cell";
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 

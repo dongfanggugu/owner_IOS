@@ -27,25 +27,30 @@
 
 @implementation SelectableCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"SelectableCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 50;
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"selectable_cell";
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     _ivFlag.image = [UIImage imageNamed:@"icon_down"];
 
@@ -55,8 +60,10 @@
 }
 
 
-- (void)setData:(NSArray<id <ListDialogDataDelegate>> *)arrayData {
-    if (nil == arrayData || 0 == arrayData.count) {
+- (void)setData:(NSArray<id <ListDialogDataDelegate>> *)arrayData
+{
+    if (nil == arrayData || 0 == arrayData.count)
+    {
         return;
     }
     _arrayData = arrayData;
@@ -68,7 +75,8 @@
     _lbContent.text = _content;
 }
 
-- (void)showDialog {
+- (void)showDialog
+{
     _ivFlag.image = [UIImage imageNamed:@"icon_up"];
     ListDialogView *dialog = [ListDialogView viewFromNib];
     [dialog setData:_arrayData];
@@ -77,53 +85,67 @@
     [dialog show];
 }
 
-- (NSString *)getKeyValue {
-    if (0 == _key.length) {
+- (NSString *)getKeyValue
+{
+    if (0 == _key.length)
+    {
         return @"";
     }
 
     return _key;
 }
 
-- (void)setKeyValue:(NSString *)key {
+- (void)setKeyValue:(NSString *)key
+{
     _key = key;
 }
 
-- (NSString *)getContentValue {
-    if (0 == _content.length) {
+- (NSString *)getContentValue
+{
+    if (0 == _content.length)
+    {
         return @"";
     }
 
     return _content;
 }
 
-- (void)setContentValue:(NSString *)content {
+- (void)setContentValue:(NSString *)content
+{
     _content = content;
     _lbContent.text = _content;
 }
 
-- (void)setAfterSelectedListener:(void (^)(NSString *, NSString *))selection {
+- (void)setAfterSelectedListener:(void (^)(NSString *, NSString *))selection
+{
     _afterSelected = selection;
 
-    if (nil == selection) {
+    if (nil == selection)
+    {
         NSLog(@"block is nil");
     }
 }
 
-- (void)setBeforeSelectedListener:(void (^)(NSString *, NSString *))selection {
+- (void)setBeforeSelectedListener:(void (^)(NSString *, NSString *))selection
+{
     _beforeSelected = selection;
 
-    if (nil == selection) {
+    if (nil == selection)
+    {
         NSLog(@"block is nil");
     }
 }
 
-- (void)setShowable:(BOOL)showable {
-    if (showable) {
+- (void)setShowable:(BOOL)showable
+{
+    if (showable)
+    {
         self.lbContent.userInteractionEnabled = YES;
         self.ivFlag.hidden = NO;
 
-    } else {
+    }
+    else
+    {
         self.lbContent.userInteractionEnabled = NO;
         self.ivFlag.hidden = YES;
     }
@@ -131,11 +153,13 @@
 
 #pragma mark -- ListDialogDelegate
 
-- (void)onSelectItem:(NSString *)key content:(NSString *)content {
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
     _ivFlag.image = [UIImage imageNamed:@"icon_down"];
 
 
-    if (_beforeSelected) {
+    if (_beforeSelected)
+    {
         _beforeSelected(_content, content);
     }
 
@@ -144,17 +168,20 @@
 
     _lbContent.text = _content;
 
-    if (_afterSelected) {
+    if (_afterSelected)
+    {
         _afterSelected(key, content);
 
     }
 }
 
-- (void)onSelectDialogTag:(NSInteger)tag content:(NSString *)content {
+- (void)onSelectDialogTag:(NSInteger)tag content:(NSString *)content
+{
 
 }
 
-- (void)onDismiss {
+- (void)onDismiss
+{
     _ivFlag.image = [UIImage imageNamed:@"icon_down"];
 }
 

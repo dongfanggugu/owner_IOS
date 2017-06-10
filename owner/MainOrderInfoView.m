@@ -28,17 +28,20 @@
 
 @implementation MainOrderInfoView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainOrderInfoView" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     _btnOrder.layer.masksToBounds = YES;
@@ -55,46 +58,61 @@
     [_btnChange addTarget:self action:@selector(onClickChange) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
     [super layoutSubviews];
 }
 
-- (void)onClickPay {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickPayButton:)]) {
+- (void)onClickPay
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickPayButton:)])
+    {
         [_delegate onClickPayButton:self];
     }
 }
 
-- (void)onClickDetail {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetailButton:)]) {
+- (void)onClickDetail
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetailButton:)])
+    {
         [_delegate onClickDetailButton:self];
     }
 }
 
-- (void)onClickOrder {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickOrderButton:)]) {
+- (void)onClickOrder
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickOrderButton:)])
+    {
         [_delegate onClickOrderButton:self];
     }
 }
 
-- (void)onClickBack {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickBackButton:)]) {
+- (void)onClickBack
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickBackButton:)])
+    {
         [_delegate onClickBackButton:self];
     }
 }
 
-- (void)onClickChange {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickChangeButton:)]) {
+- (void)onClickChange
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickChangeButton:)])
+    {
         [_delegate onClickChangeButton:self];
     }
 }
 
-- (void)setViewHidden:(BOOL)viewHidden {
+- (void)setViewHidden:(BOOL)viewHidden
+{
     _viewHidden = viewHidden;
-    if (viewHidden) {
+    if (viewHidden)
+    {
         _viewBottom.hidden = YES;
 
-    } else {
+    }
+    else
+    {
         _viewBottom.hidden = NO;
     }
 }

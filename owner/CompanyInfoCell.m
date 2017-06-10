@@ -10,25 +10,30 @@
 
 @implementation CompanyInfoCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"CompanyInfoCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 44;
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"company_info_cell";
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -40,8 +45,10 @@
 
 }
 
-- (void)clickDetail {
-    if (_onClickDetail) {
+- (void)clickDetail
+{
+    if (_onClickDetail)
+    {
         _onClickDetail();
     }
 }

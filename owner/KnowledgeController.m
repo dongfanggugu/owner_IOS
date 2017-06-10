@@ -21,7 +21,8 @@
 
 @implementation KnowledgeController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:_knType];
     [self initView];
@@ -29,15 +30,18 @@
     // Do any additional setup after loading the view.
 }
 
-- (NSMutableArray *)arrayKn {
-    if (!_arrayKn) {
+- (NSMutableArray *)arrayKn
+{
+    if (!_arrayKn)
+    {
         _arrayKn = [NSMutableArray array];
     }
 
     return _arrayKn;
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -53,8 +57,10 @@
     [self.view addSubview:_tableView];
 }
 
-- (void)getKnowledge {
-    if (0 == _knType.length) {
+- (void)getKnowledge
+{
+    if (0 == _knType.length)
+    {
         return;
     }
 
@@ -78,18 +84,22 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.arrayKn.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     KnInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[KnInfoCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [KnInfoCell cellFromNib];
     }
 
@@ -104,11 +114,13 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [KnInfoCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSDictionary *info = self.arrayKn[indexPath.row];
 
     KnowledgeDetailController *controller = [[KnowledgeDetailController alloc] init];
@@ -123,11 +135,13 @@
 }
 
 
-- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
+{
 
 }
 
-- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
+{
 
 }
 

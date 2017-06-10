@@ -11,21 +11,25 @@
 
 @implementation FaultInfo
 
-- (id)initWithDictionary:(NSDictionary *)dictionary {
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
     self = [super initWithDictionary:dictionary];
 
-    if (self) {
+    if (self)
+    {
         self.faultId = dictionary[@"id"];
     }
 
     return self;
 }
 
-- (NSString *)getKey {
+- (NSString *)getKey
+{
     return _faultId;
 }
 
-- (NSString *)getShowContent {
+- (NSString *)getShowContent
+{
     return _name;
 }
 

@@ -83,50 +83,58 @@
 
 @implementation RapidRepairController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"快修服务"];
     [self initNavRightWithText:@"联系我们"];
     [self initView];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", Custom_Service]];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     [self.view addSubview:webView];
 }
 
-- (void)submit {
+- (void)submit
+{
     NSString *brand = _brandCell.getContentValue;
 
-    if (0 == brand.length) {
+    if (0 == brand.length)
+    {
         [HUDClass showHUDWithText:@"请选择电梯品牌"];
         return;
     }
 
     NSString *weight = [Utils string:_weightCell.getContentValue substringBeforeChar:@"k"];
 
-    if (0 == weight.length) {
+    if (0 == weight.length)
+    {
         [HUDClass showHUDWithText:@"请选择电梯载重量"];
         return;
     }
 
     NSString *layer = [Utils string:_layerCell.getContentValue substringBeforeChar:@"层"];
 
-    if (0 == layer.length) {
+    if (0 == layer.length)
+    {
         [HUDClass showHUDWithText:@"请选择电梯电梯层站"];
         return;
     }
 
     NSString *faultInfo = _desCell.tvContent.text;
 
-    if (0 == faultInfo.length) {
+    if (0 == faultInfo.length)
+    {
         [HUDClass showHUDWithText:@"请填写故障描述"];
         return;
     }
 
-    if (0 == _url.length) {
+    if (0 == _url.length)
+    {
         [HUDClass showHUDWithText:@"请先上传故障照片"];
         return;
     }
@@ -134,7 +142,8 @@
 
     NSString *date = _dateCell.lbValue.text;
 
-    if ([date isEqualToString:DATE_INIT]) {
+    if ([date isEqualToString:DATE_INIT])
+    {
         [HUDClass showHUDWithText:@"请选择上门日期"];
         return;
     }
@@ -143,7 +152,8 @@
 
     NSString *linkTel = _linkTelCell.tfValue.text;
 
-    if (0 == linkName || 0 == linkTel) {
+    if (0 == linkName || 0 == linkTel)
+    {
 
         [HUDClass showHUDWithText:@"请正确填写联系人信息"];
         return;
@@ -151,26 +161,30 @@
 
     NSString *name = _nameCell.tfValue.text;
 
-    if (0 == name.length) {
+    if (0 == name.length)
+    {
         [HUDClass showHUDWithText:@"请填写业主姓名"];
         return;
     }
 
     NSString *tel = _telCell.tfValue.text;
 
-    if (0 == tel.length) {
+    if (0 == tel.length)
+    {
         [HUDClass showHUDWithText:@"请填写业主手机号码"];
         return;
     }
 
     NSString *code = _tfCode.text;
 
-    if (0 == code.length) {
+    if (0 == code.length)
+    {
         [HUDClass showHUDWithText:@"请填写验证码"];
         return;
     }
 
-    if (![code isEqualToString:[[Config shareConfig] getSMSCode]]) {
+    if (![code isEqualToString:[[Config shareConfig] getSMSCode]])
+    {
         [HUDClass showHUDWithText:@"验证码不正确，请确认验证码"];
         return;
 
@@ -178,7 +192,8 @@
 
     NSString *address = _addressCell.lbValue.text;
 
-    if (0 == address.length) {
+    if (0 == address.length)
+    {
         [HUDClass showHUDWithText:@"请选择您的地址"];
         return;
     }
@@ -212,11 +227,13 @@
     }];
 }
 
-- (void)back {
+- (void)back
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)
                                               style:UITableViewStyleGrouped];
@@ -252,34 +269,46 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (0 == section) {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (0 == section)
+    {
         return 7;
 
-    } else {
+    }
+    else
+    {
         return 6;
     }
 }
 
-- (void)showDatePicker {
+- (void)showDatePicker
+{
     DatePickerDialog *dialog = [DatePickerDialog viewFromNib];
     dialog.delegate = self;
 
     [dialog show];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
-        if (0 == indexPath.row) {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section)
+    {
+        if (0 == indexPath.row)
+        {
 
-            if (_brandCell) {
+            if (_brandCell)
+            {
                 return _brandCell;
 
-            } else {
+            }
+            else
+            {
                 SelectableCell *cell = [SelectableCell cellFromNib];
                 _brandCell = cell;
 
@@ -294,7 +323,8 @@
                     [weakCell setData:[response getBrandList]];
 
                     [weakCell setBeforeSelectedListener:^(NSString *preConent, NSString *content) {
-                        if ([content isEqualToString:@"其他"]) {
+                        if ([content isEqualToString:@"其他"])
+                        {
                             [weakSelf showEditDialog:weakCell pre:preConent];
                         }
                     }];
@@ -308,11 +338,16 @@
 
             }
 
-        } else if (1 == indexPath.row) {
-            if (_weightCell) {
+        }
+        else if (1 == indexPath.row)
+        {
+            if (_weightCell)
+            {
                 return _weightCell;
 
-            } else {
+            }
+            else
+            {
 
                 SelectableCell *cell = [SelectableCell cellFromNib];
                 _weightCell = cell;
@@ -337,7 +372,8 @@
                 [cell setData:array];
 
                 [cell setBeforeSelectedListener:^(NSString *preContent, NSString *content) {
-                    if ([content isEqualToString:@"其他"]) {
+                    if ([content isEqualToString:@"其他"])
+                    {
                         [weakSelf showWeightEditDialog:weakCell pre:preContent];
                     }
                 }];
@@ -347,11 +383,16 @@
                 return cell;
             }
 
-        } else if (2 == indexPath.row) {
-            if (_layerCell) {
+        }
+        else if (2 == indexPath.row)
+        {
+            if (_layerCell)
+            {
                 return _layerCell;
 
-            } else {
+            }
+            else
+            {
                 SelectableCell *cell = [SelectableCell cellFromNib];
                 _layerCell = cell;
 
@@ -378,11 +419,16 @@
                 return cell;
 
             }
-        } else if (3 == indexPath.row) {
-            if (_faultCell) {
+        }
+        else if (3 == indexPath.row)
+        {
+            if (_faultCell)
+            {
                 return _faultCell;
 
-            } else {
+            }
+            else
+            {
                 SelectableCell *cell = [SelectableCell cellFromNib];
 
                 _faultCell = cell;
@@ -396,7 +442,8 @@
                 [[HttpClient shareClient] post:URL_FAULT_LIST parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                     FaultListResponse *response = [[FaultListResponse alloc] initWithDictionary:responseObject];
 
-                    if ([response getFaultList].count > 0) {
+                    if ([response getFaultList].count > 0)
+                    {
                         weakSelf.falutType = [[response getFaultList] objectAtIndex:0].faultId;
 
                         [weakCell setData:[response getFaultList]];
@@ -413,11 +460,16 @@
                 return cell;
             }
 
-        } else if (4 == indexPath.row) {
-            if (_desCell) {
+        }
+        else if (4 == indexPath.row)
+        {
+            if (_desCell)
+            {
                 return _desCell;
 
-            } else {
+            }
+            else
+            {
                 KeyMultiEditCell *cell = [KeyMultiEditCell viewFromNib];
                 _desCell = cell;
 
@@ -428,11 +480,16 @@
                 return cell;
             }
 
-        } else if (5 == indexPath.row) {
-            if (_dateCell) {
+        }
+        else if (5 == indexPath.row)
+        {
+            if (_dateCell)
+            {
                 return _dateCell;
 
-            } else {
+            }
+            else
+            {
                 KeyValueCell *cell = [KeyValueCell cellFromNib];
                 _dateCell = cell;
                 cell.lbKey.text = @"上门日期";
@@ -448,12 +505,17 @@
 
             }
 
-        } else if (6 == indexPath.row) {
+        }
+        else if (6 == indexPath.row)
+        {
 
-            if (_imageCell) {
+            if (_imageCell)
+            {
                 return _imageCell;
 
-            } else {
+            }
+            else
+            {
                 KeyImageViewCell *cell = [KeyImageViewCell cellFromNib];
 
                 _imageCell = cell;
@@ -462,7 +524,8 @@
                 __weak typeof(self) weakSelf = self;
 
                 [cell setOnClickImageListener:^{
-                    if (weakCell.hasImage) {
+                    if (weakCell.hasImage)
+                    {
                         return;
                     }
                     [weakSelf showPicker];
@@ -470,7 +533,8 @@
                 }];
 
                 [cell setOnClickBtnListener:^{
-                    if (!weakCell.hasImage) {
+                    if (!weakCell.hasImage)
+                    {
                         return;
                     }
 
@@ -483,12 +547,18 @@
             }
         }
 
-    } else if (1 == indexPath.section) {
-        if (0 == indexPath.row) {
-            if (_linkNameCell) {
+    }
+    else if (1 == indexPath.section)
+    {
+        if (0 == indexPath.row)
+        {
+            if (_linkNameCell)
+            {
                 return _linkNameCell;
 
-            } else {
+            }
+            else
+            {
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _linkNameCell = cell;
 
@@ -499,11 +569,16 @@
             }
 
 
-        } else if (1 == indexPath.row) {
-            if (_linkTelCell) {
+        }
+        else if (1 == indexPath.row)
+        {
+            if (_linkTelCell)
+            {
                 return _linkTelCell;
 
-            } else {
+            }
+            else
+            {
 
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _linkTelCell = cell;
@@ -514,11 +589,16 @@
                 return cell;
             }
 
-        } else if (2 == indexPath.row) {
-            if (_nameCell) {
+        }
+        else if (2 == indexPath.row)
+        {
+            if (_nameCell)
+            {
                 return _nameCell;
 
-            } else {
+            }
+            else
+            {
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _nameCell = cell;
 
@@ -530,11 +610,16 @@
                 return cell;
             }
 
-        } else if (3 == indexPath.row) {
-            if (_telCell) {
+        }
+        else if (3 == indexPath.row)
+        {
+            if (_telCell)
+            {
                 return _telCell;
 
-            } else {
+            }
+            else
+            {
                 KeyEditBtnCell *cell = [KeyEditBtnCell cellFromNib];
                 _telCell = cell;
 
@@ -547,7 +632,8 @@
 
                     NSString *tel = weakCell.tfValue.text;
 
-                    if (0 == tel.length || tel.length != 11) {
+                    if (0 == tel.length || tel.length != 11)
+                    {
                         [HUDClass showHUDWithText:@"请输入正确的手机号码"];
                         return;
                     }
@@ -567,7 +653,9 @@
                 return cell;
             }
 
-        } else if (4 == indexPath.row) {
+        }
+        else if (4 == indexPath.row)
+        {
             KeyEditCell *cell = [KeyEditCell cellFromNib];
             cell.lbKey.text = @"验证码";
 
@@ -578,11 +666,16 @@
 
             return cell;
 
-        } else if (5 == indexPath.row) {
-            if (_addressCell) {
+        }
+        else if (5 == indexPath.row)
+        {
+            if (_addressCell)
+            {
                 return _addressCell;
 
-            } else {
+            }
+            else
+            {
                 KeyValueCell *cell = [KeyValueCell cellFromNib];
                 _addressCell = cell;
 
@@ -605,25 +698,33 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section)
+    {
 
-        if (4 == indexPath.row) {
+        if (4 == indexPath.row)
+        {
             return [KeyMultiEditCell cellHeight];
 
-        } else if (6 == indexPath.row) {
+        }
+        else if (6 == indexPath.row)
+        {
             return [KeyImageViewCell cellHeight];
 
         }
 
         return [KeyEditCell cellHeight];
 
-    } else {
+    }
+    else
+    {
         return [KeyEditCell cellHeight];
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     view.backgroundColor = [Utils getColorByRGB:@"#f1f1f1"];
 
@@ -640,33 +741,41 @@
     [view addSubview:titleView];
     [view addSubview:label];
 
-    if (0 == section) {
+    if (0 == section)
+    {
         label.text = @"订单信息";
         return view;
-    } else if (1 == section) {
+    }
+    else if (1 == section)
+    {
         label.text = @"业主信息";
         return view;
-    } else {
+    }
+    else
+    {
         label.text = @"业主信息";
         return view;
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 40;
 }
 
 
 #pragma mark - DatePickerDelegate
 
-- (void)onPickerDate:(NSDate *)date {
+- (void)onPickerDate:(NSDate *)date
+{
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"yyyy-MM-dd HH:mm";
     NSString *dateStr = [format stringFromDate:date];
     _dateCell.lbValue.text = dateStr;
 }
 
-- (void)addressLocation {
+- (void)addressLocation
+{
     AddressLocationController *controller = [[AddressLocationController alloc] init];
     controller.delegate = self;
 
@@ -676,7 +785,8 @@
 
 #pragma mark - LocationControllerDelegate
 
-- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng {
+- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
     _cellName = cell;
     _address = address;
 
@@ -687,7 +797,8 @@
 
 }
 
-- (void)showEditDialog:(SelectableCell *)cell pre:(NSString *)preContent {
+- (void)showEditDialog:(SelectableCell *)cell pre:(NSString *)preContent
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
     [dialog addOnClickOkListener:^(NSString *content) {
@@ -702,7 +813,8 @@
     [dialog show];
 }
 
-- (void)showWeightEditDialog:(SelectableCell *)cell pre:(NSString *)preContent {
+- (void)showWeightEditDialog:(SelectableCell *)cell pre:(NSString *)preContent
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
     dialog.lbTitle.text = @"输入电梯的载重量";
@@ -723,7 +835,8 @@
     [dialog show];
 }
 
-- (void)showPicker {
+- (void)showPicker
+{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"照片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
     [controller addAction:[UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
@@ -745,7 +858,8 @@
 /**
  *  从本地选取照片
  */
-- (void)pickPhoto {
+- (void)pickPhoto
+{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
 
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -760,9 +874,11 @@
 /**
  *  拍摄照片
  */
-- (void)takePhoto {
+- (void)takePhoto
+{
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
 
@@ -779,12 +895,14 @@
  *  @param picker picker
  *  @param info info
  */
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
+{
 
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
 
     //选择的是图片
-    if ([type isEqualToString:@"public.image"]) {
+    if ([type isEqualToString:@"public.image"])
+    {
 
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
 
@@ -805,10 +923,13 @@
 
         BOOL suc = [FileUtils writeFile:data Path:dirPath fileName:IMAGE_TEMP];
 
-        if (suc) {
+        if (suc)
+        {
             NSLog(@"照片保存成功");
 
-        } else {
+        }
+        else
+        {
             NSLog(@"照片保存失败");
         }
 
@@ -823,37 +944,47 @@
  *
  *  @param picker picker
  */
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)delRepairImage {
+- (void)delRepairImage
+{
     NSString *path = [NSString stringWithFormat:@"%@%@", IMAGE_PATH, IMAGE_TEMP];
     NSString *dirPath = [NSHomeDirectory() stringByAppendingString:path];
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL exist = [fileManager fileExistsAtPath:dirPath];
 
-    if (exist) {
+    if (exist)
+    {
         NSError *error;
         BOOL suc = [fileManager removeItemAtPath:dirPath error:&error];
 
         NSLog(@"error:%@", error);
 
-        if (suc) {
+        if (suc)
+        {
             NSLog(@"del successfully");
-        } else {
+        }
+        else
+        {
             NSLog(@"del failed");
         }
-    } else {
+    }
+    else
+    {
         NSLog(@"image does not exist");
     }
 }
 
-- (void)uploadRepairImage:(UIImage *)image {
+- (void)uploadRepairImage:(UIImage *)image
+{
     NSString *imageStr = [Utils image2Base64From:image];
 
-    if (0 == imageStr.length) {
+    if (0 == imageStr.length)
+    {
         return;
     }
 
@@ -873,7 +1004,8 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     [self delRepairImage];
 }
 

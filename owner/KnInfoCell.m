@@ -10,25 +10,30 @@
 
 @implementation KnInfoCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"KnInfoCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 66;
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"kn_info_cell";
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 

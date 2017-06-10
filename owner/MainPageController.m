@@ -63,7 +63,8 @@
 
 @implementation MainPageController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self initView];
@@ -71,22 +72,26 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
 
     self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     [HUDClass showHUDWithText:@"功能开发中!"];
 }
 
-- (void)initView {
+- (void)initView
+{
 
     self.tableView.bounces = NO;
     UIView *statusView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, self.screenWidth, 20)];
@@ -155,7 +160,8 @@
     [_lbKn4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(safety)]];
 }
 
-- (void)QA {
+- (void)QA
+{
     KnowledgeController *controller = [[KnowledgeController alloc] init];
 
     controller.knType = @"常见问题";
@@ -164,7 +170,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)faultCode {
+- (void)faultCode
+{
     KnowledgeController *controller = [[KnowledgeController alloc] init];
 
     controller.knType = @"故障码";
@@ -173,7 +180,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)operation {
+- (void)operation
+{
     KnowledgeController *controller = [[KnowledgeController alloc] init];
 
     controller.knType = @"操作手册";
@@ -182,7 +190,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)safety {
+- (void)safety
+{
     KnowledgeController *controller = [[KnowledgeController alloc] init];
 
     controller.knType = @"安全法规";
@@ -192,7 +201,8 @@
 }
 
 
-- (void)initBannerView {
+- (void)initBannerView
+{
     self.tableView.tableHeaderView = self.bannerView;
 
     __weak typeof(self) weakSelf = self;
@@ -200,7 +210,8 @@
     [[HttpClient shareClient] bagpost:@"getAdvertisementBySmallOwner" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSMutableArray *array = [NSMutableArray array];
 
-        for (NSDictionary *dic in [responseObject objectForKey:@"body"]) {
+        for (NSDictionary *dic in [responseObject objectForKey:@"body"])
+        {
             AddBannerData *data = [[AddBannerData alloc] initWithUrl:[dic objectForKey:@"pic"]
                                                             clickUrl:[dic objectForKey:@"picUrl"]];
             [array addObject:data];
@@ -214,8 +225,10 @@
     }];
 }
 
-- (AddBannerView *)bannerView {
-    if (!_bannerView) {
+- (AddBannerView *)bannerView
+{
+    if (!_bannerView)
+    {
         _bannerView = [[AddBannerView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, self.screenWidth / 2)];
 
         _lbLocation = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 21)];
@@ -241,8 +254,10 @@
     return _bannerView;
 }
 
-- (void)repair {
-    if (!self.login) {
+- (void)repair
+{
+    if (!self.login)
+    {
         [HUDClass showHUDWithText:@"您需要先登录才能使用快修服务"];
         return;
     }
@@ -254,20 +269,23 @@
 }
 
 
-- (void)maintenance {
+- (void)maintenance
+{
     ReportController *controller = [[ReportController alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:controller];
 }
 
-- (void)ensurance {
+- (void)ensurance
+{
     EnsuranceMainController *controller = [[EnsuranceMainController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)market {
+- (void)market
+{
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Market" bundle:nil];
     UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"market_detail"];
 
@@ -276,21 +294,24 @@
     //self.hidesBottomBarWhenPushed = NO;
 }
 
-- (void)help {
+- (void)help
+{
     HelpController *controller = [[HelpController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
 
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)other {
+- (void)other
+{
     OtherController *controller = [[OtherController alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)expert {
+- (void)expert
+{
     CommonWebViewController *controller = [[CommonWebViewController alloc] init];
     controller.titleStr = @"专家团队";
     controller.urlLink = [NSString stringWithFormat:@"%@static/h5/expert.html", [Utils getIp]];
@@ -299,7 +320,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)honyum {
+- (void)honyum
+{
     CommonWebViewController *controller = [[CommonWebViewController alloc] init];
     controller.titleStr = @"中建华宇";
     controller.urlLink = [NSString stringWithFormat:@"%@static/h5/honyum.html", [Utils getIp]];
@@ -310,8 +332,10 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.row) {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.row)
+    {
         return 865;
 
     }
@@ -322,7 +346,8 @@
 /**
  *  检测是否需要升级
  */
-- (void)checkUpdate {
+- (void)checkUpdate
+{
 
     [[HttpClient shareClient] post:URL_VERSION_CHECK parameters:nil
                            success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -332,7 +357,8 @@
 
                                NSInteger localVersion = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] integerValue];
 
-                               if (remoteVersion > localVersion) {
+                               if (remoteVersion > localVersion)
+                               {
                                    [self performSelectorOnMainThread:@selector(alertUpdate) withObject:nil waitUntilDone:NO];
                                }
 
@@ -345,7 +371,8 @@
 /**
  *  提示进行升级
  */
-- (void)alertUpdate {
+- (void)alertUpdate
+{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"新的版本可用，请进行升级"
                                                                  preferredStyle:UIAlertControllerStyleAlert];
 
@@ -363,14 +390,16 @@
 }
 
 
-- (void)jumpToUpdate {
+- (void)jumpToUpdate
+{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://fir.im/liftowner"]];
 }
 
 
 #pragma mark - AddBannerViewDelegate
 
-- (void)didClickPage:(AddBannerView *)view url:(NSString *)url {
+- (void)didClickPage:(AddBannerView *)view url:(NSString *)url
+{
     NSLog(@"banner url:%@", url);
 }
 

@@ -10,17 +10,20 @@
 
 @implementation CheckResultView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"CheckResultView" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     _tvContent.userInteractionEnabled = NO;

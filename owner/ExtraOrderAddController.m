@@ -46,7 +46,8 @@
 
 @implementation ExtraOrderAddController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"服务订单"];
     [self initNavRightWithText:@"联系我们"];
@@ -54,22 +55,26 @@
     [self getHouses];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", Custom_Service]];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     [self.view addSubview:webView];
 }
 
-- (NSMutableArray *)arrayHouse {
-    if (!_arrayHouse) {
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse)
+    {
         _arrayHouse = [NSMutableArray array];
     }
 
     return _arrayHouse;
 }
 
-- (void)submit {
+- (void)submit
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     params[@"incrementTypeId"] = _serviceInfo.typeId;
@@ -80,7 +85,8 @@
 
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
 
-        if (url.length != 0) {
+        if (url.length != 0)
+        {
             PayViewController *controller = [[PayViewController alloc] init];
             controller.urlStr = url;
 
@@ -97,11 +103,13 @@
 
 }
 
-- (void)back {
+- (void)back
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)
                                               style:UITableViewStyleGrouped];
@@ -138,26 +146,36 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (0 == section) {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (0 == section)
+    {
         return 2;
 
-    } else if (1 == section) {
+    }
+    else if (1 == section)
+    {
         return 3;
 
-    } else {
+    }
+    else
+    {
         return 5;
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section)
+    {
 
-        if (0 == indexPath.row) {
+        if (0 == indexPath.row)
+        {
             MainOrderInfoCell *cell = [MainOrderInfoCell cellFromNib];
 
             cell.lbName.text = [NSString stringWithFormat:@"%@ ￥%.2lf", _serviceInfo.name, _serviceInfo.price];
@@ -166,9 +184,12 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
 
-        } else if (1 == indexPath.row) {
+        }
+        else if (1 == indexPath.row)
+        {
 
-            if (_amountCell) {
+            if (_amountCell)
+            {
                 return _amountCell;
             }
 
@@ -180,9 +201,12 @@
             return cell;
         }
 
-    } else if (1 == indexPath.section) {
+    }
+    else if (1 == indexPath.section)
+    {
 
-        if (0 == indexPath.row) {
+        if (0 == indexPath.row)
+        {
 
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"电梯品牌";
@@ -190,14 +214,18 @@
 
             return cell;
 
-        } else if (1 == indexPath.row) {
+        }
+        else if (1 == indexPath.row)
+        {
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"载重量";
             cell.lbValue.text = [NSString stringWithFormat:@"%@kg", _houseInfo[@"weight"]];
 
             return cell;
 
-        } else if (2 == indexPath.row) {
+        }
+        else if (2 == indexPath.row)
+        {
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"电梯层站";
             cell.lbValue.text = [NSString stringWithFormat:@"%@层", _houseInfo[@"layerAmount"]];
@@ -205,9 +233,12 @@
             return cell;
         }
 
-    } else if (2 == indexPath.section) {
+    }
+    else if (2 == indexPath.section)
+    {
 
-        if (0 == indexPath.row) {
+        if (0 == indexPath.row)
+        {
 
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"联系人";
@@ -215,7 +246,9 @@
 
             return cell;
 
-        } else if (1 == indexPath.row) {
+        }
+        else if (1 == indexPath.row)
+        {
 
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"联系人手机";
@@ -223,21 +256,27 @@
 
             return cell;
 
-        } else if (2 == indexPath.row) {
+        }
+        else if (2 == indexPath.row)
+        {
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"业主";
             cell.lbValue.text = [[Config shareConfig] getName];
 
             return cell;
 
-        } else if (3 == indexPath.row) {
+        }
+        else if (3 == indexPath.row)
+        {
 
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"业主手机";
             cell.lbValue.text = [[Config shareConfig] getTel];
             return cell;
 
-        } else if (4 == indexPath.row) {
+        }
+        else if (4 == indexPath.row)
+        {
             KeyValueBtnCell *cell = [KeyValueBtnCell cellFromNib];
 
             _addressCell = cell;
@@ -246,7 +285,8 @@
             cell.lbValue.text = _houseInfo[@"cellName"];
             cell.btnTitle = @"切换";
 
-            if (1 == self.arrayHouse.count) {
+            if (1 == self.arrayHouse.count)
+            {
                 [cell hideBtn];
             }
 
@@ -269,22 +309,30 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section)
+    {
 
-        if (0 == indexPath.row) {
+        if (0 == indexPath.row)
+        {
             return [MainOrderInfoCell cellHeight];
 
-        } else {
+        }
+        else
+        {
             return [OrderAmountCell cellHeight];
         }
 
-    } else {
+    }
+    else
+    {
         return [KeyEditCell cellHeight];
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 40)];
     view.backgroundColor = [Utils getColorByRGB:@"#f1f1f1"];
 
@@ -301,27 +349,35 @@
     [view addSubview:titleView];
     [view addSubview:label];
 
-    if (0 == section) {
+    if (0 == section)
+    {
         label.text = @"订单信息";
         return view;
 
-    } else if (1 == section) {
+    }
+    else if (1 == section)
+    {
         label.text = @"电梯信息";
         return view;
 
-    } else {
+    }
+    else
+    {
         label.text = @"业主信息";
         return view;
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 40;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
-    if (0 == indexPath.section && 0 == indexPath.row) {
+    if (0 == indexPath.section && 0 == indexPath.row)
+    {
 
         MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
 
@@ -346,7 +402,8 @@
  contacts
  contactsTel
  */
-- (void)getHouses {
+- (void)getHouses
+{
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
@@ -357,12 +414,15 @@
     }];
 }
 
-- (void)showHouselist {
-    if (0 == self.arrayHouse.count) {
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count)
+    {
         return;
     }
 
-    if (1 == self.arrayHouse.count) {
+    if (1 == self.arrayHouse.count)
+    {
 
         _houseInfo = self.arrayHouse[0];
 
@@ -373,7 +433,8 @@
 
     NSMutableArray *array = [NSMutableArray array];
 
-    for (NSDictionary *info in self.arrayHouse) {
+    for (NSDictionary *info in self.arrayHouse)
+    {
         ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
         [array addObject:data];
     }
@@ -386,9 +447,12 @@
 
 #pragma mark - LisDialogViewDelegate
 
-- (void)onSelectItem:(NSString *)key content:(NSString *)content {
-    for (NSDictionary *info in self.arrayHouse) {
-        if ([key isEqualToString:info[@"id"]]) {
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse)
+    {
+        if ([key isEqualToString:info[@"id"]])
+        {
 
             _houseInfo = info;
 
@@ -401,11 +465,13 @@
 
 #pragma mark - PayViewControllerDelegate
 
-- (void)clickBack {
+- (void)clickBack
+{
 
 }
 
-- (void)showEditDialog:(SelectableCell *)cell pre:(NSString *)preContent {
+- (void)showEditDialog:(SelectableCell *)cell pre:(NSString *)preContent
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
     [dialog addOnClickOkListener:^(NSString *content) {

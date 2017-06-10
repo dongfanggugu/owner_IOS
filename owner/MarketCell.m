@@ -15,24 +15,29 @@
 
 @implementation MarketCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MarketCell" owner:nil options:nil];
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"market_cell";
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 80;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     _lbTitle.layer.masksToBounds = YES;
     _lbTitle.layer.cornerRadius = 18;

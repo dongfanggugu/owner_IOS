@@ -18,7 +18,8 @@
 @implementation LauncherController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
 
@@ -36,7 +37,8 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
 
 
@@ -45,7 +47,8 @@
 
 }
 
-- (void)login {
+- (void)login
+{
 
     //NSString *userId = [[Config shareConfig] getUserId];
 

@@ -51,7 +51,8 @@
 
 @implementation LocationViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"地址选择"];
     [self initNavRightWithText:@"确定"];
@@ -76,7 +77,8 @@
 /**
  *  设置标题栏右侧
  */
-- (void)setTitleRight {
+- (void)setTitleRight
+{
     UIButton *btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
     [btnSubmit setImage:[UIImage imageNamed:@"icon_add_confirm"] forState:UIControlStateNormal];
     [btnSubmit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
@@ -84,17 +86,20 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     [self submit];
 }
 
-- (void)search {
+- (void)search
+{
     BMKCitySearchOption *option = [[BMKCitySearchOption alloc] init];
     option.pageIndex = 0;
     option.pageCapacity = 10;
@@ -104,7 +109,8 @@
     _progress = [HUDClass showLoadingHUD];
 
     BOOL result = [_poiSearch poiSearchInCity:option];
-    if (!result) {
+    if (!result)
+    {
         [HUDClass hideLoadingHUD:_progress];
         _progress = nil;
         [HUDClass showHUDWithText:@"查询失败,请稍后再试!"];
@@ -113,23 +119,29 @@
 
 #pragma mark -- BMKSearchDelegate
 
-- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult *)poiResult errorCode:(BMKSearchErrorCode)errorCode {
+- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult *)poiResult errorCode:(BMKSearchErrorCode)errorCode
+{
     [HUDClass hideLoadingHUD:_progress];
     _progress = nil;
 
-    if (errorCode == BMK_SEARCH_NO_ERROR) {
+    if (errorCode == BMK_SEARCH_NO_ERROR)
+    {
         _dataArray = poiResult.poiInfoList;
         [_tableView reloadData];
         [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         [self setSelection:0];
 
-    } else {
+    }
+    else
+    {
         [HUDClass showHUDWithText:@"查找失败,请退出再次进入!"];
     }
 }
 
-- (void)submit {
-    if (nil == _annotationView) {
+- (void)submit
+{
+    if (nil == _annotationView)
+    {
         [HUDClass showHUDWithText:@"请先选择你的地址!"];
         return;
     }
@@ -137,7 +149,8 @@
     CLLocationCoordinate2D coor = _annotationView.annotation.coordinate;
 
 
-    if (0 == _enterType) {
+    if (0 == _enterType)
+    {
         NSInteger count = [self.navigationController.viewControllers count];
 
 
@@ -151,20 +164,26 @@
         controller.lngValueLabel.text = [NSString stringWithFormat:@"%lf", coor.longitude];
         controller.latValueLabel.text = [NSString stringWithFormat:@"%lf", coor.latitude];
 
-    } else {
-        if (_delegate) {
+    }
+    else
+    {
+        if (_delegate)
+        {
             [_delegate onChooseAddressLat:coor.latitude lng:coor.longitude];
         }
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setSelection:(NSInteger)index {
-    if (_tipLable.hidden) {
+- (void)setSelection:(NSInteger)index
+{
+    if (_tipLable.hidden)
+    {
         _tipLable.hidden = NO;
     }
 
-    if (nil == _annotation) {
+    if (nil == _annotation)
+    {
         _annotation = [[BMKPointAnnotation alloc] init];
     }
 
@@ -180,15 +199,18 @@
 
 #pragma mark -- UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _dataArray.count;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"address_cell"];
 
     BMKPoiInfo *info = _dataArray[indexPath.row];
@@ -197,17 +219,21 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [self setSelection:indexPath.row];
 }
 
 #pragma mark -- BMKMapViewDelegate
 
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]])
+    {
         _annotationView = (BMKPinAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:@"marker"];
 
-        if (nil == _annotationView) {
+        if (nil == _annotationView)
+        {
             _annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"marker"];
         }
 

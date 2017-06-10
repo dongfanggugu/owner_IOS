@@ -33,7 +33,8 @@
 
 @implementation RepairInfoController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"维修任务"];
     [self initData];
@@ -41,16 +42,19 @@
     [self getTask];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [_tableView reloadData];
 }
 
-- (void)initData {
+- (void)initData
+{
     _arrayTask = [NSMutableArray array];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -92,7 +96,8 @@
 
     NSInteger isPay = _orderInfo.isPayment.integerValue;
 
-    if (1 == isPay) {
+    if (1 == isPay)
+    {
         [_repairInfoView.btnOrder setTitle:@"查看支付" forState:UIControlStateNormal];
     }
 
@@ -102,8 +107,10 @@
     [self.view addSubview:_tableView];
 }
 
-- (void)showViewWithState:(NSInteger)state {
-    switch (state) {
+- (void)showViewWithState:(NSInteger)state
+{
+    switch (state)
+    {
         case 1:
             [self state1];
             break;
@@ -136,7 +143,8 @@
 /**
  待确认
  */
-- (void)state1 {
+- (void)state1
+{
     _repairInfoView.btnOrder.hidden = YES;
 
     _repairInfoView.viewSeparator.hidden = YES;
@@ -151,7 +159,8 @@
 /**
  已确认
  */
-- (void)state2 {
+- (void)state2
+{
     _repairInfoView.btnOrder.hidden = YES;
 
     _repairInfoView.viewSeparator.hidden = YES;
@@ -166,7 +175,8 @@
 /**
  已委派
  */
-- (void)state4 {
+- (void)state4
+{
     _repairInfoView.btnOrder.hidden = YES;
 
     _repairInfoView.btnEvaluate.hidden = YES;
@@ -175,7 +185,8 @@
 /**
  开始维修
  */
-- (void)state6 {
+- (void)state6
+{
     _repairInfoView.btnOrder.hidden = YES;
 
     _repairInfoView.btnEvaluate.hidden = YES;
@@ -184,14 +195,16 @@
 /**
  维修完成
  */
-- (void)state8 {
+- (void)state8
+{
     _repairInfoView.btnOrder.hidden = NO;
 
     _repairInfoView.btnEvaluate.hidden = NO;
 }
 
 
-- (void)state9 {
+- (void)state9
+{
     _repairInfoView.btnOrder.hidden = NO;
 
     _repairInfoView.btnEvaluate.hidden = NO;
@@ -201,10 +214,12 @@
 
 
 //1待出发 2已出发 3工作中 5检修完成 6维修完成
-- (NSString *)getStateDes:(NSInteger)state {
+- (NSString *)getStateDes:(NSInteger)state
+{
     NSString *res = @"";
 
-    switch (state) {
+    switch (state)
+    {
         case 1:
             res = @"待出发";
             break;
@@ -230,7 +245,8 @@
 
 #pragma mark - Network Request
 
-- (void)getTask {
+- (void)getTask
+{
     RepairTaskRequest *request = [[RepairTaskRequest alloc] init];
 
     request.repairOrderId = _orderInfo.orderId;
@@ -250,18 +266,22 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _arrayTask.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     RepairTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[RepairTaskCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [RepairTaskCell cellFromNib];
     }
 
@@ -280,19 +300,23 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     RepairTaskInfo *info = self.arrayTask[indexPath.row];
 
     NSInteger state = info.state.integerValue;
 
-    if (5 == state) {
+    if (5 == state)
+    {
         RepairCheckController *controller = [[RepairCheckController alloc] init];
         controller.chcekResult = @"需要换件";
 
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
 
-    } else if (6 == state) {
+    }
+    else if (6 == state)
+    {
         RepairResultController *controller = [[RepairResultController alloc] init];
 
         controller.repairResult = @"维修完成";
@@ -303,22 +327,27 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [RepairTaskCell cellHeight];
 }
 
 
-- (void)onClickEvaluate {
+- (void)onClickEvaluate
+{
     EvaluateController *controller = [[EvaluateController alloc] init];
 
     NSInteger state = _orderInfo.state.integerValue;
 
-    if (9 == state) {
+    if (9 == state)
+    {
         controller.enterType = Show;
         controller.content = _orderInfo.evaluateInfo;
         controller.star = _orderInfo.evaluate.integerValue;
 
-    } else {
+    }
+    else
+    {
         controller.enterType = Repair_Submit;
         controller.repairOrderInfo = _orderInfo;
     }
@@ -327,16 +356,20 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickPay {
+- (void)onClickPay
+{
     NSInteger isPay = _orderInfo.isPayment.integerValue;
 
     RepairPaymentController *controller = [[RepairPaymentController alloc] init];
 
-    if (1 == isPay) {
+    if (1 == isPay)
+    {
         controller.enterType = Repair_Show;
         controller.payTime = _orderInfo.payTime;
 
-    } else {
+    }
+    else
+    {
         controller.enterType = Repair_Pay;
         controller.orderId = _orderInfo.orderId;
     }

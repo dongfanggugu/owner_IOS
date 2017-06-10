@@ -36,7 +36,8 @@
 
 @implementation ExtraServiceController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"增值服务"];
     [self initNavRightWithText:@"查看历史"];
@@ -44,27 +45,33 @@
     [self getHouses];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     ExtraServiceHistoryController *controller = [[ExtraServiceHistoryController alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (NSMutableArray *)arrayService {
-    if (!_arrayService) {
+- (NSMutableArray *)arrayService
+{
+    if (!_arrayService)
+    {
         _arrayService = [NSMutableArray array];
     }
 
     return _arrayService;
 }
 
-- (NSMutableArray *)arrayHouse {
-    if (!_arrayHouse) {
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse)
+    {
         _arrayHouse = [NSMutableArray array];
     }
 
@@ -75,16 +82,19 @@
  设置别墅信息
  
  */
-- (void)setHouseInfo:(NSDictionary *)houseInfo {
+- (void)setHouseInfo:(NSDictionary *)houseInfo
+{
     _houseInfo = houseInfo;
 
-    if (_headView) {
+    if (_headView)
+    {
         _headView.lbContent.text = houseInfo[@"cellName"];
     }
     [self getServices];
 }
 
-- (void)initNoView {
+- (void)initNoView
+{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 70, self.screenWidth - 32, 40)];
     label.font = [UIFont systemFontOfSize:14];
     label.textAlignment = NSTextAlignmentCenter;
@@ -98,7 +108,8 @@
     return;
 }
 
-- (void)initTableView {
+- (void)initTableView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -135,7 +146,8 @@
  contacts
  contactsTel
  */
-- (void)getHouses {
+- (void)getHouses
+{
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
@@ -146,12 +158,15 @@
     }];
 }
 
-- (void)showHouselist {
-    if (0 == self.arrayHouse.count) {
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count)
+    {
         return;
     }
 
-    if (1 == self.arrayHouse.count) {
+    if (1 == self.arrayHouse.count)
+    {
 
         self.houseInfo = self.arrayHouse[0];
 
@@ -160,13 +175,15 @@
         return;
     }
 
-    if (!self.houseInfo) {
+    if (!self.houseInfo)
+    {
         self.houseInfo = self.arrayHouse[0];
     }
 
     NSMutableArray *array = [NSMutableArray array];
 
-    for (NSDictionary *info in self.arrayHouse) {
+    for (NSDictionary *info in self.arrayHouse)
+    {
         ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
         [array addObject:data];
     }
@@ -179,9 +196,12 @@
 
 #pragma mark - LisDialogViewDelegate
 
-- (void)onSelectItem:(NSString *)key content:(NSString *)content {
-    for (NSDictionary *info in self.arrayHouse) {
-        if ([key isEqualToString:info[@"id"]]) {
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse)
+    {
+        if ([key isEqualToString:info[@"id"]])
+        {
             self.houseInfo = info;
             break;
         }
@@ -207,7 +227,8 @@
  smallOwnerInfo  业主信息
  deleteUserInfo   退订人信息
  */
-- (void)getServices {
+- (void)getServices
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"villaId"] = _houseInfo[@"id"];
 
@@ -232,19 +253,23 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.arrayService.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
     ExtraServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:[ExtraServiceCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [ExtraServiceCell cellFromNib];
     }
 
@@ -255,10 +280,13 @@
 
     NSString *expireTime = info[@"expireTime"];
 
-    if (0 == expireTime.length) {
+    if (0 == expireTime.length)
+    {
         cell.lbInfo.text = @"无效";
 
-    } else {
+    }
+    else
+    {
         cell.lbInfo.text = [NSString stringWithFormat:@"%@ 到期", expireTime];
 
     }
@@ -291,20 +319,23 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [ExtraServiceCell cellHeight];
 }
 
 #pragma mark - MainOrderInfoViewDelegate
 
-- (void)onClickLinkButton {
+- (void)onClickLinkButton
+{
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", Custom_Service]];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     [self.view addSubview:webView];
 }
 
-- (void)onClickDetailButton:(NSString *)detail {
+- (void)onClickDetailButton:(NSString *)detail
+{
     MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
 
     controller.detail = detail;
@@ -313,7 +344,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickPayButton:(NSDictionary *)serviceInfo {
+- (void)onClickPayButton:(NSDictionary *)serviceInfo
+{
     ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
     controller.serviceInfo = [[MainTypeInfo alloc] initWithDictionary:serviceInfo];
 
@@ -321,7 +353,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickOrderButton:(NSDictionary *)serviceInfo {
+- (void)onClickOrderButton:(NSDictionary *)serviceInfo
+{
     ExtraPayOrderController *controller = [[ExtraPayOrderController alloc] init];
 
     controller.serviceInfo = [[MainTypeInfo alloc] initWithDictionary:serviceInfo];
@@ -333,13 +366,16 @@
 
 #pragma mark - HouseInfoViewDelegate
 
-- (void)onClickBtn:(HouseChangeView *)view {
-    if (0 == self.arrayHouse.count) {
+- (void)onClickBtn:(HouseChangeView *)view
+{
+    if (0 == self.arrayHouse.count)
+    {
         [HUDClass showHUDWithText:@"您需要先添加别墅"];
         return;
     }
 
-    if (1 == self.arrayHouse.count) {
+    if (1 == self.arrayHouse.count)
+    {
         [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
         return;
     }

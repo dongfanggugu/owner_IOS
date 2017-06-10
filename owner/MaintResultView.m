@@ -10,10 +10,12 @@
 
 @implementation MaintResultView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MaintResultView" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 

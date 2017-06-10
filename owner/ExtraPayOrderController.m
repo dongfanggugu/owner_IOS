@@ -22,19 +22,22 @@
 
 @implementation ExtraPayOrderController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"增值服务订单"];
     [self initView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
     [self getOrders];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -48,8 +51,10 @@
     [self.view addSubview:_tableView];
 }
 
-- (NSMutableArray *)arrayOrder {
-    if (!_arrayOrder) {
+- (NSMutableArray *)arrayOrder
+{
+    if (!_arrayOrder)
+    {
         _arrayOrder = [NSMutableArray array];
     }
 
@@ -72,7 +77,8 @@
  tel 电话
  address 地址
  */
-- (void)getOrders {
+- (void)getOrders
+{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"incrementTypeId"] = _serviceInfo.typeId;
 
@@ -81,7 +87,8 @@
 
         [self.arrayOrder addObjectsFromArray:[responseObject objectForKey:@"body"]];
 
-        if (0 == self.arrayOrder) {
+        if (0 == self.arrayOrder)
+        {
 
         }
 
@@ -92,7 +99,8 @@
     }];
 }
 
-- (void)payment:(NSString *)paymentId {
+- (void)payment:(NSString *)paymentId
+{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"paymentId"] = paymentId;
 
@@ -100,7 +108,8 @@
 
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
 
-        if (url.length != 0) {
+        if (url.length != 0)
+        {
             PayViewController *controller = [[PayViewController alloc] init];
             controller.urlStr = url;
 
@@ -115,18 +124,22 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.arrayOrder.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     PayInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[PayInfoCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [PayInfoCell cellFromNib];
     }
 
@@ -146,16 +159,22 @@
     //支付单是否有效
     NSInteger delete = [[info[@"maintOrderInfo"] objectForKey:@"isDelete"] integerValue];
 
-    if (0 == state) {
+    if (0 == state)
+    {
 
-        if (0 == delete) {
+        if (0 == delete)
+        {
             cell.lbState.text = @"未支付";
 
-        } else {
+        }
+        else
+        {
             cell.lbState.text = @"已过期";
         }
 
-    } else {
+    }
+    else
+    {
         cell.lbState.text = @"已支付";
     }
 
@@ -164,11 +183,13 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [PayInfoCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ExtraServiceOrderDetailController *controller = [[ExtraServiceOrderDetailController alloc] init];
     controller.orderInfo = self.arrayOrder[indexPath.row];
     controller.houseInfo = _houseInfo;

@@ -21,21 +21,25 @@
 
 @implementation ServiceHistoryController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"服务历史"];
     [self getHistory];
 }
 
-- (NSMutableArray *)arrayService {
-    if (!_arrayService) {
+- (NSMutableArray *)arrayService
+{
+    if (!_arrayService)
+    {
         _arrayService = [NSMutableArray array];
     }
 
     return _arrayService;
 }
 
-- (void)initTableView {
+- (void)initTableView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -53,7 +57,8 @@
     [self.view addSubview:_tableView];
 }
 
-- (void)initNoHistoryView {
+- (void)initNoHistoryView
+{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, self.screenWidth, 40)];
     label.font = [UIFont systemFontOfSize:14];
     label.textAlignment = NSTextAlignmentCenter;
@@ -67,7 +72,8 @@
 
 #pragma mark - 网络请求
 
-- (void)getHistory {
+- (void)getHistory
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     params[@"villaId"] = _houseId;
@@ -79,10 +85,13 @@
         [self.arrayService removeAllObjects];
         [self.arrayService addObjectsFromArray:[response getOrderList]];
 
-        if (0 == self.arrayService.count) {
+        if (0 == self.arrayService.count)
+        {
             [self initNoHistoryView];
 
-        } else {
+        }
+        else
+        {
             [self initTableView];
         }
 
@@ -95,18 +104,22 @@
 
 #pragma mark - UITableViewDelegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.arrayService.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ServiceHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:[ServiceHistoryCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [ServiceHistoryCell cellFromNib];
     }
 
@@ -120,7 +133,8 @@
 
     NSInteger type = info.mainttypeId.integerValue;
 
-    switch (type) {
+    switch (type)
+    {
         case 1:
             cell.image = [UIImage imageNamed:@"icon_level_3"];
             break;
@@ -151,7 +165,8 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [ServiceHistoryCell cellHeight];
 }
 

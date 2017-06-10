@@ -11,11 +11,13 @@
 
 @implementation ElevatorBrandInfo
 
-- (NSString *)getKey {
+- (NSString *)getKey
+{
     return _value;
 }
 
-- (NSString *)getShowContent {
+- (NSString *)getShowContent
+{
     return _name;
 }
 

@@ -17,25 +17,30 @@
 
 @implementation MainTaskDetailCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainTaskDetailCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 750;
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"main_task_detail_cell";
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.selectionStyle = UITableViewCellSeparatorStyleNone;
@@ -59,31 +64,40 @@
 /**
  修改计划时间
  */
-- (void)clickPlan {
-    if (_onClickModify) {
+- (void)clickPlan
+{
+    if (_onClickModify)
+    {
         _onClickModify();
     }
 }
 
-- (void)clickFinish {
-    if (_onClickFinish) {
+- (void)clickFinish
+{
+    if (_onClickFinish)
+    {
         _onClickFinish();
     }
 }
 
-- (void)clickResult {
-    if (_onClickResult) {
+- (void)clickResult
+{
+    if (_onClickResult)
+    {
         _onClickResult();
     }
 }
 
-- (void)clickMore {
-    if (_onClickMore) {
+- (void)clickMore
+{
+    if (_onClickMore)
+    {
         _onClickMore();
     }
 }
 
-- (void)markOnMapWithLat:(CGFloat)lat lng:(CGFloat)lng {
+- (void)markOnMapWithLat:(CGFloat)lat lng:(CGFloat)lng
+{
     CLLocationCoordinate2D coor;
     coor.latitude = lat;
     coor.longitude = lng;
@@ -99,23 +113,31 @@
 /**
  解决地图和tableview滑动冲突问题
  **/
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
     UIView *hitView = [super hitTest:point withEvent:event];
 
     UITableView *tableView = nil;
-    for (UIView *next = [self superview]; next; next = next.superview) {
+    for (UIView *next = [self superview];
+            next;
+            next = next.superview)
+    {
         UIResponder *nextResponder = [next nextResponder];
 
-        if ([nextResponder isKindOfClass:[UITableView class]]) {
+        if ([nextResponder isKindOfClass:[UITableView class]])
+        {
             tableView = (UITableView *) nextResponder;
         }
     }
 
-    if (tableView) {
+    if (tableView)
+    {
         tableView.scrollEnabled = YES;
 
-        if (hitView) {
-            if (CGRectContainsPoint(_mapView.frame, point)) {
+        if (hitView)
+        {
+            if (CGRectContainsPoint(_mapView.frame, point))
+            {
                 tableView.scrollEnabled = NO;
             }
         }

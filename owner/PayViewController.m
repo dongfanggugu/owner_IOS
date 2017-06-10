@@ -16,14 +16,16 @@
 
 @implementation PayViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"订单支付"];
     [self initView];
 }
 
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 64)];
@@ -67,8 +69,10 @@
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
-- (void)back {
-    if (_delegate && [_delegate respondsToSelector:@selector(clickBack)]) {
+- (void)back
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(clickBack)])
+    {
         [_delegate clickBack];
     }
 

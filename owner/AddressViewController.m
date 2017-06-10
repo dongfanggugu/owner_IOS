@@ -32,13 +32,15 @@
 
 @implementation AddressViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"地址填写"];
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     [self setTitleRight];
 
     [_locationBtn addTarget:self action:@selector(location) forControlEvents:UIControlEventTouchUpInside];
@@ -54,7 +56,8 @@
 /**
  *  设置标题栏右侧
  */
-- (void)setTitleRight {
+- (void)setTitleRight
+{
     UIButton *btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     [btnSubmit setTitle:@"提交" forState:UIControlStateNormal];
     [btnSubmit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -64,9 +67,11 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-- (void)location {
+- (void)location
+{
     NSString *address = [_addressTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (0 == address.length) {
+    if (0 == address.length)
+    {
         [HUDClass showHUDWithText:@"请先填写您的详细地址"];
         return;
     }
@@ -76,17 +81,20 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)submit {
+- (void)submit
+{
 
     NSString *address = [_addressTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (0 == address.length) {
+    if (0 == address.length)
+    {
         [HUDClass showHUDWithText:@"请填写您的详细地址!"];
         return;
     }
 
     NSString *lat = _latValueLabel.text;
     NSString *lng = _lngValueLabel.text;
-    if (0 == lat.length || 0 == lng.length) {
+    if (0 == lat.length || 0 == lng.length)
+    {
         [HUDClass showHUDWithText:@"请点击定位图标,选择地图上的位置!"];
         return;
     }
@@ -111,7 +119,8 @@
 }
 
 
-- (void)readZones {
+- (void)readZones
+{
     NSString *zoneJson = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"beijing_districts" ofType:@"json"]
                                                    encoding:NSUTF8StringEncoding error:nil];
     NSData *jsonData = [zoneJson dataUsingEncoding:NSUTF8StringEncoding];
@@ -121,13 +130,16 @@
     [self showZones];
 }
 
-- (void)showZones {
-    if (_alartView != nil && _alartView.window != nil) {
+- (void)showZones
+{
+    if (_alartView != nil && _alartView.window != nil)
+    {
         NSLog(@"already showing");
         return;
     }
 
-    if (_alartView != nil && nil == _alartView.window) {
+    if (_alartView != nil && nil == _alartView.window)
+    {
         [self.view addSubview:_alartView];
         return;
     }
@@ -173,8 +185,10 @@
     [self.view addSubview:_alartView];
 }
 
-- (void)cancelAlertView {
-    if (_alartView != nil && _alartView.window != nil) {
+- (void)cancelAlertView
+{
+    if (_alartView != nil && _alartView.window != nil)
+    {
         [_alartView removeFromSuperview];
     }
 }
@@ -182,14 +196,17 @@
 
 #pragma mark -- UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _dataArray.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"zone_cell"];
-    if (nil == cell) {
+    if (nil == cell)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"zone_cell"];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 150, 24)];
         label.tag = 1001;
@@ -205,7 +222,8 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *info = _dataArray[indexPath.row];
 

@@ -21,19 +21,22 @@
 
 @implementation HouseManagerController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"别墅管理"];
     [self initView];
     // Do any additional setup after loading the view.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self getHouses];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64 - 60) style:UITableViewStyleGrouped];
@@ -70,15 +73,18 @@
     [self.view addSubview:bottom];
 }
 
-- (void)addHouse {
+- (void)addHouse
+{
     HouseAddController *controller = [[HouseAddController alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (NSMutableArray *)arrayHouse {
-    if (!_arrayHouse) {
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse)
+    {
         _arrayHouse = [NSMutableArray array];
     }
 
@@ -99,7 +105,8 @@
  contacts
  contactsTel
  */
-- (void)getHouses {
+- (void)getHouses
+{
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
@@ -112,18 +119,22 @@
 
 #pragma mark - 处理数据源
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.arrayHouse.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     HouseItemCell *cell = [tableView dequeueReusableCellWithIdentifier:[HouseItemCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [HouseItemCell cellFromNib];
     }
 
@@ -156,21 +167,25 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [HouseItemCell cellHeight];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 4;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 4;
 }
 
 #pragma mark - 删除别墅
 
-- (void)houseDel:(NSDictionary *)info {
+- (void)houseDel:(NSDictionary *)info
+{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"确认删除" message:info[@"cellName"] preferredStyle:UIAlertControllerStyleAlert];
 
     [controller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
@@ -184,7 +199,8 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-- (void)confirmDel:(NSString *)villaId {
+- (void)confirmDel:(NSString *)villaId
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"villaId"] = villaId;
 

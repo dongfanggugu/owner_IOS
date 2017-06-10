@@ -22,25 +22,30 @@
 
 @implementation HouseItemCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"HouseItemCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 135;
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"house_item_cell";
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     // Initialization code
 
@@ -50,26 +55,32 @@
 
 }
 
-- (void)setOnClickEditListener:(void (^)())onClickEdit {
+- (void)setOnClickEditListener:(void (^)())onClickEdit
+{
     _onClickEdit = onClickEdit;
 
     [_btnEdit addTarget:self action:@selector(clickEdit) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setOnClickDelListener:(void (^)())onClickDel {
+- (void)setOnClickDelListener:(void (^)())onClickDel
+{
     _onClickDel = onClickDel;
 
     [_btnDel addTarget:self action:@selector(clickDel) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickEdit {
-    if (_onClickEdit) {
+- (void)clickEdit
+{
+    if (_onClickEdit)
+    {
         _onClickEdit();
     }
 }
 
-- (void)clickDel {
-    if (_onClickDel) {
+- (void)clickDel
+{
+    if (_onClickDel)
+    {
         _onClickDel();
     }
 }

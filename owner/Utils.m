@@ -12,7 +12,8 @@
 
 @implementation Utils
 
-+ (NSString *)getServer {
++ (NSString *)getServer
+{
     //return @"http://119.57.248.130:8080/lift/mobile/";
 
     return [NSString stringWithFormat:@"%@mobile/", [Utils getIp]];
@@ -21,7 +22,8 @@
     //return @"http://47.93.11.158:8081/mobile/";
 }
 
-+ (NSString *)getIp {
++ (NSString *)getIp
+{
     //return @"http://47.93.11.158:8081/";
 
     return @"http://192.168.0.82:8080/";
@@ -30,7 +32,8 @@
 /**
  *  MD5加密
  */
-+ (NSString *)md5:(NSString *)str {
++ (NSString *)md5:(NSString *)str
+{
     const char *cStr = [str UTF8String];
     unsigned char result[16];
     CC_MD5(cStr, strlen(cStr), result); // This is the md5 call
@@ -43,19 +46,23 @@
     ];
 }
 
-+ (BOOL)isEmpty:(NSString *)string {
++ (BOOL)isEmpty:(NSString *)string
+{
     return !string.length;
 }
 
 
-+ (UIColor *)getColorByRGB:(NSString *)RGB {
++ (UIColor *)getColorByRGB:(NSString *)RGB
+{
 
-    if (RGB.length != 7) {
+    if (RGB.length != 7)
+    {
         NSLog(@"illegal RGB value!");
         return [UIColor clearColor];
     }
 
-    if (![RGB hasPrefix:@"#"]) {
+    if (![RGB hasPrefix:@"#"])
+    {
         NSLog(@"illegal RGB value!");
         return [UIColor clearColor];
     }
@@ -82,7 +89,8 @@
 }
 
 
-+ (NSString *)format:(NSString *)content with:(NSString *)seperator {
++ (NSString *)format:(NSString *)content with:(NSString *)seperator
+{
     return [content stringByReplacingOccurrencesOfString:seperator withString:@"\n"];
 }
 
@@ -92,7 +100,8 @@
  *
 
  */
-+ (BOOL)isLegalAge:(NSString *)age {
++ (BOOL)isLegalAge:(NSString *)age
+{
     NSString *ageRegex = @"^([1-9]\\d{0,1})$";
     NSPredicate *ageTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", ageRegex];
     return [ageTest evaluateWithObject:age];
@@ -102,14 +111,16 @@
  *  手机号码是否合法
 
  */
-+ (BOOL)isCorrectPhoneNumberOf:(NSString *)phoneNumber {
++ (BOOL)isCorrectPhoneNumberOf:(NSString *)phoneNumber
+{
 
     NSString *phoneRegex = @"^((13[0-9])|(14[0-9])|(15[^4,\\D])|(17[0-9])|(18[0,5-9]))\\d{8}$";
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     return [phoneTest evaluateWithObject:phoneNumber];
 }
 
-+ (NSString *)formatDate:(NSDate *)date {
++ (NSString *)formatDate:(NSDate *)date
+{
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString *dateStr = [format stringFromDate:date];
@@ -117,13 +128,16 @@
     return dateStr;
 }
 
-+ (NSString *)getCurrentTime {
++ (NSString *)getCurrentTime
+{
     NSDate *date = [[NSDate alloc] init];
     return [self formatDate:date];
 }
 
-+ (NSInteger)character:(NSString *)ch atIndexOfString:(NSString *)string {
-    if (ch.length != 1) {
++ (NSInteger)character:(NSString *)ch atIndexOfString:(NSString *)string
+{
+    if (ch.length != 1)
+    {
         return -1;
     }
 
@@ -132,7 +146,8 @@
     return range.location;
 }
 
-+ (NSString *)string:(NSString *)string substringBeforeChar:(NSString *)ch {
++ (NSString *)string:(NSString *)string substringBeforeChar:(NSString *)ch
+{
     NSInteger index = [self character:ch atIndexOfString:string];
 
     NSRange range = NSMakeRange(0, index);
@@ -141,7 +156,8 @@
 }
 
 /** 图片转换为base64码 **/
-+ (NSString *)image2Base64From:(UIImage *)image {
++ (NSString *)image2Base64From:(UIImage *)image
+{
     NSData *data = UIImageJPEGRepresentation(image, 1);
     NSString *base64Code = [data base64Encoding];
     return base64Code;

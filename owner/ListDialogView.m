@@ -19,16 +19,19 @@
 
 @implementation ListDialogView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ListDialogView" owner:nil options:nil];
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
@@ -38,45 +41,55 @@
 
 }
 
-- (void)cancel {
-    if (_delegate && [_delegate respondsToSelector:@selector(onDismiss)]) {
+- (void)cancel
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onDismiss)])
+    {
         [_delegate onDismiss];
     }
 
-    if ([self superview]) {
+    if ([self superview])
+    {
         [self removeFromSuperview];
     }
 }
 
-- (void)initTableView {
+- (void)initTableView
+{
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.bounces = NO;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)setData:(NSArray<id <ListDialogDataDelegate>> *)arrayData {
+- (void)setData:(NSArray<id <ListDialogDataDelegate>> *)arrayData
+{
     _arrayData = arrayData;
     [_tableView reloadData];
 }
 
 #pragma mark - UITableDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_arrayData) {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (_arrayData)
+    {
         return _arrayData.count;
     }
     return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 
-    if (nil == cell) {
+    if (nil == cell)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 8, 200, 25)];
         label.tag = 1001;
@@ -92,7 +105,8 @@
 }
 
 
-- (void)show {
+- (void)show
+{
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
 
     UIWindow *window = appDelegate.window;
@@ -106,28 +120,34 @@
 
 #pragma mark - UITableViewDeleagate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
     id <ListDialogDataDelegate> info = _arrayData[indexPath.row];
 
-    if (_delegate && [_delegate respondsToSelector:@selector(onSelectItem:content:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onSelectItem:content:)])
+    {
         [_delegate onSelectItem:[info getKey] content:[info getShowContent]];
     }
 
-    if (_delegate && [_delegate respondsToSelector:@selector(onSelectDialogTag:content:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onSelectDialogTag:content:)])
+    {
         [_delegate onSelectDialogTag:self.tag content:[info getShowContent]];
     }
 
-    if (_delegate && [_delegate respondsToSelector:@selector(onSelectDialogTag:key:content:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onSelectDialogTag:key:content:)])
+    {
         [_delegate onSelectDialogTag:self.tag key:[info getKey] content:[info getShowContent]];
     }
 
-    if (self.superview) {
+    if (self.superview)
+    {
         [self removeFromSuperview];
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 44;
 }
 @end

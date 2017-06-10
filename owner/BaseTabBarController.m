@@ -12,8 +12,10 @@
 @implementation BaseTabBarController
 
 
-- (void)setNavTitle:(NSString *)title {
-    if (!self.navigationController) {
+- (void)setNavTitle:(NSString *)title
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
@@ -27,7 +29,8 @@
 
 #pragma mark -- 设置状态栏字体为白色
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 

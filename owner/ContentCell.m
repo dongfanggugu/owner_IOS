@@ -10,21 +10,25 @@
 
 @implementation ContentCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ContentCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"content_cell";
 }
 
-+ (CGFloat)cellHeight:(NSString *)content {
++ (CGFloat)cellHeight:(NSString *)content
+{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
 
     CGFloat lbWidth = width - 8 - 8;
@@ -42,11 +46,13 @@
     return h;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 
 }

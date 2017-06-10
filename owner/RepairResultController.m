@@ -20,14 +20,16 @@
 
 @implementation RepairResultController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"维修结果"];
 
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -68,12 +70,14 @@
     [self.view addSubview:_tableView];
 }
 
-- (UIView *)addImageViews {
+- (UIView *)addImageViews
+{
     UIView *showView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 0)];
 
     NSArray *array = [self.urls componentsSeparatedByString:@","];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
@@ -88,7 +92,10 @@
     //计算imageview的间隙
     CGFloat space = (self.screenWidth - ImageView_Width * 3) / 4;
 
-    for (NSInteger i = 0; i < array.count; i++) {
+    for (NSInteger i = 0;
+            i < array.count;
+            i++)
+    {
 
         NSInteger row = i / 3;
 
@@ -108,15 +115,18 @@
 
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 0;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return nil;
 }
 

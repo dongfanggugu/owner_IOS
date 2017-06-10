@@ -16,18 +16,21 @@
 
 @implementation KnowledgeDetailController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:_knTitle];
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
     _webView.scrollView.bounces = NO;
 
-    if (_content.length > 0) {
+    if (_content.length > 0)
+    {
         [_webView loadHTMLString:_content baseURL:nil];
     }
 

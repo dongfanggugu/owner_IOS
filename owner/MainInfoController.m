@@ -43,7 +43,8 @@
 
 @implementation MainInfoController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"维保服务"];
     [self initNavRightWithText:@"查看历史"];
@@ -52,12 +53,14 @@
     [self getHouses];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [_tableView reloadData];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     ServiceHistoryController *controller = [[ServiceHistoryController alloc] init];
     controller.houseId = _houseInfo[@"id"];
 
@@ -65,13 +68,16 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)initData {
+- (void)initData
+{
     _arrayTask = [NSMutableArray array];
 }
 
 
-- (NSMutableArray *)arrayHouse {
-    if (!_arrayHouse) {
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse)
+    {
         _arrayHouse = [NSMutableArray array];
     }
 
@@ -83,20 +89,24 @@
 
  @param houseInfo <#houseInfo description#>
  */
-- (void)setHouseInfo:(NSDictionary *)houseInfo {
+- (void)setHouseInfo:(NSDictionary *)houseInfo
+{
     _houseInfo = houseInfo;
 
-    if (_infoView) {
+    if (_infoView)
+    {
         _infoView.lbAddress.text = houseInfo[@"cellName"];
     }
     [self getSeviceInfo];
 }
 
-- (Maint_Type)maintType {
+- (Maint_Type)maintType
+{
     return _serviceInfo.mainttypeId.integerValue;
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
 
@@ -133,8 +143,10 @@
     [self.view addSubview:_lbNone];
 }
 
-- (void)initMainInfo {
-    if (!_serviceInfo) {
+- (void)initMainInfo
+{
+    if (!_serviceInfo)
+    {
 
         _infoView.viewHidden = YES;
 
@@ -150,27 +162,38 @@
     _infoView.lbName.text = [_serviceInfo.maintypeInfo name];
 
 
-    if (Maint_Low == self.maintType) {
+    if (Maint_Low == self.maintType)
+    {
         _infoView.lbInfo.text = [NSString stringWithFormat:@"剩余次数:%ld", _serviceInfo.frequency];
 
         _infoView.lbTag.text = @"三级管家";
 
-    } else if (Maint_Mid == self.maintType) {
-        if (0 == _serviceInfo.expireTime) {
+    }
+    else if (Maint_Mid == self.maintType)
+    {
+        if (0 == _serviceInfo.expireTime)
+        {
             _infoView.lbInfo.text = @"无效";
 
-        } else {
+        }
+        else
+        {
             _infoView.lbInfo.text = [NSString stringWithFormat:@"%@ 到期", _serviceInfo.expireTime];
 
         }
 
         _infoView.lbTag.text = @"二级管家";
 
-    } else {
-        if (0 == _serviceInfo.expireTime) {
+    }
+    else
+    {
+        if (0 == _serviceInfo.expireTime)
+        {
             _infoView.lbInfo.text = @"无效";
 
-        } else {
+        }
+        else
+        {
             _infoView.lbInfo.text = [NSString stringWithFormat:@"%@ 到期", _serviceInfo.expireTime];
 
         }
@@ -195,7 +218,8 @@
  contacts
  contactsTel
  */
-- (void)getHouses {
+- (void)getHouses
+{
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
@@ -206,24 +230,29 @@
     }];
 }
 
-- (void)showHouselist {
-    if (0 == self.arrayHouse.count) {
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count)
+    {
         return;
     }
 
-    if (1 == self.arrayHouse.count) {
+    if (1 == self.arrayHouse.count)
+    {
 
         self.houseInfo = self.arrayHouse[0];
         return;
     }
 
-    if (!self.houseInfo) {
+    if (!self.houseInfo)
+    {
         self.houseInfo = self.arrayHouse[0];
     }
 
     NSMutableArray *array = [NSMutableArray array];
 
-    for (NSDictionary *info in self.arrayHouse) {
+    for (NSDictionary *info in self.arrayHouse)
+    {
         ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
         [array addObject:data];
     }
@@ -236,9 +265,12 @@
 
 #pragma mark - LisDialogViewDelegate
 
-- (void)onSelectItem:(NSString *)key content:(NSString *)content {
-    for (NSDictionary *info in self.arrayHouse) {
-        if ([key isEqualToString:info[@"id"]]) {
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse)
+    {
+        if ([key isEqualToString:info[@"id"]])
+        {
             self.houseInfo = info;
             break;
         }
@@ -246,8 +278,10 @@
 }
 
 
-- (void)getSeviceInfo {
-    if (!_houseInfo) {
+- (void)getSeviceInfo
+{
+    if (!_houseInfo)
+    {
         return;
     }
 
@@ -257,10 +291,13 @@
     [[HttpClient shareClient] post:URL_MAIN_LIST parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
 
-        if ([response getOrderList].count > 0) {
+        if ([response getOrderList].count > 0)
+        {
             _serviceInfo = [[response getOrderList] objectAtIndex:0];
 
-        } else {
+        }
+        else
+        {
             _serviceInfo = nil;
         }
         [self initMainInfo];
@@ -272,8 +309,10 @@
 }
 
 
-- (void)getTask {
-    if (!_serviceInfo) {
+- (void)getTask
+{
+    if (!_serviceInfo)
+    {
         [_arrayTask removeAllObjects];
         [_tableView reloadData];
         return;
@@ -297,10 +336,12 @@
 }
 
 //0待确认 1已确认 2已完成 3已评价
-- (NSString *)getStateDes:(NSInteger)state {
+- (NSString *)getStateDes:(NSInteger)state
+{
     NSString *res = @"";
 
-    switch (state) {
+    switch (state)
+    {
         case 0:
             res = @"待确认";
             break;
@@ -335,18 +376,22 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _arrayTask.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     MainTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[MainTaskCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [MainTaskCell cellFromNib];
     }
 
@@ -363,12 +408,14 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [MainTaskCell cellHeight];
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     MainTaskDetailController *controller = [[MainTaskDetailController alloc] init];
@@ -379,7 +426,8 @@
 
 #pragma mark - MainOrderInfoViewDelegate
 
-- (void)onClickPayButton:(MainOrderInfoView *)view {
+- (void)onClickPayButton:(MainOrderInfoView *)view
+{
     MainOrderLoginController *controller = [[MainOrderLoginController alloc] init];
     controller.mainInfo = _serviceInfo.maintypeInfo;
     controller.houseInfo = _houseInfo;
@@ -388,7 +436,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickOrderButton:(MainOrderInfoView *)view {
+- (void)onClickOrderButton:(MainOrderInfoView *)view
+{
     PayOrderController *controller = [[PayOrderController alloc] init];
     controller.serviceId = _serviceInfo.orderId;
     controller.houseInfo = _houseInfo;
@@ -397,7 +446,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickDetailButton:(MainOrderInfoView *)view {
+- (void)onClickDetailButton:(MainOrderInfoView *)view
+{
     MainTypeDetailController *controller = [[MainTypeDetailController alloc] init];
 
     controller.detail = _serviceInfo.maintypeInfo.content;
@@ -406,13 +456,16 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickChangeButton:(MainOrderInfoView *)view {
-    if (0 == self.arrayHouse.count) {
+- (void)onClickChangeButton:(MainOrderInfoView *)view
+{
+    if (0 == self.arrayHouse.count)
+    {
         [HUDClass showHUDWithText:@"您需要先添加别墅"];
         return;
     }
 
-    if (1 == self.arrayHouse.count) {
+    if (1 == self.arrayHouse.count)
+    {
         [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
         return;
     }
@@ -421,7 +474,8 @@
 }
 
 
-- (void)onClickBackButton:(MainOrderInfoView *)view {
+- (void)onClickBackButton:(MainOrderInfoView *)view
+{
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", Custom_Service]];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];

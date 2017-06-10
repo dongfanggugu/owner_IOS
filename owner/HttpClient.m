@@ -17,7 +17,8 @@
 @implementation HttpClient
 
 
-+ (instancetype)shareClient {
++ (instancetype)shareClient
+{
     static HttpClient *shareClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -34,7 +35,8 @@
 
 - (void)post:(NSString *)url parameters:(id)parameters
      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-     failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+     failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *head = [[NSMutableDictionary alloc] init];
 
@@ -45,7 +47,8 @@
     [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
 
 
-    if (parameters) {
+    if (parameters)
+    {
         [param setObject:parameters forKey:@"body"];
     }
 
@@ -58,22 +61,29 @@
     [self POST:url parameters:param success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
         NSLog(@"zhenhao-----response:%@", responseObject);
 
-        if (hud) {
+        if (hud)
+        {
             [HUDClass hideLoadingHUD:hud];
         }
 
-        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"]) {
+        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"])
+        {
             success(task, responseObject);
 
-        } else {
+        }
+        else
+        {
             //根据错误信息提示用户
             NSString *msg = nil;
             NSString *rspMsg = [[responseObject objectForKey:@"head"] objectForKey:@"rspMsg"];
 
-            if ([rspMsg containsString:@"系统错误"]) {
+            if ([rspMsg containsString:@"系统错误"])
+            {
                 msg = [rspMsg substringFromIndex:5];
 
-            } else {
+            }
+            else
+            {
                 msg = rspMsg;
             }
 
@@ -82,7 +92,8 @@
 
             NSString *msgCode = [[responseObject objectForKey:@"head"] objectForKey:@"rspCode"];
 
-            if ([msgCode isEqualToString:@"-9"]) {
+            if ([msgCode isEqualToString:@"-9"])
+            {
                 [[Config shareConfig] setUserId:@""];
                 [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0f];
             }
@@ -97,7 +108,8 @@
 
 - (void)bagpost:(NSString *)url parameters:(id)parameters
         success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *head = [[NSMutableDictionary alloc] init];
 
@@ -108,7 +120,8 @@
     [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
 
 
-    if (parameters) {
+    if (parameters)
+    {
         [param setObject:parameters forKey:@"body"];
     }
 
@@ -120,18 +133,24 @@
         NSLog(@"zhenhao-----response:%@", responseObject);
 
 
-        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"]) {
+        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"])
+        {
             success(task, responseObject);
 
-        } else {
+        }
+        else
+        {
             //根据错误信息提示用户
             NSString *msg = nil;
             NSString *rspMsg = [[responseObject objectForKey:@"head"] objectForKey:@"rspMsg"];
 
-            if ([rspMsg containsString:@"系统错误"]) {
+            if ([rspMsg containsString:@"系统错误"])
+            {
                 msg = [rspMsg substringFromIndex:5];
 
-            } else {
+            }
+            else
+            {
                 msg = rspMsg;
             }
 
@@ -140,7 +159,8 @@
 
             NSString *msgCode = [[responseObject objectForKey:@"head"] objectForKey:@"rspCode"];
 
-            if ([msgCode isEqualToString:@"-9"]) {
+            if ([msgCode isEqualToString:@"-9"])
+            {
                 [[Config shareConfig] setUserId:@""];
                 [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0f];
             }
@@ -152,7 +172,8 @@
     }];
 }
 
-- (void)backToLogin {
+- (void)backToLogin
+{
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITabBarController *controller = [board instantiateViewControllerWithIdentifier:@"main_tab_bar_controller"];
     [UIApplication sharedApplication].keyWindow.rootViewController = controller;

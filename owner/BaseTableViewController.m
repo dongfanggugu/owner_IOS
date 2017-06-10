@@ -18,28 +18,34 @@
 @implementation BaseTableViewController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
 }
 
-- (CGFloat)screenWidth {
+- (CGFloat)screenWidth
+{
     return [UIScreen mainScreen].bounds.size.width;
 }
 
-- (BOOL)login {
+- (BOOL)login
+{
     NSString *userId = [[Config shareConfig] getUserId];
 
     return userId.length;
 }
 
-- (CGFloat)screenHeight {
+- (CGFloat)screenHeight
+{
     return [UIScreen mainScreen].bounds.size.height;
 }
 
 
-- (void)setNavTitle:(NSString *)title {
-    if (!self.navigationController) {
+- (void)setNavTitle:(NSString *)title
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
@@ -54,8 +60,10 @@
 /**
  使用图片初始化导航栏右侧按钮
  **/
-- (void)initNavRightWithImage:(UIImage *)image {
-    if (!self.navigationController) {
+- (void)initNavRightWithImage:(UIImage *)image
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
@@ -69,17 +77,20 @@
     [btnRight addTarget:self action:@selector(onClickNavRight) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     NSLog(@"%@ dealloc", [self class]);
 }
 
 #pragma mark -- 设置状态栏字体为白色
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 

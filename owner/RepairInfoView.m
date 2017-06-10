@@ -17,17 +17,20 @@
 
 @implementation RepairInfoView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"RepairInfoView" owner:nil options:nil];
 
-    if (0 == array) {
+    if (0 == array)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     _lbFaultDes.userInteractionEnabled = NO;
@@ -51,14 +54,18 @@
     [_btnEvaluate addTarget:self action:@selector(clickEvaluate) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickPayOrder {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickPay)]) {
+- (void)clickPayOrder
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickPay)])
+    {
         [_delegate onClickPay];
     }
 }
 
-- (void)clickEvaluate {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickEvaluate)]) {
+- (void)clickEvaluate
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickEvaluate)])
+    {
         [_delegate onClickEvaluate];
     }
 }

@@ -14,19 +14,22 @@
 
 @implementation ElevatorDecorateController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"电梯装潢 "];
     [self initView];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
-- (void)initView {
+- (void)initView
+{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
 
     imageView.image = [UIImage imageNamed:@"icon_decorate"];
@@ -38,7 +41,8 @@
     [self.view addSubview:imageView];
 }
 
-- (void)detail {
+- (void)detail
+{
 
 }
 

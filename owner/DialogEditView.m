@@ -23,44 +23,52 @@
 
 @implementation DialogEditView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"DialogEditView" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8];
 
 }
 
-- (void)addOnClickOkListener:(void (^)(NSString *))onClickOk {
+- (void)addOnClickOkListener:(void (^)(NSString *))onClickOk
+{
     _onClickOk = onClickOk;
 
     [_btnOK addTarget:self action:@selector(clickOK) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)addOnClickCancelListener:(void (^)())onClickCancel {
+- (void)addOnClickCancelListener:(void (^)())onClickCancel
+{
     _onClickCancel = onClickCancel;
 
     [_btnCancel addTarget:self action:@selector(clickCancel) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickOK {
-    if (_onClickOk) {
+- (void)clickOK
+{
+    if (_onClickOk)
+    {
         _onClickOk(_tfContent.text);
     }
 
     [self removeFromSuperview];
 }
 
-- (void)show {
+- (void)show
+{
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
 
     self.frame = delegate.window.bounds;
@@ -70,8 +78,10 @@
     [delegate.window bringSubviewToFront:self];
 }
 
-- (void)clickCancel {
-    if (_onClickCancel) {
+- (void)clickCancel
+{
+    if (_onClickCancel)
+    {
         _onClickCancel();
     }
     [self removeFromSuperview];

@@ -27,18 +27,21 @@
 
 @implementation MainTaskDetailController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"任务详情"];
     [self initView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [_tableView reloadData];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth,
             self.screenHeight - 64)];
@@ -52,15 +55,18 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     MainTaskDetailCell *cell = [MainTaskDetailCell cellFromNib];
 
     _taskCell = cell;
@@ -99,8 +105,10 @@
     return cell;
 }
 
-- (void)showViewWithState:(NSInteger)state cell:(MainTaskDetailCell *)cell {
-    switch (state) {
+- (void)showViewWithState:(NSInteger)state cell:(MainTaskDetailCell *)cell
+{
+    switch (state)
+    {
         case 0:     //待确认
             [self state0:cell];
             break;
@@ -130,7 +138,8 @@
     }
 }
 
-- (void)state0:(MainTaskDetailCell *)cell {
+- (void)state0:(MainTaskDetailCell *)cell
+{
     [cell.btnFinish setTitle:@"确认计划" forState:UIControlStateNormal];
 
     cell.btnResult.hidden = YES;
@@ -147,25 +156,29 @@
     }];
 }
 
-- (void)state1:(MainTaskDetailCell *)cell {
+- (void)state1:(MainTaskDetailCell *)cell
+{
     cell.btnPlanDate.hidden = YES;
     cell.btnResult.hidden = YES;
     cell.btnFinish.hidden = YES;
 }
 
-- (void)state2:(MainTaskDetailCell *)cell {
+- (void)state2:(MainTaskDetailCell *)cell
+{
     cell.btnPlanDate.hidden = YES;
     cell.btnResult.hidden = YES;
     cell.btnFinish.hidden = YES;
 }
 
-- (void)state3:(MainTaskDetailCell *)cell {
+- (void)state3:(MainTaskDetailCell *)cell
+{
     cell.btnPlanDate.hidden = YES;
     cell.btnResult.hidden = YES;
     cell.btnFinish.hidden = YES;
 }
 
-- (void)state4:(MainTaskDetailCell *)cell {
+- (void)state4:(MainTaskDetailCell *)cell
+{
     cell.btnPlanDate.hidden = YES;
     cell.btnResult.hidden = NO;
 
@@ -189,7 +202,8 @@
     }];
 }
 
-- (void)state5:(MainTaskDetailCell *)cell {
+- (void)state5:(MainTaskDetailCell *)cell
+{
     cell.btnPlanDate.hidden = YES;
     cell.btnResult.hidden = NO;
 
@@ -215,7 +229,8 @@
     }];
 }
 
-- (void)confirmPlan:(NSString *)planTime {
+- (void)confirmPlan:(NSString *)planTime
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"maintOrderPorcessId"] = _taskInfo.taskId;
     params[@"planTime"] = planTime;
@@ -231,12 +246,14 @@
     }];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [MainTaskDetailCell cellHeight];
 }
 
 
-- (void)showDatePicker {
+- (void)showDatePicker
+{
     DatePickerDialog *dialog = [DatePickerDialog viewFromNib];
     dialog.delegate = self;
 
@@ -245,7 +262,8 @@
 
 #pragma mark - DatePickerDelegate
 
-- (void)onPickerDate:(NSDate *)date {
+- (void)onPickerDate:(NSDate *)date
+{
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"yyyy-MM-dd HH:mm";
     NSString *dateStr = [format stringFromDate:date];

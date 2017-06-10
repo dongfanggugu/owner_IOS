@@ -35,7 +35,8 @@
 
 @implementation AddressLocationController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"地址选择"];
     [self initNavRightWithText:@"确定"];
@@ -43,39 +44,46 @@
     [self initData];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     NSString *searchText = _searchBar.text;
 
-    if (0 == searchText.length) {
+    if (0 == searchText.length)
+    {
         [HUDClass showHUDWithText:@"请先选择别墅的附近位置"];
         return;
     }
 
     NSString *input = _inputText.text;
 
-    if (0 == input.length) {
+    if (0 == input.length)
+    {
         [HUDClass showHUDWithText:@"请填写别墅的具体地址"];
         return;
     }
 
 
     NSString *address = [NSString stringWithFormat:@"%@%@", searchText, input];
-    if (_delegate && [_delegate respondsToSelector:@selector(onChooseAddress:Lat:lng:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onChooseAddress:Lat:lng:)])
+    {
         [_delegate onChooseAddress:address Lat:_mapView.centerCoordinate.latitude lng:_mapView.centerCoordinate.longitude];
     }
 
-    if (_delegate && [_delegate respondsToSelector:@selector(onChooseCell:address:Lat:lng:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onChooseCell:address:Lat:lng:)])
+    {
         [_delegate onChooseCell:searchText address:input Lat:_mapView.centerCoordinate.latitude lng:_mapView.centerCoordinate.longitude];
     }
 
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)initView {
+- (void)initView
+{
 
     UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, 40, 40)];
     lb.text = @"小区";
@@ -149,9 +157,11 @@
     [self initTableView];
 }
 
-- (void)onLocationComplete:(NSNotification *)notify {
+- (void)onLocationComplete:(NSNotification *)notify
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:Custom_Location_Complete object:nil];
-    if (!notify.userInfo) {
+    if (!notify.userInfo)
+    {
         return;
     }
 
@@ -161,7 +171,8 @@
     [self codeSearchWithLat:location.location.coordinate];
 }
 
-- (void)codeSearchWithLat:(CLLocationCoordinate2D)coor {
+- (void)codeSearchWithLat:(CLLocationCoordinate2D)coor
+{
     BMKGeoCodeSearch *search = [[BMKGeoCodeSearch alloc] init];
     search.delegate = self;
 
@@ -170,10 +181,13 @@
 
     BOOL flag = [search reverseGeoCode:option];
 
-    if (flag) {
+    if (flag)
+    {
         NSLog(@"反编码启动成功!");
 
-    } else {
+    }
+    else
+    {
         NSLog(@"反编码启动失败");
 
     }
@@ -182,16 +196,21 @@
 
 #pragma mark - BMKGeoCodeSearchDelegate
 
-- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
-    if (error == BMK_SEARCH_NO_ERROR) {
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR)
+    {
         _searchBar.text = result.address;
 
-    } else {
+    }
+    else
+    {
         NSLog(@"反编码 error code:%u", error);
     }
 }
 
-- (void)markOnMap:(CLLocationCoordinate2D)coor; {
+- (void)markOnMap:(CLLocationCoordinate2D)coor;
+{
     [_mapView setCenterCoordinate:coor animated:YES];
     [_mapView removeAnnotations:_mapView.annotations];
 
@@ -201,15 +220,18 @@
 //    [_mapView showAnnotations:[NSArray arrayWithObjects:annotation, nil] animated:YES];
 }
 
-- (Location *)location {
-    if (!_location) {
+- (Location *)location
+{
+    if (!_location)
+    {
         _location = [[Location alloc] initLocationWith:nil];
     }
 
     return _location;
 }
 
-- (void)initTableView {
+- (void)initTableView
+{
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 104, self.screenWidth, self.screenHeight / 2)];
 
     _tableView.delegate = self;
@@ -223,11 +245,13 @@
     _tableView.hidden = YES;
 }
 
-- (void)initData {
+- (void)initData
+{
     _dataArray = [NSMutableArray array];
 }
 
-- (void)poiSearch:(NSString *)keyword {
+- (void)poiSearch:(NSString *)keyword
+{
     BMKPoiSearch *poiSearch = [[BMKPoiSearch alloc] init];
 
     poiSearch.delegate = self;
@@ -239,21 +263,26 @@
 
 
     BOOL result = [poiSearch poiSearchInCity:option];
-    if (!result) {
+    if (!result)
+    {
         [HUDClass showHUDWithText:@"查询失败,请稍后再试!"];
     }
 }
 
 #pragma mark -- BMKSearchDelegate
 
-- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult *)poiResult errorCode:(BMKSearchErrorCode)errorCode {
+- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult *)poiResult errorCode:(BMKSearchErrorCode)errorCode
+{
 
-    if (errorCode == BMK_SEARCH_NO_ERROR) {
+    if (errorCode == BMK_SEARCH_NO_ERROR)
+    {
         [_dataArray removeAllObjects];
 
         [_dataArray addObjectsFromArray:poiResult.poiInfoList];
 
-    } else {
+    }
+    else
+    {
         [_dataArray removeAllObjects];
     }
 
@@ -263,12 +292,15 @@
 
 #pragma mark - UISearchBarDelegate
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
 
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    if (0 == searchText.length) {
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (0 == searchText.length)
+    {
         _tableView.hidden = YES;
         return;
     }
@@ -276,25 +308,30 @@
     [self poiSearch:searchText];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
     [searchBar resignFirstResponder];
 }
 
 #pragma mark - UITableViewDelegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _dataArray.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ContentCell *cell = [tableView dequeueReusableCellWithIdentifier:[ContentCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [ContentCell cellFromNib];
     }
 
@@ -306,13 +343,15 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     BMKPoiInfo *info = _dataArray[indexPath.row];
 
     return [ContentCell cellHeight:info.name];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     _tableView.hidden = YES;
 
     _bmkPointInfo = _dataArray[indexPath.row];

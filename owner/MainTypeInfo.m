@@ -11,10 +11,12 @@
 
 @implementation MainTypeInfo
 
-- (id)initWithDictionary:(NSDictionary *)dictionary {
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
     self = [super initWithDictionary:dictionary];
 
-    if (self) {
+    if (self)
+    {
         self.typeId = dictionary[@"id"];
     }
 

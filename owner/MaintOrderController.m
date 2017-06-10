@@ -22,26 +22,31 @@
 
 @implementation MaintOrderController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"维保订单"];
     [self initView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self getMaint];
 }
 
-- (NSMutableArray *)arrayMainOrder {
-    if (!_arrayMainOrder) {
+- (NSMutableArray *)arrayMainOrder
+{
+    if (!_arrayMainOrder)
+    {
         _arrayMainOrder = [NSMutableArray array];
     }
 
     return _arrayMainOrder;
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -58,7 +63,8 @@
 
 #pragma mark - Network Request
 
-- (void)getMaint {
+- (void)getMaint
+{
     OrderListRequest *request = [[OrderListRequest alloc] init];
 
     [[HttpClient shareClient] post:URL_MAIN_LIST parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -74,19 +80,23 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
 
     return self.arrayMainOrder.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     OrderInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[OrderInfoCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [OrderInfoCell cellFromNib];
     }
 
@@ -102,10 +112,13 @@
 
     NSInteger type = info.mainttypeId.integerValue;
 
-    if (1 == type) {
+    if (1 == type)
+    {
         cell.lbContent.text = [NSString stringWithFormat:@"剩余次数:%ld", info.frequency];
 
-    } else {
+    }
+    else
+    {
         cell.lbContent.text = [NSString stringWithFormat:@"到期日期:%@", info.expireTime];
 
     }
@@ -115,11 +128,13 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [OrderInfoCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     MainInfoController *controller = [[MainInfoController alloc] init];
     // controller.serviceInfo = _arrayMainOrder[indexPath.row];
 

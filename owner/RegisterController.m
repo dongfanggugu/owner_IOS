@@ -31,7 +31,8 @@
 
 @implementation RegisterCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     _btnLocation.hidden = YES;
 }
@@ -54,14 +55,16 @@
 
 @implementation RegisterController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"注册"];
     [self initView];
 }
 
 
-- (void)initView {
+- (void)initView
+{
     _tableView.bounces = NO;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -90,11 +93,13 @@
 
 #pragma mark - NetworkRequest
 
-- (void)ownerRegister {
+- (void)ownerRegister
+{
     RegisterCell *cell1 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     NSString *name = cell1.tfValue.text;
 
-    if (0 == name.length) {
+    if (0 == name.length)
+    {
         [HUDClass showHUDWithText:@"请填写用户姓名"];
         return;
     }
@@ -102,7 +107,8 @@
     RegisterCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     NSString *tel = cell2.tfValue.text;
 
-    if (0 == tel.length) {
+    if (0 == tel.length)
+    {
         [HUDClass showHUDWithText:@"请填写用户联系方式"];
         return;
     }
@@ -110,7 +116,8 @@
     RegisterCell *cell3 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     NSString *pwd = cell3.tfValue.text;
 
-    if (0 == pwd.length) {
+    if (0 == pwd.length)
+    {
         [HUDClass showHUDWithText:@"请填写密码"];
         return;
     }
@@ -119,7 +126,8 @@
     RegisterCell *cell4 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     NSString *pwdConfirm = cell4.tfValue.text;
 
-    if (![pwd isEqualToString:pwdConfirm]) {
+    if (![pwd isEqualToString:pwdConfirm])
+    {
         [HUDClass showHUDWithText:@"确认密码和密码不一致"];
         return;
     }
@@ -127,7 +135,8 @@
     SelectableCell *cell5 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     NSString *brand = cell5.getContentValue;
 
-    if (0 == brand.length) {
+    if (0 == brand.length)
+    {
         [HUDClass showHUDWithText:@"请选择电梯品牌"];
         return;
     }
@@ -136,7 +145,8 @@
 
     NSString *weight = [Utils string:cell6.getContentValue substringBeforeChar:@"k"];
 
-    if (0 == weight.length) {
+    if (0 == weight.length)
+    {
         [HUDClass showHUDWithText:@"请选择电梯载重量"];
         return;
     }
@@ -146,7 +156,8 @@
 
     NSString *address = _addressCell.lbValue.text;
 
-    if (0 == address.length || [address isEqualToString:@"点击选择别墅地址"]) {
+    if (0 == address.length || [address isEqualToString:@"点击选择别墅地址"])
+    {
         [HUDClass showHUDWithText:@"请选择别墅地址"];
         return;
     }
@@ -177,18 +188,22 @@
 
 #pragma mark - UITabelViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 8;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSInteger index = indexPath.row;
 
-    if (0 == index) {
+    if (0 == index)
+    {
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
 
         cell.lbKey.text = @"姓名";
@@ -196,7 +211,9 @@
 
         return cell;
 
-    } else if (1 == index) {
+    }
+    else if (1 == index)
+    {
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
 
         cell.lbKey.text = @"电话";
@@ -204,7 +221,9 @@
 
         return cell;
 
-    } else if (2 == index) {
+    }
+    else if (2 == index)
+    {
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
 
         cell.lbKey.text = @"密码";
@@ -214,7 +233,9 @@
 
         return cell;
 
-    } else if (3 == index) {
+    }
+    else if (3 == index)
+    {
 
         RegisterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"register_cell"];
 
@@ -225,7 +246,9 @@
 
         return cell;
 
-    } else if (4 == index) {
+    }
+    else if (4 == index)
+    {
         SelectableCell *cell = [SelectableCell cellFromNib];
 
         cell.lbKey.text = @"电梯品牌";
@@ -239,7 +262,8 @@
             [weakCell setData:[response getBrandList]];
 
             [weakCell setAfterSelectedListener:^(NSString *key, NSString *content) {
-                if ([content isEqualToString:@"其他"]) {
+                if ([content isEqualToString:@"其他"])
+                {
                     [weakSelf showBrandEditDialog:weakCell];
                 }
             }];
@@ -251,7 +275,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else if (5 == indexPath.row) {
+    }
+    else if (5 == indexPath.row)
+    {
         SelectableCell *cell = [SelectableCell cellFromNib];
 
         cell.lbKey.text = @"载重量";
@@ -275,7 +301,8 @@
         [cell setData:array];
 
         [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
-            if ([content isEqualToString:@"其他"]) {
+            if ([content isEqualToString:@"其他"])
+            {
                 [weakSelf showWeightEditDialog:weakCell];
             }
         }];
@@ -284,7 +311,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else if (6 == indexPath.row) {
+    }
+    else if (6 == indexPath.row)
+    {
         SelectableCell *cell = [SelectableCell cellFromNib];
 
         cell.lbKey.text = @"电梯层站";
@@ -309,11 +338,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else if (7 == index) {
+    }
+    else if (7 == index)
+    {
 
         KeyValueCell *cell = [tableView dequeueReusableCellWithIdentifier:[KeyValueCell identifier]];
 
-        if (!cell) {
+        if (!cell)
+        {
             cell = [KeyValueCell cellFromNib];
         }
 
@@ -332,7 +364,8 @@
     return nil;
 }
 
-- (void)addressLocation {
+- (void)addressLocation
+{
     AddressLocationController *controller = [[AddressLocationController alloc] init];
     controller.delegate = self;
 
@@ -342,7 +375,8 @@
 
 #pragma mark - LocationControllerDelegate
 
-- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng {
+- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
     _cellName = cell;
     _address = address;
 
@@ -353,7 +387,8 @@
 
 }
 
-- (void)showWeightEditDialog:(SelectableCell *)cell {
+- (void)showWeightEditDialog:(SelectableCell *)cell
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
     dialog.lbTitle.text = @"输入电梯的载重量";
@@ -374,7 +409,8 @@
     [dialog show];
 }
 
-- (void)showBrandEditDialog:(SelectableCell *)cell {
+- (void)showBrandEditDialog:(SelectableCell *)cell
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
 

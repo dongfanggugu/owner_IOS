@@ -11,7 +11,8 @@
 
 @implementation SMSCodeResponse
 
-- (NSString *)getSMSCode {
+- (NSString *)getSMSCode
+{
     return [self.body objectForKey:@"code"];
 }
 

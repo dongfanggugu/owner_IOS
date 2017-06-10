@@ -37,10 +37,12 @@
 @implementation AddBannerView
 
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
 
-    if (self) {
+    if (self)
+    {
         _viewWidth = self.bounds.size.width;
         _viewHeight = self.bounds.size.height;
 
@@ -81,19 +83,23 @@
 }
 
 
-- (CGFloat)viewWidth {
+- (CGFloat)viewWidth
+{
     return self.bounds.size.width;
 }
 
-- (CGFloat)viewHeight {
+- (CGFloat)viewHeight
+{
     return self.bounds.size.height;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
     NSLog(@"AddBannerView initWithCoder");
     self = [super initWithCoder:aDecoder];
 
-    if (self) {
+    if (self)
+    {
         _viewWidth = self.bounds.size.width;
         _viewHeight = self.bounds.size.height;
 
@@ -146,7 +152,8 @@
     return self;
 }
 
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
     [super layoutSubviews];
 
 //    CGRect scrollFrame = CGRectMake(0, 0, self.viewWidth, self.viewHeight);
@@ -170,14 +177,18 @@
 
 }
 
-- (void)handleTap:(UITapGestureRecognizer *)sender {
-    if ([_delegate respondsToSelector:@selector(didClickPage:url:)]) {
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if ([_delegate respondsToSelector:@selector(didClickPage:url:)])
+    {
         [_delegate didClickPage:self url:[[_arrayData objectAtIndex:_currentPage] getClickUrl]];
     }
 }
 
-- (void)setArrayData:(NSArray<id <AddBannerDataDelegate>> *)arrayData {
-    if (arrayData) {
+- (void)setArrayData:(NSArray<id <AddBannerDataDelegate>> *)arrayData
+{
+    if (arrayData)
+    {
         _arrayData = arrayData;
         _currentPage = 0;
         _pageControl.numberOfPages = _arrayData.count;
@@ -187,22 +198,29 @@
     [self reloadData];
 }
 
-- (void)reloadData {
-    if (_arrayData.count < _currentPage + 1) {
+- (void)reloadData
+{
+    if (_arrayData.count < _currentPage + 1)
+    {
         return;
     }
 
-    if (0 == _currentPage) {
+    if (0 == _currentPage)
+    {
         [_firstView setImageWithURL:[NSURL URLWithString:[[_arrayData lastObject] getPicUrl]]];
         [_middleView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage] getPicUrl]]];
         [_lastView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage + 1] getPicUrl]]];
 
-    } else if (_currentPage == _arrayData.count - 1) {
+    }
+    else if (_currentPage == _arrayData.count - 1)
+    {
         [_firstView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage - 1] getPicUrl]]];
         [_middleView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage] getPicUrl]]];
         [_lastView setImageWithURL:[NSURL URLWithString:[[_arrayData firstObject] getPicUrl]]];
 
-    } else {
+    }
+    else
+    {
         [_firstView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage - 1] getPicUrl]]];
         [_middleView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage] getPicUrl]]];
         [_lastView setImageWithURL:[NSURL URLWithString:[[_arrayData objectAtIndex:_currentPage + 1] getPicUrl]]];
@@ -214,7 +232,8 @@
 
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
     [_autoScrollTimer invalidate];
     _autoScrollTimer = nil;
     _autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self
@@ -224,19 +243,27 @@
     CGFloat x = _scrollView.contentOffset.x;
 
     //往前翻
-    if (x <= 0) {
-        if (_currentPage - 1 < 0) {
+    if (x <= 0)
+    {
+        if (_currentPage - 1 < 0)
+        {
             _currentPage = _arrayData.count - 1;
-        } else {
+        }
+        else
+        {
             _currentPage--;
         }
     }
 
     //往前翻
-    if (x >= _viewWidth * 2) {
-        if (_currentPage == _arrayData.count - 1) {
+    if (x >= _viewWidth * 2)
+    {
+        if (_currentPage == _arrayData.count - 1)
+        {
             _currentPage = 0;
-        } else {
+        }
+        else
+        {
             _currentPage++;
         }
     }
@@ -245,25 +272,35 @@
 }
 
 
-- (void)shouldAutoShow:(BOOL)shouldStart {
-    if (shouldStart) {
-        if (!_autoScrollTimer) {
+- (void)shouldAutoShow:(BOOL)shouldStart
+{
+    if (shouldStart)
+    {
+        if (!_autoScrollTimer)
+        {
             _autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self
                                                               selector:@selector(autoShowNextImage) userInfo:nil repeats:YES];
 
         }
-    } else {
-        if (_autoScrollTimer.isValid) {
+    }
+    else
+    {
+        if (_autoScrollTimer.isValid)
+        {
             [_autoScrollTimer invalidate];
             _autoScrollTimer = nil;
         }
     }
 }
 
-- (void)autoShowNextImage {
-    if (_currentPage == _arrayData.count - 1) {
+- (void)autoShowNextImage
+{
+    if (_currentPage == _arrayData.count - 1)
+    {
         _currentPage = 0;
-    } else {
+    }
+    else
+    {
         _currentPage++;
     }
 

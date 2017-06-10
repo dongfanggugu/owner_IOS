@@ -11,25 +11,30 @@
 
 @implementation PersonInfoView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PersonInfoView" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.userInteractionEnabled = YES;
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickView)]];
 }
 
-- (void)clickView {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickView)]) {
+- (void)clickView
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickView)])
+    {
         [_delegate onClickView];
     }
 }

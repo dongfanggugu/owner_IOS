@@ -13,6 +13,12 @@
 
 #define TITLE_COLOR @"#36b0f3"
 
+#define FONT_GRAY @"#999999"
+
+#define BG_GRAY @"#F1F1F1"
+
 #define COLOR_SEGMENT_UNSEL @"#06577C"
+
+#define RGB(rgbValue) [Utils getColorByRGB:rgbValue]
 
 #endif /* Colors_h */

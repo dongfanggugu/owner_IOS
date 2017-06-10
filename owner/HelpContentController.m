@@ -17,13 +17,15 @@
 
 @implementation HelpContentController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setTitle:_pageTitle];
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 64 + 8, self.view.bounds.size.width - 16, 100)];
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;

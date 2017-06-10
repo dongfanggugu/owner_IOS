@@ -18,14 +18,16 @@
 
 @implementation LinkModifyController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"联系人修改"];
     [self initView];
 }
 
 
-- (void)initView {
+- (void)initView
+{
     _tfName = [[UITextField alloc] initWithFrame:CGRectMake(8, 70, self.screenWidth - 16, 30)];
     _tfName.leftViewMode = UITextFieldViewModeAlways;
 
@@ -88,11 +90,13 @@
 }
 
 
-- (void)submit {
+- (void)submit
+{
     NSString *name = _tfName.text;
     NSString *tel = _tfTel.text;
 
-    if (0 == name.length || 0 == tel.length) {
+    if (0 == name.length || 0 == tel.length)
+    {
         [HUDClass showHUDWithText:@"请正确填写联系人信息"];
         return;
     }
@@ -114,7 +118,8 @@
                                [Config shareConfig].linkName = name;
                                [Config shareConfig].linkTel = tel;
                                [HUDClass showHUDWithText:@"联系人修改成功"];
-                               if (_delegate && [_delegate respondsToSelector:@selector(onModifyComplete:tel:)]) {
+                               if (_delegate && [_delegate respondsToSelector:@selector(onModifyComplete:tel:)])
+                               {
                                    [_delegate onModifyComplete:name tel:tel];
 
                                }

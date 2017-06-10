@@ -18,14 +18,16 @@
 
 @implementation MainOrderDetaIlController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"订单详情"];
 
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -41,18 +43,22 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     MainOrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:[MainOrderDetailCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [MainOrderDetailCell cellFromNib];
     }
 
@@ -86,21 +92,27 @@
 
     NSInteger isPay = [_orderInfo[@"isPay"] integerValue];
 
-    if (isPay) {
+    if (isPay)
+    {
         cell.lbPayState.text = @"已经支付";
         cell.lbPayDate.text = _orderInfo[@"payTime"];
         cell.btn.hidden = YES;
 
-    } else {
+    }
+    else
+    {
 
         NSInteger delete = [[_orderInfo[@"maintOrderInfo"] objectForKey:@"isDelete"] integerValue];
 
-        if (delete) {
+        if (delete)
+        {
             cell.lbPayState.text = @"已过期";
             cell.lbPayDate.text = @"--";
             cell.btn.hidden = YES;
 
-        } else {
+        }
+        else
+        {
             cell.lbPayState.text = @"未支付";
             cell.lbPayDate.text = @"--";
             cell.btn.hidden = NO;
@@ -114,11 +126,13 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [MainOrderDetailCell cellHeight];
 }
 
-- (void)payment {
+- (void)payment
+{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"paymentId"] = _orderInfo[@"id"];
 
@@ -126,7 +140,8 @@
 
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
 
-        if (url.length != 0) {
+        if (url.length != 0)
+        {
             PayViewController *controller = [[PayViewController alloc] init];
             controller.urlStr = url;
 

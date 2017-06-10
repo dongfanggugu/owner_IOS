@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "EnsuranceController.h"
 
-@interface EnsuranceController () <UIScrollViewDelegate> {
+@interface EnsuranceController () <UIScrollViewDelegate>
+{
     CGRect _oldFrame;    //保存图片原来的大小
     CGRect _largeFrame;  //确定图片放大最大的程度
 
@@ -45,18 +46,21 @@
 
 @implementation EnsuranceController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"保险投保单"];
     [self initData];
     [self initView];
 }
 
-- (void)initData {
+- (void)initData
+{
     _currentPage = 0;
 }
 
-- (void)initPageView {
+- (void)initPageView
+{
     _viewWidth = [UIScreen mainScreen].bounds.size.width;
     _viewHeight = [UIScreen mainScreen].bounds.size.height - 64;
 
@@ -89,7 +93,8 @@
     [self.view addSubview:_lbPage];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self initPageView];
 
@@ -138,7 +143,8 @@
 }
 
 
-- (void)initImageView:(UIImageView *)imageView {
+- (void)initImageView:(UIImageView *)imageView
+{
     imageView.multipleTouchEnabled = YES;
 
     imageView.userInteractionEnabled = YES;
@@ -148,7 +154,8 @@
 
 
 // 添加所有的手势
-- (void)addGestureRecognizerToView:(UIView *)view {
+- (void)addGestureRecognizerToView:(UIView *)view
+{
     // 旋转手势
 //    UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateView:)];
 //    [view addGestureRecognizer:rotationGestureRecognizer];
@@ -163,21 +170,26 @@
 }
 
 // 处理旋转手势
-- (void)rotateView:(UIRotationGestureRecognizer *)rotationGestureRecognizer {
+- (void)rotateView:(UIRotationGestureRecognizer *)rotationGestureRecognizer
+{
     UIView *view = rotationGestureRecognizer.view;
-    if (rotationGestureRecognizer.state == UIGestureRecognizerStateBegan || rotationGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    if (rotationGestureRecognizer.state == UIGestureRecognizerStateBegan || rotationGestureRecognizer.state == UIGestureRecognizerStateChanged)
+    {
         view.transform = CGAffineTransformRotate(view.transform, rotationGestureRecognizer.rotation);
         [rotationGestureRecognizer setRotation:0];
     }
 }
 
 // 处理缩放手势
-- (void)pinchView:(UIPinchGestureRecognizer *)pinchGestureRecognizer {
+- (void)pinchView:(UIPinchGestureRecognizer *)pinchGestureRecognizer
+{
     UIView *view = pinchGestureRecognizer.view;
-    if (pinchGestureRecognizer.state == UIGestureRecognizerStateBegan || pinchGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    if (pinchGestureRecognizer.state == UIGestureRecognizerStateBegan || pinchGestureRecognizer.state == UIGestureRecognizerStateChanged)
+    {
         view.transform = CGAffineTransformScale(view.transform, pinchGestureRecognizer.scale, pinchGestureRecognizer.scale);
 
-        if (view.frame.size.width < _oldFrame.size.width) {
+        if (view.frame.size.width < _oldFrame.size.width)
+        {
             NSInteger x = (NSInteger) (view.frame.origin.x / _viewWidth);
 
             CGRect frame = CGRectMake(x * _viewWidth, _oldFrame.origin.y, _oldFrame.size.width, _oldFrame.size.height);
@@ -188,9 +200,11 @@
 }
 
 // 处理拖拉手势
-- (void)panView:(UIPanGestureRecognizer *)panGestureRecognizer {
+- (void)panView:(UIPanGestureRecognizer *)panGestureRecognizer
+{
     UIView *view = panGestureRecognizer.view;
-    if (panGestureRecognizer.state == UIGestureRecognizerStateBegan || panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    if (panGestureRecognizer.state == UIGestureRecognizerStateBegan || panGestureRecognizer.state == UIGestureRecognizerStateChanged)
+    {
         CGPoint translation = [panGestureRecognizer translationInView:view.superview];
         [view setCenter:(CGPoint) {view.center.x + translation.x, view.center.y + translation.y}];
         [panGestureRecognizer setTranslation:CGPointZero inView:view.superview];
@@ -200,14 +214,16 @@
 
 #pragma mark - ScrollViewDelegate
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
 
     //得到当前页数
     _currentPage = (NSInteger) (_scrollView.contentOffset.x / _viewWidth) + 1;
 
     _lbPage.text = [NSString stringWithFormat:@"%ld/8", _currentPage];
 
-    switch (_currentPage) {
+    switch (_currentPage)
+    {
         case 0:
 
             break;
@@ -215,43 +231,51 @@
             break;
         case 2:
 
-            if (!_view3.image) {
+            if (!_view3.image)
+            {
                 _view3.image = [UIImage imageNamed:@"page_3.jpg"];
             }
 
             break;
         case 3:
 
-            if (!_view3.image) {
+            if (!_view3.image)
+            {
                 _view3.image = [UIImage imageNamed:@"page_3.jpg"];
             }
 
-            if (!_view4.image) {
+            if (!_view4.image)
+            {
                 _view4.image = [UIImage imageNamed:@"page_4.jpg"];
             }
 
             break;
         case 4:
 
-            if (!_view4.image) {
+            if (!_view4.image)
+            {
                 _view4.image = [UIImage imageNamed:@"page_4.jpg"];
             }
-            if (!_view5.image) {
+            if (!_view5.image)
+            {
                 _view5.image = [UIImage imageNamed:@"page_5.jpg"];
             }
 
-            if (!_view6.image) {
+            if (!_view6.image)
+            {
                 _view6.image = [UIImage imageNamed:@"page_6.jpg"];
             }
 
             break;
         case 5:
 
-            if (!_view5.image) {
+            if (!_view5.image)
+            {
                 _view5.image = [UIImage imageNamed:@"page_5.jpg"];
             }
 
-            if (!_view6.image) {
+            if (!_view6.image)
+            {
                 _view6.image = [UIImage imageNamed:@"page_6.jpg"];
             }
 
@@ -259,29 +283,34 @@
             break;
         case 6:
 
-            if (!_view6.image) {
+            if (!_view6.image)
+            {
                 _view6.image = [UIImage imageNamed:@"page_6.jpg"];
             }
 
-            if (!_view7.image) {
+            if (!_view7.image)
+            {
                 _view7.image = [UIImage imageNamed:@"page_7.jpg"];
             }
 
             break;
         case 7:
 
-            if (!_view7.image) {
+            if (!_view7.image)
+            {
                 _view7.image = [UIImage imageNamed:@"page_7.jpg"];
             }
 
-            if (!_view8.image) {
+            if (!_view8.image)
+            {
                 _view8.image = [UIImage imageNamed:@"page_8.jpg"];
             }
 
             break;
         case 8:
 
-            if (!_view8.image) {
+            if (!_view8.image)
+            {
                 _view8.image = [UIImage imageNamed:@"page_8.jpg"];
             }
             break;

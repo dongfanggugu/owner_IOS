@@ -19,13 +19,15 @@
 
 @implementation AppReportController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"电梯故障报修"];
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     _tvContent.layer.masksToBounds = YES;
     _tvContent.layer.cornerRadius = 5;
 
@@ -39,9 +41,11 @@
     [_btnSubmit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)submit {
+- (void)submit
+{
     NSString *content = _tvContent.text;
-    if (0 == content.length) {
+    if (0 == content.length)
+    {
         [HUDClass showHUDWithText:@"请先填写电梯故障描述"];
         return;
     }

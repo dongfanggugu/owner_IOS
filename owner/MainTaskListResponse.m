@@ -11,11 +11,13 @@
 
 @implementation MainTaskListResponse
 
-+ (Class)body_class {
++ (Class)body_class
+{
     return [MainTaskInfo class];
 }
 
-- (NSArray<MainTaskInfo *> *)getTaskList {
+- (NSArray<MainTaskInfo *> *)getTaskList
+{
     return (NSArray<MainTaskInfo *> *) self.body;
 }
 

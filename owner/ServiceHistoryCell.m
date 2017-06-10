@@ -16,47 +16,57 @@
 
 @implementation ServiceHistoryCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ServiceHistoryCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"service_history_cell";
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 150;
 }
 
 
-- (void)setImage:(UIImage *)image {
+- (void)setImage:(UIImage *)image
+{
     _ivBg.image = image;
 }
 
-- (void)addOnClickBtnListener:(void (^)())onClickBtn {
+- (void)addOnClickBtnListener:(void (^)())onClickBtn
+{
     _onClickBtn = onClickBtn;
     [_btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickBtn {
-    if (_onClickBtn) {
+- (void)clickBtn
+{
+    if (_onClickBtn)
+    {
         _onClickBtn();
     }
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 
 }

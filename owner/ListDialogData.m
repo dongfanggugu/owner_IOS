@@ -10,8 +10,10 @@
 
 @implementation ListDialogData
 
-- (id)initWithKey:(NSString *)key content:(NSString *)content {
-    if (self = [super init]) {
+- (id)initWithKey:(NSString *)key content:(NSString *)content
+{
+    if (self = [super init])
+    {
         self.key = key;
         self.content = content;
     }
@@ -19,11 +21,13 @@
     return self;
 }
 
-- (NSString *)getShowContent {
+- (NSString *)getShowContent
+{
     return _content;
 }
 
-- (NSString *)getKey {
+- (NSString *)getKey
+{
     return _key;
 }
 

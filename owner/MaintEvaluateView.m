@@ -31,17 +31,20 @@
 
 @implementation MaintEvaluateView
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MaintEvaluateView" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     _btnSubmit.layer.masksToBounds = YES;
@@ -71,7 +74,8 @@
 
 }
 
-- (void)clickBtn1 {
+- (void)clickBtn1
+{
     [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
     [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
@@ -80,7 +84,8 @@
     _starCount = 1;
 }
 
-- (void)clickBtn2 {
+- (void)clickBtn2
+{
     [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
@@ -89,7 +94,8 @@
     _starCount = 2;
 }
 
-- (void)clickBtn3 {
+- (void)clickBtn3
+{
     [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
@@ -99,7 +105,8 @@
     _starCount = 3;
 }
 
-- (void)clickBtn4 {
+- (void)clickBtn4
+{
     [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
@@ -110,7 +117,8 @@
 
 }
 
-- (void)clickBtn5 {
+- (void)clickBtn5
+{
     [_btnStar1 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar2 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
     [_btnStar3 setImage:[UIImage imageNamed:@"icon_star_sel"] forState:UIControlStateNormal];
@@ -120,8 +128,10 @@
     _starCount = 5;
 }
 
-- (void)submit {
-    if (_delegate) {
+- (void)submit
+{
+    if (_delegate)
+    {
         [_delegate onSubmit:_starCount content:_tvContent.text];
     }
 }

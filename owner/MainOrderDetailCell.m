@@ -16,26 +16,31 @@
 @implementation MainOrderDetailCell
 
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MainOrderDetailCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 800;
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"main_order_detail_cell";
 }
 
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;

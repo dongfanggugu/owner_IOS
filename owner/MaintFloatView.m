@@ -28,10 +28,12 @@
 
 @implementation MaintFloatView
 
-+ (instancetype)viewFromNib {
++ (instancetype)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MaintFloatView" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
@@ -39,25 +41,32 @@
 }
 
 
-- (void)onClickOrder {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickOrder:index:)]) {
+- (void)onClickOrder
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickOrder:index:)])
+    {
         [_delegate onClickOrder:self index:_curIndex];
     }
 }
 
-- (void)onClickDetail {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetail:index:)]) {
+- (void)onClickDetail
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetail:index:)])
+    {
         [_delegate onClickDetail:self index:_curIndex];
     }
 }
 
-- (void)onClickChange {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickChange:)]) {
+- (void)onClickChange
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickChange:)])
+    {
         [_delegate onClickChange:self];
     }
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     _btn.layer.masksToBounds = YES;
@@ -88,7 +97,8 @@
 }
 
 
-- (void)resetSel {
+- (void)resetSel
+{
     _viewLevel1.backgroundColor = [UIColor whiteColor];
 
     _lbLevel1Top.textColor = [UIColor blackColor];
@@ -118,7 +128,8 @@
 
 }
 
-- (void)viewSel1 {
+- (void)viewSel1
+{
     [self resetSel];
 
     _viewLevel1.backgroundColor = [Utils getColorByRGB:@"#f1f1f1"];
@@ -129,14 +140,16 @@
 
     _lbLevel1Bottom.textColor = [Utils getColorByRGB:TITLE_COLOR];
 
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickView:index:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickView:index:)])
+    {
         [_delegate onClickView:self index:0];
     }
 
     _curIndex = 0;
 }
 
-- (void)viewSel2 {
+- (void)viewSel2
+{
     [self resetSel];
 
     _viewLevel2.backgroundColor = [Utils getColorByRGB:@"#f1f1f1"];
@@ -147,14 +160,16 @@
 
     _lbLevel2Bottom.textColor = [Utils getColorByRGB:TITLE_COLOR];
 
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickView:index:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickView:index:)])
+    {
         [_delegate onClickView:self index:1];
     }
 
     _curIndex = 1;
 }
 
-- (void)viewSel3 {
+- (void)viewSel3
+{
     [self resetSel];
 
     _viewLevel3.backgroundColor = [Utils getColorByRGB:@"#f1f1f1"];
@@ -165,22 +180,28 @@
 
     _lbLevel3Bottom.textColor = [Utils getColorByRGB:TITLE_COLOR];
 
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickView:index:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickView:index:)])
+    {
         [_delegate onClickView:self index:2];
     }
 
     _curIndex = 2;
 }
 
-- (void)defaultSel {
+- (void)defaultSel
+{
     [self viewSel1];
 }
 
-- (void)setChangeHiden:(BOOL)changeHiden {
-    if (changeHiden) {
+- (void)setChangeHiden:(BOOL)changeHiden
+{
+    if (changeHiden)
+    {
         _btnChange.hidden = YES;
 
-    } else {
+    }
+    else
+    {
         _btnChange.hidden = NO;
 
     }

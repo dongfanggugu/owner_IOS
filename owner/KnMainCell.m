@@ -22,25 +22,30 @@
 
 @implementation KnMainCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"KnMainCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"kn_main_cell";
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 300;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     // Initialization code
 
@@ -72,29 +77,37 @@
     [_viewLaw addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickLaw)]];
 }
 
-- (void)clickQA {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickQA)]) {
+- (void)clickQA
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickQA)])
+    {
         [_delegate onClickQA];
     }
 
 }
 
-- (void)clickFault {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickFault)]) {
+- (void)clickFault
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickFault)])
+    {
         [_delegate onClickFault];
     }
 
 }
 
-- (void)clickOp {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickOperation)]) {
+- (void)clickOp
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickOperation)])
+    {
         [_delegate onClickOperation];
     }
 
 }
 
-- (void)clickLaw {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickLaw)]) {
+- (void)clickLaw
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickLaw)])
+    {
         [_delegate onClickLaw];
     }
 

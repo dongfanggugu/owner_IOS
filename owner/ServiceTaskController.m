@@ -23,25 +23,30 @@
 
 @implementation ServiceTaskController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"维保服务单"];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self getTask];
 }
 
-- (NSMutableArray *)arrayTask {
-    if (!_arrayTask) {
+- (NSMutableArray *)arrayTask
+{
+    if (!_arrayTask)
+    {
         _arrayTask = [NSMutableArray array];
     }
 
     return _arrayTask;
 }
 
-- (void)initNoHistoryView {
+- (void)initNoHistoryView
+{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, self.screenWidth, 40)];
     label.font = [UIFont systemFontOfSize:14];
     label.textAlignment = NSTextAlignmentCenter;
@@ -53,7 +58,8 @@
     return;
 }
 
-- (void)initTableView {
+- (void)initTableView
+{
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
 
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -67,7 +73,8 @@
     [self.view addSubview:_tableView];
 }
 
-- (void)getTask {
+- (void)getTask
+{
     MainTaskListRequest *request = [[MainTaskListRequest alloc] init];
 
     request.maintOrderId = _serviceId;
@@ -79,10 +86,13 @@
 
         [self.arrayTask addObjectsFromArray:[response getTaskList]];
 
-        if (0 == self.arrayTask.count) {
+        if (0 == self.arrayTask.count)
+        {
             [self initNoHistoryView];
 
-        } else {
+        }
+        else
+        {
             [self initTableView];
 
         }
@@ -93,10 +103,12 @@
 }
 
 //0待确认 1已确认 2已完成 3已评价
-- (NSString *)getStateDes:(NSInteger)state {
+- (NSString *)getStateDes:(NSInteger)state
+{
     NSString *res = @"";
 
-    switch (state) {
+    switch (state)
+    {
         case 0:
             res = @"待确认";
             break;
@@ -119,18 +131,22 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.arrayTask.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     RepairTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[RepairTaskCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [RepairTaskCell cellFromNib];
     }
 
@@ -147,11 +163,13 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [RepairTaskCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     MainTaskDetailController *controller = [[MainTaskDetailController alloc] init];

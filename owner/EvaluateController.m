@@ -22,14 +22,16 @@
 
 @implementation EvaluateController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"用户评价"];
     [self initView];
 }
 
 
-- (void)initView {
+- (void)initView
+{
     _evaluateView = [EvaluteView viewFromNib];
 
     _evaluateView.frame = CGRectMake(0, 64, self.screenWidth, 300);
@@ -38,7 +40,8 @@
 
     [self.view addSubview:_evaluateView];
 
-    if (Show == _enterType) {
+    if (Show == _enterType)
+    {
         [_evaluateView setModeShow];
         [_evaluateView setStar:_star];
         [_evaluateView setContent:_content];
@@ -47,9 +50,11 @@
 
 #pragma mark - EvaluateViewDelegate
 
-- (void)onSubmit:(NSInteger)star content:(NSString *)content {
+- (void)onSubmit:(NSInteger)star content:(NSString *)content
+{
 
-    if (Maint_Submit == _enterType) {
+    if (Maint_Submit == _enterType)
+    {
         MainTaskEvaluateRequest *request = [[MainTaskEvaluateRequest alloc] init];
         request.maintOrderProcessId = _mainTaskInfo.taskId;
         request.evaluateContent = content;
@@ -65,7 +70,9 @@
 
         }];
 
-    } else {
+    }
+    else
+    {
         RepairEvaluateRequest *request = [[RepairEvaluateRequest alloc] init];
         request.repairOrderId = _repairOrderInfo.orderId;
         request.evaluateInfo = content;

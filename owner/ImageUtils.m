@@ -24,7 +24,8 @@
  *
  *  @return <#return value description#>
  */
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
 
     UIGraphicsBeginImageContext(newSize);
 
@@ -45,7 +46,8 @@
  *
  *  @return <#return value description#>
  */
-+ (NSString *)image2Base64From:(NSString *)path {
++ (NSString *)image2Base64From:(NSString *)path
+{
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     NSData *data = UIImageJPEGRepresentation(image, 1);
     NSString *base64Code = [data base64Encoding];

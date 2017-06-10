@@ -17,46 +17,56 @@
 
 @implementation BaseViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     //[self setNavIcon];
     [self initNaviTitle];
     self.view.backgroundColor = [UIColor whiteColor];
-    if (self.navigationController) {
+    if (self.navigationController)
+    {
         self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     //self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 
-- (CGFloat)screenWidth {
+- (CGFloat)screenWidth
+{
     return [UIScreen mainScreen].bounds.size.width;
 }
 
-- (CGFloat)screenHeight {
+- (CGFloat)screenHeight
+{
     return [UIScreen mainScreen].bounds.size.height;
 }
 
-- (BOOL)login {
+- (BOOL)login
+{
     NSString *userId = [[Config shareConfig] getUserId];
 
     return userId.length;
 }
 
-- (void)setNavTitle:(NSString *)title {
-    if (!self.navigationController) {
+- (void)setNavTitle:(NSString *)title
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
     _lbTitle.text = title;
 }
 
-- (void)initNaviTitle {
-    if (!self.navigationController) {
+- (void)initNaviTitle
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
@@ -71,8 +81,10 @@
 /**
  使用文字初始化导航栏右侧按钮
  **/
-- (void)initNavRightWithText:(NSString *)text {
-    if (!self.navigationController) {
+- (void)initNavRightWithText:(NSString *)text
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
@@ -85,7 +97,8 @@
 
     self.navigationItem.rightBarButtonItem = rightButton;
 
-    if ([self respondsToSelector:@selector(onClickNavRight)]) {
+    if ([self respondsToSelector:@selector(onClickNavRight)])
+    {
         [btnRight addTarget:self action:@selector(onClickNavRight) forControlEvents:UIControlEventTouchUpInside];
     }
 }
@@ -93,8 +106,10 @@
 /**
  使用文字初始化导航栏右侧按钮
  **/
-- (void)initNavRightWithImage:(UIImage *)image {
-    if (!self.navigationController) {
+- (void)initNavRightWithImage:(UIImage *)image
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
@@ -105,28 +120,34 @@
 
     self.navigationItem.rightBarButtonItem = rightButton;
 
-    if ([self respondsToSelector:@selector(onClickNavRight)]) {
+    if ([self respondsToSelector:@selector(onClickNavRight)])
+    {
         [btnRight addTarget:self action:@selector(onClickNavRight) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
 
 }
 
-- (void)popup {
+- (void)popup
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setNavIcon {
-    if (!self.navigationController) {
+- (void)setNavIcon
+{
+    if (!self.navigationController)
+    {
         return;
     }
 
     NSArray *array = self.navigationController.viewControllers;
 
-    if (1 == array.count) {
+    if (1 == array.count)
+    {
         return;
     }
 
@@ -139,13 +160,15 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     NSLog(@"%@ dealloc", [self class]);
 }
 
 #pragma mark -- 设置状态栏字体为白色
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 

@@ -21,9 +21,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTel;
 
-- (void)setOnClickTel:(void(^)(NSString* tel))clickTel;
+- (void)setOnClickTel:(void (^)(NSString *tel))clickTel;
 
-- (void)setOnClickApp:(void(^)())clickApp;
+- (void)setOnClickApp:(void (^)())clickApp;
 
 @end
 

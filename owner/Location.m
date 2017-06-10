@@ -19,17 +19,20 @@
 
 @implementation Location
 
-- (instancetype)initLocationWith:(NSDictionary *)info {
+- (instancetype)initLocationWith:(NSDictionary *)info
+{
     self = [super init];
 
-    if (self) {
+    if (self)
+    {
         self.customInfo = info;
     }
 
     return self;
 }
 
-- (void)startLocationService {
+- (void)startLocationService
+{
     _locService = [[BMKLocationService alloc] init];
     _locService.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     _locService.distanceFilter = 1.0f;
@@ -45,7 +48,8 @@
  *用户位置更新后，会调用此函数
  *@param userLocation 新的用户位置
  */
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
     //关闭定位
     [_locService stopUserLocationService];
 
@@ -68,7 +72,8 @@
     NSLog(@"custom after send notify");
 }
 
-- (void)didFailToLocateUserWithError:(NSError *)error {
+- (void)didFailToLocateUserWithError:(NSError *)error
+{
     [_locService stopUserLocationService];
 
     _locService = nil;
@@ -80,11 +85,13 @@
 
 }
 
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation {
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
     //NSLog(@"heading is %@", userLocation.heading);
 }
 
-+ (CLLocationDistance)distancePoint:(CLLocationCoordinate2D)point1 with:(CLLocationCoordinate2D)point2 {
++ (CLLocationDistance)distancePoint:(CLLocationCoordinate2D)point1 with:(CLLocationCoordinate2D)point2
+{
     BMKMapPoint p1 = BMKMapPointForCoordinate(point1);
     BMKMapPoint p2 = BMKMapPointForCoordinate(point2);
 

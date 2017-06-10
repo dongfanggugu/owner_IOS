@@ -25,21 +25,24 @@
 
 @implementation EnsuranceMainController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"一元大保障"];
     [self initNavRightWithImage:[UIImage imageNamed:@"icon_custom_service"]];
     [self initView];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", Custom_Service]];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     [self.view addSubview:webView];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64) style:UITableViewStylePlain];
@@ -89,14 +92,16 @@
     [footView addSubview:btnEnsure];
 }
 
-- (void)clickDetail {
+- (void)clickDetail
+{
     EnsuranceController *controller = [[EnsuranceController alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)clickEnsure {
+- (void)clickEnsure
+{
     NSString *name = nil;
 
     NSString *tel = nil;
@@ -104,14 +109,17 @@
     NSString *add = nil;
 
 
-    if (!self.login) {
+    if (!self.login)
+    {
         name = _nameCell.tfValue.text;
 
         tel = _telCell.tfValue.text;
 
         add = _addCell.tfValue.text;
 
-    } else {
+    }
+    else
+    {
         name = [[Config shareConfig] getName];
 
         tel = [[Config shareConfig] getTel];
@@ -119,15 +127,20 @@
         add = [[Config shareConfig] getBranchAddress];
     }
 
-    if (0 == name.length) {
+    if (0 == name.length)
+    {
         [HUDClass showHUDWithText:@"请先填写您的姓名"];
         return;
 
-    } else if (0 == tel.length) {
+    }
+    else if (0 == tel.length)
+    {
         [HUDClass showHUDWithText:@"请填写您的联系方式"];
         return;
 
-    } else if (0 == add.length) {
+    }
+    else if (0 == add.length)
+    {
         [HUDClass showHUDWithText:@"请填写您的地址"];
         return;
 
@@ -150,35 +163,47 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (0 == section) {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (0 == section)
+    {
         return 2;
 
-    } else {
+    }
+    else
+    {
         return 1;
 
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.login) {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.login)
+    {
 
         KeyValueCell *cell = [KeyValueCell cellFromNib];
         cell.lbValue.textAlignment = NSTextAlignmentRight;
 
-        if (0 == indexPath.section && 0 == indexPath.row) {
+        if (0 == indexPath.section && 0 == indexPath.row)
+        {
             cell.lbKey.text = @"姓名";
             cell.lbValue.text = [[Config shareConfig] getName];
 
-        } else if (0 == indexPath.section && 1 == indexPath.row) {
+        }
+        else if (0 == indexPath.section && 1 == indexPath.row)
+        {
             cell.lbKey.text = @"联系方式";
             cell.lbValue.text = [[Config shareConfig] getTel];
 
-        } else {
+        }
+        else
+        {
             cell.lbKey.text = @"地址";
             cell.lbValue.text = [[Config shareConfig] getBranchAddress];
 
@@ -187,14 +212,20 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else {
+    }
+    else
+    {
 
-        if (0 == indexPath.section && 0 == indexPath.row) {
+        if (0 == indexPath.section && 0 == indexPath.row)
+        {
 
-            if (_nameCell) {
+            if (_nameCell)
+            {
                 return _nameCell;
 
-            } else {
+            }
+            else
+            {
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _nameCell = cell;
                 cell.lbKey.text = @"姓名";
@@ -204,12 +235,17 @@
                 return cell;
 
             }
-        } else if (0 == indexPath.section && 1 == indexPath.row) {
+        }
+        else if (0 == indexPath.section && 1 == indexPath.row)
+        {
 
-            if (_telCell) {
+            if (_telCell)
+            {
                 return _telCell;
 
-            } else {
+            }
+            else
+            {
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _telCell = cell;
 
@@ -220,12 +256,17 @@
                 return cell;
             }
 
-        } else {
+        }
+        else
+        {
 
-            if (_addCell) {
+            if (_addCell)
+            {
                 return _addCell;
 
-            } else {
+            }
+            else
+            {
                 KeyEditCell *cell = [KeyEditCell cellFromNib];
                 _addCell = cell;
 
@@ -241,19 +282,23 @@
 
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.login && 1 == indexPath.section && 0 == indexPath.row) {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.login && 1 == indexPath.section && 0 == indexPath.row)
+    {
         return [KeyValueCell cellHeightWithContent:[[Config shareConfig] getBranchAddress]];
     }
 
     return [KeyValueCell cellHeight];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 8;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 1;
 }
 

@@ -32,7 +32,8 @@
 
 @implementation IconCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     _imageViewIcon.layer.masksToBounds = YES;
@@ -72,54 +73,69 @@
 
 @implementation PersonBasicInfoController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"基本资料"];
     [self initView];
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
-- (void)initView {
+- (void)initView
+{
     //self.tableView.bounces = NO;
 }
 
 #pragma mark - TableView DataSource and Delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (0 == section) {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (0 == section)
+    {
         return 1;
-    } else if (1 == section) {
+    }
+    else if (1 == section)
+    {
         return 3;
-    } else {
+    }
+    else
+    {
         return 1;
     }
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
-    if (0 == indexPath.section) {
+    if (0 == indexPath.section)
+    {
         IconCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IconCell"];
         cell.lbName.text = @"头像";
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else if (1 == indexPath.section) {
+    }
+    else if (1 == indexPath.section)
+    {
         NSInteger row = indexPath.row;
         TextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TextCell"];
 
 
-        if (0 == row) {
+        if (0 == row)
+        {
             cell.labelTitle.text = @"电话";
             cell.labelContent.text = [[Config shareConfig] getTel];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
@@ -127,12 +143,16 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        } else if (1 == row) {
+        }
+        else if (1 == row)
+        {
             cell.labelTitle.text = @"姓名";
             cell.labelContent.text = [[Config shareConfig] getName];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
 
-        } else if (2 == row) {
+        }
+        else if (2 == row)
+        {
             cell.labelTitle.text = @"别墅管理";
             cell.labelContent.text = [[Config shareConfig] getBranchAddress];
             cell.labelContent.textAlignment = NSTextAlignmentRight;
@@ -140,7 +160,9 @@
 
         return cell;
 
-    } else {
+    }
+    else
+    {
         TextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TextCell"];
         cell.labelTitle.text = @"退出";
 
@@ -152,23 +174,30 @@
 /**
  *  设置tableview 行高
  */
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section)
+    {
         return 66;
     }
 
     return 50;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSInteger section = indexPath.section;
-    if (1 == section) {
+    if (1 == section)
+    {
         NSInteger row = indexPath.row;
 
-        if (0 == row) {
+        if (0 == row)
+        {
             return;
 
-        } else if (1 == row) {
+        }
+        else if (1 == row)
+        {
             UIViewController *destinationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ModifyDetail"];
 
             [destinationVC setValue:@"name" forKey:@"enterType"];
@@ -176,14 +205,18 @@
             destinationVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:destinationVC animated:YES];
 
-        } else if (2 == row) {
+        }
+        else if (2 == row)
+        {
             HouseManagerController *controller = [[HouseManagerController alloc] init];
             controller.hidesBottomBarWhenPushed = YES;
 
             [self.navigationController pushViewController:controller animated:YES];
         }
 
-    } else if (2 == indexPath.section) {
+    }
+    else if (2 == indexPath.section)
+    {
         [self unregisterJpush];
         [self logout];
     }
@@ -193,7 +226,8 @@
 /**
  *  退出登录
  */
-- (void)logout {
+- (void)logout
+{
 
     //注销
     [[HttpClient shareClient] post:@"smallOwnerLogout" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -208,14 +242,18 @@
 
 }
 
-- (void)unregisterJpush {
+- (void)unregisterJpush
+{
     [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         NSLog(@"zhenhao---rescode: %d, tags: %@, alias: %@", iResCode, iTags, iAlias);
 
-        if (0 == iResCode) {
+        if (0 == iResCode)
+        {
             NSLog(@"zhenhao:jpush unregister successfully!");
 
-        } else {
+        }
+        else
+        {
             NSString *err = [NSString stringWithFormat:@"%d:注销消息服务器失败，请重新再试", iResCode];
             NSLog(@"zhenhao:%@", err);
 
@@ -229,7 +267,8 @@
  *  设置图片
  *
  */
-- (void)setPersonIcon:(UIImageView *)imageView {
+- (void)setPersonIcon:(UIImageView *)imageView
+{
 
 //    if (0 == [User sharedUser].picUrl.length) {
 //        return;
@@ -250,7 +289,8 @@
 /**
  *  选择拍照或者选取图片
  */
-- (void)showMenu {
+- (void)showMenu
+{
 
     self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍摄", @"选取", nil];
     [self.actionSheet showInView:self.view];
@@ -262,12 +302,15 @@
  *  @param actionSheet <#actionSheet description#>
  *  @param buttonIndex <#buttonIndex description#>
  */
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 
-    if (buttonIndex == self.actionSheet.cancelButtonIndex) {
+    if (buttonIndex == self.actionSheet.cancelButtonIndex)
+    {
     }
 
-    switch (buttonIndex) {
+    switch (buttonIndex)
+    {
         case 0:
             [self takePhoto];
             break;
@@ -281,9 +324,11 @@
 /**
  *  拍摄照片
  */
-- (void)takePhoto {
+- (void)takePhoto
+{
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
 
@@ -297,7 +342,8 @@
 /**
  *  从本地选取照片
  */
-- (void)pickPhoto {
+- (void)pickPhoto
+{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
 
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -315,13 +361,15 @@
  *  @param picker <#picker description#>
  *  @param info   <#info description#>
  */
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
+{
 
 
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
 
     //选择的是图片
-    if ([type isEqualToString:@"public.image"]) {
+    if ([type isEqualToString:@"public.image"])
+    {
 
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
 
@@ -381,7 +429,8 @@
  *
  *  @param picker <#picker description#>
  */
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

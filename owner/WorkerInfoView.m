@@ -24,9 +24,11 @@
 @implementation WorkerInfoView
 
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"WorkerInfoView" owner:nil options:nil];
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
@@ -34,7 +36,8 @@
 
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     _btnTel.layer.borderColor = [Utils getColorByRGB:TITLE_COLOR].CGColor;
@@ -48,25 +51,29 @@
     _btnApp.layer.cornerRadius = 5;
 }
 
-- (void)setOnClickTel:(void (^)(NSString *tel))clickTel {
+- (void)setOnClickTel:(void (^)(NSString *tel))clickTel
+{
     _onClickTel = clickTel;
     _btnTel.userInteractionEnabled = YES;
     [_btnTel addTarget:self action:@selector(clickTel) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setOnClickApp:(void (^)())clickApp {
+- (void)setOnClickApp:(void (^)())clickApp
+{
     _onClickApp = clickApp;
     _btnApp.userInteractionEnabled = YES;
     [_btnApp addTarget:self action:@selector(clickApp) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
-- (void)clickTel {
+- (void)clickTel
+{
     NSString *tel = _lbTel.text;
     _onClickTel(tel);
 }
 
-- (void)clickApp {
+- (void)clickApp
+{
     _onClickApp();
 }
 

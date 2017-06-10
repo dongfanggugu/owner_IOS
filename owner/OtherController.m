@@ -24,21 +24,25 @@
 
 @implementation OtherController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"增值服务"];
     [self initView];
 }
 
-- (NSMutableArray *)arrayService {
-    if (nil == _arrayService) {
+- (NSMutableArray *)arrayService
+{
+    if (nil == _arrayService)
+    {
         _arrayService = [NSMutableArray array];
     }
 
     return _arrayService;
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64) style:UITableViewStylePlain];
@@ -62,14 +66,16 @@
 
 #pragma mark - 网络请求
 
-- (void)getServices {
+- (void)getServices
+{
     [[HttpClient shareClient] post:@"getIncrementTypeList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
         [self.arrayService removeAllObjects];
 
         [self.arrayService addObjectsFromArray:responseObject[@"body"]];
 
-        if (self.arrayService.count > 0) {
+        if (self.arrayService.count > 0)
+        {
             [self addOrder:self.arrayService[0]];
         }
 
@@ -80,15 +86,18 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
     MainTypeCell *cell = [MainTypeCell cellFromNib];
 
@@ -99,12 +108,14 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [MainTypeCell cellHeight];
 }
 
 
-- (void)addOrder:(NSDictionary *)serviceInfo {
+- (void)addOrder:(NSDictionary *)serviceInfo
+{
     MainTypeInfo *info = [[MainTypeInfo alloc] initWithDictionary:serviceInfo];
 
     ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
@@ -117,30 +128,36 @@
 
 #pragma mark - MainTypeCellDelegate
 
-- (void)onClick1 {
-    if (!self.login) {
+- (void)onClick1
+{
+    if (!self.login)
+    {
         [HUDClass showHUDWithText:@"您需要先登录才能购买增值服务"];
         return;
     }
     [self getServices];
 }
 
-- (void)onClick2 {
+- (void)onClick2
+{
     [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
     return;
 }
 
-- (void)onClick3 {
+- (void)onClick3
+{
     [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
     return;
 }
 
-- (void)onClick4 {
+- (void)onClick4
+{
     [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
     return;
 }
 
-- (void)onClick5 {
+- (void)onClick5
+{
     [HUDClass showHUDWithText:@"功能开发中,敬请期待"];
     return;
 }

@@ -11,11 +11,13 @@
 
 @implementation RepairTaskResponse
 
-+ (Class)body_class {
++ (Class)body_class
+{
     return [RepairTaskInfo class];
 }
 
-- (NSArray<RepairTaskInfo *> *)getTaskList {
+- (NSArray<RepairTaskInfo *> *)getTaskList
+{
     return (NSArray<RepairTaskInfo *> *) self.body;
 }
 

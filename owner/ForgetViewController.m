@@ -16,14 +16,16 @@
 
 @implementation ForgetViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"忘记密码"];
     [self initView];
 }
 
 
-- (void)initView {
+- (void)initView
+{
     _textField = [[UITextField alloc] initWithFrame:CGRectMake(16, 90, self.screenWidth - 32, 35)];
     _textField.font = [UIFont systemFontOfSize:13];
     _textField.keyboardType = UIKeyboardTypePhonePad;
@@ -60,15 +62,18 @@
     [self.view addSubview:btn];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 
 }
 
-- (void)forget {
+- (void)forget
+{
     NSString *tel = _textField.text;
 
-    if (0 == tel.length) {
+    if (0 == tel.length)
+    {
         [HUDClass showHUDWithText:@"请正确输入您注册的手机号码"];
 
         return;

@@ -22,14 +22,16 @@
 
 @implementation MaintOrderConfirmController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"订单确认"];
 
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -43,15 +45,18 @@
     [self.view addSubview:_tableView];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     MainOrderConfirmCell *cell = [MainOrderConfirmCell cellFromNib];
 
     _cell = cell;
@@ -72,12 +77,14 @@
     return cell;
 }
 
-- (void)submit {
+- (void)submit
+{
     [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[_request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
 
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
 
-        if (url.length != 0) {
+        if (url.length != 0)
+        {
             PayViewController *controller = [[PayViewController alloc] init];
             controller.urlStr = url;
 
@@ -96,17 +103,20 @@
 
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [MainOrderConfirmCell cellHeight];
 }
 
 #pragma mark - MainOrderConfirmCellDelegate
 
-- (void)onClickPay {
+- (void)onClickPay
+{
     [self submit];
 }
 
-- (void)onClickMoreCompany {
+- (void)onClickMoreCompany
+{
     CompanyListController *controller = [[CompanyListController alloc] init];
     controller.delegate = self;
 
@@ -115,21 +125,25 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickAgreement {
+- (void)onClickAgreement
+{
 
 }
 
-- (void)onClickCoupon {
+- (void)onClickCoupon
+{
 
 }
 
-- (void)onChooseCompany:(NSInteger)index name:(NSString *)name {
+- (void)onChooseCompany:(NSInteger)index name:(NSString *)name
+{
 
 }
 
 #pragma mark - CompanyListControllerDelegate
 
-- (void)onChoose:(NSInteger)index name:(NSString *)name {
+- (void)onChoose:(NSInteger)index name:(NSString *)name
+{
     [_cell resetSel];
 
     _cell.lbCompany.text = name;

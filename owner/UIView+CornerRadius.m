@@ -13,7 +13,8 @@
 - (void)clipCornerWithTopLeft:(BOOL)topLeft
                   andTopRight:(BOOL)topRight
                 andBottomLeft:(BOOL)bottomLeft
-               andBottomRight:(BOOL)bottomRight {
+               andBottomRight:(BOOL)bottomRight
+{
     CGRect frame = self.bounds;
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                    byRoundingCorners:(topLeft == YES ? UIRectCornerTopLeft : 0) |

@@ -22,7 +22,8 @@
 
 @implementation RepairPaymentController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"维修支付"];
     [self initView];
@@ -30,15 +31,18 @@
     [self getPayment];
 }
 
-- (NSMutableArray *)arrayPay {
-    if (!_arrayPay) {
+- (NSMutableArray *)arrayPay
+{
+    if (!_arrayPay)
+    {
         _arrayPay = [NSMutableArray array];
     }
 
     return _arrayPay;
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64) style:UITableViewStyleGrouped];
@@ -53,7 +57,8 @@
 
     [self.view addSubview:_tableView];
 
-    if (Repair_Pay == _enterType) {
+    if (Repair_Pay == _enterType)
+    {
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 80)];
 
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -71,12 +76,15 @@
 
         _tableView.tableFooterView = footView;
 
-    } else {
+    }
+    else
+    {
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
 }
 
-- (void)payment {
+- (void)payment
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"repairOrderId"] = _orderId;
 
@@ -84,7 +92,8 @@
 
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
 
-        if (url.length != 0) {
+        if (url.length != 0)
+        {
             PayViewController *controller = [[PayViewController alloc] init];
             controller.urlStr = url;
 
@@ -98,7 +107,8 @@
     }];
 }
 
-- (void)getPayment {
+- (void)getPayment
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"repairOrderId"] = _orderId;
 
@@ -113,8 +123,10 @@
     }];
 }
 
-- (void)dealWithPayments {
-    if (0 == self.arrayPay.count) {
+- (void)dealWithPayments
+{
+    if (0 == self.arrayPay.count)
+    {
         return;
     }
 
@@ -124,35 +136,50 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (Repair_Pay == _enterType) {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (Repair_Pay == _enterType)
+    {
         return 2;
 
-    } else {
+    }
+    else
+    {
         return 3;
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (0 == section) {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (0 == section)
+    {
         return self.arrayPay.count;
 
-    } else if (1 == section) {
+    }
+    else if (1 == section)
+    {
         return 1;
 
-    } else {
+    }
+    else
+    {
         return 2;
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section)
+    {
 
-        if (indexPath.row == self.arrayPay.count - 1) {
+        if (indexPath.row == self.arrayPay.count - 1)
+        {
             RepairCouponCell *cell = [RepairCouponCell cellFromNib];
             return cell;
 
-        } else {
+        }
+        else
+        {
             RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
 
             NSDictionary *info = self.arrayPay[indexPath.row];
@@ -165,7 +192,9 @@
             return cell;
         }
 
-    } else if (1 == indexPath.section) {
+    }
+    else if (1 == indexPath.section)
+    {
 
         RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
 
@@ -175,7 +204,8 @@
 
         CGFloat payMoney = 0;
 
-        if (self.arrayPay.count > 0) {
+        if (self.arrayPay.count > 0)
+        {
             payMoney = [[[self.arrayPay[0] objectForKey:@"repairOrderInfo"] objectForKey:@"payMoney"] floatValue];
         }
 
@@ -183,8 +213,11 @@
 
         return cell;
 
-    } else {
-        if (0 == indexPath.row) {
+    }
+    else
+    {
+        if (0 == indexPath.row)
+        {
             RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
 
             cell.lbName.text = @"支付时间";
@@ -195,7 +228,9 @@
 
             return cell;
 
-        } else {
+        }
+        else
+        {
             RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
 
             cell.lbName.text = @"支付方式";
@@ -211,15 +246,18 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [RepairPayInfoCell cellHeight];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 3;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 3;
 }
 

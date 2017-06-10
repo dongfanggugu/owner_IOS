@@ -41,13 +41,15 @@
 
 @implementation HouseAddController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"别墅添加"];
     [self initView];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64 - 60)];
@@ -80,31 +82,36 @@
     tableView.tableFooterView = footView;
 }
 
-- (void)submit {
+- (void)submit
+{
     NSString *name = _nameCell.tfValue.text;
 
-    if (0 == name.length) {
+    if (0 == name.length)
+    {
         [HUDClass showHUDWithText:@"请先填写别墅联系人姓名"];
         return;
     }
 
     NSString *tel = _telCell.tfValue.text;
 
-    if (0 == tel.length) {
+    if (0 == tel.length)
+    {
         [HUDClass showHUDWithText:@"请先填写别墅联系人手机"];
         return;
     }
 
     NSString *brand = _brandCell.getContentValue;
 
-    if (0 == brand.length) {
+    if (0 == brand.length)
+    {
         [HUDClass showHUDWithText:@"请先选择别墅电梯品牌"];
         return;
     }
 
     NSString *weight = [Utils string:_weightCell.getContentValue substringBeforeChar:@"k"];;
 
-    if (0 == weight.length) {
+    if (0 == weight.length)
+    {
         [HUDClass showHUDWithText:@"请先选择别墅电梯载重量"];
         return;
     }
@@ -113,7 +120,8 @@
 
     NSString *address = _addressCell.lbValue.text;
 
-    if (0 == address.length || [address isEqualToString:@"点击选择别墅地址"]) {
+    if (0 == address.length || [address isEqualToString:@"点击选择别墅地址"])
+    {
         [HUDClass showHUDWithText:@"请选择别墅地址"];
         return;
     }
@@ -140,23 +148,30 @@
 
 #pragma mark - UITabelViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 6;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSInteger index = indexPath.row;
 
-    if (0 == index) {
+    if (0 == index)
+    {
 
-        if (_nameCell) {
+        if (_nameCell)
+        {
             return _nameCell;
 
-        } else {
+        }
+        else
+        {
             KeyEditCell *cell = [KeyEditCell cellFromNib];
 
             _nameCell = cell;
@@ -167,11 +182,16 @@
             return cell;
         }
 
-    } else if (1 == index) {
-        if (_telCell) {
+    }
+    else if (1 == index)
+    {
+        if (_telCell)
+        {
             return _telCell;
 
-        } else {
+        }
+        else
+        {
             KeyEditCell *cell = [KeyEditCell cellFromNib];
             _telCell = cell;
 
@@ -181,7 +201,9 @@
             return cell;
         }
 
-    } else if (2 == index) {
+    }
+    else if (2 == index)
+    {
         SelectableCell *cell = [SelectableCell cellFromNib];
 
         _brandCell = cell;
@@ -197,7 +219,8 @@
             [weakCell setData:[response getBrandList]];
 
             [weakCell setAfterSelectedListener:^(NSString *key, NSString *content) {
-                if ([content isEqualToString:@"其他"]) {
+                if ([content isEqualToString:@"其他"])
+                {
                     [weakSelf showBrandEditDialog:weakCell preContent:content];
                 }
             }];
@@ -209,7 +232,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else if (3 == indexPath.row) {
+    }
+    else if (3 == indexPath.row)
+    {
         SelectableCell *cell = [SelectableCell cellFromNib];
 
         _weightCell = cell;
@@ -235,7 +260,8 @@
         [cell setData:array];
 
         [cell setBeforeSelectedListener:^(NSString *preContent, NSString *content) {
-            if ([content isEqualToString:@"其他"]) {
+            if ([content isEqualToString:@"其他"])
+            {
                 [weakSelf showWeightEditDialog:weakCell preContent:preContent];
             }
         }];
@@ -244,7 +270,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else if (4 == indexPath.row) {
+    }
+    else if (4 == indexPath.row)
+    {
         SelectableCell *cell = [SelectableCell cellFromNib];
 
         _layerCell = cell;
@@ -271,11 +299,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
-    } else if (5 == index) {
+    }
+    else if (5 == index)
+    {
 
         KeyValueCell *cell = [tableView dequeueReusableCellWithIdentifier:[KeyValueCell identifier]];
 
-        if (!cell) {
+        if (!cell)
+        {
             cell = [KeyValueCell cellFromNib];
         }
 
@@ -294,7 +325,8 @@
     return nil;
 }
 
-- (void)addressLocation {
+- (void)addressLocation
+{
     AddressLocationController *controller = [[AddressLocationController alloc] init];
     controller.delegate = self;
 
@@ -304,13 +336,15 @@
 
 #pragma mark - LocationControllerDelegate
 
-- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng {
+- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
     _addressCell.lbValue.text = address;
     _lat = lat;
     _lng = lng;
 }
 
-- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng {
+- (void)onChooseCell:(NSString *)cell address:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
     _cellName = cell;
     _address = address;
 
@@ -321,7 +355,8 @@
 
 }
 
-- (void)showWeightEditDialog:(SelectableCell *)cell preContent:(NSString *)preContent {
+- (void)showWeightEditDialog:(SelectableCell *)cell preContent:(NSString *)preContent
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
     dialog.lbTitle.text = @"输入电梯的载重量";
@@ -342,7 +377,8 @@
     [dialog show];
 }
 
-- (void)showBrandEditDialog:(SelectableCell *)cell preContent:(NSString *)preContent {
+- (void)showBrandEditDialog:(SelectableCell *)cell preContent:(NSString *)preContent
+{
     DialogEditView *dialog = [DialogEditView viewFromNib];
 
 

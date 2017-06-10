@@ -28,7 +28,8 @@
 @implementation ProLocationController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"小区地址"];
     [self initNavRightWithText:@"修改"];
@@ -37,12 +38,14 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self initView];
 }
 
-- (void)onClickNavRight {
+- (void)onClickNavRight
+{
     AddressLocationController *controller = [[AddressLocationController alloc] init];
     controller.delegate = self;
 
@@ -51,11 +54,13 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)initData {
+- (void)initData
+{
 
 }
 
-- (void)initView {
+- (void)initView
+{
     _mapView.delegate = self;
     _mapView.zoomLevel = 15;
     _mapView.zoomEnabled = YES;
@@ -72,7 +77,8 @@
     [self.view addSubview:_lbAddress];
 }
 
-- (void)markOnMap {
+- (void)markOnMap
+{
     [_mapView removeAnnotations:_mapView.annotations];
 
     CGFloat lat = [[Config shareConfig] getLat];
@@ -91,7 +97,8 @@
 
 #pragma mark - AddressLocationControllerDelegate
 
-- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng {
+- (void)onChooseAddress:(NSString *)address Lat:(CGFloat)lat lng:(CGFloat)lng
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"address"] = address;
     params[@"lat"] = [NSNumber numberWithFloat:lat];

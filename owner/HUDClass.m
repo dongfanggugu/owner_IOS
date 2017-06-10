@@ -15,7 +15,8 @@
 
 @implementation HUDClass
 
-+ (void)showHUDWithText:(NSString *)text {
++ (void)showHUDWithText:(NSString *)text
+{
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[delegate window] animated:YES];
@@ -31,7 +32,8 @@
 
 }
 
-+ (MBProgressHUD *)showLoadingHUD {
++ (MBProgressHUD *)showLoadingHUD
+{
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:[delegate window]];
 
@@ -48,8 +50,10 @@
     return hud;
 }
 
-+ (void)hideLoadingHUD:(MBProgressHUD *)hud {
-    if ([hud superview]) {
++ (void)hideLoadingHUD:(MBProgressHUD *)hud
+{
+    if ([hud superview])
+    {
         [hud hide:YES];
     }
 }

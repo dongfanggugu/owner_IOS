@@ -21,16 +21,19 @@
 
 @implementation DatePickerDialog
 
-+ (id)viewFromNib {
++ (id)viewFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"DatePickerDialog" owner:nil options:nil];
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
 
@@ -38,22 +41,28 @@
     [_btnCancel addTarget:self action:@selector(onClickCancel) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)onClickOk {
-    if (_delegate) {
+- (void)onClickOk
+{
+    if (_delegate)
+    {
         [_delegate onPickerDate:[_datePicker date]];
     }
-    if (self.superview) {
+    if (self.superview)
+    {
         [self removeFromSuperview];
     }
 }
 
-- (void)onClickCancel {
-    if (self.superview) {
+- (void)onClickCancel
+{
+    if (self.superview)
+    {
         [self removeFromSuperview];
     }
 }
 
-- (void)show {
+- (void)show
+{
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
 
     self.frame = appDelegate.window.bounds;

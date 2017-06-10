@@ -22,25 +22,30 @@
 
 @implementation OrderAmountCell
 
-+ (id)cellFromNib {
++ (id)cellFromNib
+{
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"OrderAmountCell" owner:nil options:nil];
 
-    if (0 == array.count) {
+    if (0 == array.count)
+    {
         return nil;
     }
 
     return array[0];
 }
 
-+ (NSString *)identifier {
++ (NSString *)identifier
+{
     return @"order_amount_cell";
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight
+{
     return 44;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -50,15 +55,19 @@
     [_btnMinus addTarget:self action:@selector(minus) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (NSInteger)amount {
-    if (_amount <= 0) {
+- (NSInteger)amount
+{
+    if (_amount <= 0)
+    {
         _amount = 1;
     }
     return _amount;
 }
 
-- (void)setPrice:(CGFloat)price {
-    if (price <= 0) {
+- (void)setPrice:(CGFloat)price
+{
+    if (price <= 0)
+    {
         return;
     }
 
@@ -69,13 +78,15 @@
     self.lbTotal.text = [NSString stringWithFormat:@"￥%.2lf", total];
 }
 
-- (void)add {
+- (void)add
+{
     //self.amount = [_lbAmount.text integerValue];
     self.amount++;
 
     self.lbAmount.text = [NSString stringWithFormat:@"%ld", self.amount];
 
-    if (0 == self.price) {
+    if (0 == self.price)
+    {
         self.lbTotal.text = @"";
         return;
     }
@@ -86,9 +97,11 @@
 
 }
 
-- (void)minus {
+- (void)minus
+{
     self.amount = [_lbAmount.text integerValue];
-    if (1 == self.amount) {
+    if (1 == self.amount)
+    {
         return;
     }
 
@@ -96,7 +109,8 @@
 
     self.lbAmount.text = [NSString stringWithFormat:@"%ld", self.amount];
 
-    if (0 == self.price) {
+    if (0 == self.price)
+    {
         self.lbTotal.text = @"";
         return;
     }
@@ -107,7 +121,8 @@
 
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 }
 

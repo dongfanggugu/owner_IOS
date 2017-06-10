@@ -32,27 +32,33 @@
 
 @implementation RepairOrderController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNavTitle:@"维修订单"];
     [self initView];
     [self getHouses];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 }
 
-- (NSMutableArray *)arrayOrder {
-    if (!_arrayOrder) {
+- (NSMutableArray *)arrayOrder
+{
+    if (!_arrayOrder)
+    {
         _arrayOrder = [NSMutableArray array];
     }
 
     return _arrayOrder;
 }
 
-- (NSMutableArray *)arrayHouse {
-    if (!_arrayHouse) {
+- (NSMutableArray *)arrayHouse
+{
+    if (!_arrayHouse)
+    {
         _arrayHouse = [NSMutableArray array];
     }
 
@@ -63,16 +69,19 @@
  设置别墅信息
  
   */
-- (void)setHouseInfo:(NSDictionary *)houseInfo {
+- (void)setHouseInfo:(NSDictionary *)houseInfo
+{
     _houseInfo = houseInfo;
 
-    if (_headView) {
+    if (_headView)
+    {
         _headView.lbContent.text = houseInfo[@"cellName"];
     }
     [self getRepair];
 }
 
-- (void)initView {
+- (void)initView
+{
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
@@ -93,25 +102,37 @@
 
 }
 
-- (NSString *)getStateDes:(NSInteger)state {
+- (NSString *)getStateDes:(NSInteger)state
+{
     NSString *res = @"";
 
-    if (1 == state) {
+    if (1 == state)
+    {
         res = @"待确认";
 
-    } else if (2 == state) {
+    }
+    else if (2 == state)
+    {
         res = @"已确认";
 
-    } else if (4 == state) {
+    }
+    else if (4 == state)
+    {
         res = @"已委派";
 
-    } else if (6 == state) {
+    }
+    else if (6 == state)
+    {
         res = @"维修中";
 
-    } else if (8 == state) {
+    }
+    else if (8 == state)
+    {
         res = @"维修完成";
 
-    } else if (9 == state) {
+    }
+    else if (9 == state)
+    {
         res = @"已评价";
     }
 
@@ -134,7 +155,8 @@
  contacts
  contactsTel
  */
-- (void)getHouses {
+- (void)getHouses
+{
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
@@ -145,25 +167,30 @@
     }];
 }
 
-- (void)showHouselist {
-    if (0 == self.arrayHouse.count) {
+- (void)showHouselist
+{
+    if (0 == self.arrayHouse.count)
+    {
         return;
     }
 
-    if (1 == self.arrayHouse.count) {
+    if (1 == self.arrayHouse.count)
+    {
 
         self.houseInfo = self.arrayHouse[0];
         _headView.btnHidden = YES;
         return;
     }
 
-    if (!self.houseInfo) {
+    if (!self.houseInfo)
+    {
         self.houseInfo = self.arrayHouse[0];
     }
 
     NSMutableArray *array = [NSMutableArray array];
 
-    for (NSDictionary *info in self.arrayHouse) {
+    for (NSDictionary *info in self.arrayHouse)
+    {
         ListDialogData *data = [[ListDialogData alloc] initWithKey:info[@"id"] content:info[@"cellName"]];
         [array addObject:data];
     }
@@ -176,17 +203,22 @@
 
 #pragma mark - LisDialogViewDelegate
 
-- (void)onSelectItem:(NSString *)key content:(NSString *)content {
-    for (NSDictionary *info in self.arrayHouse) {
-        if ([key isEqualToString:info[@"id"]]) {
+- (void)onSelectItem:(NSString *)key content:(NSString *)content
+{
+    for (NSDictionary *info in self.arrayHouse)
+    {
+        if ([key isEqualToString:info[@"id"]])
+        {
             self.houseInfo = info;
             break;
         }
     }
 }
 
-- (void)getRepair {
-    if (!_houseInfo) {
+- (void)getRepair
+{
+    if (!_houseInfo)
+    {
         return;
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -204,19 +236,23 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
 
     return self.arrayOrder.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     OrderInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[OrderInfoCell identifier]];
 
-    if (!cell) {
+    if (!cell)
+    {
         cell = [OrderInfoCell cellFromNib];
     }
 
@@ -235,11 +271,13 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [OrderInfoCell cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     RepairInfoController *controller = [[RepairInfoController alloc] init];
     controller.orderInfo = self.arrayOrder[indexPath.row];
     controller.houseInfo = _houseInfo;
@@ -250,13 +288,16 @@
 
 #pragma mark - HouseInfoViewDelegate
 
-- (void)onClickBtn:(HouseChangeView *)view {
-    if (0 == self.arrayHouse.count) {
+- (void)onClickBtn:(HouseChangeView *)view
+{
+    if (0 == self.arrayHouse.count)
+    {
         [HUDClass showHUDWithText:@"您需要先添加别墅"];
         return;
     }
 
-    if (1 == self.arrayHouse.count) {
+    if (1 == self.arrayHouse.count)
+    {
         [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
         return;
     }
