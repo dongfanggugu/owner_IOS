@@ -14,6 +14,8 @@
 
 - (void)onClickMoreCompany;
 
+- (void)onClickCoupon;
+
 - (void)onClickAgreement;
 
 - (void)onClickPay;
@@ -41,6 +43,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbCompany;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnMoreCom;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnCoupon;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbCoupon;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbFee;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbDiscount;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbPay;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnPay;
 

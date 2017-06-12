@@ -6,8 +6,16 @@
 #import <Foundation/Foundation.h>
 #import "BaseViewController.h"
 
+@protocol MaintDetailControllerDelegate <NSObject>
+
+- (void)onClickPay;
+
+@end
 
 @interface MaintDetailController : BaseViewController
 
 @property (strong, nonatomic) NSDictionary *orderInfo;
+
+@property (weak, nonatomic) id <MaintDetailControllerDelegate> delegate;
+
 @end

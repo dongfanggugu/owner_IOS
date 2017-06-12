@@ -49,6 +49,15 @@
 
 @property (copy, nonatomic) NSString *url;
 
+//红包id
+@property (copy, nonatomic) NSString *couponRecordId;
+
+//是否需要支付, 0 不需要 1 需要支付
+@property (copy, nonatomic) NSString *type;
+
+//维保公司id
+@property (copy, nonatomic) NSString *branchId;
+
 @end
 
 

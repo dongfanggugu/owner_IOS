@@ -257,6 +257,7 @@
 		65A07DCA1EEB8AE300EEA262 /* OrderCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65A07DC91EEB8AE300EEA262 /* OrderCategoryCell.xib */; };
 		65A07DCC1EEBB76900EEA262 /* OrderMaintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65A07DCB1EEBB76900EEA262 /* OrderMaintCell.xib */; };
 		65A07DD01EEBC8C800EEA262 /* ProcessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65A07DCF1EEBC8C800EEA262 /* ProcessCell.xib */; };
+		65A07DD21EEE8F2E00EEA262 /* RepairOrderConfirmNoPayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65A07DD11EEE8F2E00EEA262 /* RepairOrderConfirmNoPayCell.xib */; };
 		65A1FB611EC433A4005C8E6B /* HelpWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A1FB601EC433A4005C8E6B /* HelpWebViewController.m */; };
 		65A1FB631EC54243005C8E6B /* back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A1FB621EC54243005C8E6B /* back_normal.png */; };
 		65A1FB651EC55069005C8E6B /* icon_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A1FB641EC55069005C8E6B /* icon_phone.png */; };
@@ -366,8 +367,11 @@
 		699E47FF0E4ED30325F82186 /* OrderManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4079C12E704206BA0CCF /* OrderManagerController.m */; };
 		699E4832147E3C2FED789625 /* OrderMaintListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4099B2902CC0562623E0 /* OrderMaintListController.m */; };
 		699E48BB1CD0421F46E721B0 /* icon_repair_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4ADCA857F83B1C7A006A /* icon_repair_order.png */; };
+		699E4954CFD15EF58D5F9D8F /* RepairOrderConfirmNoPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4F38032450047139FD77 /* RepairOrderConfirmNoPayCell.m */; };
 		699E4987579F900AC9241AA4 /* OrderMaintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4E0C83970081EEC4DAD3 /* OrderMaintCell.m */; };
 		699E4B2AC00C08E4CF5314DE /* ExtraServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4942FFDB48252D855804 /* ExtraServiceController.m */; };
+		699E4CD9468774D32606A7A2 /* zhonghao_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4FCBB88488BCBD2FE712 /* zhonghao_logo.png */; };
+		699E4D1A8EE6E1ED8EF41ECC /* RepairOrderConfirmNoPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4A65D556E1A96A6F574D /* RepairOrderConfirmNoPayController.m */; };
 		699E4E00F0073C5345CC7549 /* ProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4CBD1D98F50189844205 /* ProcessCell.m */; };
 		699E4E2A90C92EAC8E8226F0 /* PayOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E419694975071A5FCB7E1 /* PayOrderController.m */; };
 		699E4E5558BAFE4915CDE518 /* MainOrderDetaIlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E40CA1D96BFED428817E4 /* MainOrderDetaIlController.m */; };
@@ -742,6 +746,7 @@
 		65A07DC91EEB8AE300EEA262 /* OrderCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCategoryCell.xib; sourceTree = "<group>"; };
 		65A07DCB1EEBB76900EEA262 /* OrderMaintCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderMaintCell.xib; sourceTree = "<group>"; };
 		65A07DCF1EEBC8C800EEA262 /* ProcessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProcessCell.xib; sourceTree = "<group>"; };
+		65A07DD11EEE8F2E00EEA262 /* RepairOrderConfirmNoPayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairOrderConfirmNoPayCell.xib; sourceTree = "<group>"; };
 		65A1FB5F1EC433A4005C8E6B /* HelpWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpWebViewController.h; sourceTree = "<group>"; };
 		65A1FB601EC433A4005C8E6B /* HelpWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpWebViewController.m; sourceTree = "<group>"; };
 		65A1FB621EC54243005C8E6B /* back_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_normal.png; sourceTree = "<group>"; };
@@ -911,6 +916,7 @@
 		699E49D2204820751EA275E4 /* KnowledgeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeDetailController.m; sourceTree = "<group>"; };
 		699E49E3DC29431AB075992C /* icon_maint_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_maint_order.png; sourceTree = "<group>"; };
 		699E4A5A1AD20898872CCDC2 /* icon_other_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_other_order.png; sourceTree = "<group>"; };
+		699E4A65D556E1A96A6F574D /* RepairOrderConfirmNoPayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderConfirmNoPayController.m; sourceTree = "<group>"; };
 		699E4AD41468861210BC24A9 /* ExtraPayOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraPayOrderController.h; sourceTree = "<group>"; };
 		699E4ADCA857F83B1C7A006A /* icon_repair_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_repair_order.png; sourceTree = "<group>"; };
 		699E4B154619E47055820D53 /* OrderManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderManagerController.h; sourceTree = "<group>"; };
@@ -918,14 +924,18 @@
 		699E4C5D601BBA50E3CC7F12 /* MaintDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintDetailController.h; sourceTree = "<group>"; };
 		699E4C7778E90B71F5428AD8 /* MainOrderDetaIlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainOrderDetaIlController.h; sourceTree = "<group>"; };
 		699E4CBD1D98F50189844205 /* ProcessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessCell.m; sourceTree = "<group>"; };
+		699E4DB43783924ADB505267 /* RepairOrderConfirmNoPayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderConfirmNoPayController.h; sourceTree = "<group>"; };
+		699E4DF2686DFF9D866238FE /* RepairOrderConfirmNoPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderConfirmNoPayCell.h; sourceTree = "<group>"; };
 		699E4E0C83970081EEC4DAD3 /* OrderMaintCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderMaintCell.m; sourceTree = "<group>"; };
 		699E4E7EE3798BDF9510A8A2 /* OrderMaintDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderMaintDetailController.h; sourceTree = "<group>"; };
 		699E4ED1B40E9BEB09F49582 /* MaintProcessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintProcessController.h; sourceTree = "<group>"; };
 		699E4EE03FAA05EF3669BDA9 /* RepairPaymentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairPaymentController.h; sourceTree = "<group>"; };
 		699E4F191EB9936E383CDBBD /* OrderMaintCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderMaintCell.h; sourceTree = "<group>"; };
 		699E4F31D2022BB9B47437A7 /* MaintDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintDetailController.m; sourceTree = "<group>"; };
+		699E4F38032450047139FD77 /* RepairOrderConfirmNoPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderConfirmNoPayCell.m; sourceTree = "<group>"; };
 		699E4FC977B0D51707680291 /* RepairOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderController.h; sourceTree = "<group>"; };
 		699E4FCB0A59918921824B53 /* MaintOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintOrderController.m; sourceTree = "<group>"; };
+		699E4FCBB88488BCBD2FE712 /* zhonghao_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhonghao_logo.png; sourceTree = "<group>"; };
 		699E4FEE18AD71F5A283491D /* ExtraServiceHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceHistoryController.h; sourceTree = "<group>"; };
 		89306145DCAA76B722375C06 /* libPods-owner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-owner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1ECDDB745FE9ED57417956 /* Pods-owner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-owner.release.xcconfig"; path = "Pods/Target Support Files/Pods-owner/Pods-owner.release.xcconfig"; sourceTree = "<group>"; };
@@ -1195,6 +1205,8 @@
 				699E4F191EB9936E383CDBBD /* OrderMaintCell.h */,
 				699E4CBD1D98F50189844205 /* ProcessCell.m */,
 				699E47D844412CE3B1AD9726 /* ProcessCell.h */,
+				699E4F38032450047139FD77 /* RepairOrderConfirmNoPayCell.m */,
+				699E4DF2686DFF9D866238FE /* RepairOrderConfirmNoPayCell.h */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -1264,6 +1276,7 @@
 				65FE08FC1EB2E1A7002C9397 /* ServiceHistoryCell.xib */,
 				65E8B2ED1EE127EE00C5BD19 /* TextDetailCell.xib */,
 				6525447C1E1F37EF0027B28B /* WorkerInfoView.xib */,
+				65A07DD11EEE8F2E00EEA262 /* RepairOrderConfirmNoPayCell.xib */,
 			);
 			name = Nib;
 			sourceTree = "<group>";
@@ -1413,6 +1426,7 @@
 				699E49E3DC29431AB075992C /* icon_maint_order.png */,
 				699E4A5A1AD20898872CCDC2 /* icon_other_order.png */,
 				699E4ADCA857F83B1C7A006A /* icon_repair_order.png */,
+				699E4FCBB88488BCBD2FE712 /* zhonghao_logo.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1442,6 +1456,8 @@
 				699E4FC977B0D51707680291 /* RepairOrderController.h */,
 				699E4EE03FAA05EF3669BDA9 /* RepairPaymentController.h */,
 				699E47CE1CFCC0656A43520B /* RepairPaymentController.m */,
+				699E4A65D556E1A96A6F574D /* RepairOrderConfirmNoPayController.m */,
+				699E4DB43783924ADB505267 /* RepairOrderConfirmNoPayController.h */,
 			);
 			name = Repair;
 			sourceTree = "<group>";
@@ -1986,6 +2002,7 @@
 				65243EC71ED6714700BB2D32 /* icon_red.png in Resources */,
 				65E19BA31E67B26600C6860D /* MainTypeCell.xib in Resources */,
 				65EEEB921E7791380095432B /* page_6.jpg in Resources */,
+				65A07DD21EEE8F2E00EEA262 /* RepairOrderConfirmNoPayCell.xib in Resources */,
 				6544C7A01E6952D20050A9D3 /* PersonInfoView.xib in Resources */,
 				652544931E1F455E0027B28B /* icon_more_normal.png in Resources */,
 				65E8B31D1EE16C8200C5BD19 /* MaintEvaluateView.xib in Resources */,
@@ -2013,6 +2030,7 @@
 				699E4FE554D7883368C93EB9 /* icon_maint_order.png in Resources */,
 				699E47AED0F27E969307422C /* icon_other_order.png in Resources */,
 				699E48BB1CD0421F46E721B0 /* icon_repair_order.png in Resources */,
+				699E4CD9468774D32606A7A2 /* zhonghao_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2249,6 +2267,8 @@
 				699E4E00F0073C5345CC7549 /* ProcessCell.m in Sources */,
 				699E4EF2AD5FE20AB7366D37 /* MaintDetailController.m in Sources */,
 				699E479CED83AD868B93D09A /* KnowledgeDetailController.m in Sources */,
+				699E4954CFD15EF58D5F9D8F /* RepairOrderConfirmNoPayCell.m in Sources */,
+				699E4D1A8EE6E1ED8EF41ECC /* RepairOrderConfirmNoPayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2378,6 +2398,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "owner/owner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Debug;
 		};
@@ -2403,6 +2424,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "owner/owner-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Release;
 		};

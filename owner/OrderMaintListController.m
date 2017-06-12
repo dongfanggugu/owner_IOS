@@ -22,6 +22,7 @@
     [super viewDidLoad];
     [self setNavTitle:@"维保订单"];
     [self initView];
+    [self getOrders];
 }
 
 - (void)initView
@@ -46,19 +47,47 @@
     }
 
     return _arrayOrder;
+}/**
+ id  支付ID
+ type 1维保2维修3一元保障
+ frequency 购买次数
+ payMoney 付款金额
+ payTime 付款时间
+ smallOwnerId 业主ID
+ mainttypeId 维保类型ID 1.按次服务 2.智能小管家服务 3.全能大管家服务
+ isPay 0未付1已付
+ createTime 创建时间
+ code 支付编号
+ name 名称
+ tel 电话
+ address 地址
+ */
+- (void)getOrders
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+    [[HttpClient shareClient] post:@"getPaymentBySmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.arrayOrder removeAllObjects];
+
+        [self.arrayOrder addObjectsFromArray:[responseObject objectForKey:@"body"]];
+
+        [self.tableView reloadData];
+
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
+    }];
 }
 
 #pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.arrayOrder.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return self.arrayOrder.count;
-    return 10;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,16 +99,16 @@
         cell = [OrderMaintCell cellFromNib];
     }
 
-//    NSDictionary *orderInfo = self.arrayOrder[indexPath.row];
+    NSDictionary *orderInfo = self.arrayOrder[indexPath.section];
 
-    cell.lbCode.text = [NSString stringWithFormat:@"编号: %@", @"PO2302242924224"];
-    cell.lbTime.text = @"2014-09-12 12:23:32";
-    cell.lbName.text = @"北京望京soho";
-    cell.lbType.text = @"服务类型:全能大管家";
+    cell.lbCode.text = [NSString stringWithFormat:@"编号: %@", orderInfo[@"code"]];
+    cell.lbTime.text = orderInfo[@"createTime"];
+    cell.lbName.text = [orderInfo[@"villaInfo"] objectForKey:@"cellName"];
+    cell.lbType.text = [orderInfo[@"mainttypeInfo"] objectForKey:@"name"];
 
     cell.lbState.text = @"未支付";
 
-    BOOL isPay = NO;
+    BOOL isPay = [orderInfo[@"isPay"] boolValue];
 
     if (isPay)
     {
@@ -95,14 +124,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSDictionary *info = self.arrayOrder[indexPath.row];
-
-    NSDictionary *info = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:@"isPay"];
+    NSDictionary *info = self.arrayOrder[indexPath.section];
 
     OrderMaintDetailController *controller = [[OrderMaintDetailController alloc] init];
     controller.orderInfo = info;
 
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
+{
+    return 20;
 }
 
 @end

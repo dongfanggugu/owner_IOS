@@ -29,7 +29,7 @@
 {
     NSArray *array = [NSArray arrayWithObjects:@"订单进度", @"订单详情",nil];
     UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:array];
-    CGRect frame = CGRectMake(0, 70, 200, 35);
+    CGRect frame = CGRectMake(0, 70, 200, 30);
     segment.frame = frame;
 
     segment.center = CGPointMake(self.screenWidth / 2, 90);

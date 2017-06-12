@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -182,12 +182,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您可以根据自己的需求选择维保公司" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j09-BC-DWq">
-                        <rect key="frame" x="187" y="193.5" width="180" height="21"/>
+                        <rect key="frame" x="167" y="193.5" width="200" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Uyy-rk-wqQ"/>
-                            <constraint firstAttribute="width" constant="180" id="XoK-YF-bJd"/>
+                            <constraint firstAttribute="width" constant="200" id="XoK-YF-bJd"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -227,7 +227,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满2000减50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdG-cp-5SI">
-                        <rect key="frame" x="144" y="327" width="180" height="17"/>
+                        <rect key="frame" x="154" y="327" width="180" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="7lj-6o-mnD"/>
                             <constraint firstAttribute="width" constant="180" id="Zms-he-l1a"/>
@@ -237,12 +237,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrC-MZ-Tqu">
-                        <rect key="frame" x="332" y="318" width="35" height="35"/>
+                        <rect key="frame" x="342" y="323" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="1rl-zh-HtN"/>
-                            <constraint firstAttribute="height" constant="35" id="pJ0-fl-U7D"/>
+                            <constraint firstAttribute="width" constant="25" id="1rl-zh-HtN"/>
+                            <constraint firstAttribute="height" constant="25" id="pJ0-fl-U7D"/>
                         </constraints>
-                        <state key="normal" title="Button" image="back_normal.png"/>
+                        <state key="normal" title="Button" image="icon_right.png"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1B-0r-JzP">
                         <rect key="frame" x="297" y="528" width="70" height="26"/>
@@ -354,6 +354,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="back_normal.png" width="76" height="76"/>
+        <image name="icon_right.png" width="180" height="180"/>
     </resources>
 </document>

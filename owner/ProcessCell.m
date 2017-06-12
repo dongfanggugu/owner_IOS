@@ -47,7 +47,7 @@
 
     _viewIndex.layer.masksToBounds = YES;
 
-    _viewIndex.layer.cornerRadius = 20;
+    _viewIndex.layer.cornerRadius = 10;
 
     _btn.hidden = YES;
 

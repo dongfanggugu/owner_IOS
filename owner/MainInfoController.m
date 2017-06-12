@@ -97,7 +97,7 @@
     {
         _infoView.lbAddress.text = houseInfo[@"cellName"];
     }
-    [self getSeviceInfo];
+    [self getServiceInfo];
 }
 
 - (Maint_Type)maintType
@@ -278,7 +278,7 @@
 }
 
 
-- (void)getSeviceInfo
+- (void)getServiceInfo
 {
     if (!_houseInfo)
     {
@@ -303,7 +303,7 @@
         [self initMainInfo];
         [self getTask];
 
-    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
 }

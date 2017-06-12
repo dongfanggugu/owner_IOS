@@ -24,6 +24,8 @@
 #import "KeyImageViewCell.h"
 #import "ImageUtils.h"
 #import "RepairOrderConfirmController.h"
+#import "MainListResponse.h"
+#import "RepairOrderConfirmNoPayController.h"
 
 
 #define IMAGE_PATH @"/tmp/person/"
@@ -111,13 +113,67 @@
     request.url = _url;
     request.repairTime = date;
     request.villaId = _houseInfo[@"id"];
+    [self getServiceInfo:request];
+}
 
+- (void)getServiceInfo:(RepairAddRequest *)request
+{
+    if (0 == request.villaId.length)
+    {
+        return;
+    }
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"villaId"] = request.villaId;
+
+    [[HttpClient shareClient] post:URL_MAIN_LIST parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
+
+        NSArray *array = responseObject[@"body"];
+
+        if (0 == array.count)
+        {
+            [self jumpPay:request];
+            return;
+        }
+
+        NSDictionary *maintInfo = array[0];
+        NSInteger type = maintInfo[@"mainttypeId"];
+
+        if (type > Maint_Mid)
+        {
+            [self jumpPay:request];
+        }
+        else
+        {
+            [self jumpNoPay:request service:maintInfo];
+        }
+
+
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
+    }];
+}
+
+- (void)jumpPay:(RepairAddRequest *)request
+{
     RepairOrderConfirmController *controller = [[RepairOrderConfirmController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     controller.request = request;
 
     [self.navigationController pushViewController:controller animated:YES];
 
+}
+
+- (void)jumpNoPay:(RepairAddRequest *)request service:(NSDictionary *)serviceInfo
+{
+    RepairOrderConfirmNoPayController *controller = [[RepairOrderConfirmNoPayController alloc] init];
+
+    controller.request = request;
+    controller.serviceInfo = serviceInfo;
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (NSMutableArray *)arrayHouse

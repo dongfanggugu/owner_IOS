@@ -22,7 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *tvZone;
 
-@property (weak, nonatomic) IBOutlet UITextField *tfAmount;
+@property (weak, nonatomic) IBOutlet UILabel *lbAmount;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivBg;
 

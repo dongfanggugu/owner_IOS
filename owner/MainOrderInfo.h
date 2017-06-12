@@ -36,6 +36,10 @@
 
 @property (strong, nonatomic) NSDictionary *villaInfo;
 
+@property (copy, nonatomic) NSString *branchId;
+
+@property (copy, nonatomic) NSString *branchInfo;
+
 @end
 
 

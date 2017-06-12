@@ -8,6 +8,16 @@
 
 #import "BaseViewController.h"
 
+@protocol CouponViewControllerDelegate <NSObject>
+
+- (void)onChooseCoupon:(NSDictionary *)couponInfo;
+
+@end
+
 @interface CouponViewController : BaseViewController
+
+@property (assign, nonatomic) CGFloat payAmount;
+
+@property (weak, nonatomic) id <CouponViewControllerDelegate> delegate;
 
 @end

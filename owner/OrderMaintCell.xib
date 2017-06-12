@@ -44,7 +44,7 @@
                             <constraint firstAttribute="height" constant="1" id="hue-pf-MMr"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_around.png" translatesAutoresizingMaskIntoConstraints="NO" id="6oa-rF-6SU">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_house.png" translatesAutoresizingMaskIntoConstraints="NO" id="6oa-rF-6SU">
                         <rect key="frame" x="8" y="46" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="JCe-Ud-qeU"/>
@@ -121,7 +121,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_around.png" width="120" height="120"/>
+        <image name="icon_house.png" width="120" height="120"/>
         <image name="icon_right.png" width="180" height="180"/>
     </resources>
 </document>

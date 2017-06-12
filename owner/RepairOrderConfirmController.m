@@ -10,11 +10,19 @@
 #import "RepairOrderConfirmCell.h"
 #import "RepairAddRequest.h"
 #import "PayViewController.h"
+#import "CouponViewController.h"
+#import "CompanyListController.h"
 
-@interface RepairOrderConfirmController () <UITableViewDelegate, UITableViewDataSource, RepairOrderConfirmCellDelegate>
+@interface RepairOrderConfirmController () <UITableViewDelegate, UITableViewDataSource, RepairOrderConfirmCellDelegate,
+        CouponViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
+@property (copy, nonatomic) NSString *branchId;
+
+@property (copy, nonatomic) NSString *couponId;
+
+@property (weak, nonatomic) RepairOrderConfirmCell *cell;
 
 @end
 
@@ -57,6 +65,8 @@
 {
     RepairOrderConfirmCell *cell = [RepairOrderConfirmCell cellFromNib];
 
+    _cell = cell;
+
     cell.delegate = self;
 
     return cell;
@@ -64,6 +74,10 @@
 
 - (void)submit
 {
+    _request.type = @"1";
+    _request.branchId = _branchId;
+    _request.couponRecordId = _couponId;
+
     [[HttpClient shareClient] post:URL_REPAIR_ADD parameters:[_request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         [HUDClass showHUDWithText:@"快修单提交成功"];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -84,8 +98,25 @@
     [self submit];
 }
 
+- (void)onClickCoupon
+{
+    CouponViewController *controller = [[CouponViewController alloc] init];
+    controller.payAmount = 100;
+    controller.delegate = self;
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void)onClickMoreCompany
 {
+    CompanyListController *controller = [[CompanyListController alloc] init];
+    controller.delegate = self;
+
+    controller.hidesBottomBarWhenPushed = YES;
+
+    [self.navigationController pushViewController:controller animated:YES];
 
 }
 
@@ -97,6 +128,16 @@
 - (void)onChooseCompany:(NSInteger)index name:(NSString *)name
 {
 
+}
+#pragma mark - CouponViewControllerDelegate
+
+- (void)onChooseCoupon:(NSDictionary *)couponInfo
+{
+    _cell.lbCoupon.text = [NSString stringWithFormat:@"满%.2lf可用", [couponInfo[@"startMoney"] floatValue]];
+
+    _cell.lbDiscount.text = [NSString stringWithFormat:@"￥-%.2lf", [couponInfo[@"couponMoney"] floatValue]];
+
+    _cell.lbPay.text = [NSString stringWithFormat:@"￥%.2lf", 100 - [couponInfo[@"couponMoney"] floatValue]];
 }
 
 @end

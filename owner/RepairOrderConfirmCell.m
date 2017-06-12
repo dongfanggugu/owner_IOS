@@ -24,7 +24,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 500;
+    return 700;
 }
 
 + (NSString *)identifier
@@ -61,8 +61,17 @@
     [_btnMoreCom addTarget:self action:@selector(clickMoreCom) forControlEvents:UIControlEventTouchUpInside];
 
     [_btnPay addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
+
+    [_btnCoupon addTarget:self action:@selector(clickCoupon) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)clickCoupon
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickCoupon)])
+    {
+        [_delegate onClickCoupon];
+    }
+}
 
 - (void)clickPay
 {

@@ -11,8 +11,10 @@
 #import "MainOrderAddRequest.h"
 #import "PayViewController.h"
 #import "CompanyListController.h"
+#import "CouponViewController.h"
 
-@interface MaintOrderConfirmController () <UITableViewDelegate, UITableViewDataSource, MainOrderConfirmCellDelegate, CompanyListControllerDelegate>
+@interface MaintOrderConfirmController () <UITableViewDelegate, UITableViewDataSource, MainOrderConfirmCellDelegate,
+        CompanyListControllerDelegate, CouponViewControllerDelegate>;
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -132,7 +134,12 @@
 
 - (void)onClickCoupon
 {
+    CouponViewController *controller = [[CouponViewController alloc] init];
+    controller.payAmount = _request.payMoney;
+    controller.delegate = self;
 
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)onChooseCompany:(NSInteger)index name:(NSString *)name
@@ -147,6 +154,17 @@
     [_cell resetSel];
 
     _cell.lbCompany.text = name;
+}
+
+#pragma mark - CouponViewControllerDelegate
+
+- (void)onChooseCoupon:(NSDictionary *)couponInfo
+{
+    _cell.lbCoupon.text = [NSString stringWithFormat:@"满%.2lf可用", [couponInfo[@"startMoney"] floatValue]];
+
+    _cell.lbDiscount.text = [NSString stringWithFormat:@"￥-%.2lf", [couponInfo[@"couponMoney"] floatValue]];
+
+    _cell.lbPay.text = [NSString stringWithFormat:@"￥%.2lf", _request.payMoney - [couponInfo[@"couponMoney"] floatValue]];
 }
 
 @end

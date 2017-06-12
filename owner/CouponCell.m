@@ -38,9 +38,6 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    _tfAmount.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
-    _tfAmount.userInteractionEnabled = NO;
-
     _tvZone.userInteractionEnabled = NO;
 
 }

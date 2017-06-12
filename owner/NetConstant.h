@@ -79,4 +79,7 @@
 //确认维保计划
 #define URL_OWNER_CONFIRM @"saveMaintOrderProcessConfirm"
 
+//获取可使用的红包信息
+#define URL_OWNER_COUPON @"getCouponRecordBySmallOwner"
+
 #endif /* NetConstant_h */
