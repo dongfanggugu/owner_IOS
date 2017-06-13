@@ -9,7 +9,6 @@
 #ifndef RepairOrderInfo_h
 #define RepairOrderInfo_h
 
-
 #import <Jastor.h>
 
 @interface RepairOrderInfo : Jastor
@@ -53,6 +52,8 @@
 @property (copy, nonatomic) NSString *repairTypeName;
 
 @property (strong, nonatomic) NSDictionary *repairTypeInfo;
+
+@property (strong, nonatomic) NSDictionary *villaInfo;
 
 @end
 

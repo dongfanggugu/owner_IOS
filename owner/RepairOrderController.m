@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"维修订单"];
+    [self setNavTitle:@"快修订单"];
     [self initView];
     [self getHouses];
 }

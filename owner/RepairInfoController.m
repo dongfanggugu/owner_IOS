@@ -84,11 +84,11 @@
 
     [_repairInfoView.ivFault setImageWithURL:[NSURL URLWithString:_orderInfo.picture]];
 
-    _repairInfoView.lbAddress.text = [NSString stringWithFormat:@"别墅地址: %@", _houseInfo[@"cellName"]];
+    _repairInfoView.lbAddress.text = [NSString stringWithFormat:@"别墅地址: %@", _orderInfo.villaInfo[@"cellName"]];
 
-    _repairInfoView.lbBrand.text = [NSString stringWithFormat:@"电梯品牌: %@", _houseInfo[@"brand"]];
+    _repairInfoView.lbBrand.text = [NSString stringWithFormat:@"电梯品牌: %@", _orderInfo.villaInfo[@"brand"]];
 
-    _repairInfoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_houseInfo[@"layerAmount"] integerValue]];
+    _repairInfoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_orderInfo.villaInfo[@"layerAmount"] integerValue]];
 
     NSInteger state = _orderInfo.state.integerValue;
     [self showViewWithState:state];

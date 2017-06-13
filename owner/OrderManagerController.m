@@ -6,6 +6,7 @@
 #import "OrderManagerController.h"
 #import "OrderCategoryCell.h"
 #import "OrderMaintListController.h"
+#import "OrderRepairListController.h"
 
 @interface OrderManagerController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -101,7 +102,7 @@
 
         case 1:
         {
-            OrderMaintListController *controller = [[OrderMaintListController alloc] init];
+            OrderRepairListController *controller = [[OrderRepairListController alloc] init];
 
             controller.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:controller animated:YES];
