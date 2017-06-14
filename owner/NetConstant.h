@@ -40,7 +40,7 @@
 //获取维修订单列表
 #define URL_REPAIR_LIST @"getRepairOrderListNotCompleteByOwner"
 
-//获取维保订单列表
+//获取维保服务列表
 #define URL_MAIN_LIST @"getMaintOrderListByOwner"
 
 //获取服务的任务单

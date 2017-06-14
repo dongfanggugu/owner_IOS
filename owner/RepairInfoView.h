@@ -15,6 +15,8 @@
 
 - (void)onClickEvaluate;
 
+- (void)onClickCall;
+
 @end
 
 @interface RepairInfoView : UIView
@@ -42,6 +44,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTitleTask;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnCall;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnEvaluate;
@@ -50,6 +54,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivTask;
 
-@property (weak, nonatomic) id<RepairInfoViewDelegate> delegate;
+@property (weak, nonatomic) id <RepairInfoViewDelegate> delegate;
 
 @end

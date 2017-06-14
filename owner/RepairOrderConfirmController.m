@@ -74,13 +74,27 @@
 
 - (void)submit
 {
+    _branchId = @"30584de5-4871-460e-86df-6ae15de01334";
     _request.type = @"1";
     _request.branchId = _branchId;
     _request.couponRecordId = _couponId;
 
     [[HttpClient shareClient] post:URL_REPAIR_ADD parameters:[_request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"快修单提交成功"];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        NSString *url = [responseObject[@"body"] objectForKey:@"url"];
+
+        if (url.length != 0)
+        {
+            PayViewController *controller = [[PayViewController alloc] init];
+            controller.urlStr = url;
+
+            __weak typeof(self) weakSelf = self;
+
+            [self presentViewController:controller animated:YES completion:^{
+
+                NSArray *array = weakSelf.navigationController.viewControllers;
+                [weakSelf.navigationController popToViewController:array[1] animated:NO];
+            }];
+        }
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];

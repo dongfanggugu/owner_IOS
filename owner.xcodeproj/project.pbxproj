@@ -362,6 +362,7 @@
 		699E44A3E8AD69410E17405E /* OrderOthersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E43D9E7BC77F5F7C2CBBA /* OrderOthersController.m */; };
 		699E45357CFF027A2995937B /* ServiceTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E450F1C9444AB80108891 /* ServiceTaskController.m */; };
 		699E46C090EAC18C90D1DF58 /* OrderCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E43073A91D02D59F7B844 /* OrderCategoryCell.m */; };
+		699E46EC186B9CE870BC8290 /* RepairCallPaymentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4AF1F3B8125872698031 /* RepairCallPaymentController.m */; };
 		699E479CED83AD868B93D09A /* KnowledgeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E49D2204820751EA275E4 /* KnowledgeDetailController.m */; };
 		699E47A2B321EA62604102DA /* OrderRepairListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E475567FE82B76EA8237B /* OrderRepairListController.m */; };
 		699E47AED0F27E969307422C /* icon_other_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4A5A1AD20898872CCDC2 /* icon_other_order.png */; };
@@ -902,6 +903,7 @@
 		699E436D39AC5928BAD67FB4 /* ServiceTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTaskController.h; sourceTree = "<group>"; };
 		699E43D9E7BC77F5F7C2CBBA /* OrderOthersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderOthersController.m; sourceTree = "<group>"; };
 		699E44633161FD675300B201 /* ExtraServiceOrderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceOrderDetailController.m; sourceTree = "<group>"; };
+		699E44B26E64D3FD7BA6E072 /* RepairCallPaymentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairCallPaymentController.h; sourceTree = "<group>"; };
 		699E44FD807EE9C1FB224F91 /* KnowledgeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowledgeDetailController.h; sourceTree = "<group>"; };
 		699E450F1C9444AB80108891 /* ServiceTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceTaskController.m; sourceTree = "<group>"; };
 		699E4648ACDC8B3390D194F4 /* RepairOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderController.m; sourceTree = "<group>"; };
@@ -925,6 +927,7 @@
 		699E4A65D556E1A96A6F574D /* RepairOrderConfirmNoPayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderConfirmNoPayController.m; sourceTree = "<group>"; };
 		699E4AD41468861210BC24A9 /* ExtraPayOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraPayOrderController.h; sourceTree = "<group>"; };
 		699E4ADCA857F83B1C7A006A /* icon_repair_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_repair_order.png; sourceTree = "<group>"; };
+		699E4AF1F3B8125872698031 /* RepairCallPaymentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairCallPaymentController.m; sourceTree = "<group>"; };
 		699E4B154619E47055820D53 /* OrderManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderManagerController.h; sourceTree = "<group>"; };
 		699E4BA5E21A88DBC53BEF75 /* PayOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayOrderController.h; sourceTree = "<group>"; };
 		699E4C5D601BBA50E3CC7F12 /* MaintDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintDetailController.h; sourceTree = "<group>"; };
@@ -1464,6 +1467,8 @@
 				699E47CE1CFCC0656A43520B /* RepairPaymentController.m */,
 				699E4A65D556E1A96A6F574D /* RepairOrderConfirmNoPayController.m */,
 				699E4DB43783924ADB505267 /* RepairOrderConfirmNoPayController.h */,
+				699E4AF1F3B8125872698031 /* RepairCallPaymentController.m */,
+				699E44B26E64D3FD7BA6E072 /* RepairCallPaymentController.h */,
 			);
 			name = Repair;
 			sourceTree = "<group>";
@@ -2281,6 +2286,7 @@
 				699E4D1A8EE6E1ED8EF41ECC /* RepairOrderConfirmNoPayController.m in Sources */,
 				699E47A2B321EA62604102DA /* OrderRepairListController.m in Sources */,
 				699E44A3E8AD69410E17405E /* OrderOthersController.m in Sources */,
+				699E46EC186B9CE870BC8290 /* RepairCallPaymentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

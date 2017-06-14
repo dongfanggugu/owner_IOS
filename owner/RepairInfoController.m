@@ -18,6 +18,7 @@
 #import "RepairPaymentController.h"
 #import "RepairCheckController.h"
 #import "RepairResultController.h"
+#import "RepairCallPaymentController.h"
 
 
 @interface RepairInfoController () <UITableViewDelegate, UITableViewDataSource, RepairInfoViewDelegate>
@@ -356,13 +357,22 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)onClickCall
+{
+    RepairCallPaymentController *controller = [[RepairCallPaymentController alloc] init];
+    controller.orderId = _orderInfo.orderId;
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (void)onClickPay
 {
     NSInteger isPay = _orderInfo.isPayment.integerValue;
 
     RepairPaymentController *controller = [[RepairPaymentController alloc] init];
 
-    if (1 == isPay)
+    if (2 == isPay)
     {
         controller.enterType = Repair_Show;
         controller.payTime = _orderInfo.payTime;

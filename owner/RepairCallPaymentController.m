@@ -6,21 +6,22 @@
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import "RepairPaymentController.h"
+#import "RepairCallPaymentController.h"
 #import "RepairPayInfoCell.h"
 #import "PayViewController.h"
 #import "RepairCouponCell.h"
 
-@interface RepairPaymentController () <UITableViewDelegate, UITableViewDataSource>
+@interface RepairCallPaymentController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *arrayPay;
 
+@property (strong, nonatomic) NSDictionary *payInfo;
 
 @end
 
-@implementation RepairPaymentController
+@implementation RepairCallPaymentController
 
 - (void)viewDidLoad
 {
@@ -57,7 +58,12 @@
 
     [self.view addSubview:_tableView];
 
-    if (Repair_Pay == _enterType)
+
+}
+
+- (void)addTableFootView:(BOOL)isPay
+{
+    if (!isPay)
     {
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 80)];
 
@@ -111,12 +117,17 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"repairOrderId"] = _orderId;
+    params[@"type"] = @"1";
 
-    [[HttpClient shareClient] post:@"getPriceDetailsByRepairOrder" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self.arrayPay removeAllObjects];
-        [self.arrayPay addObjectsFromArray:responseObject[@"body"]];
+    [[HttpClient shareClient] post:@"getRepairPaymentBySmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
 
+        if (0 == [responseObject[@"body"] count])
+        {
+            return;
+        }
+        _payInfo = responseObject[@"body"][0];
         [self dealWithPayments];
+
 
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
@@ -125,41 +136,43 @@
 
 - (void)dealWithPayments
 {
-    if (0 == self.arrayPay.count)
-    {
-        return;
-    }
-
+    [self addTableFootView:[_payInfo[@"isPay"] boolValue]];
     [self.tableView reloadData];
-
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (Repair_Pay == _enterType)
+    if (!_payInfo)
     {
-        return 2;
+        return 0;
+    }
+    BOOL isPay = _payInfo[@"isPay"];
 
+    if (isPay)
+    {
+        return 3;
     }
     else
     {
-        return 3;
+        return 2;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (!_payInfo)
+    {
+        return 0;
+    }
     if (0 == section)
     {
-        return self.arrayPay.count;
-
+        return 2;
     }
     else if (1 == section)
     {
         return 1;
-
     }
     else
     {
@@ -171,24 +184,18 @@
 {
     if (0 == indexPath.section)
     {
-
-        if (indexPath.row == self.arrayPay.count - 1)
+        if (0 == indexPath.row)
         {
-            RepairCouponCell *cell = [RepairCouponCell cellFromNib];
+            RepairPayInfoCell *cell = [RepairCouponCell cellFromNib];
+            cell.lbName.text = @"上门服务";
+            cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [_payInfo[@"payMoney"] floatValue]];
             return cell;
-
         }
-        else
+        else if (1 == indexPath.row)
         {
             RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
-
-            NSDictionary *info = self.arrayPay[indexPath.row];
-
-            cell.lbName.text = info[@"name"];
-
-            cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [info[@"price"] floatValue]];
-
-
+            cell.lbName.text = @"优惠金额";
+            cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [_payInfo[@"discountMoney"] floatValue]];
             return cell;
         }
 
@@ -202,12 +209,7 @@
 
         cell.lbPrice.textColor = [Utils getColorByRGB:@"#03cd99"];
 
-        CGFloat payMoney = 0;
-
-        if (self.arrayPay.count > 0)
-        {
-            payMoney = [[[self.arrayPay[0] objectForKey:@"repairOrderInfo"] objectForKey:@"payMoney"] floatValue];
-        }
+        CGFloat payMoney = [_payInfo[@"allMoney"] floatValue];
 
         cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", payMoney];
 
@@ -224,7 +226,7 @@
 
             cell.lbPrice.textColor = [Utils getColorByRGB:@"#03cd99"];
 
-            cell.lbPrice.text = _payTime;
+            cell.lbPrice.text = _payInfo[@"payTime"];
 
             return cell;
 
@@ -243,6 +245,8 @@
 
         }
     }
+
+    return [[UITableViewCell alloc] init];
 }
 
 

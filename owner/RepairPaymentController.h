@@ -8,7 +8,8 @@
 
 #import "BaseViewController.h"
 
-typedef NS_ENUM(NSInteger, RepairPayEnterType) {
+typedef NS_ENUM(NSInteger, RepairPayEnterType)
+{
     Repair_Pay,
     Repair_Show
 };

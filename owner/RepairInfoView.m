@@ -42,12 +42,17 @@
 
     _lbFaultDes.layer.borderWidth = 1;
 
+    _btnCall.layer.masksToBounds = YES;
+    _btnCall.layer.cornerRadius = 5;
+
     _btnOrder.layer.masksToBounds = YES;
     _btnOrder.layer.cornerRadius = 5;
 
 
     _lbTitleOrder.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_blue"]];
     _lbTitleTask.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_red"]];
+
+    [_btnCall addTarget:self action:@selector(clickCall) forControlEvents:UIControlEventTouchUpInside];
 
     [_btnOrder addTarget:self action:@selector(clickPayOrder) forControlEvents:UIControlEventTouchUpInside];
 
@@ -59,6 +64,14 @@
     if (_delegate && [_delegate respondsToSelector:@selector(onClickPay)])
     {
         [_delegate onClickPay];
+    }
+}
+
+- (void)clickCall
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickCall)])
+    {
+        [_delegate onClickCall];
     }
 }
 
