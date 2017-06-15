@@ -22,4 +22,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbPrice;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnCoupon;
+
 @end

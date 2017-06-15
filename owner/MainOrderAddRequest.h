@@ -49,6 +49,9 @@
 
 @property (assign, nonatomic) CGFloat payMoney;
 
+@property (copy, nonatomic) NSString *branchId;
+
+@property (copy, nonatomic) NSString *couponRecordId;
 
 //增值服务订单使用
 @property (copy, nonatomic) NSString *incrementTypeId;

@@ -9,7 +9,6 @@
 #import "RepairCallPaymentController.h"
 #import "RepairPayInfoCell.h"
 #import "PayViewController.h"
-#import "RepairCouponCell.h"
 
 @interface RepairCallPaymentController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -91,8 +90,12 @@
 
 - (void)payment
 {
+    if (!self.payInfo)
+    {
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"repairOrderId"] = _orderId;
+    params[@"paymentId"] = _payInfo[@"id"];
 
     [[HttpClient shareClient] post:@"continuePayment" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
 
@@ -148,7 +151,7 @@
     {
         return 0;
     }
-    BOOL isPay = _payInfo[@"isPay"];
+    BOOL isPay = [_payInfo[@"isPay"] boolValue];
 
     if (isPay)
     {
@@ -186,7 +189,7 @@
     {
         if (0 == indexPath.row)
         {
-            RepairPayInfoCell *cell = [RepairCouponCell cellFromNib];
+            RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
             cell.lbName.text = @"上门服务";
             cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", [_payInfo[@"payMoney"] floatValue]];
             return cell;

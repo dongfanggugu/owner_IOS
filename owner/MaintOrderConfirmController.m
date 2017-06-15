@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) MainOrderConfirmCell *cell;
 
+@property (copy, nonatomic) NSString *couponId;
+
 @end
 
 @implementation MaintOrderConfirmController
@@ -28,7 +30,6 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"订单确认"];
-
     [self initView];
 }
 
@@ -72,7 +73,7 @@
 
     cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", _request.payMoney];
 
-    cell.lbDiscount.text = @"-￥0";
+    cell.lbDiscount.text = @"￥-0.00";
 
     cell.lbPay.text = [NSString stringWithFormat:@"￥%.2lf", _request.payMoney];
 
@@ -81,6 +82,10 @@
 
 - (void)submit
 {
+
+    _request.branchId = @"30584de5-4871-460e-86df-6ae15de01334";
+    _request.couponRecordId = _couponId;
+
     [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[_request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
 
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
@@ -165,6 +170,8 @@
     _cell.lbDiscount.text = [NSString stringWithFormat:@"￥-%.2lf", [couponInfo[@"couponMoney"] floatValue]];
 
     _cell.lbPay.text = [NSString stringWithFormat:@"￥%.2lf", _request.payMoney - [couponInfo[@"couponMoney"] floatValue]];
+
+    _couponId = couponInfo[@"id"];
 }
 
 @end

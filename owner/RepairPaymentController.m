@@ -10,13 +10,21 @@
 #import "RepairPayInfoCell.h"
 #import "PayViewController.h"
 #import "RepairCouponCell.h"
+#import "CouponViewController.h"
 
-@interface RepairPaymentController () <UITableViewDelegate, UITableViewDataSource>
+@interface RepairPaymentController () <UITableViewDelegate, UITableViewDataSource, CouponViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *arrayPay;
 
+@property (copy, nonatomic) NSString *paymentId;
+
+@property (weak, nonatomic) RepairCouponCell *couponCell;
+
+@property (weak, nonatomic) RepairPayInfoCell *totalCell;
+
+@property (copy, nonatomic) NSString *couponId;
 
 @end
 
@@ -86,7 +94,8 @@
 - (void)payment
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"repairOrderId"] = _orderId;
+    params[@"paymentId"] = _paymentId;
+    params[@"couponRecordId"] = _couponId;
 
     [[HttpClient shareClient] post:@"continuePayment" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
 
@@ -114,7 +123,9 @@
 
     [[HttpClient shareClient] post:@"getPriceDetailsByRepairOrder" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayPay removeAllObjects];
-        [self.arrayPay addObjectsFromArray:responseObject[@"body"]];
+        [self.arrayPay addObjectsFromArray:responseObject[@"body"][@"pList"]];
+
+        _paymentId = responseObject[@"body"][@"list"][0][@"id"];
 
         [self dealWithPayments];
 
@@ -172,9 +183,28 @@
     if (0 == indexPath.section)
     {
 
+        NSDictionary *info = self.arrayPay[indexPath.row];
+
         if (indexPath.row == self.arrayPay.count - 1)
         {
             RepairCouponCell *cell = [RepairCouponCell cellFromNib];
+            cell.lbName.text = @"优惠券";
+
+            CGFloat discount = [info[@"price"] floatValue];
+
+            if (discount < 0 || Repair_Show == _enterType)
+            {
+                cell.btnCoupon.hidden = YES;
+                cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", discount];
+            }
+            else
+            {
+                cell.btnCoupon.hidden = NO;
+                [cell.btnCoupon addTarget:self action:@selector(coupon) forControlEvents:UIControlEventTouchUpInside];
+
+                cell.lbPrice.text = @"￥-0.00";
+            }
+
             return cell;
 
         }
@@ -182,7 +212,6 @@
         {
             RepairPayInfoCell *cell = [RepairPayInfoCell cellFromNib];
 
-            NSDictionary *info = self.arrayPay[indexPath.row];
 
             cell.lbName.text = info[@"name"];
 
@@ -259,6 +288,27 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 3;
+}
+
+- (void)coupon
+{
+    CouponViewController *controller = [[CouponViewController alloc] init];
+    controller.delegate = self;
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)onChooseCoupon:(NSDictionary *)couponInfo
+{
+    _couponCell.lbContent.text = [NSString stringWithFormat:@"满%.2lf可用", [couponInfo[@"startMoney"] floatValue]];
+
+    _couponCell.lbPrice.text = [NSString stringWithFormat:@"￥-%.2lf", [couponInfo[@"couponMoney"] floatValue]];
+
+    CGFloat newPay = [_totalCell.lbPrice.text floatValue] - [couponInfo[@"couponMoney"] floatValue];
+    _totalCell.lbPrice.text = [NSString stringWithFormat:@"%.2lf", newPay];
+
+    _couponId = couponInfo[@"id"];
 }
 
 @end

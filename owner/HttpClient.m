@@ -177,7 +177,7 @@
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITabBarController *controller = [board instantiateViewControllerWithIdentifier:@"main_tab_bar_controller"];
     [UIApplication sharedApplication].keyWindow.rootViewController = controller;
-    [controller setSelectedIndex:1];
+    [controller setSelectedIndex:2];
 }
 
 
