@@ -19,7 +19,7 @@
     if (self)
     {
         self.orderId = dictionary[@"id"];
-        self.maintypeInfo = [[MainTypeInfo alloc] initWithDictionary:dictionary[@"maintypeInfo"]];
+        self.maintypeInfo = [[MainTypeInfo alloc] initWithDictionary:dictionary[@"mainttypeInfo"]];
     }
 
     return self;

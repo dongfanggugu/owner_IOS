@@ -17,6 +17,12 @@
 
 @property (copy, nonatomic) NSString *taskId;
 
+@property (copy, nonatomic) NSString *maintUserFeedback;
+
+@property (copy, nonatomic) NSString *beforeImg;
+
+@property (copy, nonatomic) NSString *afterImg;
+
 @property (copy, nonatomic) NSString *isPay;
 
 @property (copy, nonatomic) NSString *maintUserId;
@@ -27,6 +33,10 @@
 @property (copy, nonatomic) NSString *state;
 
 @property (copy, nonatomic) NSString *taskCode;
+
+@property (copy, nonatomic) NSString *arriveTime;
+
+@property (copy, nonatomic) NSString *finishTime;
 
 @property (copy, nonatomic) NSString *evaluateContent;
 

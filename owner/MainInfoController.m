@@ -11,11 +11,8 @@
 #import "MainOrderInfoView.h"
 #import "MainTaskInfo.h"
 #import "MainTaskListResponse.h"
-#import "MainTaskListRequest.h"
 #import "MainTaskCell.h"
 #import "MainTaskDetailController.h"
-#import "OrderListRequest.h"
-#import "MainListResponse.h"
 #import "PayOrderController.h"
 #import "MainTypeDetailController.h"
 #import "MainOrderLoginController.h"
@@ -47,7 +44,6 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"维保服务"];
-    [self initNavRightWithText:@"查看历史"];
     [self initView];
     [self initData];
     [self getHouses];
@@ -57,15 +53,6 @@
 {
     [super viewWillAppear:animated];
     [_tableView reloadData];
-}
-
-- (void)onClickNavRight
-{
-    ServiceHistoryController *controller = [[ServiceHistoryController alloc] init];
-    controller.houseId = _houseInfo[@"id"];
-
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)initData
@@ -289,12 +276,11 @@
     params[@"villaId"] = _houseInfo[@"id"];
 
     [[HttpClient shareClient] post:URL_MAIN_LIST parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
 
-        if ([response getOrderList].count > 0)
+
+        if ([responseObject[@"body"] count] > 0)
         {
-            _serviceInfo = [[response getOrderList] objectAtIndex:0];
-
+            _serviceInfo = [[MainOrderInfo alloc] initWithDictionary:responseObject[@"body"][0]];
         }
         else
         {
@@ -359,7 +345,7 @@
             break;
 
         case 4:
-            res = @"已完成";
+            res = @"待评价";
             break;
 
         case 5:

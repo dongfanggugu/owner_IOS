@@ -14,7 +14,7 @@
 #import "CompanyListController.h"
 
 @interface RepairOrderConfirmController () <UITableViewDelegate, UITableViewDataSource, RepairOrderConfirmCellDelegate,
-        CouponViewControllerDelegate>
+        CouponViewControllerDelegate, CompanyListControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -23,6 +23,8 @@
 @property (copy, nonatomic) NSString *couponId;
 
 @property (weak, nonatomic) RepairOrderConfirmCell *cell;
+
+@property (strong, nonatomic) NSMutableArray *arrayBranch;
 
 @end
 
@@ -33,7 +35,7 @@
     [super viewDidLoad];
     [self setNavTitle:@"订单确认"];
 
-    [self initView];
+    [self getBranch];
 }
 
 - (void)initView
@@ -51,6 +53,32 @@
     [self.view addSubview:_tableView];
 }
 
+- (NSMutableArray *)arrayBranch
+{
+    if (!_arrayBranch)
+    {
+        _arrayBranch = [NSMutableArray array];
+    }
+
+    return _arrayBranch;
+}
+
+- (void)getBranch
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"villaId"] = _request.villaId;
+
+    [[HttpClient shareClient] post:@"getBranchsByVillaId" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self.arrayBranch removeAllObjects];
+        [self.arrayBranch addObjectsFromArray:responseObject[@"body"]];
+        [self initView];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
+    }];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -65,16 +93,38 @@
 {
     RepairOrderConfirmCell *cell = [RepairOrderConfirmCell cellFromNib];
 
+    if (self.arrayBranch.count >= 1)
+    {
+        cell.lbCom1.text = self.arrayBranch[0][@"name"];
+
+        cell.lbCom2.userInteractionEnabled = NO;
+        cell.lbCom3.userInteractionEnabled = NO;
+    }
+
+    if (self.arrayBranch.count >= 2)
+    {
+        cell.lbCom2.text = self.arrayBranch[1][@"name"];
+        cell.lbCom2.userInteractionEnabled = YES;
+        cell.lbCom3.userInteractionEnabled = NO;
+    }
+
+    if (self.arrayBranch.count >= 3)
+    {
+        cell.lbCom3.text = self.arrayBranch[2][@"name"];
+        cell.lbCom3.userInteractionEnabled = YES;
+    }
+
     _cell = cell;
 
     cell.delegate = self;
+
+    [cell selCom1];
 
     return cell;
 }
 
 - (void)submit
 {
-    _branchId = @"30584de5-4871-460e-86df-6ae15de01334";
     _request.type = @"1";
     _request.branchId = _branchId;
     _request.couponRecordId = _couponId;
@@ -126,6 +176,7 @@
 - (void)onClickMoreCompany
 {
     CompanyListController *controller = [[CompanyListController alloc] init];
+    controller.arrayBranch = _arrayBranch;
     controller.delegate = self;
 
     controller.hidesBottomBarWhenPushed = YES;
@@ -141,8 +192,36 @@
 
 - (void)onChooseCompany:(NSInteger)index name:(NSString *)name
 {
-
+    NSDictionary *info = self.arrayBranch[index];
+    _branchId = info[@"id"];
 }
+
+#pragma mark - CompanyListControllerDelegate
+
+- (void)onChoose:(NSInteger)index name:(NSString *)name
+{
+    switch (index)
+    {
+        case 0:
+            [_cell selCom1];
+            break;
+
+        case 1:
+            [_cell selCom2];
+            break;
+
+        case 2:
+            [_cell selCom3];
+            break;
+
+        default:
+            [_cell resetSel];
+            _branchId = self.arrayBranch[index][@"id"];
+            _cell.lbCompany.text = name;
+    }
+}
+
+
 #pragma mark - CouponViewControllerDelegate
 
 - (void)onChooseCoupon:(NSDictionary *)couponInfo

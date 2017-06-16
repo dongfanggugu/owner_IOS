@@ -34,7 +34,7 @@
 {
     _evaluateView = [EvaluteView viewFromNib];
 
-    _evaluateView.frame = CGRectMake(0, 64, self.screenWidth, 300);
+    _evaluateView.frame = CGRectMake(0, 64, self.screenWidth, _evaluateView.frame.size.height);
 
     _evaluateView.delegate = self;
 

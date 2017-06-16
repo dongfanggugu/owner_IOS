@@ -8,6 +8,7 @@
 
 #import "CompanyListController.h"
 #import "CompanyInfoCell.h"
+#import "KnowledgeDetailController.h"
 
 @interface CompanyListController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -47,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrayBranch.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -59,9 +60,23 @@
         cell = [CompanyInfoCell cellFromNib];
     }
 
+    NSDictionary *info = self.arrayBranch[indexPath.row];
+
     cell.lbIndex.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
 
-    cell.lbContent.text = @"北京中公司";
+    cell.lbContent.text =  info[@"name"];
+
+    __weak typeof(self) weakSelf = self;
+
+    [cell setOnClickDetail:^{
+        KnowledgeDetailController *controller = [[KnowledgeDetailController alloc] init];
+
+        controller.knTitle = info[@"name"];
+        controller.content = info[@"companyDetail"];
+
+        controller.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:controller animated:YES];
+    }];
 
     return cell;
 }
@@ -75,7 +90,7 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(onChoose:name:)])
     {
-        [_delegate onChoose:indexPath.row name:@"北京中公司"];
+        [_delegate onChoose:indexPath.row name:self.arrayBranch[indexPath.row][@"name"]];
     }
 
     [self.navigationController popViewControllerAnimated:YES];

@@ -52,6 +52,43 @@
     return _arrayOrder;
 }
 
+- (NSString *)getStateDes:(NSInteger)state
+{
+    NSString *res = @"";
+
+    if (1 == state)
+    {
+        res = @"待确认";
+
+    }
+    else if (2 == state)
+    {
+        res = @"已确认";
+
+    }
+    else if (4 == state)
+    {
+        res = @"已委派";
+
+    }
+    else if (6 == state)
+    {
+        res = @"维修中";
+
+    }
+    else if (8 == state)
+    {
+        res = @"维修完成";
+
+    }
+    else if (9 == state)
+    {
+        res = @"已评价";
+    }
+
+    return res;
+}
+
 
 - (void)getRepair
 {
@@ -96,14 +133,7 @@
     NSString *fault = [orderInfo[@"repairTypeInfo"] objectForKey:@"name"];
     cell.lbType.text = [NSString stringWithFormat:@"故障类型: %@", fault];
 
-    cell.lbState.text = @"未支付";
-
-    BOOL isPay = [orderInfo[@"isPay"] boolValue];
-
-    if (isPay)
-    {
-        cell.lbState.text = @"已支付";
-    }
+    cell.lbState.text = [self getStateDes:[orderInfo[@"state"] integerValue]];
     return cell;
 }
 

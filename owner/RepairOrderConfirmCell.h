@@ -32,6 +32,12 @@
 
 - (void)resetSel;
 
+- (void)selCom1;
+
+- (void)selCom2;
+
+- (void)selCom3;
+
 @property (weak, nonatomic) IBOutlet UILabel *lbIntroduce;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbCom1;

@@ -147,8 +147,7 @@
         else
         {
             //需要判断是否过期
-//            [self jumpNoPay:request service:maintInfo];
-            [self jumpPay:request];
+            [self jumpNoPay:request service:maintInfo];
         }
 
 

@@ -93,6 +93,11 @@
 
 - (void)payment
 {
+    if (0 == _paymentId.length)
+    {
+        [HUDClass showHUDWithText:@"获取支付单错误,请退出再次进入"];
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"paymentId"] = _paymentId;
     params[@"couponRecordId"] = _couponId;
@@ -125,7 +130,20 @@
         [self.arrayPay removeAllObjects];
         [self.arrayPay addObjectsFromArray:responseObject[@"body"][@"pList"]];
 
-        _paymentId = responseObject[@"body"][@"list"][0][@"id"];
+        if (self.arrayPay.count > 0)
+        {
+            if ([[self.arrayPay lastObject][@"price"] floatValue] > 0)
+            {
+                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:0.00], @"price", @"优惠券", @"name", nil];
+                [self.arrayPay addObject:dic];
+            }
+        }
+
+        if ([responseObject[@"body"][@"list"] count] > 0)
+        {
+            _paymentId = responseObject[@"body"][@"list"][0][@"id"];
+        }
+
 
         [self dealWithPayments];
 

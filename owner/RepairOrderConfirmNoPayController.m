@@ -55,7 +55,7 @@
 {
     RepairOrderConfirmNoPayCell *cell = [RepairOrderConfirmNoPayCell cellFromNib];
 
-    NSString *company = _serviceInfo[@"branchName"];
+    NSString *company = _serviceInfo[@"branchInfo"][@"name"];
 
     NSString *maintName = [_serviceInfo[@"maintypeInfo"] objectForKey:@"name"];
 
@@ -73,7 +73,7 @@
 {
 
     _request.type = @"0";
-    _request.branchId = _serviceInfo[@"branchId"];
+    _request.branchId = _serviceInfo[@"branchInfo"][@"id"];
 
     [[HttpClient shareClient] post:URL_REPAIR_ADD parameters:[_request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         [HUDClass showHUDWithText:@"快修单提交成功"];

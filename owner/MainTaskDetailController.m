@@ -187,15 +187,20 @@
     [cell setOnClickResult:^{
         MaintResultController *controller = [[MaintResultController alloc] init];
 
+        controller.maintContent = weakSelf.taskInfo.maintUserFeedback;
+        controller.urlBefore = weakSelf.taskInfo.beforeImg;
+        controller.urlAfter = weakSelf.taskInfo.afterImg;
+
         controller.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:controller animated:YES];
     }];
 
-    [cell.btnFinish setTitle:@"维保完成" forState:UIControlStateNormal];
+    [cell.btnFinish setTitle:@"维保评价" forState:UIControlStateNormal];
 
 
     [cell setOnClickFinish:^{
         MaintEvaluateController *controller = [[MaintEvaluateController alloc] init];
+        controller.taskInfo = weakSelf.taskInfo;
 
         controller.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:controller animated:YES];
@@ -211,6 +216,10 @@
 
     [cell setOnClickResult:^{
         MaintResultController *controller = [[MaintResultController alloc] init];
+
+        controller.maintContent = weakSelf.taskInfo.maintUserFeedback;
+        controller.urlBefore = weakSelf.taskInfo.beforeImg;
+        controller.urlAfter = weakSelf.taskInfo.afterImg;
 
         controller.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:controller animated:YES];

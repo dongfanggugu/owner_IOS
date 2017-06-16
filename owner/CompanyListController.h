@@ -16,6 +16,8 @@
 
 @interface CompanyListController : BaseViewController
 
+@property (strong, nonatomic) NSArray *arrayBranch;
+
 @property (weak, nonatomic) id<CompanyListControllerDelegate> delegate;
 
 @end

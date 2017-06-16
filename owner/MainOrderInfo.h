@@ -38,7 +38,7 @@
 
 @property (copy, nonatomic) NSString *branchId;
 
-@property (copy, nonatomic) NSString *branchInfo;
+@property (copy, nonatomic) NSDictionary *branchInfo;
 
 @end
 

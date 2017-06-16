@@ -43,11 +43,6 @@
     return array[0];
 }
 
-+ (CGFloat)viewHight
-{
-    return 200;
-}
-
 - (void)setModeShow
 {
     _btnSubmit.hidden = YES;
@@ -131,7 +126,7 @@
     _tvContent.layer.masksToBounds = YES;
     _tvContent.layer.cornerRadius = 5;
     _tvContent.layer.borderWidth = 1;
-    _tvContent.layer.borderColor = [UIColor grayColor].CGColor;
+    _tvContent.layer.borderColor = RGB(BG_GRAY).CGColor;
 
 }
 

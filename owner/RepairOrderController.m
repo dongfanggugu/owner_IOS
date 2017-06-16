@@ -15,6 +15,7 @@
 #import "HouseChangeView.h"
 #import "ListDialogData.h"
 #import "ListDialogView.h"
+#import "OrderMaintCell.h"
 
 @interface RepairOrderController () <UITableViewDelegate, UITableViewDataSource, HouseChangeViewDelegate, ListDialogViewDelegate>
 
@@ -126,9 +127,13 @@
         res = @"维修中";
 
     }
+    else if (7 == state)
+    {
+        res = @"待完成";
+    }
     else if (8 == state)
     {
-        res = @"维修完成";
+        res = @"待评价";
 
     }
     else if (9 == state)
@@ -238,33 +243,34 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.arrayOrder.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return self.arrayOrder.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OrderInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[OrderInfoCell identifier]];
+    OrderMaintCell *cell = [tableView dequeueReusableCellWithIdentifier:[OrderMaintCell identifier]];
 
     if (!cell)
     {
-        cell = [OrderInfoCell cellFromNib];
+        cell = [OrderMaintCell cellFromNib];
     }
 
-    RepairOrderInfo *info = self.arrayOrder[indexPath.row];
+    RepairOrderInfo *orderInfo = self.arrayOrder[indexPath.section];
 
-    cell.lbIndex.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+    cell.lbCode.text = [NSString stringWithFormat:@"编号: %@", orderInfo.code];
+    cell.lbTime.text = orderInfo.createTime;
+    cell.lbName.text = orderInfo.villaInfo[@"cellName"];
 
-    cell.lbTitle.text = [self getStateDes:info.state.integerValue];
+    NSString *fault = orderInfo.repairTypeInfo[@"name"];
+    cell.lbType.text = [NSString stringWithFormat:@"故障类型: %@", fault];
 
-    cell.lbState.text = info.createTime;
-
-    cell.lbContent.text = info.phenomenon;
+    cell.lbState.text = [self getStateDes:orderInfo.state.integerValue];
 
     return cell;
 }
@@ -273,17 +279,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [OrderInfoCell cellHeight];
+    return [OrderMaintCell cellHeight];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RepairInfoController *controller = [[RepairInfoController alloc] init];
-    controller.orderInfo = self.arrayOrder[indexPath.row];
+    controller.orderInfo = self.arrayOrder[indexPath.section];
     controller.houseInfo = _houseInfo;
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
+{
+    return 20;
 }
 
 #pragma mark - HouseInfoViewDelegate

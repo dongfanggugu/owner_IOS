@@ -24,7 +24,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 44;
+    return 66;
 }
 
 + (NSString *)identifier

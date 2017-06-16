@@ -42,6 +42,10 @@
     self.evaluateView = [MaintEvaluateView viewFromNib];
     self.evaluateView.delegate = self;
 
+    self.evaluateView.lbStart.text = [NSString stringWithFormat:@"%@", _taskInfo.arriveTime];
+
+    self.evaluateView.lbEnd.text = [NSString stringWithFormat:@"%@", _taskInfo.finishTime];
+
     tableView.tableHeaderView = self.evaluateView;
 }
 
@@ -64,6 +68,11 @@
 
 - (void)onSubmit:(NSInteger)star content:(NSString *)content
 {
+    if (0 == content.length)
+    {
+        [HUDClass showHUDWithText:@"请您填写评价意见"];
+        return;
+    }
     MainTaskEvaluateRequest *request = [[MainTaskEvaluateRequest alloc] init];
     request.maintOrderProcessId = self.taskInfo.taskId;
     request.evaluateContent = content;

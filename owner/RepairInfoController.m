@@ -91,16 +91,23 @@
 
     _repairInfoView.lbWeight.text = [NSString stringWithFormat:@"电梯载重量: %.0lfkg    层站:%ld层", [_houseInfo[@"weight"] floatValue], [_orderInfo.villaInfo[@"layerAmount"] integerValue]];
 
-    NSInteger state = _orderInfo.state.integerValue;
-    [self showViewWithState:state];
-
-
     NSInteger isPay = _orderInfo.isPayment.integerValue;
 
     if (1 == isPay)
     {
+        _repairInfoView.btnCall.hidden = YES;
+        [_repairInfoView.btnOrder setTitle:@"维修支付" forState:UIControlStateNormal];
+    }
+    else if (2 == isPay)
+    {
+        _repairInfoView.btnCall.hidden = YES;
+
         [_repairInfoView.btnOrder setTitle:@"查看支付" forState:UIControlStateNormal];
     }
+
+
+    NSInteger state = _orderInfo.state.integerValue;
+    [self showViewWithState:state];
 
 
     _tableView.tableHeaderView = _repairInfoView;
@@ -126,6 +133,10 @@
 
         case 6:
             [self state6];
+            break;
+
+        case 7:
+            [self state7];
             break;
 
         case 8:
@@ -194,6 +205,16 @@
 }
 
 /**
+    支付单生成
+ */
+- (void)state7
+{
+    _repairInfoView.btnOrder.hidden = NO;
+
+    _repairInfoView.btnEvaluate.hidden = YES;
+}
+
+/**
  维修完成
  */
 - (void)state8
@@ -224,15 +245,19 @@
         case 1:
             res = @"待出发";
             break;
+
         case 2:
             res = @"已出发";
             break;
+
         case 3:
             res = @"已到达";
             break;
+
         case 5:
             res = @"检修完成";
             break;
+
         case 6:
             res = @"维修完成";
             break;
@@ -309,8 +334,9 @@
 
     if (5 == state)
     {
-        RepairCheckController *controller = [[RepairCheckController alloc] init];
-        controller.chcekResult = @"需要换件";
+        RepairResultController *controller = [[RepairCheckController alloc] init];
+        controller.repairResult = info.finishResult;
+        controller.urls = info.pictures;
 
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
@@ -320,8 +346,8 @@
     {
         RepairResultController *controller = [[RepairResultController alloc] init];
 
-        controller.repairResult = @"维修完成";
-        controller.urls = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496651112189&di=84d87604a1c275ad9a4b6954e5ce8c5f&imgtype=0&src=http%3A%2F%2Fimage.tianjimedia.com%2FuploadImages%2F2015%2F156%2F44%2F891VW0Q49W96.jpg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496651135858&di=7bccb2d14a6660d7d0552d5f38e35755&imgtype=0&src=http%3A%2F%2Fimg.meimi.cc%2Fmeinv%2F20170506%2Fvfvuvqlc5ec1476.jpg";
+        controller.repairResult = info.finishResult;
+        controller.urls = info.pictures;
 
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
@@ -372,16 +398,16 @@
 
     RepairPaymentController *controller = [[RepairPaymentController alloc] init];
 
+    controller.orderId = _orderInfo.orderId;
+
     if (2 == isPay)
     {
         controller.enterType = Repair_Show;
         controller.payTime = _orderInfo.payTime;
-
     }
     else
     {
         controller.enterType = Repair_Pay;
-        controller.orderId = _orderInfo.orderId;
     }
 
     [self.navigationController pushViewController:controller animated:YES];
