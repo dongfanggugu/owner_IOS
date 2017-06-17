@@ -82,8 +82,10 @@
         [HUDClass showHUDWithText:@"维保评价成功"];
         _taskInfo.evaluateContent = content;
         _taskInfo.evaluateResult = star;
-        _taskInfo.state = @"3";
-        [self.navigationController popViewControllerAnimated:YES];
+        _taskInfo.state = @"5";
+        NSArray *array = self.navigationController.viewControllers;
+
+        [self.navigationController popToViewController:array[array.count - 3] animated:YES];
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];

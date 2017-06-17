@@ -39,9 +39,15 @@
 
     resultView.tvContent.text = self.maintContent;
 
-    [resultView.ivBefore setImageWithURL:[NSURL URLWithString:self.urlBefore]];
+    if (_urlBefore.length)
+    {
+        [resultView.ivBefore setImageWithURL:[NSURL URLWithString:self.urlBefore]];
+    }
 
-    [resultView.ivAfter setImageWithURL:[NSURL URLWithString:self.urlAfter]];
+    if (_urlAfter.length)
+    {
+        [resultView.ivAfter setImageWithURL:[NSURL URLWithString:self.urlAfter]];
+    }
 
     tableView.tableHeaderView = resultView;
 }

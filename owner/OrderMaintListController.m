@@ -47,7 +47,8 @@
     }
 
     return _arrayOrder;
-}/**
+}
+/**
  id  支付ID
  type 1维保2维修3一元保障
  frequency 购买次数
