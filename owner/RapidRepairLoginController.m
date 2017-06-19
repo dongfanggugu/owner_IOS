@@ -430,7 +430,7 @@
             cell.lbKey.text = @"联系人";
             if (_houseInfo)
             {
-                cell.lbValue.text = _houseInfo[@"contacts"];
+                cell.lbValue.text = 0 == [_houseInfo[@"contacts"] length] ? [[Config shareConfig] getName] : _houseInfo[@"contacts"];
             }
 
             return cell;
@@ -442,7 +442,7 @@
             cell.lbKey.text = @"联系人手机";
             if (_houseInfo)
             {
-                cell.lbValue.text = _houseInfo[@"contactsTel"];
+                cell.lbValue.text = 0 == [_houseInfo[@"contactsTel"] length] ? [[Config shareConfig] getTel] : _houseInfo[@"contactsTel"];
             }
 
             return cell;

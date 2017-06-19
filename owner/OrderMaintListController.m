@@ -67,6 +67,7 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
+
     [[HttpClient shareClient] post:@"getPaymentBySmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayOrder removeAllObjects];
 

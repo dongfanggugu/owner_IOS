@@ -6,11 +6,10 @@
 #import "OrderMaintDetailController.h"
 #import "MaintProcessController.h"
 #import "MaintDetailController.h"
+#import "PayViewController.h"
 
 
-@interface OrderMaintDetailController ()
-
-
+@interface OrderMaintDetailController () <MaintDetailControllerDelegate>
 
 @end
 
@@ -72,6 +71,7 @@
     MaintDetailController *detail = [[MaintDetailController alloc] init];
 
     detail.orderInfo = _orderInfo;
+    detail.delegate = self;
     [self addChildViewController:detail];
 
     detail.view.frame = frame;
@@ -102,6 +102,31 @@
             } completion:^(BOOL finished) {
 
             }];
+}
+
+#pragma mark - MaintDetailControllerDelegate
+
+- (void)onClickPay
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"paymentId"] = _orderInfo[@"id"];
+
+    [[HttpClient shareClient] post:@"continuePayment" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        NSString *url = [responseObject[@"body"] objectForKey:@"url"];
+
+        if (url.length != 0)
+        {
+            PayViewController *controller = [[PayViewController alloc] init];
+            controller.urlStr = url;
+
+            [self presentViewController:controller animated:YES completion:^{
+                [self.navigationController popViewControllerAnimated:NO];
+            }];
+        }
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
+    }];
 }
 
 @end

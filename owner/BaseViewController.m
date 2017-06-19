@@ -166,6 +166,22 @@
     NSLog(@"%@ dealloc", [self class]);
 }
 
+/**
+ * 弹出框提示
+ */
+- (void)showMsgAlert:(NSString *)msg
+{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
+
+    __weak typeof(self) weakSelf = self;
+
+    [controller addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+
+    }]];
+
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
 #pragma mark -- 设置状态栏字体为白色
 
 - (UIStatusBarStyle)preferredStatusBarStyle

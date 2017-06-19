@@ -19,6 +19,7 @@
 
 - (void)onClickNavRight;
 
+- (void)showMsgAlert:(NSString *)msg;
 
 @property (assign, nonatomic) CGFloat screenWidth;
 

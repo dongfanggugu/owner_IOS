@@ -106,8 +106,6 @@
 
     NSString *tel = nil;
 
-    NSString *add = nil;
-
 
     if (!self.login)
     {
@@ -115,16 +113,12 @@
 
         tel = _telCell.tfValue.text;
 
-        add = _addCell.tfValue.text;
-
     }
     else
     {
         name = [[Config shareConfig] getName];
 
         tel = [[Config shareConfig] getTel];
-
-        add = [[Config shareConfig] getBranchAddress];
     }
 
     if (0 == name.length)
@@ -139,12 +133,6 @@
         return;
 
     }
-    else if (0 == add.length)
-    {
-        [HUDClass showHUDWithText:@"请填写您的地址"];
-        return;
-
-    }
 
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
 
@@ -152,10 +140,10 @@
 
     param[@"tel"] = tel;
 
-    param[@"address"] = add;
-
+    __weak typeof(self) weakSelf = self;
     [[HttpClient shareClient] post:@"addGuarantee" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"已经提交您的申请,请等待相关人员联系您!"];
+        NSString *msg = @"已经提交您的申请,请等待相关人员联系您!";
+        [weakSelf showMsgAlert:msg];
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
@@ -165,7 +153,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -202,12 +190,6 @@
             cell.lbValue.text = [[Config shareConfig] getTel];
 
         }
-        else
-        {
-            cell.lbKey.text = @"地址";
-            cell.lbValue.text = [[Config shareConfig] getBranchAddress];
-
-        }
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -215,7 +197,6 @@
     }
     else
     {
-
         if (0 == indexPath.section && 0 == indexPath.row)
         {
 
@@ -255,31 +236,10 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
             }
-
         }
-        else
-        {
-
-            if (_addCell)
-            {
-                return _addCell;
-
-            }
-            else
-            {
-                KeyEditCell *cell = [KeyEditCell cellFromNib];
-                _addCell = cell;
-
-                cell.lbKey.text = @"地址";
-                cell.tfValue.placeholder = @"请填写您的地址";
-
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
-        }
-
     }
 
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

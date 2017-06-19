@@ -49,7 +49,7 @@
     [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"icon_service_bottom"]];
     [[tabBar.items objectAtIndex:0] setTitle:@"服务"];
 
-    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_person_bottom"]];
+    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_order_bottom"]];
     [[tabBar.items objectAtIndex:1] setTitle:@"订单"];
 
     [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_person_bottom"]];

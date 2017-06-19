@@ -220,20 +220,16 @@
 
         if (0 == indexPath.row)
         {
-
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"联系人";
-            cell.lbValue.text = _houseInfo[@"contacts"];
-
+            cell.lbValue.text = 0 == [_houseInfo[@"contacts"] length] ? [[Config shareConfig] getName] : _houseInfo[@"contacts"];
             return cell;
-
         }
         else if (1 == indexPath.row)
         {
-
             KeyValueCell *cell = [KeyValueCell cellFromNib];
             cell.lbKey.text = @"联系人手机";
-            cell.lbValue.text = _houseInfo[@"contactsTel"];
+            cell.lbValue.text = 0 == [_houseInfo[@"contactsTel"] length] ? [[Config shareConfig] getTel] : _houseInfo[@"contactsTel"];
 
             return cell;
 

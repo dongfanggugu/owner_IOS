@@ -18,6 +18,7 @@
 #import "RapidRepairLoginController.h"
 #import "KnowledgeController.h"
 #import "HelpController.h"
+#import "MarketDetailController.h"
 
 
 @interface MainPageController () <AddBannerViewDelegate>
@@ -46,7 +47,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivExpert;
 
-@property (weak, nonatomic) IBOutlet UIImageView *ivHonyum;
+@property (weak, nonatomic) IBOutlet UIView *viewCompany;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbKn1;
 
@@ -56,7 +57,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbKn4;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ivConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoConstraint;
+
 
 
 @end
@@ -94,12 +96,11 @@
 {
 
     self.tableView.bounces = NO;
+
     UIView *statusView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, self.screenWidth, 20)];
     statusView.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
 
     [self.view addSubview:statusView];
-
-    self.ivConstraint.constant = self.screenWidth / 3;
 
     [self.tableView showCopyWrite];
     self.tableView.allowsSelection = NO;
@@ -143,9 +144,6 @@
     _ivExpert.userInteractionEnabled = YES;
     [_ivExpert addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expert)]];
 
-    _ivHonyum.userInteractionEnabled = YES;
-    [_ivHonyum addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(honyum)]];
-
     //电梯常识
     _lbKn1.userInteractionEnabled = YES;
     [_lbKn1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(QA)]];
@@ -158,6 +156,44 @@
 
     _lbKn4.userInteractionEnabled = YES;
     [_lbKn4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(safety)]];
+
+    [self initCompanyLogo];
+}
+
+- (void)initCompanyLogo
+{
+    _logoConstraint.constant = self.screenWidth / 12 + 2;
+
+    CGFloat width = (self.screenWidth - 5) / 4;
+    CGFloat height = (self.screenWidth - 5) / 12;
+
+    UIImageView *com1 = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, width, height)];
+    com1.image = [UIImage imageNamed:@"honyum_logo.png"];
+    com1.userInteractionEnabled = YES;
+    [com1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(honyum)]];
+
+    UIImageView *com2 = [[UIImageView alloc] initWithFrame:CGRectMake(1 + (width + 1), 1, width, height)];
+    com2.image = [UIImage imageNamed:@"zhonghao_logo.png"];
+    com2.userInteractionEnabled = YES;
+    [com2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhonghaojidian)]];
+
+    UIImageView *com3 = [[UIImageView alloc] initWithFrame:CGRectMake(1 + (width + 1) * 2, 1, width, height)];
+    com3.image = [UIImage imageNamed:@"jiuzhou.png"];
+    com3.userInteractionEnabled = YES;
+    [com3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jiuzhou)]];
+
+    UIImageView *com4 = [[UIImageView alloc] initWithFrame:CGRectMake(1 + (width + 1) * 3, 1, width, height)];
+    com4.image = [UIImage imageNamed:@"zhongxunlongchen.png"];
+    com4.userInteractionEnabled = YES;
+    [com4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhongxunlongchen)]];
+
+
+    _viewCompany.backgroundColor = RGB(@"#FFFFFF");
+
+    [_viewCompany addSubview:com1];
+    [_viewCompany addSubview:com2];
+    [_viewCompany addSubview:com3];
+    [_viewCompany addSubview:com4];
 }
 
 - (void)QA
@@ -247,7 +283,7 @@
 
         _lbLocation.center = CGPointMake(self.screenWidth - 40, 15);
 
-        [_bannerView addSubview:_lbLocation];
+        //[_bannerView addSubview:_lbLocation];
     }
 
 
@@ -286,12 +322,11 @@
 
 - (void)market
 {
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Market" bundle:nil];
-    UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"market_detail"];
+
+    MarketDetailContrller *controller = [[MarketDetailContrller alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    //self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)help
@@ -325,6 +360,35 @@
     CommonWebViewController *controller = [[CommonWebViewController alloc] init];
     controller.titleStr = @"中建华宇";
     controller.urlLink = [NSString stringWithFormat:@"%@static/h5/honyum.html", [Utils getIp]];
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)zhonghaojidian
+{
+    CommonWebViewController *controller = [[CommonWebViewController alloc] init];
+    controller.titleStr = @"中豪机电";
+    controller.urlLink = [NSString stringWithFormat:@"%@static/h5/zhonghao.html", [Utils getIp]];
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+- (void)jiuzhou
+{
+    CommonWebViewController *controller = [[CommonWebViewController alloc] init];
+    controller.titleStr = @"九洲";
+    controller.urlLink = [NSString stringWithFormat:@"%@static/h5/jiuzhou.html", [Utils getIp]];
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)zhongxunlongchen
+{
+    CommonWebViewController *controller = [[CommonWebViewController alloc] init];
+    controller.titleStr = @"中讯龙臣";
+    controller.urlLink = [NSString stringWithFormat:@"%@static/h5/zhongxunlongchen.html", [Utils getIp]];
 
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];

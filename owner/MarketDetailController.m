@@ -37,9 +37,9 @@
 
 - (void)initView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 
-    _tableView.backgroundColor = [Utils getColorByRGB:@"#E1E1E1"];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
 
     [self.view addSubview:_tableView];
 
