@@ -68,7 +68,7 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
-    [[HttpClient shareClient] post:@"getPaymentBySmallOwner" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:@"getPaymentBySmallOwnerOnIncrement" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayOrder removeAllObjects];
 
         [self.arrayOrder addObjectsFromArray:[responseObject objectForKey:@"body"]];
@@ -106,7 +106,7 @@
     cell.lbCode.text = [NSString stringWithFormat:@"编号: %@", orderInfo[@"code"]];
     cell.lbTime.text = orderInfo[@"createTime"];
     cell.lbName.text = [orderInfo[@"villaInfo"] objectForKey:@"cellName"];
-    cell.lbType.text = [orderInfo[@"mainttypeInfo"] objectForKey:@"name"];
+    cell.lbType.text = [orderInfo[@"incrementTypeInfo"] objectForKey:@"name"];
 
     cell.lbState.text = @"未支付";
 

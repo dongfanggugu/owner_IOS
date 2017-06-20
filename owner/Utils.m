@@ -24,9 +24,9 @@
 
 + (NSString *)getIp
 {
-//    return @"http://www.chorstar.com:8081/";
+    return @"http://www.chorstar.com:8081/";
 
-    return @"http://192.168.0.82:8080/";
+//    return @"http://192.168.0.82:8080/";
 //    return @"http://192.168.0.81:8080/";
 }
 

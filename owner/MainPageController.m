@@ -294,7 +294,10 @@
 {
     if (!self.login)
     {
-        [HUDClass showHUDWithText:@"您需要先登录才能使用快修服务"];
+        RapidRepairController *controller = [[RapidRepairController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+
+        [self.navigationController pushViewController:controller animated:YES];
         return;
     }
 
