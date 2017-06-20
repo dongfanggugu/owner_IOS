@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="942b2ccd-5d1d-4c5a-b6f5-bf573984ced1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/owner/Resources/icon_person_coupon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/owner/Resources/icon_person_extra.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/owner/Resources/icon_person_maint.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/owner/Resources/icon_person_repair.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/owner/Resources/icon_person_settings.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner.xcworkspace/xcuserdata/changhaozhang.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/owner.xcworkspace/xcuserdata/changhaozhang.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/owner.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/BaseViewController.h" afterPath="$PROJECT_DIR$/owner/BaseViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/BaseViewController.m" afterPath="$PROJECT_DIR$/owner/BaseViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/CouponViewController.h" afterPath="$PROJECT_DIR$/owner/CouponViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/CouponViewController.m" afterPath="$PROJECT_DIR$/owner/CouponViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/MainOrderDetaIlController.m" afterPath="$PROJECT_DIR$/owner/MainOrderDetaIlController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/MainPageController.m" afterPath="$PROJECT_DIR$/owner/MainPageController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/MaintDetailController.m" afterPath="$PROJECT_DIR$/owner/MaintDetailController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/MaintOrderConfirmController.m" afterPath="$PROJECT_DIR$/owner/MaintOrderConfirmController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/PersonController.m" afterPath="$PROJECT_DIR$/owner/PersonController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/RepairOrderConfirmController.m" afterPath="$PROJECT_DIR$/owner/RepairOrderConfirmController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/RepairPaymentController.m" afterPath="$PROJECT_DIR$/owner/RepairPaymentController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/Utils.m" afterPath="$PROJECT_DIR$/owner/Utils.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/owner/ReportController.m" afterPath="$PROJECT_DIR$/owner/ReportController.m" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,18 +18,18 @@
       <file leaf-file-name="Utils.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/owner/Utils.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="143">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CouponViewController.m" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/owner/CouponViewController.m">
+      <file leaf-file-name="ReportController.m" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/owner/ReportController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+            <state relative-caret-position="123">
+              <caret line="252" column="67" lean-forward="true" selection-start-line="252" selection-start-column="67" selection-end-line="252" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -73,6 +55,7 @@
       <find>geth</find>
       <find>getPaymentBySmallOwner</find>
       <find>_branchId</find>
+      <find>getProjectInfo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -81,7 +64,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/owner/MainOrderInfoView.m" />
         <option value="$PROJECT_DIR$/owner/MainTaskCell.m" />
         <option value="$PROJECT_DIR$/owner/MainTaskDetailCell.m" />
         <option value="$PROJECT_DIR$/owner/MaintEvaluateView.m" />
@@ -182,6 +164,7 @@
         <option value="$PROJECT_DIR$/owner/CouponViewController.m" />
         <option value="$PROJECT_DIR$/owner/Utils.m" />
         <option value="$PROJECT_DIR$/owner/MaintOrderConfirmController.m" />
+        <option value="$PROJECT_DIR$/owner/ReportController.m" />
       </list>
     </option>
   </component>
@@ -194,8 +177,8 @@
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
     <option name="x" value="380" />
-    <option name="y" value="176" />
-    <option name="width" value="1517" />
+    <option name="y" value="175" />
+    <option name="width" value="1551" />
     <option name="height" value="821" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -354,28 +337,28 @@
       <workItem from="1497234405840" duration="21514000" />
       <workItem from="1497402811353" duration="46077000" />
       <workItem from="1497663591466" duration="28259000" />
-      <workItem from="1497947426947" duration="6824000" />
+      <workItem from="1497947426947" duration="8077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123832000" />
+    <option name="totallyTimeSpent" value="125085000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="380" y="176" width="1517" height="821" extended-state="0" />
+    <frame x="380" y="175" width="1551" height="821" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22326203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21830066" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32647464" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3717421" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31138545" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.303155" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.303155" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -399,14 +382,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/owner/RepairOrderConfirmController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/owner/RepairInfoView.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="533">
@@ -1155,14 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/owner/Utils.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/owner/NetConstant.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
@@ -1181,8 +1148,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/owner/CouponViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+        <state relative-caret-position="112">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/owner/Utils.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/owner/ReportController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="252" column="67" lean-forward="true" selection-start-line="252" selection-start-column="67" selection-end-line="252" selection-end-column="67" />
           <folding />
         </state>
       </provider>

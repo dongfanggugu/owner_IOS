@@ -500,7 +500,7 @@
         [self markOnMapWithLat:[[self.arrayHouse[0] objectForKey:@"lat"] floatValue]
                            lng:[[self.arrayHouse[0] objectForKey:@"lng"] floatValue]];
 
-        [self showProjects];
+        [self getProjectInfo];
         return;
     }
 
