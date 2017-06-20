@@ -91,12 +91,21 @@
 
     params[@"province"] = @"北京市";
 
-    params[@"branchId"] = @"fsfsfs";    //选择维保公司id
+    NSString *url = @"getCouponRecordBySmallOwner";
 
-    params[@"startMoney"] = [NSNumber numberWithInteger:(NSInteger)(_payAmount * 100)];  //订单原始价格，单位为分
+    if (0 == _branchId.length)
+    {
+        url = @"getSureCouponRecord";
+    }
+    else
+    {
+        params[@"branchId"] = _branchId;    //选择维保公司id
+
+        params[@"startMoney"] = [NSNumber numberWithInteger:(NSInteger)(_payAmount * 100)];  //订单原始价格，单位为分
+    }
 
     __weak typeof(self) weakSelf = self;
-    [[HttpClient shareClient] post:URL_OWNER_COUPON parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] post:url parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [weakSelf.arrayCoupon removeAllObjects];
 
         [weakSelf.arrayCoupon addObjectsFromArray:responseObject[@"body"]];

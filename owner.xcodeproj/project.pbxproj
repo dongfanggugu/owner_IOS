@@ -354,6 +354,7 @@
 		699E40390AC624B37AAAD406 /* RepairOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4648ACDC8B3390D194F4 /* RepairOrderController.m */; };
 		699E4062540B47BC8CE428AA /* jiuzhou.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E45A0DDEAE04AD114BAE5 /* jiuzhou.png */; };
 		699E411B3E4A2DFF19B18AAE /* RepairPaymentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E47CE1CFCC0656A43520B /* RepairPaymentController.m */; };
+		699E41CB1A73F8088CDA01DC /* icon_person_maint.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4A99C016CDCE92EA7C77 /* icon_person_maint.png */; };
 		699E41EFCE0F6CBC915E9EB3 /* EvaluateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E492FBDE22941EF50DD8F /* EvaluateController.m */; };
 		699E43153513E0F8A5354119 /* OrderMaintDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E49248787D15805A954F7 /* OrderMaintDetailController.m */; };
 		699E431E981BD814852F0523 /* MaintOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4FCB0A59918921824B53 /* MaintOrderController.m */; };
@@ -361,7 +362,9 @@
 		699E437F3FD7737AB1B9FD2A /* zhongxunlongchen.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4B6A341F5B3FA5626991 /* zhongxunlongchen.png */; };
 		699E43B9565D3A16E9A7E7FE /* ExtraServiceHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E48AA6E27EA06F0B5DECC /* ExtraServiceHistoryController.m */; };
 		699E43F3F3018FEBB0FAF969 /* MaintProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E434E3E98C81E483238E1 /* MaintProcessController.m */; };
+		699E446695A3952CEF941B2D /* icon_person_coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E41C1369B171B28E8E402 /* icon_person_coupon.png */; };
 		699E44A3E8AD69410E17405E /* OrderOthersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E43D9E7BC77F5F7C2CBBA /* OrderOthersController.m */; };
+		699E44D42B3AD18E1E5125AD /* icon_person_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4998F8039837F832173C /* icon_person_settings.png */; };
 		699E45357CFF027A2995937B /* ServiceTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E450F1C9444AB80108891 /* ServiceTaskController.m */; };
 		699E46C090EAC18C90D1DF58 /* OrderCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E43073A91D02D59F7B844 /* OrderCategoryCell.m */; };
 		699E46EC186B9CE870BC8290 /* RepairCallPaymentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4AF1F3B8125872698031 /* RepairCallPaymentController.m */; };
@@ -378,10 +381,12 @@
 		699E4BBDDE033BE12EE9D10C /* icon_order_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E48FBEA85E8E77D6E25C7 /* icon_order_bottom.png */; };
 		699E4CD9468774D32606A7A2 /* zhonghao_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4FCBB88488BCBD2FE712 /* zhonghao_logo.png */; };
 		699E4D1A8EE6E1ED8EF41ECC /* RepairOrderConfirmNoPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4A65D556E1A96A6F574D /* RepairOrderConfirmNoPayController.m */; };
+		699E4D95B7C62574FC2BA8CC /* icon_person_extra.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E49A678058AE652265ECC /* icon_person_extra.png */; };
 		699E4E00F0073C5345CC7549 /* ProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4CBD1D98F50189844205 /* ProcessCell.m */; };
 		699E4E2A90C92EAC8E8226F0 /* PayOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E419694975071A5FCB7E1 /* PayOrderController.m */; };
 		699E4E5558BAFE4915CDE518 /* MainOrderDetaIlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E40CA1D96BFED428817E4 /* MainOrderDetaIlController.m */; };
 		699E4EF2AD5FE20AB7366D37 /* MaintDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E4F31D2022BB9B47437A7 /* MaintDetailController.m */; };
+		699E4F646B5E4B34654796C6 /* icon_person_repair.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E4B61A52BBF446D6EBE6C /* icon_person_repair.png */; };
 		699E4F8A45401EA01E1E00A7 /* ServiceHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E40746D608B4D0FF4FF45 /* ServiceHistoryController.m */; };
 		699E4FE554D7883368C93EB9 /* icon_maint_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 699E49E3DC29431AB075992C /* icon_maint_order.png */; };
 /* End PBXBuildFile section */
@@ -900,6 +905,7 @@
 		699E40CA1D96BFED428817E4 /* MainOrderDetaIlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainOrderDetaIlController.m; sourceTree = "<group>"; };
 		699E415A7545C669402FF730 /* MaintOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintOrderController.h; sourceTree = "<group>"; };
 		699E419694975071A5FCB7E1 /* PayOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayOrderController.m; sourceTree = "<group>"; };
+		699E41C1369B171B28E8E402 /* icon_person_coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_person_coupon.png; sourceTree = "<group>"; };
 		699E43073A91D02D59F7B844 /* OrderCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCategoryCell.m; sourceTree = "<group>"; };
 		699E434E3E98C81E483238E1 /* MaintProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintProcessController.m; sourceTree = "<group>"; };
 		699E4360F0BAC2284986230C /* ExtraServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceController.h; sourceTree = "<group>"; };
@@ -925,15 +931,19 @@
 		699E4942FFDB48252D855804 /* ExtraServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraServiceController.m; sourceTree = "<group>"; };
 		699E497C65039C44FE707B35 /* OrderRepairListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderRepairListController.h; sourceTree = "<group>"; };
 		699E497F86CA33A397F245D7 /* ExtraServiceOrderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraServiceOrderDetailController.h; sourceTree = "<group>"; };
+		699E4998F8039837F832173C /* icon_person_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_person_settings.png; sourceTree = "<group>"; };
 		699E49A442615AA47301C4FB /* ServiceHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceHistoryController.h; sourceTree = "<group>"; };
+		699E49A678058AE652265ECC /* icon_person_extra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_person_extra.png; sourceTree = "<group>"; };
 		699E49D2204820751EA275E4 /* KnowledgeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeDetailController.m; sourceTree = "<group>"; };
 		699E49E3DC29431AB075992C /* icon_maint_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_maint_order.png; sourceTree = "<group>"; };
 		699E4A5A1AD20898872CCDC2 /* icon_other_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_other_order.png; sourceTree = "<group>"; };
 		699E4A65D556E1A96A6F574D /* RepairOrderConfirmNoPayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderConfirmNoPayController.m; sourceTree = "<group>"; };
+		699E4A99C016CDCE92EA7C77 /* icon_person_maint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_person_maint.png; sourceTree = "<group>"; };
 		699E4AD41468861210BC24A9 /* ExtraPayOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraPayOrderController.h; sourceTree = "<group>"; };
 		699E4ADCA857F83B1C7A006A /* icon_repair_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_repair_order.png; sourceTree = "<group>"; };
 		699E4AF1F3B8125872698031 /* RepairCallPaymentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairCallPaymentController.m; sourceTree = "<group>"; };
 		699E4B154619E47055820D53 /* OrderManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderManagerController.h; sourceTree = "<group>"; };
+		699E4B61A52BBF446D6EBE6C /* icon_person_repair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_person_repair.png; sourceTree = "<group>"; };
 		699E4B6A341F5B3FA5626991 /* zhongxunlongchen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhongxunlongchen.png; sourceTree = "<group>"; };
 		699E4BA5E21A88DBC53BEF75 /* PayOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayOrderController.h; sourceTree = "<group>"; };
 		699E4C5D601BBA50E3CC7F12 /* MaintDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintDetailController.h; sourceTree = "<group>"; };
@@ -1445,6 +1455,11 @@
 				699E48FBEA85E8E77D6E25C7 /* icon_order_bottom.png */,
 				699E4B6A341F5B3FA5626991 /* zhongxunlongchen.png */,
 				699E45A0DDEAE04AD114BAE5 /* jiuzhou.png */,
+				699E41C1369B171B28E8E402 /* icon_person_coupon.png */,
+				699E49A678058AE652265ECC /* icon_person_extra.png */,
+				699E4998F8039837F832173C /* icon_person_settings.png */,
+				699E4B61A52BBF446D6EBE6C /* icon_person_repair.png */,
+				699E4A99C016CDCE92EA7C77 /* icon_person_maint.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2058,6 +2073,11 @@
 				699E4BBDDE033BE12EE9D10C /* icon_order_bottom.png in Resources */,
 				699E437F3FD7737AB1B9FD2A /* zhongxunlongchen.png in Resources */,
 				699E4062540B47BC8CE428AA /* jiuzhou.png in Resources */,
+				699E446695A3952CEF941B2D /* icon_person_coupon.png in Resources */,
+				699E4D95B7C62574FC2BA8CC /* icon_person_extra.png in Resources */,
+				699E44D42B3AD18E1E5125AD /* icon_person_settings.png in Resources */,
+				699E4F646B5E4B34654796C6 /* icon_person_repair.png in Resources */,
+				699E41CB1A73F8088CDA01DC /* icon_person_maint.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

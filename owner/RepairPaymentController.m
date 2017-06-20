@@ -18,13 +18,13 @@
 
 @property (strong, nonatomic) NSMutableArray *arrayPay;
 
-@property (copy, nonatomic) NSString *paymentId;
-
 @property (weak, nonatomic) RepairCouponCell *couponCell;
 
 @property (weak, nonatomic) RepairPayInfoCell *totalCell;
 
 @property (copy, nonatomic) NSString *couponId;
+
+@property  (copy, nonatomic) NSDictionary *payInfo;
 
 @end
 
@@ -93,13 +93,13 @@
 
 - (void)payment
 {
-    if (0 == _paymentId.length)
+    if (!_payInfo)
     {
         [HUDClass showHUDWithText:@"获取支付单错误,请退出再次进入"];
         return;
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"paymentId"] = _paymentId;
+    params[@"paymentId"] = _payInfo[@"id"];
     params[@"couponRecordId"] = _couponId;
 
     [[HttpClient shareClient] post:@"continuePayment" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -141,7 +141,7 @@
 
         if ([responseObject[@"body"][@"list"] count] > 0)
         {
-            _paymentId = responseObject[@"body"][@"list"][0][@"id"];
+            _payInfo = responseObject[@"body"][@"lsit"][0];
         }
 
 
@@ -311,6 +311,7 @@
 - (void)coupon
 {
     CouponViewController *controller = [[CouponViewController alloc] init];
+    controller.branchId = _payInfo[@"branchInfo"][@"id"];
     controller.delegate = self;
 
     controller.hidesBottomBarWhenPushed = YES;

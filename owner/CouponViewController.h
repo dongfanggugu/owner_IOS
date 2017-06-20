@@ -18,6 +18,8 @@
 
 @property (assign, nonatomic) CGFloat payAmount;
 
+@property (copy, nonatomic) NSString *branchId;
+
 @property (weak, nonatomic) id <CouponViewControllerDelegate> delegate;
 
 @end

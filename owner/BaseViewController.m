@@ -177,9 +177,15 @@
 
     [controller addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
 
+        [weakSelf onMsgAlertDismiss];
     }]];
 
     [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)onMsgAlertDismiss
+{
+
 }
 
 #pragma mark -- 设置状态栏字体为白色

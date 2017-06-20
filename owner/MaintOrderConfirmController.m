@@ -141,7 +141,16 @@
     _request.branchId = _branchId;
     _request.couponRecordId = _couponId;
 
+    __weak typeof(self) weakSelf = self;
+
     [[HttpClient shareClient] post:URL_MAIN_ADD parameters:[_request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+
+//        CGFloat fee = weakSelf.cell.lbPay.text.floatValue;
+//        if (fee <= 0)
+//        {
+//            [weakSelf showMsgAlert:@"您的订单已经生成,您可以到订单中查看详细信息"];
+//            return;
+//        }
 
         NSString *url = [responseObject[@"body"] objectForKey:@"url"];
 
@@ -197,6 +206,7 @@
 - (void)onClickCoupon
 {
     CouponViewController *controller = [[CouponViewController alloc] init];
+    controller.branchId = _branchId;
     controller.payAmount = _request.payMoney;
     controller.delegate = self;
 
@@ -246,6 +256,13 @@
     _cell.lbPay.text = [NSString stringWithFormat:@"￥%.2lf", _request.payMoney - [couponInfo[@"couponMoney"] floatValue]];
 
     _couponId = couponInfo[@"id"];
+}
+
+- (void)onMsgAlertDismiss
+{
+    NSArray *array = self.navigationController.viewControllers;
+
+    [self.navigationController popToViewController:array[array.count - 3] animated:YES];
 }
 
 @end

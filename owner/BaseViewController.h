@@ -21,6 +21,8 @@
 
 - (void)showMsgAlert:(NSString *)msg;
 
+- (void)onMsgAlertDismiss;
+
 @property (assign, nonatomic) CGFloat screenWidth;
 
 @property (assign, nonatomic) CGFloat screenHeight;

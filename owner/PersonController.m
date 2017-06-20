@@ -138,7 +138,7 @@
     {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"维保服务";
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_my_order"];
+        cell.ivIcon.image = [UIImage imageNamed:@"icon_person_maint.png"];
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -149,7 +149,7 @@
     {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"快修订单";
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_repair_normal"];
+        cell.ivIcon.image = [UIImage imageNamed:@"icon_person_repair.png"];
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -160,7 +160,7 @@
     {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"增值服务";
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_other_normal"];
+        cell.ivIcon.image = [UIImage imageNamed:@"icon_person_extra.png"];
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -171,7 +171,7 @@
     {
         PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"我的优惠券";
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_settings_new"];
+        cell.ivIcon.image = [UIImage imageNamed:@"icon_person_coupon.png"];
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -183,7 +183,7 @@
 
         PersonItemCell *cell = [PersonItemCell cellFromNib];
         cell.lbItem.text = @"设置";
-        cell.ivIcon.image = [UIImage imageNamed:@"icon_settings_new"];
+        cell.ivIcon.image = [UIImage imageNamed:@"icon_person_settings.png"];
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 

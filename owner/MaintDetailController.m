@@ -69,7 +69,7 @@
 
     cell.lbPrice.text = [NSString stringWithFormat:@"￥%.2lf", price];
 
-    cell.lbDiscourt.text = @"￥0";
+    cell.lbDiscourt.text = [NSString stringWithFormat:@"%.2lf", [_orderInfo[@"discountMoney"] floatValue]];
 
     cell.lbPay.text = [NSString stringWithFormat:@"￥%.2lf", [_orderInfo[@"payMoney"] floatValue]];
 

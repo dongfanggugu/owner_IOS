@@ -68,6 +68,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setNavTitle:@"首页"];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self initView];
     [self checkUpdate];
@@ -77,14 +78,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
 
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)onClickNavRight
@@ -97,10 +98,10 @@
 
     self.tableView.bounces = NO;
 
-    UIView *statusView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, self.screenWidth, 20)];
-    statusView.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
-
-    [self.view addSubview:statusView];
+//    UIView *statusView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, self.screenWidth, 20)];
+//    statusView.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
+//
+//    [self.view addSubview:statusView];
 
     [self.tableView showCopyWrite];
     self.tableView.allowsSelection = NO;

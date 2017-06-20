@@ -165,6 +165,7 @@
 - (void)onClickCoupon
 {
     CouponViewController *controller = [[CouponViewController alloc] init];
+    controller.branchId = _branchId;
     controller.payAmount = 100;
     controller.delegate = self;
 
