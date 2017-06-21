@@ -37,22 +37,45 @@
      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *head = [[NSMutableDictionary alloc] init];
 
-    [head setObject:@"3" forKey:@"osType"];
+    [head setObject:@"1" forKey:@"osType"];
     [head setObject:@"1.0" forKey:@"version"];
     [head setObject:@"" forKey:@"deviceId"];
-    [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];
-    [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
 
-
-    if (parameters)
+    if ([[Config shareConfig] getToken].length > 0)
     {
-        [param setObject:parameters forKey:@"body"];
+        [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];
     }
 
-    [param setObject:head forKey:@"head"];
+    if ([[Config shareConfig] getUserId].length > 0)
+    {
+        [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
+    }
+
+    [self post:url head:head body:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+
+}
+
+- (void)post:(NSString *)url head:(id)head body:(id)body
+     success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+     failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+
+    if (head)
+    {
+        param[@"head"] = head;
+    }
+
+    if (body)
+    {
+        param[@"body"] = body;
+    }
 
     NSLog(@"zhenhao-----request:%@", param);
 
@@ -69,7 +92,6 @@
         if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"])
         {
             success(task, responseObject);
-
         }
         else
         {
@@ -80,7 +102,6 @@
             if ([rspMsg containsString:@"系统错误"])
             {
                 msg = [rspMsg substringFromIndex:5];
-
             }
             else
             {
@@ -94,7 +115,7 @@
 
             if ([msgCode isEqualToString:@"-9"])
             {
-                [[Config shareConfig] setUserId:@""];
+                [[Config shareConfig] clearUserInfo];
                 [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0f];
             }
         }
@@ -116,9 +137,16 @@
     [head setObject:@"1" forKey:@"osType"];
     [head setObject:@"1.0" forKey:@"version"];
     [head setObject:@"" forKey:@"deviceId"];
-    [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];
-    [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
 
+    if ([[Config shareConfig] getToken].length > 0)
+    {
+        [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];
+    }
+
+    if ([[Config shareConfig] getUserId].length > 0)
+    {
+        [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
+    }
 
     if (parameters)
     {
@@ -127,11 +155,10 @@
 
     [param setObject:head forKey:@"head"];
 
-    NSLog(@"zhenhao-----request:%@", param);
+    NSLog(@"zhenhao-----background request:%@", param);
 
     [self POST:url parameters:param success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
-        NSLog(@"zhenhao-----response:%@", responseObject);
-
+        NSLog(@"zhenhao-----background response:%@", responseObject);
 
         if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"])
         {
@@ -147,30 +174,24 @@
             if ([rspMsg containsString:@"系统错误"])
             {
                 msg = [rspMsg substringFromIndex:5];
-
             }
             else
             {
                 msg = rspMsg;
             }
 
-            [HUDClass showHUDWithText:msg];
-
+            NSLog(@"backgound error msg:%@", msg);
 
             NSString *msgCode = [[responseObject objectForKey:@"head"] objectForKey:@"rspCode"];
-
-            if ([msgCode isEqualToString:@"-9"])
-            {
-                [[Config shareConfig] setUserId:@""];
-                [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0f];
-            }
         }
 
     }  failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
-        NSLog(@"zhenhao-----error:%@", error);
+        NSLog(@"zhenhao-----background error:%@", error);
         failure(task, error);
     }];
 }
+
+
 
 - (void)backToLogin
 {

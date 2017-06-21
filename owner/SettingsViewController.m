@@ -54,54 +54,32 @@
  */
 - (void)checkUpdate
 {
+    NSMutableDictionary *head = [NSMutableDictionary dictionary];
+    [head setObject:@"3" forKey:@"osType"];
+    [head setObject:@"1.0" forKey:@"version"];
+    [head setObject:@"" forKey:@"deviceId"];
 
-    NSString *urlString = [[Utils getServer] stringByAppendingString:@"checkVersion"];
-    NSURL *url = [NSURL URLWithString:urlString];
+    [[HttpClient shareClient] post:URL_VERSION_CHECK head:head body:nil
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               NSInteger remoteVersion = [[responseObject[@"body"] objectForKey:@"appVersion"] integerValue];
 
+                               NSLog(@"remote version:%ld", remoteVersion);
 
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url
-                                                              cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f];
-    [urlRequest setHTTPMethod:@"POST"];
+                               NSInteger local = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] integerValue];
+                               NSLog(@"local version:%ld", local);
 
-    NSString *reqBody = @"{\"head\":{\"osType\":\"3\"}}";
-    [urlRequest setHTTPBody:[reqBody dataUsingEncoding:NSUTF8StringEncoding]];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+                               if (remoteVersion > local)
+                               {
+                                   [self performSelectorOnMainThread:@selector(alertUpdate) withObject:nil waitUntilDone:NO];
+                               }
+                               else
+                               {
+                                   [self performSelectorOnMainThread:@selector(alertNoUpdate) withObject:nil waitUntilDone:NO];
+                               }
 
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *_Nullable response, NSData *_Nullable data, NSError *_Nullable connectionError) {
+                           } failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
-
-        if (data.length > 0 && nil == connectionError)
-        {
-            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"JSON:%@", json);
-            NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
-            NSDictionary *head = [jsonDic objectForKey:@"head"];
-            NSString *rspCode = [head objectForKey:@"rspCode"];
-            if (![rspCode isEqualToString:@"0"])
-            {
-                return;
-            }
-
-            NSDictionary *body = [jsonDic objectForKey:@"body"];
-
-            NSNumber *remote = [body objectForKey:@"appVersion"];
-            NSLog(@"remote version:%@", remote);
-
-            NSNumber *local = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-            NSLog(@"local version:%@", local);
-
-            if (remote.integerValue > local.integerValue)
-            {
-                [self performSelectorOnMainThread:@selector(alertUpdate) withObject:nil waitUntilDone:NO];
-            }
-            else
-            {
-                [self performSelectorOnMainThread:@selector(alertNoUpdate) withObject:nil waitUntilDone:NO];
-            }
-
-        }
-    }];
+            }];
 }
 
 /**
@@ -109,7 +87,7 @@
  */
 - (void)alertUpdate
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"新的版本可用，请进行升级" delegate:self cancelButtonTitle:@"暂不升级" otherButtonTitles:@"升级", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"新的版本可用,请进行升级" delegate:self cancelButtonTitle:@"暂不升级" otherButtonTitles:@"升级", nil];
     [alert show];
 }
 

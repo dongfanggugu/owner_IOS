@@ -13,6 +13,8 @@
 
 + (instancetype)shareConfig;
 
+- (void)clearUserInfo;
+
 //设置和获取accessToken
 - (void)setToken:(NSString *)token;
 
@@ -36,54 +38,16 @@
 - (NSString *)getUserName;
 
 
-//设置和获取机构名称
-- (void)setBranchName:(NSString *)branchName;
-
-- (NSString *)getBranchName;
-
-//设置和获取机构地址
-- (void)setBranchAddress:(NSString *)address;
-
-- (NSString *)getBranchAddress;
-
-//设置和获取纬度
-- (void)setLat:(CGFloat)lat;
-
-- (CGFloat)getLat;
-
-//设置和获取经度
-- (void)setLng:(CGFloat)lng;
-
-- (CGFloat)getLng;
-
-//设置和获取性别
-- (void)setSex:(NSString *)sex;
-
-- (NSString *)getSex;
-
 //设置和获取电话
 - (void)setTel:(NSString *)tel;
 
 - (NSString *)getTel;
 
-//设置和获取电梯品牌
-- (void)setBrand:(NSString *)brand;
-
-- (NSString *)getBrand;
-
-//设置和获取电梯型号
-- (void)setLiftType:(NSString *)type;
-
-- (NSString *)getLiftType;
 
 //设置和获取短信验证码
 - (void)setSMCode:(NSString *)code;
 
 - (NSString *)getSMSCode;
-
-@property (copy, nonatomic) NSString *linkName;
-
-@property (copy, nonatomic) NSString *linkTel;
 
 @end
 

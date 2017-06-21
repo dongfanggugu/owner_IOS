@@ -25,7 +25,7 @@
 
     NSMutableArray *dataArr = [[NSMutableArray alloc] init];
 
-    NSString *file = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"welcome_page_gif"] ofType:@"gif"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"gif_welcome"] ofType:@"gif"];
 
     [dataArr addObject:file];
 
@@ -49,8 +49,6 @@
 
 - (void)login
 {
-
-    //NSString *userId = [[Config shareConfig] getUserId];
 
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
 

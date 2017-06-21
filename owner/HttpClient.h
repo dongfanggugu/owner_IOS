@@ -23,6 +23,10 @@
         success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+- (void)post:(NSString *)url head:(id)head body:(id)body
+     success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+     failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 
 @end
 

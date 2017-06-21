@@ -417,7 +417,12 @@
 - (void)checkUpdate
 {
 
-    [[HttpClient shareClient] post:URL_VERSION_CHECK parameters:nil
+    NSMutableDictionary *head = [NSMutableDictionary dictionary];
+    [head setObject:@"3" forKey:@"osType"];
+    [head setObject:@"1.0" forKey:@"version"];
+    [head setObject:@"" forKey:@"deviceId"];
+
+    [[HttpClient shareClient] post:URL_VERSION_CHECK head:head body:nil
                            success:^(NSURLSessionDataTask *task, id responseObject) {
                                NSInteger remoteVersion = [[responseObject[@"body"] objectForKey:@"appVersion"] integerValue];
 
@@ -453,8 +458,6 @@
     }]];
 
     [self presentViewController:controller animated:YES completion:nil];
-
-
 }
 
 

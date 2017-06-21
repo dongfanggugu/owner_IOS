@@ -90,6 +90,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (!self.login)
+    {
+        [self showMsgAlert:@"您需要登录才能查看个人订单信息"];
+        return;
+    }
     switch (indexPath.row)
     {
         case 0:

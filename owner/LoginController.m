@@ -93,19 +93,10 @@
         NSDictionary *body = [responseObject objectForKey:@"body"];
 
         [[Config shareConfig] setToken:[head objectForKey:@"accessToken"]];
-        [[Config shareConfig] setBranchAddress:[body objectForKey:@"address"]];
-        [[Config shareConfig] setLat:[[body objectForKey:@"lat"] floatValue]];
-        [[Config shareConfig] setLng:[[body objectForKey:@"lng"] floatValue]];
         [[Config shareConfig] setName:[body objectForKey:@"name"]];
         [[Config shareConfig] setUserId:[body objectForKey:@"userId"]];
-        [[Config shareConfig] setSex:[body objectForKey:@"sex"]];
         [[Config shareConfig] setTel:[body objectForKey:@"tel"]];
         [[Config shareConfig] setUserName:[body objectForKey:@"userName"]];
-        [[Config shareConfig] setBranchName:[body objectForKey:@"cellName"]];
-        [[Config shareConfig] setBrand:[body objectForKey:@"brand"]];
-        [[Config shareConfig] setLiftType:[body objectForKey:@"model"]];
-        [Config shareConfig].linkName = [body objectForKey:@"contacts"];
-        [Config shareConfig].linkTel = [body objectForKey:@"contactsTel"];
 
         [self registerJpush];
         [self.navigationController popViewControllerAnimated:YES];

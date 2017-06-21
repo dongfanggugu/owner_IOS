@@ -12,8 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnDetail;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnPay;
-
 @property (weak, nonatomic) IBOutlet UIButton *btnLink;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnOrder;
@@ -76,13 +74,6 @@
     {
         _onClickDetail();
     }
-}
-
-- (void)addOnClickPayListener:(void (^)())onClickPay
-{
-    _onClickPay = onClickPay;
-
-    [_btnPay addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)clickPay

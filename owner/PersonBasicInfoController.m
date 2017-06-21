@@ -12,7 +12,6 @@
 #import "ImageUtils.h"
 #import "HttpClient.h"
 #import "JPUSHService.h"
-#import "LinkModifyController.h"
 #import "HouseManagerController.h"
 
 
@@ -154,7 +153,7 @@
         else if (2 == row)
         {
             cell.labelTitle.text = @"别墅管理";
-            cell.labelContent.text = [[Config shareConfig] getBranchAddress];
+            cell.labelContent.text = @"";
             cell.labelContent.textAlignment = NSTextAlignmentRight;
         }
 

@@ -244,11 +244,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.login && 1 == indexPath.section && 0 == indexPath.row)
-    {
-        return [KeyValueCell cellHeightWithContent:[[Config shareConfig] getBranchAddress]];
-    }
-
     return [KeyValueCell cellHeight];
 }
 

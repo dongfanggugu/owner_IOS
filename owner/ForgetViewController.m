@@ -65,7 +65,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
 }
 
 - (void)forget
@@ -79,15 +78,19 @@
         return;
     }
 
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"tel"] = tel;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"tel"] = tel;
 
-    [[HttpClient shareClient] post:URL_PWD_FORGET parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [HUDClass showHUDWithText:@"密码重置成功,请及时检查您的短信通知"];
-        [self.navigationController popViewControllerAnimated:YES];
+    [[HttpClient shareClient] post:URL_PWD_FORGET parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self showMsgAlert:@"密码重置成功,请及时查收您的短信通知"];
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
+}
+
+- (void)onMsgAlertDismiss
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
