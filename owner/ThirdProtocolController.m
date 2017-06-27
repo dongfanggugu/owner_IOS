@@ -1,15 +1,12 @@
 //
-//  EnsuranceController.m
-//  owner
-//
-//  Created by 长浩 张 on 2017/3/7.
-//  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
+// Created by changhaozhang on 2017/6/22.
+// Copyright (c) 2017 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "EnsuranceController.h"
+#import "ThirdProtocolController.h"
 
-@interface EnsuranceController () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
+
+@interface ThirdProtocolController () <UIScrollViewDelegate>
 {
     CGRect _oldFrame;    //保存图片原来的大小
     CGRect _largeFrame;  //确定图片放大最大的程度
@@ -31,35 +28,21 @@
 
 @property (strong, nonatomic) UIImageView *view4;
 
-@property (strong, nonatomic) UIImageView *view5;
-
-@property (strong, nonatomic) UIImageView *view6;
-
-@property (strong, nonatomic) UIImageView *view7;
-
-@property (strong, nonatomic) UIImageView *view8;
-
 @property (strong, nonatomic) UILabel *lbPage;
+
 
 @end
 
-
-@implementation EnsuranceController
+@implementation ThirdProtocolController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"保险投保单"];
+    [self setNavTitle:@"三方协议"];
     [self initData];
     [self initView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-
-}
 - (void)initData
 {
     _currentPage = 0;
@@ -72,16 +55,13 @@
 
     //设置scrollview
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, _viewWidth, _viewHeight)];
-
-
     _scrollView.delegate = self;
-    _scrollView.contentSize = CGSizeMake(_viewWidth * 8, _viewHeight);
+    _scrollView.contentSize = CGSizeMake(_viewWidth * 4, _viewHeight);
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.pagingEnabled = YES;
     _scrollView.backgroundColor = [UIColor blackColor];
 
     [self effectPopGesture];
-
     [self.view addSubview:_scrollView];
 
     _lbPage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
@@ -96,7 +76,7 @@
 
     _lbPage.textColor = [UIColor whiteColor];
 
-    _lbPage.text = @"1/8";
+    _lbPage.text = @"1/4";
 
     _lbPage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
 
@@ -116,11 +96,11 @@
 
 
     _view1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _viewWidth, _viewHeight)];
-    _view1.image = [UIImage imageNamed:@"page_1.jpg"];
+    _view1.image = [UIImage imageNamed:@"third_part_protocol_1.png"];
     [self initImageView:_view1];
 
     _view2 = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth, 0, _viewWidth, _viewHeight)];
-    _view2.image = [UIImage imageNamed:@"page_2.jpg"];
+    _view2.image = [UIImage imageNamed:@"third_part_protocol_2.png"];
     [self initImageView:_view2];
 
     _view3 = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 2, 0, _viewWidth, _viewHeight)];
@@ -129,27 +109,10 @@
     _view4 = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 3, 0, _viewWidth, _viewHeight)];
     [self initImageView:_view4];
 
-    _view5 = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 4, 0, _viewWidth, _viewHeight)];
-    [self initImageView:_view5];
-
-    _view6 = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 5, 0, _viewWidth, _viewHeight)];
-    [self initImageView:_view6];
-
-    _view7 = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 6, 0, _viewWidth, _viewHeight)];
-    [self initImageView:_view7];
-
-    _view8 = [[UIImageView alloc] initWithFrame:CGRectMake(_viewWidth * 7, 0, _viewWidth, _viewHeight)];
-    [self initImageView:_view8];
-
     [_scrollView addSubview:_view1];
     [_scrollView addSubview:_view2];
     [_scrollView addSubview:_view3];
     [_scrollView addSubview:_view4];
-    [_scrollView addSubview:_view5];
-    [_scrollView addSubview:_view6];
-    [_scrollView addSubview:_view7];
-    [_scrollView addSubview:_view8];
-
 }
 
 
@@ -230,7 +193,7 @@
     //得到当前页数
     _currentPage = (NSInteger) (_scrollView.contentOffset.x / _viewWidth) + 1;
 
-    _lbPage.text = [NSString stringWithFormat:@"%ld/8", _currentPage];
+    _lbPage.text = [NSString stringWithFormat:@"%ld/4", _currentPage];
 
     switch (_currentPage)
     {
@@ -243,7 +206,7 @@
 
             if (!_view3.image)
             {
-                _view3.image = [UIImage imageNamed:@"page_3.jpg"];
+                _view3.image = [UIImage imageNamed:@"third_part_protocol_3.png"];
             }
 
             break;
@@ -251,77 +214,20 @@
 
             if (!_view3.image)
             {
-                _view3.image = [UIImage imageNamed:@"page_3.jpg"];
+                _view3.image = [UIImage imageNamed:@"third_part_protocol_3.png"];
             }
 
             if (!_view4.image)
             {
-                _view4.image = [UIImage imageNamed:@"page_4.jpg"];
+                _view4.image = [UIImage imageNamed:@"third_part_protocol_4.png"];
             }
 
             break;
+
         case 4:
-
             if (!_view4.image)
             {
                 _view4.image = [UIImage imageNamed:@"page_4.jpg"];
-            }
-            if (!_view5.image)
-            {
-                _view5.image = [UIImage imageNamed:@"page_5.jpg"];
-            }
-
-            if (!_view6.image)
-            {
-                _view6.image = [UIImage imageNamed:@"page_6.jpg"];
-            }
-
-            break;
-        case 5:
-
-            if (!_view5.image)
-            {
-                _view5.image = [UIImage imageNamed:@"page_5.jpg"];
-            }
-
-            if (!_view6.image)
-            {
-                _view6.image = [UIImage imageNamed:@"page_6.jpg"];
-            }
-
-
-            break;
-        case 6:
-
-            if (!_view6.image)
-            {
-                _view6.image = [UIImage imageNamed:@"page_6.jpg"];
-            }
-
-            if (!_view7.image)
-            {
-                _view7.image = [UIImage imageNamed:@"page_7.jpg"];
-            }
-
-            break;
-        case 7:
-
-            if (!_view7.image)
-            {
-                _view7.image = [UIImage imageNamed:@"page_7.jpg"];
-            }
-
-            if (!_view8.image)
-            {
-                _view8.image = [UIImage imageNamed:@"page_8.jpg"];
-            }
-
-            break;
-        case 8:
-
-            if (!_view8.image)
-            {
-                _view8.image = [UIImage imageNamed:@"page_8.jpg"];
             }
             break;
 
@@ -337,6 +243,5 @@
         [gestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
     }
 }
-
 
 @end

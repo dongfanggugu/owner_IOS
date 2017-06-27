@@ -292,7 +292,7 @@
 
             __weak typeof(self) weakSelf = self;
             [cell addOnClickListener:^{
-                [weakSelf showHouselist];
+                [weakSelf selectHouse];
             }];
 
             return cell;
@@ -407,30 +407,28 @@
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
-        [self showHouselist];
+        [self showHouseList];
 
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
 }
 
-- (void)showHouselist
+- (void)showHouseList
 {
     if (0 == self.arrayHouse.count)
     {
         return;
     }
+    
+    
+    _houseInfo = self.arrayHouse[0];
+    
+    [_tableView reloadData];
+}
 
-    if (1 == self.arrayHouse.count)
-    {
-
-        _houseInfo = self.arrayHouse[0];
-
-        [_tableView reloadData];
-
-        return;
-    }
-
+- (void)selectHouse
+{
     NSMutableArray *array = [NSMutableArray array];
 
     for (NSDictionary *info in self.arrayHouse)
@@ -453,7 +451,6 @@
     {
         if ([key isEqualToString:info[@"id"]])
         {
-
             _houseInfo = info;
 
             [_tableView reloadData];

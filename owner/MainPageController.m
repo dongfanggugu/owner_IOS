@@ -19,11 +19,15 @@
 #import "KnowledgeController.h"
 #import "HelpController.h"
 #import "MarketDetailController.h"
+#import "MainTypeInfo.h"
+#import "ExtraOrderAddController.h"
 
 
 @interface MainPageController () <AddBannerViewDelegate>
 
 @property (strong, nonatomic) AddBannerView *bannerView;
+
+@property (strong, nonatomic) NSMutableArray *arrayService;
 
 @property (strong, nonatomic) UILabel *lbLocation;
 
@@ -43,9 +47,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbMarket;
 
+@property (weak, nonatomic) IBOutlet UIView *viewAssist;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ivOther;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivExpert;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ivFestival;
 
 @property (weak, nonatomic) IBOutlet UIView *viewCompany;
 
@@ -59,7 +67,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoConstraint;
 
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *festivalConstraint;
 
 @end
 
@@ -78,19 +86,26 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-
-//    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)onClickNavRight
 {
     [HUDClass showHUDWithText:@"功能开发中!"];
+}
+
+- (NSMutableArray *)arrayService
+{
+    if (nil == _arrayService)
+    {
+        _arrayService = [NSMutableArray array];
+    }
+    
+    return _arrayService;
 }
 
 - (void)initView
@@ -137,6 +152,10 @@
 
     _lbMarket.userInteractionEnabled = YES;
     [_lbMarket addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(market)]];
+    
+    //智能小助手
+    _viewAssist.userInteractionEnabled = YES;
+    [_viewAssist addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(assistant)]];
 
     _ivOther.userInteractionEnabled = YES;
     [_ivOther addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(other)]];
@@ -159,42 +178,95 @@
     [_lbKn4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(safety)]];
 
     [self initCompanyLogo];
+
+    //处理节日图片
+    _festivalConstraint.constant = self.screenWidth / 3;
+
+    [self festival];
 }
 
 - (void)initCompanyLogo
 {
-    _logoConstraint.constant = self.screenWidth / 12 + 2;
+    _logoConstraint.constant = self.screenWidth / 15 + 2;
 
-    CGFloat width = (self.screenWidth - 5) / 4;
-    CGFloat height = (self.screenWidth - 5) / 12;
+    CGFloat width = (self.screenWidth - 6) / 5;
+    CGFloat height = (self.screenWidth - 6) / 15;
 
     UIImageView *com1 = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, width, height)];
-    com1.image = [UIImage imageNamed:@"honyum_logo.png"];
+    com1.image = [UIImage imageNamed:@"jiuzhou.png"];
     com1.userInteractionEnabled = YES;
-    [com1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(honyum)]];
+    [com1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jiuzhou)]];
 
     UIImageView *com2 = [[UIImageView alloc] initWithFrame:CGRectMake(1 + (width + 1), 1, width, height)];
-    com2.image = [UIImage imageNamed:@"zhonghao_logo.png"];
+    com2.image = [UIImage imageNamed:@"jiuzhou.png"];
     com2.userInteractionEnabled = YES;
-    [com2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhonghaojidian)]];
+    [com2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jiuzhou)]];
 
     UIImageView *com3 = [[UIImageView alloc] initWithFrame:CGRectMake(1 + (width + 1) * 2, 1, width, height)];
-    com3.image = [UIImage imageNamed:@"jiuzhou.png"];
+    com3.image = [UIImage imageNamed:@"honyum_logo.png"];
     com3.userInteractionEnabled = YES;
-    [com3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jiuzhou)]];
+    [com3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(honyum)]];
 
     UIImageView *com4 = [[UIImageView alloc] initWithFrame:CGRectMake(1 + (width + 1) * 3, 1, width, height)];
-    com4.image = [UIImage imageNamed:@"zhongxunlongchen.png"];
+    com4.image = [UIImage imageNamed:@"zhonghao_logo.png"];
     com4.userInteractionEnabled = YES;
-    [com4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhongxunlongchen)]];
+    [com4 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhonghaojidian)]];
+    
+    UIImageView *com5 = [[UIImageView alloc] initWithFrame:CGRectMake(1 + (width + 1) * 4, 1, width, height)];
+    com5.image = [UIImage imageNamed:@"zhongxunlongchen.png"];
+    com5.userInteractionEnabled = YES;
+    [com5 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhongxunlongchen)]];
 
 
-    _viewCompany.backgroundColor = RGB(@"#FFFFFF");
+    _viewCompany.backgroundColor = [UIColor whiteColor];
 
     [_viewCompany addSubview:com1];
     [_viewCompany addSubview:com2];
     [_viewCompany addSubview:com3];
     [_viewCompany addSubview:com4];
+    [_viewCompany addSubview:com5];
+}
+
+- (void)assistant
+{
+    if (!self.login)
+    {
+        [self showLoginInfo];
+        return;
+    }
+    
+    [self getServices];
+    
+}
+
+- (void)getServices
+{
+    [[HttpClient shareClient] post:@"getIncrementTypeList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self.arrayService removeAllObjects];
+
+        [self.arrayService addObjectsFromArray:responseObject[@"body"]];
+
+        if (self.arrayService.count > 0)
+        {
+            [self addOrder:self.arrayService[0]];
+        }
+
+    }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
+
+    }];
+}
+
+- (void)addOrder:(NSDictionary *)serviceInfo
+{
+    MainTypeInfo *info = [[MainTypeInfo alloc] initWithDictionary:serviceInfo];
+    
+    ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
+    controller.serviceInfo = info;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 - (void)QA
@@ -293,15 +365,6 @@
 
 - (void)repair
 {
-    if (!self.login)
-    {
-        RapidRepairController *controller = [[RapidRepairController alloc] init];
-        controller.hidesBottomBarWhenPushed = YES;
-
-        [self.navigationController pushViewController:controller animated:YES];
-        return;
-    }
-
     RapidRepairLoginController *controller = [[RapidRepairLoginController alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
@@ -314,7 +377,7 @@
     ReportController *controller = [[ReportController alloc] init];
 
     controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:controller];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)ensurance
@@ -466,12 +529,52 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://fir.im/liftowner"]];
 }
 
+- (void)festival
+{
+    [[HttpClient shareClient] bagpost:@"getAdvertisementByType" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSArray *array = responseObject[@"body"];
+        if (!array || 0 == array.count)
+        {
+            _ivFestival.image = [UIImage imageNamed:@"festival_banner.png"];
+        }
+
+        [_ivFestival setImageWithURL:[NSURL URLWithString:array[0][@"pic"]]];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+    }];
+}
 
 #pragma mark - AddBannerViewDelegate
 
 - (void)didClickPage:(AddBannerView *)view url:(NSString *)url
 {
     NSLog(@"banner url:%@", url);
+}
+
+- (void)showLoginInfo
+{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"您需要登录才能购买智能小助手" preferredStyle:UIAlertControllerStyleAlert];
+
+    __weak typeof(self) weakSelf = self;
+    [controller addAction:[UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction *handler) {
+        [weakSelf goToLogin];
+    }]];
+
+    [controller addAction:[UIAlertAction actionWithTitle:@"暂不登录" style:UIAlertActionStyleCancel handler:^(UIAlertAction *handler) {
+
+    }]];
+
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)goToLogin
+{
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"login_controller"];
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

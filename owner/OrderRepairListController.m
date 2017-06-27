@@ -97,10 +97,32 @@
     [[HttpClient shareClient] post:URL_REPAIR_LIST parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayOrder removeAllObjects];
         [self.arrayOrder addObjectsFromArray:responseObject[@"body"]];
-        [_tableView reloadData];
+        [self reloadData];
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
+}
+- (void)reloadData
+{
+    if (0 == self.arrayOrder.count)
+    {
+        //当没有维保信息时，提示
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 40)];
+        label.font = [UIFont systemFontOfSize:14];
+        label.textAlignment = NSTextAlignmentCenter;
+
+        label.numberOfLines = 0;
+
+        label.text = @"您还没有为您的别墅购买维修订单!";
+
+        _tableView.tableHeaderView = label;
+    }
+    else
+    {
+       _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableView

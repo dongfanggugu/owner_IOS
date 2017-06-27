@@ -28,9 +28,6 @@
 {
     [self setToken:@""];
     [self setUserId:@""];
-    [self setUserName:@""];
-    [self setName:@""];
-    [self setTel:@""];
 }
 
 - (void)setToken:(NSString *)token

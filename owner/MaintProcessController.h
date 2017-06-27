@@ -6,8 +6,16 @@
 #import <Foundation/Foundation.h>
 #import "BaseViewController.h"
 
+@protocol MaintProcessControllerDelegate <NSObject>
+
+- (void)checkMaintTask;
+
+@end
 
 @interface MaintProcessController : BaseViewController
 
 @property (strong, nonatomic) NSDictionary *orderInfo;
+
+@property (weak, nonatomic) id <MaintProcessControllerDelegate> delegate;
+
 @end

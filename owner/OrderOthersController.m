@@ -73,11 +73,33 @@
 
         [self.arrayOrder addObjectsFromArray:[responseObject objectForKey:@"body"]];
 
-        [self.tableView reloadData];
+        [self reloadData];
 
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
+}
+- (void)reloadData
+{
+    if (0 == self.arrayOrder.count)
+    {
+        //当没有维保信息时，提示
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 40)];
+        label.font = [UIFont systemFontOfSize:14];
+        label.textAlignment = NSTextAlignmentCenter;
+
+        label.numberOfLines = 0;
+
+        label.text = @"您还没有为您的别墅购买增值服务订单!";
+
+        _tableView.tableHeaderView = label;
+    }
+    else
+    {
+       _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableView

@@ -20,8 +20,6 @@
 
 - (void)addOnClickDetailListener:(void(^)())onClickDetail;
 
-- (void)addOnClickPayListener:(void(^)())onClickPay;
-
 - (void)addOnClickLinkListener:(void(^)())onClickLink;
 
 - (void)addOnClickOrderListener:(void(^)())onClickOrder;

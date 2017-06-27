@@ -22,6 +22,7 @@
 #import "ListDialogData.h"
 #import "ListDialogView.h"
 #import "MainOrderLoginController.h"
+#import "LoginController.h"
 
 
 @interface ReportController () <BMKMapViewDelegate, BMKGeoCodeSearchDelegate, MaintFloatViewDelegate, ListDialogViewDelegate>
@@ -52,7 +53,11 @@
     [self setNavTitle:@"电梯管家"];
     [self initNavRightWithText:@"联系我们"];
     [self initView];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self getMainType];
 }
 
@@ -336,80 +341,17 @@
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
-//    CalloutAnnotationView *calloutView = (CalloutAnnotationView *)view;
-//    
-//    if (_calloutView == calloutView)
-//    {
-//        return;
-//    }
-//    
-//    if (nil == _calloutView)
-//    {
-//        _calloutView = calloutView;
-//    }
-//    else
-//    {
-//        [_calloutView hideInfoWindow];
-//        _calloutView = calloutView;
-//    }
-//    
-//    [_calloutView showInfoWindow];
-//
-//    __weak typeof(self) weakSelf = self;
-//    
-//    [_calloutView.workerInfoView setOnClickApp:^{
-//        AppReportController *controller = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"app_report"];
-//        controller.projectId = [weakSelf.calloutView.info objectForKey:@"id"];
-//        [weakSelf.navigationController pushViewController:controller animated:YES];
-//    }];
-//    
-//    [_calloutView.workerInfoView setOnClickTel:^(NSString *tel) {
-//        NSLog(@"tel:%@", tel);
-//        
-//        if (0 == tel.length)
-//        {
-//            [HUDClass showHUDWithText:@"非法的手机号码,无法拨打!"];
-//            return;
-//        }
-//        
-//        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", tel]];
-//        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//        [webView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
-//        [weakSelf.view addSubview:webView];
-//        
-//        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//        params[@"communityId"] = [weakSelf.calloutView.info objectForKey:@"id"];
-//        params[@"type"] = @"1";
-//        [[HttpClient shareClient] post:@"addRepair" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-//            
-//        } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-//            
-//        }];
-//        
-//    }];
 
 }
 
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view
 {
-//    if (nil == _calloutView)
-//    {
-//        return;
-//    }
-//    
-//    [_calloutView hideInfoWindow];
-//    _calloutView = nil;
+
 }
 
 - (void)mapView:(BMKMapView *)mapView onClickedMapBlank:(CLLocationCoordinate2D)coordinate
 {
-//    if (nil == _calloutView)
-//    {
-//        return;
-//    }
-//    
-//    [_calloutView hideInfoWindow];
-//    _calloutView = nil;
+
 }
 
 #pragma mark - MaintFloatViewDelegate
@@ -450,7 +392,7 @@
 {
     if (!self.login)
     {
-        [HUDClass showHUDWithText:@"您需要先登录才能购买管家服务"];
+        [self showLoginInfo];
         return;
     }
 
@@ -481,21 +423,27 @@
         return;
     }
 
-    [self getHouses];
+    [self selectHouse];
 }
 
-- (void)showHouselist
+- (void)showHouseList
 {
     if (0 == self.arrayHouse.count)
     {
         return;
     }
-
-    if (1 == self.arrayHouse.count)
+    else
     {
+        if (1 == self.arrayHouse.count)
+        {
+            _floatView.changeHiden = YES;
+        }
+        else
+        {
+            _floatView.changeHiden = NO;
+        }
 
         _curHouse = self.arrayHouse[0];
-        _floatView.changeHiden = YES;
         _floatView.lbLocation.text = self.arrayHouse[0][@"cellName"];
         [self markOnMapWithLat:[[self.arrayHouse[0] objectForKey:@"lat"] floatValue]
                            lng:[[self.arrayHouse[0] objectForKey:@"lng"] floatValue]];
@@ -503,7 +451,10 @@
         [self getProjectInfo];
         return;
     }
+}
 
+- (void)selectHouse
+{
     NSMutableArray *array = [NSMutableArray array];
 
     for (NSDictionary *info in self.arrayHouse)
@@ -560,11 +511,37 @@
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
-        [self showHouselist];
+        [self showHouseList];
 
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
 }
+
+- (void)showLoginInfo
+{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"您需要登录才能购买管家服务" preferredStyle:UIAlertControllerStyleAlert];
+
+    __weak typeof(self) weakSelf = self;
+    [controller addAction:[UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction *handler) {
+        [weakSelf goToLogin];
+    }]];
+
+    [controller addAction:[UIAlertAction actionWithTitle:@"暂不登录" style:UIAlertActionStyleCancel handler:^(UIAlertAction *handler) {
+
+    }]];
+
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)goToLogin
+{
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"login_controller"];
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 @end

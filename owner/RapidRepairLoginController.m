@@ -26,6 +26,7 @@
 #import "RepairOrderConfirmController.h"
 #import "MainListResponse.h"
 #import "RepairOrderConfirmNoPayController.h"
+#import "ImageOverViewController.h"
 
 
 #define IMAGE_PATH @"/tmp/person/"
@@ -65,7 +66,20 @@
     [self setNavTitle:@"快修服务"];
     [self initNavRightWithText:@"联系我们"];
     [self initView];
-    [self getHouses];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    if (self.login)
+    {
+        [self getHouses];
+    }
+    else
+    {
+        [self showLoginInfo];
+    }
 }
 
 - (void)onClickNavRight
@@ -127,7 +141,6 @@
     params[@"villaId"] = request.villaId;
 
     [[HttpClient shareClient] post:URL_MAIN_LIST parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        MainListResponse *response = [[MainListResponse alloc] initWithDictionary:responseObject];
 
         NSArray *array = responseObject[@"body"];
 
@@ -138,7 +151,7 @@
         }
 
         NSDictionary *maintInfo = array[0];
-        NSInteger type = maintInfo[@"mainttypeId"];
+        NSInteger type = [maintInfo[@"mainttypeId"] integerValue];
 
         if (type > Maint_Mid)
         {
@@ -400,9 +413,12 @@
                 [cell setOnClickImageListener:^{
                     if (weakCell.hasImage)
                     {
-                        return;
+                        [weakSelf showOverView];
                     }
-                    [weakSelf showPicker];
+                    else
+                    {
+                        [weakSelf showPicker];
+                    }
 
                 }];
 
@@ -482,7 +498,7 @@
 
             __weak typeof(self) weakSelf = self;
             [cell addOnClickListener:^{
-                [weakSelf showHouselist];
+                [weakSelf selectHouse];
             }];
 
             return cell;
@@ -514,30 +530,31 @@
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
-        [self showHouselist];
+        [self showHouseList];
 
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
 }
 
-- (void)showHouselist
+- (void)showHouseList
 {
     if (0 == self.arrayHouse.count)
     {
         return;
     }
-
-    if (1 == self.arrayHouse.count)
+    else
     {
-
         _houseInfo = self.arrayHouse[0];
 
         [_tableView reloadData];
 
         return;
     }
+}
 
+- (void)selectHouse
+{
     NSMutableArray *array = [NSMutableArray array];
 
     for (NSDictionary *info in self.arrayHouse)
@@ -551,6 +568,7 @@
     [dialog setData:array];
     [dialog show];
 }
+
 
 #pragma mark - LisDialogViewDelegate
 
@@ -826,10 +844,46 @@
     }];
 }
 
+- (void)showLoginInfo
+{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"您需要登录才能购买管家服务" preferredStyle:UIAlertControllerStyleAlert];
+
+    __weak typeof(self) weakSelf = self;
+    [controller addAction:[UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction *handler) {
+        [weakSelf goToLogin];
+    }]];
+
+    [controller addAction:[UIAlertAction actionWithTitle:@"暂不登录" style:UIAlertActionStyleCancel handler:^(UIAlertAction *handler) {
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }]];
+
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)goToLogin
+{
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"login_controller"];
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)showOverView
+{
+    ImageOverViewController *controller = [[ImageOverViewController alloc] init];
+    controller.url = _url;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 - (void)dealloc
 {
     [self delRepairImage];
 }
+
+
 
 @end

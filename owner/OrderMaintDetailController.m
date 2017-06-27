@@ -7,9 +7,10 @@
 #import "MaintProcessController.h"
 #import "MaintDetailController.h"
 #import "PayViewController.h"
+#import "MaintTaskListController.h"
 
 
-@interface OrderMaintDetailController () <MaintDetailControllerDelegate>
+@interface OrderMaintDetailController () <MaintDetailControllerDelegate, MaintProcessControllerDelegate>
 
 @end
 
@@ -59,8 +60,9 @@
 - (void)loadProcessAndDetail
 {
     MaintProcessController *controller = [[MaintProcessController alloc] init];
-
+    controller.delegate = self;
     controller.orderInfo = _orderInfo;
+
     [self addChildViewController:controller];
 
     CGRect frame = CGRectMake(0, 118, self.screenWidth, self.screenHeight - 118);
@@ -127,6 +129,17 @@
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
+}
+
+#pragma mark - MaintProcessControllerDelegate
+
+- (void)checkMaintTask
+{
+    MaintTaskListController *controller = [[MaintTaskListController alloc] init];
+    controller.orderInfo = _orderInfo;
+
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

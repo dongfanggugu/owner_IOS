@@ -45,6 +45,8 @@
 
 @property (strong, nonatomic) NSDictionary *data;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnChange;
+
 @property (assign, nonatomic) BOOL viewHidden;
 
 @end

@@ -91,7 +91,7 @@
     lb.font = [UIFont systemFontOfSize:13];
 
     [self.view addSubview:lb];
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 64, self.screenWidth - 40, 40)];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 63, self.screenWidth - 40, 40)];
 
     _searchBar.barTintColor = [UIColor whiteColor];
 

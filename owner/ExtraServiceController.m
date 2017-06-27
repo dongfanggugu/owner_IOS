@@ -40,7 +40,6 @@
 {
     [super viewDidLoad];
     [self setNavTitle:@"增值服务"];
-    [self initNavRightWithText:@"查看历史"];
     [self initTableView];
     [self getHouses];
 }
@@ -151,30 +150,31 @@
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
-        [self showHouselist];
+        [self showHouseList];
 
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
 }
 
-- (void)showHouselist
+- (void)showHouseList
 {
     if (0 == self.arrayHouse.count)
     {
         return;
     }
 
+    self.houseInfo = self.arrayHouse[0];
+
     if (1 == self.arrayHouse.count)
     {
-
-        self.houseInfo = self.arrayHouse[0];
-
         _headView.btnHidden = YES;
-
-        return;
     }
 
+}
+
+- (void)selectHouse
+{
     if (!self.houseInfo)
     {
         self.houseInfo = self.arrayHouse[0];
@@ -298,11 +298,6 @@
         [weakSelf onClickDetailButton:detail];
     }];
 
-    [cell addOnClickPayListener:^{
-        NSDictionary *serviceInfo = info[@"incrementTypeInfo"];
-        [weakSelf onClickPayButton:serviceInfo];
-    }];
-
     [cell addOnClickLinkListener:^{
         [weakSelf onClickLinkButton];
     }];
@@ -344,15 +339,6 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)onClickPayButton:(NSDictionary *)serviceInfo
-{
-    ExtraOrderAddController *controller = [[ExtraOrderAddController alloc] init];
-    controller.serviceInfo = [[MainTypeInfo alloc] initWithDictionary:serviceInfo];
-
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
 - (void)onClickOrderButton:(NSDictionary *)serviceInfo
 {
     ExtraPayOrderController *controller = [[ExtraPayOrderController alloc] init];
@@ -368,19 +354,7 @@
 
 - (void)onClickBtn:(HouseChangeView *)view
 {
-    if (0 == self.arrayHouse.count)
-    {
-        [HUDClass showHUDWithText:@"您需要先添加别墅"];
-        return;
-    }
-
-    if (1 == self.arrayHouse.count)
-    {
-        [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
-        return;
-    }
-
-    [self showHouselist];
+    [self selectHouse];
 }
 
 @end

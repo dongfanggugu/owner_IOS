@@ -96,7 +96,6 @@
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-
     //维保记录
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.screenWidth, self.screenHeight - 64)];
 
@@ -210,27 +209,29 @@
     [[HttpClient shareClient] post:URL_GET_HOUSE parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.arrayHouse removeAllObjects];
         [self.arrayHouse addObjectsFromArray:responseObject[@"body"]];
-        [self showHouselist];
+        [self showHouseList];
 
     }                      failure:^(NSURLSessionDataTask *task, NSError *errr) {
 
     }];
 }
 
-- (void)showHouselist
+- (void)showHouseList
 {
     if (0 == self.arrayHouse.count)
     {
         return;
     }
+    self.houseInfo = self.arrayHouse[0];
 
     if (1 == self.arrayHouse.count)
     {
-
-        self.houseInfo = self.arrayHouse[0];
-        return;
+        _infoView.btnChange.hidden = YES;
     }
+}
 
+- (void)selectHouse
+{
     if (!self.houseInfo)
     {
         self.houseInfo = self.arrayHouse[0];
@@ -249,6 +250,7 @@
     [dialog setData:array];
     [dialog show];
 }
+
 
 #pragma mark - LisDialogViewDelegate
 
@@ -444,19 +446,7 @@
 
 - (void)onClickChangeButton:(MainOrderInfoView *)view
 {
-    if (0 == self.arrayHouse.count)
-    {
-        [HUDClass showHUDWithText:@"您需要先添加别墅"];
-        return;
-    }
-
-    if (1 == self.arrayHouse.count)
-    {
-        [HUDClass showHUDWithText:@"您当前有一栋别墅,暂不需要切换别墅"];
-        return;
-    }
-
-    [self showHouselist];
+    [self selectHouse];
 }
 
 

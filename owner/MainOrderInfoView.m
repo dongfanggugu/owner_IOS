@@ -19,8 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnChange;
-
 @property (weak, nonatomic) IBOutlet UIView *viewBottom;
 
 

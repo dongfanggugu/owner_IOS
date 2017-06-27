@@ -48,6 +48,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak typeof(self) weakSelf = self;
     ProcessCell *cell = [ProcessCell cellFromNib];
     switch (indexPath.row)
     {
@@ -96,7 +97,7 @@
             if ([_orderInfo[@"isPay"] boolValue]) {
                 cell.lbDes.text = @"您的维保计划已经生成";
                 [cell setOnClickBtn:^ {
-                    NSLog(@"查看维保计划")
+                    [weakSelf checkMaintTask];
                 }];
             }
             cell.lbTime.text = _orderInfo[@"payTime"];
@@ -125,6 +126,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [ProcessCell cellHeight];
+}
+
+- (void)checkMaintTask
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(checkMaintTask)])
+    {
+        [_delegate checkMaintTask];
+    }
 }
 
 @end

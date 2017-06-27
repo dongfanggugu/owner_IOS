@@ -12,6 +12,7 @@
 #import "PayViewController.h"
 #import "CouponViewController.h"
 #import "CompanyListController.h"
+#import "ThirdProtocolController.h"
 
 @interface RepairOrderConfirmController () <UITableViewDelegate, UITableViewDataSource, RepairOrderConfirmCellDelegate,
         CouponViewControllerDelegate, CompanyListControllerDelegate>
@@ -188,7 +189,10 @@
 
 - (void)onClickAgreement
 {
+    ThirdProtocolController *controller = [[ThirdProtocolController alloc] init];
 
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)onChooseCompany:(NSInteger)index name:(NSString *)name
